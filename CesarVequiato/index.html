@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+
+    <h1>Simulador Financeiro da Luzion</h1> <br>
+    Quantos m² tem o estabelecimento? <input id="ipt_metros"><br><br>
+    <button onclick="institucional()">Institucional</button>
+    <button onclick="empresarial()">Empresarial</button>
+    <button onclick="comercial()">Comercial</button>
+    <button onclick="industrial()">Industrial</button><br><br>
+    <div id="div_msg"></div>
+
+</body>
+
+<script>
+    var qtdInstitucional = 1750
+    var qtdEmpresarial = 100
+    var qtdComercial = 60000
+    var qtdIndustrial = 250
+    var mes = 1;
+    
+    function institucional() {
+        var dispositivos = qtdInstitucional / 20;
+        var preco = dispositivos * 114.28
+        if (dispositivos <= 10) {
+            preco = dispositivos * 134.28
+        }
+        if (dispositivos >= 50  && dispositivos < 100) {
+            preco *= 0.95
+        } else if (dispositivos >= 100) {
+            preco *= 0.92
+        }
+        var calcularGanho = 13 * qtdInstitucional
+        var lucro = (calcularGanho - preco)
+
+        div_msg.innerHTML += `<br> ${mes}° mês. O custo total será de R$${preco.toFixed(2)}, a receita com as vendas será de R$${calcularGanho.toFixed(2)} e o lucro será de R$${lucro.toFixed(2)}. `
+        mes++;
+    }
+
+    function empresarial() {
+    var dispositivos = qtdEmpresarial / 20
+    var preco = dispositivos * 114.28
+    if (dispositivos <= 10) {
+        preco = dispositivos * 134.28
+    }
+    if (dispositivos >= 50  && dispositivos < 100) {
+        preco *= 0.95
+    } else if (dispositivos >= 100) {
+        preco *= 0.92
+    }
+    var calcularGanho = 13 * qtdEmpresarial
+    var lucro = (calcularGanho - preco) * 12
+    div_msg.innerHTML += ` <br> ${mes}° mês. O custo total será de R$${preco.toFixed(2)}, a receita com as vendas será de R$${calcularGanho.toFixed(2)} e o lucro será de R$${lucro.toFixed(2)}. `
+    mes++
+    }
+
+    function comercial() {
+    var dispositivos = Number(ipt_metros.value)
+    var preco = dispositivos * 114.28
+    if (dispositivos <= 10) {
+        preco = dispositivos * 134.28
+    }
+    if (dispositivos >= 50  && dispositivos < 100) {
+        preco *= 0.95
+    } else if (dispositivos >= 100) {
+        preco *= 0.92
+    }
+    var calcularGanho = 13 * qtdComercial
+    var lucro = calcularGanho - preco
+    div_msg.innerHTML = ` <br> ${mes}°O custo total será de R$${preco.toFixed(2)}, a receita com as vendas será de R$${calcularGanho.toFixed(2)} e o lucro será de R$${lucro.toFixed(2)}. `
+    mes++
+    }
+
+    function industrial() {
+    var dispositivos = Number(ipt_metros.value)
+    var preco = dispositivos * 114.28
+    if (dispositivos <= 10) {
+        preco = dispositivos * 134.28
+    }
+    if (dispositivos >= 50  && dispositivos < 100) {
+        preco *= 0.95
+    } else if (dispositivos >= 100) {
+        preco *= 0.92
+    }
+    var calcularGanho = 13 * qtdIndustrial
+    var lucro = calcularGanho - preco
+    div_msg.innerHTML = ` <br> ${mes}°O custo total será de R$${preco.toFixed(2)}, a receita com as vendas será de R$${calcularGanho.toFixed(2)} e o lucro será de R$${lucro.toFixed(2)}. `
+    mes++
+    }
+</script>
+
+</html>
