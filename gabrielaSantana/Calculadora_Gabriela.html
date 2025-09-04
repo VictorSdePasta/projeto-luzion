@@ -24,18 +24,13 @@
         var quantidadeDispensers = Number(ipt_qtdDispensers.value);
         var mesesSimulacao = Number(ipt_mesesSimulacao.value);
 
-        //  Definindo os custos e ganhos
-        var aumentoLucroPorDispenser = 50; // Cada dispenser gera R$ 50 de lucro extra por mês
+       
+        var aumentoLucroPorDispenser = 50; 
         var custoPorDispositivo = 84.28;
         var custoTotalSoftware = 50000;
 
-        // Verificando se os campos estão preenchidos
-        if (ipt_lucroAtual.value == "" || ipt_qtdDispensers.value == "" || ipt_mesesSimulacao.value == "") {
-            alert("Por favor, preencha todos os campos.");
-            return;
-        }
-
-        // Realizando os cálculos
+       
+       
         var custoDispositivosTotal = custoPorDispositivo * quantidadeDispensers;
         var investimentoInicialTotal = custoDispositivosTotal + custoTotalSoftware;
 
@@ -51,7 +46,7 @@
             mesesParaRetorno = mesesParaRetorno.toFixed(1) + " meses";
         }
 
-        //  lucro acumulado total 
+       
         var lucroAcumulado = (aumentoLucroMensal * mesesSimulacao) - investimentoInicialTotal;
 
         div_resultado.innerHTML = `
