@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+    <h1>Simulador Financeiro da Luzion</h1> <br>
+    Quantas pessoas mensalmente em média frequentam o estabelecimento na qual irá conter os dispensers? <input id="ipt_qtdPessoas"><br>
+    Qual setor do estabelecimento na qual será instalado o dispenser?<input id="ipt_setor"><br>
+    <button onclick="calculo()">Calcular</button><br><br>
+    
+    <div id="divMsg"></div>
+</body>
+<script>
+    var precoPapel = 13;
+    function calculo() {
+        var qtdPessoas = Number(ipt_qtdPessoas.value)
+        var setor = ipt_setor.value;
+        if (setor == `lojas` || setor == `mercados`|| setor == `restaurante` ||
+            setor == `padaria` || setor == `escola` ) {
+            qtdPessoas /= 20
+        } else if (setor == `supermercados` || setor == `shopping`) {
+            qtdPessoas /= 75
+        } else if (setor == `escritório` || setor == `agência` || setor == `empresa`) {
+            qtdPessoas /= 50
+        } else if (setor == `transportadoras`) {
+            qtdPessoas /= 100
+        } else if (setor == `hospital`) {
+            qtdPessoas /= 2
+        }
+        var ganhoTotal = precoPapel * qtdPessoas;
+        divMsg.innerHTML = `O ganho total será de R$${ganhoTotal} com o nosso dispositivo no ${setor}`;
+    }
+
+</script>
+
+</html>
