@@ -8,8 +8,8 @@
 
 <body>
     <h1>Simulador Financeiro da Luzion</h1> <br>
-    Quantas pessoas mensalmente em média frequentam o estabelecimento na qual irá conter os dispensers? <input id="ipt_qtdPessoas"><br>
-    Qual setor do estabelecimento na qual será instalado o dispenser?<input id="ipt_setor"><br>
+    Em média, quantas pessoas frequentam o estabelecimento por mês?<input id="ipt_qtdPessoas"><br>
+    Qual setor do estabelecimento na qual será instalado o dispenser?<input id="ipt_setor"><br> 
     <button onclick="calculo()">Calcular</button><br><br>
     
     <div id="divMsg"></div>
@@ -19,20 +19,36 @@
     function calculo() {
         var qtdPessoas = Number(ipt_qtdPessoas.value)
         var setor = ipt_setor.value;
-        if (setor == `lojas` || setor == `mercados`|| setor == `restaurante` ||
-            setor == `padaria` || setor == `escola` ) {
+        if (setor == `lojas`) {
             qtdPessoas /= 20
-        } else if (setor == `supermercados` || setor == `shopping`) {
+        }if (setor == `supermercados`) {
             qtdPessoas /= 75
-        } else if (setor == `escritório` || setor == `agência` || setor == `empresa`) {
+        }if (setor == `escritório`) {
             qtdPessoas /= 50
-        } else if (setor == `transportadoras`) {
+        }if (setor == `transportadoras`) {
             qtdPessoas /= 100
-        } else if (setor == `hospital`) {
+        }if (setor == `hospital`) {
             qtdPessoas /= 2
+        }if (setor == `agência`) {
+            qtdPessoas /= 50
+        }if (setor == `empresa`) {
+            qtdPessoas /= 50
+        }if (setor == `shopping`) {
+            qtdPessoas /= 75
+        }if (setor == `mercados`) {
+            qtdPessoas /= 20
+        }if (setor == `restaurante`) {
+            qtdPessoas /= 20
+        }if (setor == `padaria`) {
+            qtdPessoas /= 20
+        }if (setor == `escola`) {
+            qtdPessoas /= 20
         }
         var ganhoTotal = precoPapel * qtdPessoas;
-        divMsg.innerHTML = `O ganho total será de R$${ganhoTotal} com o nosso dispositivo no ${setor}`;
+        divMsg.innerHTML = `Para o setor ${setor}:<br>
+                            Em um mês, o ganho total será de R$${ganhoTotal.toFixed(2)}<Br>
+                            Em 6 meses, o ganho total será de R$${(ganhoTotal * 6).toFixed(2)}<br>
+                            Em um ano, o ganho total será de R$${(ganhoTotal * 12).toFixed(2)}<br>`;
     }
 
 </script>
