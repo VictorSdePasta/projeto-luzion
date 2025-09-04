@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro Luzion</title>
+</head>
+<body>
+
+    <h1>Simulador Financeiro Luzion</h1>
+    <h4>Descubra como a Luzion pode aumentar o lucro da sua empresa.</h4><br><br>
+
+    Lucro Mensal Atual (em R$): <input id="ipt_lucroAtual"><br><br>
+    Quantidade de Dispensers que Deseja Adquirir: <input id="ipt_qtdDispensers"><br><br>
+    Simular por quantos meses?: <input id="ipt_mesesSimulacao"><br><br>
+
+    <button onclick="simularGanhos()">Simular Ganhos</button>
+
+    <div id="div_resultado"></div>
+
+<script>
+    function simularGanhos() {
+        var lucroAtual = Number(ipt_lucroAtual.value);
+        var quantidadeDispensers = Number(ipt_qtdDispensers.value);
+        var mesesSimulacao = Number(ipt_mesesSimulacao.value);
+
+        //  Definindo os custos e ganhos
+        var aumentoLucroPorDispenser = 50; // Cada dispenser gera R$ 50 de lucro extra por mês
+        var custoPorDispositivo = 84.28;
+        var custoTotalSoftware = 50000;
+
+        // Verificando se os campos estão preenchidos
+        if (ipt_lucroAtual.value == "" || ipt_qtdDispensers.value == "" || ipt_mesesSimulacao.value == "") {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+
+        // Realizando os cálculos
+        var custoDispositivosTotal = custoPorDispositivo * quantidadeDispensers;
+        var investimentoInicialTotal = custoDispositivosTotal + custoTotalSoftware;
+
+        var aumentoLucroMensal = aumentoLucroPorDispenser * quantidadeDispensers;
+        var lucroPrevisto = lucroAtual + aumentoLucroMensal;
+        
+        
+        var ganhoInvestimento = aumentoLucroMensal;
+        
+        
+        if (ganhoInvestimento > 0) {
+            var mesesParaRetorno = investimentoInicialTotal / ganhoInvestimento;
+            mesesParaRetorno = mesesParaRetorno.toFixed(1) + " meses";
+        }
+
+        //  lucro acumulado total 
+        var lucroAcumulado = (aumentoLucroMensal * mesesSimulacao) - investimentoInicialTotal;
+
+        div_resultado.innerHTML = `
+            <h3>Resultados da Simulação</h3>
+            <p>Previsão de Lucro Mensal com Luzion: R$ ${lucroPrevisto.toFixed(2)}</p>
+            <p> Seu aumento de Lucro com cada dispositivo R$ ${aumentoLucroPorDispenser}</p>
+            <p>Custo total dos dispositivos: R$ ${custoDispositivosTotal.toFixed(2)}</p>
+            <p>Investimento Inicial Total (Dispositivos + Software): R$ ${investimentoInicialTotal.toFixed(2)}</p>
+            <p>Tempo de Retorno do Investimento (ROI): ${mesesParaRetorno}</p>
+            <p>Lucro acumulado em ${mesesSimulacao} meses: R$ ${lucroAcumulado.toFixed(2)}</p>
+        `;
+
+    }
+</script>
+
+</body>
+</html>
