@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+
+<body>
+
+    <br>
+    <h1>Calculadora financeira</h1>
+    <br><br>
+
+    <h3>Essa calculadora financeira é uma simulação e tem como objetivo calcular a quantidade de papeis que sua
+        empresa venderia e o lucro gerado com a implementação desses dispositivos,
+        com base no porte da empresa. O processo começa ao inserir o porte da empresa, e, a partir de uma média de
+        números por porte, será feita uma conta para
+        estimar tanto a quantidade de papeis que poderão ser vendidos assim mostrando o resultado da implementação
+        desses dispositivos, esses dados e denominações foram tirados de Sebrae e IBGE</h3>
+    <br>
+
+    <h2>Qual é o porte da empresa que você ira vender seu dispenser?</h2>
+
+    <br><br>
+
+    Insira seu nome:<input id="nome">
+
+    <br><br>
+
+    <button onclick="micro()">Micro</button>
+    <br><br>
+
+    <button onclick="pequeno()">Pequeno</button>
+    <br><br>
+
+    <button onclick="medio()">Médio</button>
+    <br><br>
+
+    <button onclick="grande()">Grande</button>
+    <br><br>
+
+    <div id="resultado"></div>
+
+</body>
+
+<script>
+
+    function micro() {
+        var quantidade_pessoas = 9;
+        var rolo = 8;
+        var papel_utilizado = 35;
+        var preço_papel = 70;
+        var nomes = nome.value;
+        var jumbos = papel_utilizado / rolo;
+        var lucroTotal = jumbos * preço_papel;
+
+        resultado.innerHTML =
+            " Olá, " + nomes + "! " +
+            " Porte da empresa: micro. " +
+            " Quantidade estimada de pessoas: " + quantidade_pessoas + ". " +
+            " Quantidade de rolo por jumbo " + rolo + "." +
+            " Quantidade do papel utilizado: " + papel_utilizado + " rolos " +
+            " Preço do jumbo: R$ " + preço_papel +
+            " Lucro sobre o papel: R$ " + lucroTotal + ". "
+    }
+
+    function pequeno() {
+        var quantidade_pessoas = 49;
+        var rolo = 8;
+        var papel_utilizado = 150;
+        var preço_papel = 70;
+        var nomes = nome.value;
+        var jumbos = papel_utilizado / rolo;
+        var lucroTotal = jumbos * preço_papel;
+
+        resultado.innerHTML =
+            " Olá, " + nomes + "! " +
+            " Porte da empresa: micro. " +
+            " Quantidade estimada de pessoas: " + quantidade_pessoas + ". " +
+            " Quantidade de rolo por jumbo " + rolo + "." +
+            " Quantidade do papel utilizado: " + papel_utilizado + " rolos " +
+            " Preço do jumbo: R$ " + preço_papel +
+            " Lucro sobre o papel: R$ " + lucroTotal + ". "
+    }
+
+    function medio() {
+        var quantidade_pessoas = 99;
+        var rolo = 8;
+        var papel_utilizado = 300;
+        var preço_papel = 70;
+        var nomes = nome.value;
+        var jumbos = papel_utilizado / rolo;
+        var lucroTotal = jumbos * preço_papel;
+
+        resultado.innerHTML =
+            " Olá, " + nomes + "! " +
+            " Porte da empresa: micro. " +
+            " Quantidade estimada de pessoas: " + quantidade_pessoas + ". " +
+            " Quantidade de rolo por jumbo " + rolo + "." +
+            " Quantidade do papel utilizado: " + papel_utilizado + " rolos " +
+            " Preço do jumbo: R$ " + preço_papel +
+            " Lucro sobre o papel: R$ " + lucroTotal + ". "
+    }
+
+    function grande() {
+        var quantidade_pessoas = 150;
+        var rolo = 8;
+        var papel_utilizado = 800;
+        var preço_papel = 70;
+        var nomes = nome.value;
+        var jumbos = papel_utilizado / rolo;
+        var lucroTotal = jumbos * preço_papel;
+
+        resultado.innerHTML =
+            " Olá, " + nomes + "! " +
+            " Porte da empresa: micro. " +
+            " Quantidade estimada de pessoas: " + quantidade_pessoas + ". " +
+            " Quantidade de rolo por jumbo " + rolo + "." +
+            " Quantidade do papel utilizado: " + papel_utilizado + " rolos " +
+            " Preço do jumbo: R$ " + preço_papel +
+            " Lucro sobre o papel: R$ " + lucroTotal + ". "
+    }
+
+</script>
+
+</html>
