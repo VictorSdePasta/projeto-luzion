@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+    <h1>Simulador Financeiro da Luzion</h1> <br>
+    Insira um dos setores listados na questão abaixo:
+    <p><i>
+        lojas | supermercado | escritório | transportadora | hospital | agência <br>
+        empresa | shopping | mercados | restaurante | padaria | escola
+    </p></i>
+    <b>Para qual setor você vende os dispensers?</b><input id="ipt_setor"><br>    <button onclick="calculo()">Calcular</button><br><br>
+    
+    <div id="divMsg"></div>
+</body>
+<script>
+    var precoPapel = 13;
+    function calculo() {
+        var qtdPessoas = Number(ipt_qtdPessoas.value)
+        var setor = ipt_setor.value;
+        if (setor == `lojas`) {
+            qtdPessoas /= 20
+        }if (setor == `supermercado`) {
+            qtdPessoas /= 75
+        }if (setor == `escritório`) {
+            qtdPessoas /= 50
+        }if (setor == `transportadora`) {
+            qtdPessoas /= 100
+        }if (setor == `hospital`) {
+            qtdPessoas /= 2
+        }if (setor == `agência`) {
+            qtdPessoas /= 50
+        }if (setor == `empresa`) {
+            qtdPessoas /= 50
+        }if (setor == `shopping`) {
+            qtdPessoas /= 75
+        }if (setor == `mercados`) {
+            qtdPessoas /= 20
+        }if (setor == `restaurante`) {
+            qtdPessoas /= 20
+        }if (setor == `padaria`) {
+            qtdPessoas /= 20
+        }if (setor == `escola`) {
+            qtdPessoas /= 20
+        }
+        var ganhoTotal = precoPapel * qtdPessoas;
+        divMsg.innerHTML = `Para o setor ${setor}:<br>
+                            Em um mês, o faturamento total será de R$${ganhoTotal.toFixed(2)}<Br>
+                            Em 6 meses, o faturamento total será de R$${(ganhoTotal * 6).toFixed(2)}<br>
+                            Em um ano, o faturamento total será de R$${(ganhoTotal * 12).toFixed(2)}<br>`;
+    }
+
+</script>
+
+</html>

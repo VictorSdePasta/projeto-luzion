@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzion</title>
+</head>
+
+<body>
+    <h1>Simulador Financeiro da Luzion</h1>
+    Quantas pessoas mensalmente em média frequentam o estabelecimento? <input id="ipt_qtdPessoas"><br>
+    Qual setor do estabelecimento? <input id="ipt_setor"><br>
+    <button onclick="calculo()">Calcular</button>
+    <div id="divMsg"></div>
+
+    <script>
+        var precoPapel = 13.00;
+
+        function calculo() {
+            var qtdPessoas = Number(ipt_qtdPessoas.value)   
+            var setor = ipt_setor.value
+            var custoInstalacaoPorDispenser = 25.00;
+
+            if (setor == "mercados" || setor == "restaurante" ||
+                setor == "padaria" || setor == "escola") {
+                qtdPessoas /= 20
+            } else if (setor == "supermercados" || setor == "shopping") {
+                qtdPessoas /= 75
+            } else if (setor == "escritório" || setor == "agência" || setor == "empresa") {
+                qtdPessoas /= 50
+            } else if (setor == "transportadoras") {
+                qtdPessoas /= 100
+            } else if (setor == "hospital") {
+                qtdPessoas /= 2
+            }
+
+            var ganhoTotal = precoPapel * qtdPessoas;
+            var custoInstalacaoTotal = custoInstalacaoPorDispenser * qtdPessoas;
+            var lucroLiquido = ganhoTotal - custoInstalacaoTotal;
+
+            divMsg.innerHTML = `
+        O ganho total será de R$${ganhoTotal.toFixed(2)} com o nosso dispositivo no setor ${setor}.<br>
+        O custo de instalação será de R$${custoInstalacaoTotal.toFixed(2)}.<br>
+        O lucro líquido estimado será de R$${lucroLiquido.toFixed(2)}.`
+        }
+    </script>
+</body>
+
+</html>
