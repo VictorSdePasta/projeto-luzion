@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h2>Simulador Financeiro: Preço do dispositivo e lucro da sua empresa.</h2>
+    <b>Informe a quantidade de papel higiênico que sua empresa vende por mês: </b> <input id="ipt_qtdPapel"><br><br>
+    <b>Informe a quantidade de Dispositivos Inteligentes que serão comprados:</b> <input id="ipt_qtdDispositivo"><br>
+    <span style=color:red;>OBS:</span> O desconto aumenta conforme a quantidade comprada de dispositivos.<br><br>
+    <b>Clique no botão abaixo para iniciar a simulação.</b><br>  
+    <span style=color:red;>OBS:</span> você pode fazer apenas uma simulação por vez.<br><br>
+
+    <button onclick="calcular_dispositivo()">Calcular</button><br><br>
+
+    <div id="div_msg"></div>
+</body>
+<script>
+    var dispositivo_desconto = 0;
+
+    function calcular_dispositivo() {
+        div_msg.innerHTML = '';
+        var preco_unitario = 109;
+        var qtdDispositivo = Number (ipt_qtdDispositivo.value);
+        var preco_dispositivo = qtdDispositivo * 109; 
+
+        if (qtdDispositivo >= 200 && qtdDispositivo <= 400) {
+
+            dispositivo_desconto = preco_dispositivo * 0.95;
+            div_msg.innerHTML += `Apenas um dispositivo custa R$ ${preco_unitario.toFixed(2)}. A quantidade de ${qtdDispositivo} dispositivos terá um desconto de <span style=color:green;>5%</span> e seu valor final será de: R$ ${dispositivo_desconto.toFixed(2)}. <br>`;
+        }
+
+        else if (qtdDispositivo > 400) {
+            dispositivo_desconto = preco_dispositivo * 0.90;  
+            div_msg.innerHTML += `Apenas um dispositivo custa R$ ${preco_unitario.toFixed(2)}. A quantidade de ${qtdDispositivo} dispositivos terá um desconto de <span style=color:green;>10%</span> e seu valor final será de: R$ ${dispositivo_desconto.toFixed(2)}. <br>`;
+        }
+
+        else {
+            dispositivo_desconto = preco_dispositivo;
+            div_msg.innerHTML += `Apenas um dispositivo custa R$ ${preco_unitario.toFixed(2)}. A quantidade de ${qtdDispositivo} dispositivos custa R$ ${dispositivo_desconto.toFixed(2)}. O total de dispositivos comprados não foi suficiente para o acréscimo do desconto. <br>`;
+        }
+
+        //impulsionamento do lucro
+        var preco_papel = 13;
+        var qtd_papel = Number (ipt_qtdPapel.value);
+        var impulsionamento_papel = 0.10;
+        var lucro_antigo_papel = qtd_papel * preco_papel;
+        var lucro_novo_papel = lucro_antigo_papel * (1 + impulsionamento_papel);
+        var lucro_total_dispositivo = lucro_novo_papel - dispositivo_desconto;
+        var representacao_lucro = lucro_novo_papel - lucro_antigo_papel;
+        div_msg.innerHTML += `Com o dispositivo suas vendas de papel foram impulsionadas em 10%. <br>
+        A quantidade de ${qtd_papel} vendida de papel antes te retornava o lucro de R$ ${lucro_antigo_papel.toFixed(2)}. <br>
+        Atualmente, a mesma quantidade terá um retorno de lucro total estimado R$ ${lucro_novo_papel.toFixed(2)}. <br>
+        Representando R$ ${representacao_lucro.toFixed(2)} a mais no total da receita da sua empresa.`;
+    }
+</script>
+</html>
