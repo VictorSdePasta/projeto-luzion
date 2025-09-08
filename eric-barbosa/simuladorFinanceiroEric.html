@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Lucro</title>
+    <title>Simulador Financeiro</title>
 </head>
 <body>
 
@@ -18,11 +18,10 @@
 
     <script>
         function calcularLucroVendas() {
-            // Pegando os valores digitados pelo usuário
             var qtdPessoas = Number(ipt_qtdPessoas.value);
             var custoRolo = Number(ipt_custoRolo.value);
 
-            // Verificando se os campos foram preenchidos
+            // condição para verificar caixa vazia
             if (qtdPessoas <= 0 || custoRolo <= 0) {
                 alert("Por favor, preencha todos os campos com valores válidos.");
             }
