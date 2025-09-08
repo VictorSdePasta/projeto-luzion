@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Lucro</title>
+</head>
+<body>
+
+    <h1>Simulador Financeiro</h1>
+    <p>Descubra como nossa solução pode aumentar suas vendas de papel.</p>
+
+    Quantidade média de pessoas por dia: <input id="ipt_qtdPessoas"><br>
+    Custo de um rolo de papel (R$): <input id="ipt_custoRolo"><br>
+    <button onclick="calcularLucroVendas()">Calcular Aumento de Lucro</button>
+    <div id="resultado"></div>
+
+    <script>
+        function calcularLucroVendas() {
+            // Pegando os valores digitados pelo usuário
+            var qtdPessoas = Number(ipt_qtdPessoas.value);
+            var custoRolo = Number(ipt_custoRolo.value);
+
+            // Verificando se os campos foram preenchidos
+            if (qtdPessoas <= 0 || custoRolo <= 0) {
+                alert("Por favor, preencha todos os campos com valores válidos.");
+            }
+
+            var consumoRoloPorPessoa = 0.03; // quantidade de rolos que um pessoa utiliza por dia(rolo comercial de 250m)
+            var aumentoVendasPercentual = 0.10; // ganho mínimo de 10%
+            var diasNoAno = 365;
+
+            var consumoDiarioTotal = qtdPessoas * consumoRoloPorPessoa;
+            var consumoAnualTotal = consumoDiarioTotal * diasNoAno;
+            var lucroAnualSemSensor = consumoAnualTotal * custoRolo;
+            var lucroAnualComSensor = lucroAnualSemSensor * (1 + aumentoVendasPercentual);
+            var lucroAdicionalAnual = lucroAnualComSensor - lucroAnualSemSensor;
+
+            resultado.innerHTML = `
+                <p><b>Projeção de Aumento de Vendas com nossa Solução:</b></p>
+                <p>Receita anual estimada (sem nosso sensor): R$ ${lucroAnualSemSensor.toFixed(2)}</p>
+                <p>Receita anual estimada (com nosso sensor): R$ ${lucroAnualComSensor.toFixed(2)}</p>
+                <p><b>Aumento de lucro anual: R$ ${lucroAdicionalAnual.toFixed(2)}</b</p>`;
+        }
+    </script>
+
+</body>
+
+</html>
