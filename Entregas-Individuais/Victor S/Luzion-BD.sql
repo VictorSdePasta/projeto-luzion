@@ -1,4 +1,3 @@
--- Active: 1757607581749@@localhost@3306@luzion
 create database luzion;
 use luzion;
 
@@ -63,6 +62,23 @@ insert into Filial (titulo,fkEmpresa) values
 ('Sede SenGas',4),
 ('Sede SenGas',5),
 ('Shopping do Bairro',6);
+
+create table Estoque (
+	idEstoque int primary key auto_increment,
+    titulo varchar(100),
+    volumeMaximo int,
+    percAtual int,
+    fkFilial int,
+    constraint fkEstoqueFilial foreign key (fkFilial) references Filial(idFilial)
+);
+
+insert into Estoque (titulo,volumeMaximo,fkFilial) values
+('Galpão Ala A',3200,1),
+('Galpão Terreo',2100,2),
+('Galpão 12',3120,3),
+('Estoque',2900,4),
+('Galpão Ala B',2850,5),
+('Galpão 1',3810,6);
 
 create table Endereco (
   idEndereco int primary key auto_increment,
@@ -178,6 +194,8 @@ create table Registro (
   valor tinyint,
   dtRegistro datetime default current_timestamp,
   fkDispenser int,
+  fkEstoque int,
+  constraint fkRegistroEstoque foreign key (fkEstoque) references Estoque(idEstoque),
   constraint fkRegistroDispenser foreign key (fkDispenser) references Dispenser(idDispenser)
 );
 
@@ -462,8 +480,8 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 (73, '2025-11-14 16:00:00', 56),
 (41, '2025-11-14 20:00:00', 56),
 (12, '2025-11-15 08:00:00', 56);
+
 select nomeFantasia as Facility, 
-  nome as Funcionario, 
   email as 'E-mail', 
   telefone as Contato 
 from Facility join Funcionario on idFacility = fkFacility;
