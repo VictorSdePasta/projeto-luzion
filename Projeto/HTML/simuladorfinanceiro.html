@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzion - Simulador</title>
+    <link rel="stylesheet" href="../CSS/simuladorfinanceiro.css">
+</head>
+
+<body>
+    <h2>Simulador<br><b>Financeiro</b></h2>
+    <div class="apresentacao">
+        <div class="caixa">
+            <p></p>
+        </div>
+    </div>
+    <div class="campoimagem">
+        <div class="caixa campos">
+            <div class="camposipt">
+                <div class="textoipt">
+                    <p>Quantos funcionários monitoram o nível de papel higiênico</p>
+                </div>
+                <div><input class="iptstyle" type="text" id="iptFuncionarios"></div>
+                <div class="textoipt">
+                    <p>Quantidade de dispensers monitorados por eles</p>
+                </div>
+                <div><input class="iptstyle" type="text" id="iptDispenser"></div>
+                <div class="textoipt">
+                    <p>Valor da hora de trabalho destes funcionários</p>
+                </div>
+                <div><input class="iptstyle" type="text" id="iptValorHora"></div>
+                <div class="textoipt">
+                    <p>Verificações do nível de papel por dia</p>
+                </div>
+                <div><input class="iptstyle" type="text" id="iptQtdMonitoramento"></div>
+            </div>
+            <div><button onclick="validar()"><img src="../Assets/Arrow 2.png" alt=""></button></div>
+        </div>
+        <div class="simuladorimagem"><img src="../Assets/imgSimulador.png" alt=""></div>
+    </div>
+    <div id="divSimulacao"></div>
+</body>
+<script>
+    function validar() {
+        var funciorarios = Number(iptFuncionarios.value);
+        var valorHora = Number(iptValorHora.value);
+        var qtdMonitoramento = Number(iptQtdMonitoramento.value);
+        var dispenser = Number(iptDispenser.value);
+        if (funciorarios <= 0) {
+            alert('Insira a quantidade de funcionários que realizam o monitoramento do nível de papel higiênico nos banheiros.');
+        } else if (dispenser <= 0) {
+            alert('Insira a quantidade de dispensers que os funcinários monitoram.');
+        } else if (valorHora <= 0) {
+            alert('Insira o valor da hora trabalhada dos funcinários que realizam o monitoramento do nível de papel higiênico nos banheiros');
+        } else if (qtdMonitoramento <= 0) {
+            alert('Insira quantas vezes ao dia são reazlizadas as verificações de papel higiênico nos banheiros.');
+        } else {
+            simular();
+        }
+    }
+    function simular() {
+        var funciorarios = Number(iptFuncionarios.value);
+        var valorHora = Number(iptValorHora.value);
+        var qtdMonitoramento = Number(iptQtdMonitoramento.value);
+        var dispenser = Number(iptDispenser.value);
+        var verificacao = funciorarios * dispenser * 2 / 60;
+        var verificacaoDia = verificacao * qtdMonitoramento;
+        var verificacaoMes = verificacaoDia * 30;
+        var verificacaoAno = verificacaoMes * 12;
+        var reducaoHoraDia = verificacaoDia * 0.9;
+        var reducaoHoraMes = verificacaoMes * 0.9;
+        var reducaoHoraAno = verificacaoAno * 0.9;
+        var valorDia = verificacaoDia * valorHora;
+        var valorMes = valorDia * 30;
+        var valorAno = valorMes * 12;
+        var reducaoDia = valorDia * 0.9;
+        var reducaoMes = valorMes * 0.9;
+        var reducaoAno = valorAno * 0.9;
+        divSimulacao.innerHTML = `<div class="resposta"><div class="textoresposta"><p>Considerando um tempo médio de 2 minutos para realizar o monitoramento de cada dispenser, onde esse tempo indica a verificação e o deslocamento entre cada dispenser, nossa solução pode reduzir em até 90% o tempo gasto neste processo:</p></div><div class="caixaresultado"><div class="resultado"><p><b>Diariamente</b><br><br>Tempo gasto: ${verificacaoDia} horas.<br>Custo por dia: R$${valorDia.toFixed(2)}.<br><p>Podemos reduzir esses valores em até:<br>Redução de tempo gasto: ${reducaoHoraDia}horas.<br>Redução de custo: R$${reducaoDia.toFixed(2)}.</p></div><div class="resultado"><p><b>Mensalmente</b><br><br>Tempo gasto: ${verificacaoMes} horas.<br>Custo por dia:R$${valorMes.toFixed(2)}.<br><p>Podemos reduzir esses valores em até:<br>Redução de tempo gasto: ${reducaoHoraMes} horas.<br>Redução de custo: R$${reducaoMes.toFixed(2)}.</p></div><div class="resultado"><p><b>Anualmente</b><br><br>Tempo gasto: ${verificacaoAno} horas.<br>Custo por dia: R$${valorAno.toFixed(2)}.<br><p>Podemos reduzir esses valores em até:<br>Redução de tempo gasto: ${reducaoHoraAno} horas.<br>Redução de custo: R$${reducaoAno.toFixed(2)}.</p></div></div></div>`
+    }
+</script>
+
+</html>

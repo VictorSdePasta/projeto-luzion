@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+body{
+    background-color: #B29FBD;
+    margin: 0;
+    padding: 0;
+
+}
+p{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #311C3D;
+}
+h2{
+    font-family: 'Roboto', sans-serif;
+    font-size: 55px;
+    margin-left: 75px;
+    margin-bottom: 0;
+    color: #311C3D;
+}
+.caixa{
+    background-color: #311c3d83;
+    padding: 50px;
+    padding-left: 0;
+    width: 90%;
+    border-radius: 250px 0px 0px 250px;
+    margin-top: 2%;
+}
+.apresentacao{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.campoimagem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.simuladorimagem{
+    margin-right: 10%;
+}
+.campos{
+    border-radius: 0px 300px 300px 0px;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.textoipt{
+    margin-left: 5%;
+    width: 87%;
+}
+input{
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 2rem;
+    color: #311C3D;
+}
+.iptstyle{
+    background-color: #cb9ce783;
+    width: 75%;
+    height: 45px;
+    border-radius: 0px 250px 250px 0px;
+    border: none;
+    box-shadow: #311c3d8e 1px 3px;
+}
+button{
+    background: none;
+    border: none;
+}
+.resposta{
+    margin-top: 2%;
+    padding: 1%;
+    background-color: #311c3d83;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.textoresposta{
+    width: 75%;
+    margin-bottom: 1%;
+}
+.caixaresultado{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 70px;
+    margin-bottom: 1%;
+}
+.resultado{
+    text-align: center;
+    background-color: #B29FBD;
+    padding: 1px;
+    height: 50%;
+    width: 30%;
+    border-radius: 15px;
+}
