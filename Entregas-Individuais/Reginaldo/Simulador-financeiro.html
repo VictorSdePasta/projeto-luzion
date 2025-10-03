@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+<h1>Simulador Financeiro Luzion</h1>
+
+Insira o número de clientes que você atende: <input id="qtdeClientes" type="number"><br>
+
+Insira a sua taxa de churn : <input id="porcentagemChurn"><br>
+
+Insira o valor do seu estoque de papel higiênico atual: <input id="estoqueAtual"><br>
+
+Insira o custo de armazenagem mensal: <input id="custosArmazenar"><br>
+
+Insira o custo de manutenção mensal: <input id="iptManutencao"><br>
+
+
+<button onclick="simular()">Simular</button> 
+
+<div id="divMsg"></div>
+
+</body>
+
+<script>
+    function simular() {
+        // estoque
+        var clientes = Number(qtdeClientes.value);
+        var valorEstoque = Number(estoqueAtual.value);
+        var custosArmazenagem = Number(custosArmazenar.value);
+        var custosManutencao = Number(iptManutencao.value);
+        var custoOportunidade = 0.1
+        var taxaObsolescencia = 5;
+        //calculos
+        var custoCapital = valorEstoque * (custoOportunidade / 100) / 12;
+        var custoObsolescencia = valorEstoque * (taxaObsolescencia / 100);
+        var custoTotalEstoque = custoCapital + custosArmazenagem + custoObsolescencia + custosManutencao;
+
+        
+        divMsg.innerHTML = `
+            <h2>Resumo da Simulação</h2>
+            <p>Custo total do estoque parado por mês:R$ ${custoTotalEstoque.toFixed(2)}</p>
+            <p>Custo total do estoque parado por ano:R$ ${(custoTotalEstoque * 12).toFixed(2)}</p>
+            
+        `;
+    }
+
+</script>
+</html>
