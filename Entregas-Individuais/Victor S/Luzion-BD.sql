@@ -66,12 +66,12 @@ insert into Filial (titulo,fkEmpresa) values
 create table PapelHigienico (
   idPapelHigienico int primary key auto_increment,
   modelo varchar(45),
-  diametroExternoCM int,
-  diametroInternoCM int,
-  larguraCM int
+  diametroExternoMM int,
+  diametroInternoMM int,
+  larguraMM int
 );
 
-insert into PapelHigienico (modelo, diametroExternoCM, diametroInternoCM, larguraCM) values
+insert into PapelHigienico (modelo, diametroExternoMM, diametroInternoMM, larguraMM) values
 ('Comum',10,4,10),
 ('Jumbo',10,4,10),
 ('Folha Dupla',12,5,10);
