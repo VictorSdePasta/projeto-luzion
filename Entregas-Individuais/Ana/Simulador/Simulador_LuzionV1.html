@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Luzion</title>
+</head>
+<body>
+    <h2>Simulador Luzion</h2>
+    NÚMERO TOTAL DE FUNCIONÁRIOS: <br>
+    <input type="number" id="iptFuncionario"> <br><br>
+
+    MÉDIA DE DISPENSERS ATENDIDOS:<br>
+    <input type="number" id="iptDispenser"> <br><br>
+
+    CUSTO DA MÃO DE OBRA POR HORA <br>
+    <input type="number" id="iptValorHora"> <br><br>
+
+    Média de verificacões ao dia: <br>
+    <input type="number" id="iptVerificao"> <br><br>
+    
+    <button onclick="simular()">Simular</button>
+    <div id="div_simulacao"></div>
+    
+</body>
+
+<script>
+
+    var acumulo = 0;
+    function simular() {
+        var totalFuncionario = Number (iptFuncionario.value);
+        var dispenserAtendidos = Number (iptDispenser.value);
+        var maoDeObra = Number (iptValorHora.value);
+        var verificacao = Number (iptVerificao.value);
+        var verificacaoHora = 0;
+        var verificacaoDia = 0;
+        var mediaverificacao = 2;
+
+        
+
+        if (totalFuncionario == '' || totalFuncionario <= 0) {
+            alert ('Insira corretamente a quantidade de funcionários')
+            
+        } else if (dispenserAtendidos == '' || dispenserAtendidos <= 0) {
+            alert ('Insira corretamente a quantidade de dispenser')
+            
+        } else if (maoDeObra == '' || maoDeObra <= 0) {
+            alert ('Insira corretamente o custo de mão de obra')
+            
+        } else if (verificacao == '' || verificacao <= 0) {
+            alert ('Insira corretamente a quantidade de verificações')
+            
+        }  else {
+            verificacaoHora = (mediaverificacao * dispenserAtendidos * totalFuncionario) / 60;
+            verificacaoDia = verificacaoHora * verificacao;
+            div_simulacao.innerHTML = `Para a escala 5x2 
+            `;
+            
+
+
+        }
+    
+    }
+
+</script>
+</html>
