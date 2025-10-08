@@ -12,7 +12,7 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
-    valoresSensorAnalogico,
+    valoresDistancia,
     dtRegistros
 ) => {
 
@@ -51,7 +51,7 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        const sensorAnalogico = parseFloat(valores[0]);
+        const valorDistancia = parseFloat(valores[0]);
 
         //Registra a data e hora de processamento dos dados
         const dtAtual = new Date()
@@ -59,7 +59,7 @@ const serial = async (
         dtRegistros.push(stData);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        valoresSensorAnalogico.push(sensorAnalogico);
+        valoresDistancia.push(valorDistancia);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
@@ -67,22 +67,23 @@ const serial = async (
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
                 'INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?,?,1)',
-                [sensorAnalogico],
+                [valorDistancia],
                 [dtRegistros]
             );
             
             await poolBancoDados.execute(
                 'INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?,?,2)',
-                [sensorAnalogico],
+                [valorDistancia+5],
                 [dtRegistros]
             );
             
             await poolBancoDados.execute(
                 'INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?,?,3)',
-                [sensorAnalogico],
+                [valorDistancia-2],
                 [dtRegistros]
             );
-            console.log("valores inseridos no banco: ", sensorAnalogico, "Data atual ", dtRegistros);
+
+            console.log("valores inseridos no banco: ", valorDistancia, "Data atual ", dtRegistros);
 
         }
 
@@ -96,7 +97,8 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorAnalogico
+    valoresDistancia,
+    dtRegistros
 ) => {
     const app = express();
 
@@ -113,25 +115,30 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorAnalogico);
+    app.get('/sensores/distancia', (_, response) => {
+        return response.json(valoresDistancia);
+    });
+    
+    app.get('/sensores/dataHora', (_, response) => {
+        return response.json(valoresDistancia);
     });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
-    const valoresSensorAnalogico = [];
+    const valoresDistancia = [];
     const dtRegistros = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorAnalogico,
+        valoresDistancia,
         dtRegistros
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorAnalogico
+        valoresDistancia,
+        dtRegistros
     );
 })();
