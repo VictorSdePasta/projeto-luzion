@@ -90,3 +90,60 @@ CREATE TABLE funcionario(
 idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(100)
 );
+
+INSERT INTO empresa (nomeFantasia,CNPJ) VALUES
+('Luxion','123456789123456789'),
+('Neoguard','111111111111111111'),
+('V3T','222222222222222222');
+
+SELECT * FROM empresa;
+
+INSERT INTO filial (nome,fkEmpresa,logradouro,cep,cidade,estado) VALUES
+('Unidade SP-Luz',1,'praça',120120903,'São Paulo','SP'),
+('Neoguard U-3',2,'Viaduto','111111111','Florianópolis','SC'),
+('V3T Leste-1',3,'Jardim','222222222','Belo Horizonte','MG');
+
+INSERT INTO adminEmpresa (nomeAdminEmpresa,emailAdminEmpresa,senhaAdminEmpresa,fkFilial) VALUES
+('Julio','julio@gmail.com','222a',default),
+('Carlos','carlos@gmail.com','225a',default),
+('Bruno','bruno@gmail.com','223b',default);
+
+INSERT INTO estoque (fkFilial,qtdPapel) VALUES 
+(default,90),
+(default,70),
+(default,80);
+
+
+ALTER TABLE banheiro ADD COLUMN andar VARCHAR(45);
+INSERT INTO banheiro (fkFilial,andar) VALUES
+(default,'2º Andar'),
+(default,'3º Andar'),
+(default,'1º Andar');
+
+INSERT INTO dispenser (qtdPapel,fkBanheiro) VALUES
+(100,default),
+(50,default),
+(70,default);
+
+CREATE TABLE sensorArduino(
+idSensorArduino INT PRIMARY KEY AUTO_INCREMENT,
+dataInstalacao DATETIME,
+fkDispenser INT,
+	CONSTRAINT fkSensorArduinoDispenser
+    FOREIGN KEY (fkDispenser)
+    REFERENCES dispenser(idDispenser),
+fkEstoque INT,
+	CONSTRAINT fkSensorArduinoEstoque
+    FOREIGN KEY (fkEstoque)
+    REFERENCES estoque(idEstoque)
+);
+
+INSERT INTO registro (dataRegistro,fkFuncionario,fkDispenser) VALUES
+('2025-10-10 8:00:00',default,default),
+('2025-10-10 9:00:00',default,default),
+('2025-10-10 10:00:00',default,default);
+
+INSERT INTO funcionario (nome) VALUES
+('Julio Marques'),
+('Alan Vicente'),
+('Jorge Matos');
