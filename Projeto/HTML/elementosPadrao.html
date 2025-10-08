@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header padrão</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+</head>
+<header>
+  <!-- Header padrão pré-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas antes do acesso a dashboard-->
+  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./TelaLogin.html" id="entrar">ENTRAR</a>
+    </div>
+    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
+    <a href="./simuladorfinanceiro.html" id="simulador">SIMULADOR</a>
+    <a href="#" id="home">HOME</a>
+  </div>
+</header>
+<header>
+  <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
+  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+    </div>
+    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
+    <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
+  </div>
+</header>
+<header>
+  <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de paineis de controle-->
+  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+    </div>
+    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">DASHBOARD</a>
+    <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
+  </div>
+</header>
+
+<body>
+  <div class="corpo">
+    <div class="menuLateral">
+      <h2>PAINEL DE CONTROLE</h2>
+      <div class="selecao">
+        <button class="adicionar" onclick="modal()"></button>
+        <a href="" class="">Cliente</a>
+      </div>
+      <div class="selecao">
+        <button class="adicionar" onclick="modal()"></button>
+        <span>Banheiro</span>
+        <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      </div>
+      <div class="selecao">
+        <button class="adicionar" onclick="modal()"></button>
+        <a href="">Cliente</a>
+      </div>
+    </div>
+    <div class="pagina">
+      <!-- Implemente seu código -->
+    </div>
+  </div>
+</body>
+<!--Footer padrão, apenas adicione o conteudo html ao final de sua página (Após o fechamento da tag </body>)-->
+<footer>
+  <div class="main">
+    <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logomarca"></div>
+    <div class="informacoes">
+      <p><b>Informações</b></p>
+      <a href="">Menu</a>
+      <a href="">Sobre nós</a>
+    </div>
+    <div class="contato">
+      <p><b>Contatos</b></p>
+      <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
+      <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
+    </div>
+    <div class="redessociais">
+      <p><b>Redes Sociais</b></p>
+      <div class="icons"><a href=""><img src="../Assets/icon face.png" alt=""></a><a href=""><img
+            src="../Assets/icon twitter.png" alt=""></a><a href=""><img src="../Assets/icon linkedin.png" alt=""></a>
+      </div>
+    </div>
+  </div>
+  <div class="autoria">
+    <p>Luzion © 2025</p>
+  </div>
+</footer>
+
+</html>
