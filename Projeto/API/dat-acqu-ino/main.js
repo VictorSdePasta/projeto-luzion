@@ -21,7 +21,7 @@ const serial = async (
         {
             host: '127.0.0.1',
             user: 'datacquino',
-            password: 'Senha1234567890!',
+            password: 'Senha123456789!',
             database: 'luzion',
             port: 3307
         }
@@ -55,7 +55,9 @@ const serial = async (
 
         //Registra a data e hora de processamento dos dados
         const dtAtual = new Date()
-        const stData = `${dtAtual.getFullYear()}-${dtAtual.getMonth()}-${dtAtual.getDay()} ${dtAtual.getHours()}:${dtAtual.getMinutes()}:${dtAtual.getSeconds()}`
+
+        let stData = `${dtAtual.getFullYear()}-${dtAtual.getMonth()}-${dtAtual.getDay()} ${dtAtual.getHours()}:${dtAtual.getMinutes()}:${dtAtual.getSeconds()}` // YYYY-MM-DD HH:MM:SS
+
         dtRegistros.push(stData);
 
         // armazena os valores dos sensores nos arrays correspondentes
@@ -63,27 +65,24 @@ const serial = async (
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
-
-            // este insert irá inserir os dados na tabela "medida"
+          
+            console.log("valores inseridos no banco: ", valorDistancia, "Data atual ", stData);
+            
+            // este insert irá inserir os dados na tabela "Registro"
             await poolBancoDados.execute(
-                'INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?,?,1)',
-                [valorDistancia],
-                [dtRegistros]
+              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 1);`,
+              [valorDistancia, stData]
+            );
+
+            await poolBancoDados.execute(
+              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 2);`,
+              [valorDistancia, stData]
             );
             
             await poolBancoDados.execute(
-                'INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?,?,2)',
-                [valorDistancia+5],
-                [dtRegistros]
+              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 3);`,
+              [valorDistancia, stData]
             );
-            
-            await poolBancoDados.execute(
-                'INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?,?,3)',
-                [valorDistancia-2],
-                [dtRegistros]
-            );
-
-            console.log("valores inseridos no banco: ", valorDistancia, "Data atual ", dtRegistros);
 
         }
 
@@ -120,7 +119,7 @@ const servidor = (
     });
     
     app.get('/sensores/dataHora', (_, response) => {
-        return response.json(valoresDistancia);
+        return response.json(dtRegistros);
     });
 }
 
