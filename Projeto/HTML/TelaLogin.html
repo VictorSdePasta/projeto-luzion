@@ -23,30 +23,31 @@
 
 <body>
 
-<div class="corpo">
+    <div class="corpo">
 
-    <div class="login">
-        <div class="container">
-            <div class="email">
-                <p>Email:</p>
+        <div class="login">
+            <div class="container">
+                <div class="email">
+                    <p>Email:</p>
+                </div>
+                <div class="iptCampo"><input type="text" id="iptEmail"></div>
+                <div class="senha">
+                    <p>Senha:</p>
+                </div>
+                <div class="iptCampo"><input type="password" id="iptSenha"></div>
             </div>
-            <div class="iptCampo"><input type="text" id="iptEmail"></div>
-            <div class="senha">
-                <p>Senha:</p>
+
+            <div class="entrar">
+                <p><a href="./SiteCadastroEmpresa.html">Não tenho cadastro</a></p>
+
+                <button onclick="logar()">ENTRAR <img src="../Assets/arrow-2-right-long.png" alt=""></button>
             </div>
-            <div class="iptCampo"><input type="password" id="iptSenha"></div>
         </div>
-        
-        <div class="entrar">
-            <p>Não tenho cadastro</p>
-            <button>ENTRAR <img src="../Assets/arrow-2-right-long.png" alt=""></button>
-        </div>
+
     </div>
-    
-</div>
-    
-    
-    
+
+
+
 </body>
 <footer>
     <div class="main">
@@ -59,7 +60,7 @@
         <div class="contato">
             <p><b>Contatos</b></p>
             <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
-            <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
+            <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com</p>
         </div>
         <div class="redessociais">
             <p><b>Redes Sociais</b></p>
@@ -73,7 +74,19 @@
     </div>
 </footer>
 <script>
-    function name(params) {
+    function logar() {
+        var login = iptEmail.value;
+        var senha = iptSenha.value;
+
+        if (login == ' ') { alert('Insira um email.') }
+        if (senha == ' ') { alert('Insira uma senha.') }
+        if (login == 'contato@luzion.com' && senha == 'Senha123') {
+
+            window.location.replace('../HTML/SimuladorFinanceiro.html');
+        } else {
+            alert(`Ana não é a mais legal da sala`)
+        }
+
 
     }
 
