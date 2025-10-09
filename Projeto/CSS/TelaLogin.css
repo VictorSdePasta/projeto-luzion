@@ -6,6 +6,11 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+header {
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
 .corpo {
     display: flex;
     padding: 0;
@@ -19,6 +24,7 @@ body {
     background-repeat: no-repeat;
     background-color: #B29FBD;
 }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -29,7 +35,7 @@ body {
     padding: 0;
 
 
-    
+
 }
 
 
@@ -51,8 +57,8 @@ body {
     padding-top: 30px;
     padding-bottom: 30px;
     color: #311C3D;
-    
-  
+
+
 }
 
 
@@ -65,9 +71,9 @@ input {
     border-top-left-radius: 190px;
     box-shadow: #311c3d8e 1px 3px 5px;
     margin: 0;
-    
 
-    
+
+
 
 }
 
@@ -79,10 +85,10 @@ input {
     align-items: center;
     gap: 10px;
     border: 1px solid #311C3D;
-    border-radius: 50%; 
+    border-radius: 50%;
     padding: 30px 30px;
     color: #01123C;
-    font-family: 'Roboto' , sans-serif;
+    font-family: 'Roboto', sans-serif;
     width: 200px;
     height: 200px;
     margin-top: 10px;
@@ -90,7 +96,7 @@ input {
     padding: 20;
     position: relative;
     margin-left: 5%;
-    
+
 }
 
 .entrar p {
@@ -98,7 +104,7 @@ input {
     margin: 0;
     text-align: center;
     width: 100%;
-    
+
 }
 
 .entrar button {
@@ -120,20 +126,19 @@ input {
 .entrar button:hover {
     background-color: #311C3D;
     color: #fff;
-    
+
 }
 
 .email p,
 .senha p {
-    font-size: 16px;      
-    color: #311C3D;  
-    margin: 5px; 
-    margin-left: 70px;           
-    width: 220px;  
+    font-size: 16px;
+    color: #311C3D;
+    margin: 5px;
+    margin-left: 70px;
+    width: 220px;
 }
 
 .footer {
     height: 100px;
     background-color: #311C3D;
 }
-
