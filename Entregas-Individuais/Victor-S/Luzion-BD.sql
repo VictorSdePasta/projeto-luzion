@@ -5,31 +5,14 @@ create table Facility (
   idFacility int primary key auto_increment,
   razaoSocial varchar(100) not null unique,
   nomeFantasia varchar(100) not null,
-  cnpj char(11) not null unique
+  cnpj char(11) not null unique,
+  contrato tinyint
 );
 
-insert into Facility (razaoSocial,nomeFantasia,cnpj) values
-('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100'),
-('servicos felicity LTDA','Felicity em te ajudar','00200200200');
-
-create table Funcionario (
-  idFuncionario int primary key auto_increment,
-  nome varchar(100) not null,
-  email varchar(100) not null unique,
-  senha varchar(255) not null,
-  telefone varchar(11),
-  nivelPermissao tinyint,
-  fkFacility int not null,
-  constraint fkFuncionarioFacility foreign key (fkFacility) references Facility(idFacility)
-);
-
-insert into Funcionario (nome,email,senha,telefone,nivelPermissao,fkFacility) values
-('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1,1),
-('Daner Quispe','daner.qu@facilitando.com','danerqu123','11020202000',2,1),
-('Igor Dias','igor.di@facilitando.com','igordi123','11030303000',3,1),
-('Reginaldo De Souza','reginaldo.so@felicity.com','reginaldoso123','11040404000',1,2),
-('Victor David','victor.da@felicity.com','victorda123','11050505000',2,2),
-('Victor Silva','victor.si@felicity.com','victorsi123','11060606000',3,2);
+insert into Facility (razaoSocial,nomeFantasia,cnpj,contrato) values
+('facilitariamos a sua vida LTDA','Facilitariamos TUDO','00300300300',2),
+('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',0),
+('servicos felicity LTDA','Felicity em te ajudar','00200200200',1);
 
 create table Empresa (
   idEmpresa int primary key auto_increment,
@@ -48,20 +31,58 @@ insert into Empresa (razaoSocial,nomeFantasia,cnpj,fkFacility) values
 ('Neoguard LTDA','NeoGuard','00700700700',1),
 ('Shopping do bairro LTDA','Shopping do bairro','00800800800',2);
 
+create table Endereco (
+  idEndereco int primary key auto_increment,
+  logradouro varchar(200),
+  numero varchar(5),
+  cep char(8),
+  estado varchar(35),
+  uf char(2)
+);
+
+insert into Endereco (logradouro,numero,cep,estado,uf) values
+('Rua Sem Gas','412','01010100','São Paulo','SP'),
+('Rua do gado','2450','02020200','São Paulo','SP'),
+('Avenida Vegetal','120','03030300','São Paulo','SP'),
+('Rua Armada','300','04040400','São Paulo','SP'),
+('Avenida Segura','216','05050500','São Paulo','SP'),
+('Avenida do Bairro','123','06060600','São Paulo','SP');
+
 create table Filial (
   idFilial int primary key auto_increment,
   titulo varchar(100),
   fkEmpresa int,
-  constraint fkFilialEmpresa foreign key (fkEmpresa) references Empresa(idEmpresa)
+  constraint fkFilialEmpresa foreign key (fkEmpresa) references Empresa(idEmpresa),
+  fkEndereco int,
+  constraint fkFilialEndereco foreign key (fkEndereco) references Endereco(idEndereco)
 );
 
-insert into Filial (titulo,fkEmpresa) values
-('Sede SenGas',1),
-('Sede SmartBeef',2),
-('Sede V3T',3),
-('Sede SenGas',4),
-('Sede SenGas',5),
-('Shopping do Bairro',6);
+insert into Filial (titulo,fkEmpresa,fkEndereco) values
+('Sede SenGas',1,1),
+('Sede SmartBeef',2,2),
+('Sede V3T',3,3),
+('Sede SenGas',4,4),
+('Sede SenGas',5,5),
+('Shopping do Bairro',6,6);
+
+create table Funcionario (
+  idFuncionario int primary key auto_increment,
+  nome varchar(100) not null,
+  email varchar(100) not null unique,
+  senha varchar(255) not null,
+  telefone varchar(11),
+  nivelPermissao tinyint,
+  fkFilial int not null,
+  constraint fkFuncionarioFilial foreign key (fkFilial) references Filial(idFilial)
+);
+
+insert into Funcionario (nome,email,senha,telefone,nivelPermissao,fkFilial) values
+('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1,1),
+('Daner Quispe','daner.qu@facilitando.com','danerqu123','11020202000',2,1),
+('Igor Dias','igor.di@facilitando.com','igordi123','11030303000',3,1),
+('Reginaldo De Souza','reginaldo.so@felicity.com','reginaldoso123','11040404000',1,2),
+('Victor David','victor.da@felicity.com','victorda123','11050505000',2,2),
+('Victor Silva','victor.si@felicity.com','victorsi123','11060606000',3,2);
 
 create table PapelHigienico (
   idPapelHigienico int primary key auto_increment,
@@ -95,25 +116,6 @@ insert into Estoque (titulo,volumeMaximo,fkFilial,fkPapelHigienico) values
 ('Estoque',2900,4,2),
 ('Galpão Ala B',2850,5,3),
 ('Galpão 1',3810,6,3);
-
-create table Endereco (
-  idEndereco int primary key auto_increment,
-  logradouro varchar(200),
-  numero varchar(5),
-  cep char(8),
-  estado varchar(35),
-  uf char(2),
-  fkFilial int unique,
-  constraint fkEnderecoFilial foreign key (fkFilial) references Filial(idFilial)
-);
-
-insert into Endereco (logradouro,numero,cep,estado,uf,fkFilial) values
-('Rua Sem Gas','412','01010100','São Paulo','SP',1),
-('Rua do gado','2450','02020200','São Paulo','SP',2),
-('Avenida Vegetal','120','03030300','São Paulo','SP',3),
-('Rua Armada','300','04040400','São Paulo','SP',4),
-('Avenida Segura','216','05050500','São Paulo','SP',5),
-('Avenida do Bairro','123','06060600','São Paulo','SP',6);
 
 create table Banheiro (
   idBanheiro int primary key auto_increment,
@@ -507,10 +509,15 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 (8, '2025-11-14 20:00:00', 56),
 (8, '2025-11-15 08:00:00', 56);
 
-select nomeFantasia as Facility, 
-  email as 'E-mail', 
-  telefone as Contato 
-from Facility join Funcionario on idFacility = fkFacility;
+select f.nomeFantasia as Facility,
+  e.nomeFantasia as Empresa,
+  fl.titulo as Filial,
+  fun.nome as Funcionario,
+  fun.email as 'E-mail',
+  fun.telefone as Contato
+from Facility as f join Empresa as e on e.fkFacility = f.idFacility
+join Filial as fl on e.idEmpresa = fl.fkEmpresa 
+join Funcionario as fun on fl.idFilial = fun.fkFilial;
 
 select fy.nomeFantasia as Facility,
   e.nomeFantasia as 'Contratante Facility',
