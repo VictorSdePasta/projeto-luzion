@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Simulador Financeiro</title>
+</head>
+<body>
+    <h1>Simulador Financeiro - Luzion</h1>
+    <div id="descricao">
+    Simule agora de maneira ágil e fácil, e descubra o quanto sua empresa pode economizar em tempo e dinheiro com nosso sistema! <br>
+    </div>
+    <div class="input">
+        Insira o nome de sua empresa: <input type="text" id="ipt_nomeEmpresa"><br>
+        Insira a quantidade de Dispensers: <input type="text" id="ipt_qtdDispenser"><br>
+        Insira a quantidade de Banheiros: <input type="text" id="ipt_qtdBanheiro"><br>
+        Insira a quantidade de Funcionarios: <input type="text" id="ipt_Func"><br>
+        <button onclick="simular()">Simular!</button>
+    </div>
+    <div id="div_output"></div>
+</body>
+</html>
+<script>
+    function simular(){
+        var horasTotais = 8;
+        var nome = ipt_nomeEmpresa.value;
+        var dispenser = Number(ipt_qtdDispenser.value);
+        var banheiro = Number(ipt_qtdBanheiro.value);
+        var qtdFuncionario = Number(ipt_Func.value);
+        
+        // Calculo considerando que um funcionário leva em média 40 minutos para realizar o processo de verificação nos dispensers dos banheiros
+        var horasG = (50*banheiro)/60
+        // calculo baseando a média de um salário de um funcionário como 18 reais por hora
+        var valorTotal = 18*horasG;
+        
+        var horasFunc = Math.floor(horasG/qtdFuncionario);
+        var horasPercent = ((horasFunc / horasTotais)*100);
+        console.log(Math.floor(horasFunc))
+        console.log(horasG);
+        console.log(horasPercent.toFixed(2))
+        console.log(Math.floor(horasG));
+        console.log(valorTotal);
+        
+        div_output.innerHTML = 'O total de horas gastas por todos seus funcionários é: <span style="color:blue">'+Math.floor(horasG)+'</span><br> '+
+        'O total de horas gastas por funcionário são: <span style="color:blue">'+Math.floor(horasG/qtdFuncionario)+
+        '</span> <br> Isso representa um total de <span style="color:blue">'+horasPercent.toFixed(1)+'</span>% do total de 8 horas de trabalho<br>'+
+        'O valor de prejuízo sem a utilização de nosso sensor,  seria: $<span style="color:red">'+valorTotal+'</span> Reais por dia';
+    }
+</script>

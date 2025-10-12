@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100..900&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
   font-family: "Roboto Serif", serif;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -15,7 +15,7 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-    flex-direction: column;
+  flex-direction: column;
   justify-content: space-between; 
 }
 
@@ -25,9 +25,11 @@ body {
   flex-direction: column;
   justify-content: space-between; 
   background-image: url(../Assets/dispenser.png);
-  background-size: cover;
+  width: 100%;
+  background-size:cover;
   background-repeat: no-repeat;
-  height: 1080px;
+  background-position: center;
+  
 }
 
 .titulo {
@@ -49,7 +51,6 @@ body {
   color: #000000;
 }
 
-/* PRIMEIRA CAIXA */
 .texto1 {
   margin-top: 170px;
   background-color: #eeeeee84;
@@ -124,10 +125,42 @@ body a .btn img{
 }
 
 .container2{
-  display: flex;
+  display: flex;            
+  flex-direction: row;      
+  align-items: flex-start;  
+  justify-content: flex-start;
   background-color: #B09DBA;
-  backdrop-filter: blur(10px);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 900px;
+  height: 200px;
+  gap: 20px;
+  
+}
+
+.sobreNos{
+  display: flex; 
+  background-color: #eeeeee84;
+  padding: 15px 20px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  max-width: 650px;
+  width: 100%;
+  height: 80px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.4; 
+  margin-top: 80px;
+}
+
+.container3{
+  display: flex;            
+  flex-direction: column;      
+  align-items: flex-start;  
+  justify-content: flex-start;
+  background-color: #B09DBA;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 800px;
+  gap: 20px;
 }

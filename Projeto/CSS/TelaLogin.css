@@ -23,6 +23,7 @@ header {
     background-image: url(../Assets/computador.png);
     background-repeat: no-repeat;
     background-color: #B29FBD;
+    background-position: bottom-center;
 }
 
 .container {
