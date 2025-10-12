@@ -23,17 +23,17 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-evenly; 
   background-image: url(../Assets/dispenser.png);
   width: 100%;
+  height: 900px;
   background-size:cover;
   background-repeat: no-repeat;
-  background-position: center;
+  aspect-ratio: 8/5;
   
 }
 
 .titulo {
-  margin-top: 50px;
   margin-left: 50px;
   top: 120px;
   left: 80px;
@@ -41,8 +41,9 @@ body {
 
 .titulo h1 {
   font-size: 50px;
-  font-weight: 300;
+  font-weight: 400;
   color: #000000;
+  text-shadow: 1px 1px 10px black solid;
 }
 
 .titulo span {
@@ -127,19 +128,17 @@ body a .btn img{
 .container2{
   display: flex;            
   flex-direction: row;      
-  align-items: flex-start;  
+  align-items: center;  
   justify-content: flex-start;
   background-color: #B09DBA;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 200px;
-  gap: 20px;
-  
+  height: 250px;
 }
 
 .sobreNos{
   display: flex; 
-  background-color: #eeeeee84;
+  background-color: #ffffff;
   padding: 15px 20px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
@@ -150,17 +149,45 @@ body a .btn img{
   font-size: 40px;
   font-weight: 300;
   line-height: 1.4; 
-  margin-top: 80px;
+  color: #311C3D;
+
 }
 
+.cards{
+
+display: flex;
+flex-direction: column;
+height: 510px;
+width: 400px;
+border-radius: 10px;
+background-color: #FCF7F0;
+align-items: center;
+}
+
+
+
 .container3{
-  display: flex;            
-  flex-direction: column;      
-  align-items: flex-start;  
-  justify-content: flex-start;
+  display: flex;        
+  padding-bottom: 200px;    
+  flex-direction: row;      
+  align-items: center;  
+  justify-content: center;
   background-color: #B09DBA;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 800px;
+  height: auto;
   gap: 20px;
+}
+
+.titulosCards {
+  display: flex;
+  flex-direction: column;
+  text-align: center;  
+  & span {
+    padding-top: 15%;
+  }
+  & h1 {
+    font-size: 50px;
+    color: #311C3D;
+  }
 }
