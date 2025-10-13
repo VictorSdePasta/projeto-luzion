@@ -22,6 +22,7 @@ header {
     flex-direction: row-reverse;
     gap: 10%;
     align-items: center;
+    width: 30%;
   }
 
   & .selecionado {
@@ -30,15 +31,12 @@ header {
   }
 
   & a {
-    display: flex;
     text-decoration: none;
     color: white;
-    align-items: center;
-    height: fit-content;
   }
 
   & .destaque {
-    padding: 5% 10% 5% 8%;
+    padding: 2% 8% 2% 5%;
     border-top-left-radius: 25% 50%;
     border-bottom-left-radius: 25% 50%;
     background-color: #cb9ce77f;
@@ -53,7 +51,7 @@ footer {
   flex-direction: column;
 }
 
-.main{
+.main {
   display: flex;
   flex-direction: row;
   gap: 10%;
@@ -70,7 +68,7 @@ footer a {
   margin-bottom: 1em;
 }
 
-.informacoes{
+.informacoes {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
@@ -96,8 +94,9 @@ footer a {
   color: #c8c8c88c;
 }
 
+/* Aqui para baixo começa o css do menu lateral da pagina */
+
 .menuLateral {
-  height: 100vh;
   background-color: #5A4168;
   width: 15%;
   color: #CC9CE7;
@@ -105,6 +104,11 @@ footer a {
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
+  padding: 3% 0;
+
+  & h2 {
+    margin: 0;
+  }
 
   & .kpi {
     font-size: 3em;
@@ -120,16 +124,79 @@ footer a {
 .selecao {
   width: 80%;
   aspect-ratio: 4 / 1;
-  background-color: #CC9CE7;
+  background-color: #715E7D;
   border-radius: 0 30% 30% 0 / 0 100% 100% 0;
   box-shadow: .1em .1em rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   margin-top: 5%;
+  gap: 5%;
 
+  & a {
+    text-decoration: none;
+    color: #CC9CE7;
+  }
+
+  & span {
+    text-decoration: none;
+    color: #CC9CE7;
+    margin: 0 0 0 20%;
+  }
+}
+
+.especial {
+  background-color: #CC9CE7;
+  
   & button {
     background: none;
     border: none;
-    
+    background-image: url('../Assets/adicionar.svg');
+    background-size: cover;
+    background-repeat: none;
+    width: 10%;
+    aspect-ratio: 1/1;
+    margin-left: 5%;
+  }
+
+  & a {
+    text-decoration: none;
+    color: #311C3D;
+  }
+  
+  & span {
+    color: #311C3D;
+    margin: 0;
+  }
+}
+
+.situacao {
+  height: 50%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.estavel {
+  background-color: limegreen;
+}
+
+.atencao {
+  background-color: yellow;
+}
+
+.critico {
+  background-color: red;
+}
+
+.opcao {
+  width: 80%;
+  aspect-ratio: 5/1;
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+
+  & a {
+    text-decoration: none;
+    color: #CC9CE7;
+    margin: 0 5%;
   }
 }

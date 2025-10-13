@@ -12,7 +12,7 @@
   <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
   <div class="botoesGuia">
     <div class="destaque">
-      <a href="./TelaLogin.html" id="entrar">ENTRAR</a>
+      <a href="./TelaLogin.html" id="entrar">LOGIN</a>
     </div>
     <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
     <a href="./simuladorfinanceiro.html" id="simulador">SIMULADOR</a>
@@ -45,28 +45,46 @@
 <body>
   <div class="corpo">
     <div class="menuLateral">
-      
+
       <div class="headerLateral">
-        <h2>Algum titulo</h2>
-        <div class="kpi">50</div>
+        <h2>No 11º tem bolo</h2>
+        <div class="kpi">EBA</div>
       </div>
-        
-      <div class="selecao">
-        <button class="adicionar" onclick="modal()"></button>
+
+      <div class="selecao especial">
+        <button class="adicionar" onclick="colapsoCliente()"></button>
+        <!-- <button class="adicionar" onclick="redirecionarCliente()"></button> -->
         <a href="" class="">Cliente</a>
       </div>
-      <div class="selecao">
-        <button class="adicionar" onclick="modal()"></button>
+      <div id="divCliente"></div>
+      <div class="selecao especial">
+        <button class="adicionar" onclick="colapsoFilial()"></button>
+        <!-- <button class="adicionar" onclick="redirecionarFilial()"></button> -->
         <a href="">Filial</a>
+        <!-- <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div> -->
       </div>
-      <div class="selecao">
-        <button class="adicionar" onclick="modal()"></button>
+      <div id="divFilial"></div>
+      <div class="selecao especial">
+        <button class="adicionar" onclick="redirecionarUsuario()"></button>
+        <span>Usuario</span>
+      </div>
+      <div class="selecao" onclick="colapsoBanheiro()">
         <span>Banheiro</span>
-        <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
+        <div class="situacao estavel"></div>
       </div>
-    </div>
+      <div id="divDispenser">
+        <div class="opcao">
+          <a href="">Dispenser 1</a>
+          <div class="situacao atencao"></div>
+        </div>
+        <div class="opcao">
+          <a href="">Dispenser 2</a>
+          <div class="situacao critico"></div>
+        </div>
+      </div>
+    </div> 
     <div class="pagina">
-      <!-- Implemente seu código -->
+      <!-- Implemente seu código e manipule o css dessa tag pagina no css da sua pagina como se fosse o body-->
     </div>
   </div>
 </body>
