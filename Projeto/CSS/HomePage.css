@@ -16,21 +16,20 @@ body {
   width: 100%;
   height: 100%;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly; 
+  justify-content: space-evenly;
   background-image: url(../Assets/dispenser.png);
   width: 100%;
-  height: 900px;
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   aspect-ratio: 8/5;
-  
+
 }
 
 .titulo {
@@ -59,12 +58,11 @@ body {
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   max-width: 450px;
-  font-family: 'proppins';
+  font-family: 'poppins';
   font-size: 20px;
   font-weight: 300;
   margin-left: 0px;
 }
-
 
 .texto2 {
   align-self: flex-end;
@@ -73,32 +71,22 @@ body {
   border-bottom-left-radius: 300px;
   border-top-left-radius: 300px;
   max-width: 330px;
-  font-family: 'proppins';
+  font-family: 'poppins';
   font-size: 17px;
   font-weight: 300;
   margin-left: 0px;
 }
 
-
-
-
-
-
 .btn {
   display: flex;
   flex-direction: row;
-  justify-content: center;        
+  justify-content: center;
   text-align: center;
   align-items: center;
   background-color: #311C3D;
   color: white;
-
   padding: 15px;
-  padding-left: 30px;
-  padding-right: 15px;
-  
   width: 320px;
-  
   align-self: flex-end;
   margin-top: 50px;
   font-size: 15px;
@@ -108,13 +96,13 @@ body {
   background-color: #4a2c5f;
 }
 
-.selecionado{
-    border-bottom: 2px solid white;
+.selecionado {
+  border-bottom: 2px solid white;
 }
 
-body a .btn img{
-    height: 50px;
-    width: 50px;
+body a .btn img {
+  height: 50px;
+  width: 50px;
 }
 
 .corpo2 {
@@ -122,13 +110,13 @@ body a .btn img{
   width: 100%;
   height: 100%;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
-.container2{
-  display: flex;            
-  flex-direction: row;      
-  align-items: center;  
+.container2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: flex-start;
   background-color: #B09DBA;
   background-size: cover;
@@ -136,41 +124,42 @@ body a .btn img{
   height: 250px;
 }
 
-.sobreNos{
-  display: flex; 
+.sobreNos {
+  display: flex;
   background-color: #ffffff;
-  padding: 15px 20px;
+  padding: 15px 20px 15px 50px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   max-width: 650px;
   width: 100%;
   height: 80px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Roboto";
   font-size: 40px;
   font-weight: 300;
-  line-height: 1.4; 
+  align-items: center;
   color: #311C3D;
 
 }
 
-.cards{
+.cards {
 
-display: flex;
-flex-direction: column;
-height: 510px;
-width: 400px;
-border-radius: 10px;
-background-color: #FCF7F0;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 510px;
+  width: 400px;
+  border-radius: 10px;
+  background-color: #FCF7F0;
+  align-items: center;
+  width: 100%;
 }
 
 
 
-.container3{
-  display: flex;        
-  padding-bottom: 200px;    
-  flex-direction: row;      
-  align-items: center;  
+.container3 {
+  display: flex;
+  padding-bottom: 200px;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
   background-color: #B09DBA;
   background-size: cover;
@@ -182,10 +171,13 @@ align-items: center;
 .titulosCards {
   display: flex;
   flex-direction: column;
-  text-align: center;  
+  text-align: center;
+  font-family: "Roboto";
+
   & span {
     padding-top: 15%;
   }
+
   & h1 {
     font-size: 50px;
     color: #311C3D;
