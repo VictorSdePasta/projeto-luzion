@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luzion - Meu perfil</title>
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/meuperfil.css">
+    <title>Painel de controle - Banheiros</title>
+     <link rel="stylesheet" href="../CSS/header.css">
+     <link rel="stylesheet" href="../CSS/PainelControleBanheiro.css">
 </head>
 <header>
   <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de paineis de controle-->
@@ -14,45 +14,48 @@
     <div class="destaque">
       <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
     </div>
-    <a href="./SiteCadastroEmpresa.html" id="cadastrar">DASHBOARD</a>
-    <a href="./simuladorfinanceiro.html" class="selecionado" id="simulador">MEU PERFIL</a>
+    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">DASHBOARD</a>
+    <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
   </div>
 </header>
 <body>
-    <div class="container">
-        <div class="menuLateral">
-      <h2>PAINEL DE CONTROLE</h2>
+    <div class="corpo">
+    <div class="menuLateral">
+      
+      <div class="headerLateral">
+        <h2>Painel de Controle</h2>
+      </div>
+        
       <div class="selecao">
         <button class="adicionar" onclick="modal()"></button>
         <a href="" class="">Cliente</a>
+           <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
       </div>
       <div class="selecao">
         <button class="adicionar" onclick="modal()"></button>
-        <span>Banheiro</span>
+        <a href="">Banheiros</a>
+           <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      </div>
+      <div class="selecao">
+        <button class="adicionar" onclick="modal()"></button>
+        <a href="">Usuarios</a>
         <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
       </div>
-      <div class="selecao">
-        <button class="adicionar" onclick="modal()"></button>
-        <a href="">Cliente</a>
+    </div>
+    
+    <div class="pagina">
+<!-- Implemente seu código -->
+      <div class="Topo">
+        <h1>Banheiro</h1>
+        <div class="Pesquisar">Pesquisar</div>
       </div>
-    </div>
-        <div class="dados">
-            <h1>Meu Perfil</h1>
-            <div class="info">
-                <p>Nome do usuário</p>
-                <p>E-mail</p>
-            </div>
-            <div class="senha">
-                <p>Senha atual</p>
-                <input type="password" id="senhaAtual">
-                <p>Nova senha</p>
-                <input type="password" id="novaSenha">
-                <p>Confirmar senha</p>
-                <input type="password" id="confirmarSenha">
-            </div>
+        <div class="Tabela">
+            
+
         </div>
-        <div class="bgimg"></div>
+      
     </div>
+  </div>
 </body>
 <footer>
   <div class="main">
