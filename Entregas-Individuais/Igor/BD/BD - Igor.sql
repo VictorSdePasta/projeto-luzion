@@ -64,3 +64,8 @@ create table eventos(
     sensor_idsensor int,
     constraint fkSensor foreign key (sensor_idsensor) references sensor(idSensor)
 );
+insert into empresa (razaosocial, cnpj, contratoativo) values
+	('sengasLTDA',),
+	(),
+	(),
+	();

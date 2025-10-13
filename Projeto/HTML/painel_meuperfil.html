@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzion - Meu perfil</title>
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/meuperfil.css">
+</head>
+<header>
+  <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de paineis de controle-->
+  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+    </div>
+    <a href="./SiteCadastroEmpresa.html" id="cadastrar">DASHBOARD</a>
+    <a href="./simuladorfinanceiro.html" class="selecionado" id="simulador">MEU PERFIL</a>
+  </div>
+</header>
+<body>
+    <div class="container">
+        <div class="menuLateral">
+      <h2>PAINEL DE CONTROLE</h2>
+      <div class="selecao">
+        <button class="adicionar" onclick="modal()"></button>
+        <a href="" class="">Cliente</a>
+      </div>
+      <div class="selecao">
+        <button class="adicionar" onclick="modal()"></button>
+        <span>Banheiro</span>
+        <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      </div>
+      <div class="selecao">
+        <button class="adicionar" onclick="modal()"></button>
+        <a href="">Cliente</a>
+      </div>
+    </div>
+        <div class="dados">
+            <h1>Meu Perfil</h1>
+            <div class="info">
+                <p>Nome do usuário</p>
+                <p>E-mail</p>
+            </div>
+            <div class="senha">
+                <p>Senha atual</p>
+                <input type="password" id="senhaAtual">
+                <p>Nova senha</p>
+                <input type="password" id="novaSenha">
+                <p>Confirmar senha</p>
+                <input type="password" id="confirmarSenha">
+            </div>
+        </div>
+        <div class="bgimg"></div>
+    </div>
+</body>
+<footer>
+  <div class="main">
+    <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logomarca"></div>
+    <div class="informacoes">
+      <p><b>Informações</b></p>
+      <a href="">Menu</a>
+      <a href="">Sobre nós</a>
+    </div>
+    <div class="contato">
+      <p><b>Contatos</b></p>
+      <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
+      <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
+    </div>
+    <div class="redessociais">
+      <p><b>Redes Sociais</b></p>
+      <div class="icons"><a href=""><img src="../Assets/icon face.png" alt=""></a><a href=""><img
+            src="../Assets/icon twitter.png" alt=""></a><a href=""><img src="../Assets/icon linkedin.png" alt=""></a>
+      </div>
+    </div>
+  </div>
+  <div class="autoria">
+    <p>Luzion © 2025</p>
+  </div>
+</footer>
+</html>
