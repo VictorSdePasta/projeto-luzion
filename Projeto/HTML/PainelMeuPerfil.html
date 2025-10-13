@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luzion - Meu perfil</title>
     <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/meuperfil.css">
+    <link rel="stylesheet" href="../CSS/PainelMeuPerfil.css">
 </head>
 <header>
   <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de paineis de controle-->
-  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
-  <div class="botoesGuia">
-    <div class="destaque">
-      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+    <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+    <div class="botoesGuia">
+      <div class="destaque">
+        <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+      </div>
+      <a href="./SiteCadastroEmpresa.html" id="cadastrar">DASHBOARD</a>
+      <a href="./simuladorfinanceiro.html" class="selecionado" id="simulador">MEU PERFIL</a>
     </div>
-    <a href="./SiteCadastroEmpresa.html" id="cadastrar">DASHBOARD</a>
-    <a href="./simuladorfinanceiro.html" class="selecionado" id="simulador">MEU PERFIL</a>
-  </div>
-</header>
-<body>
+  </header>
+  <body>
     <div class="container">
-        <div class="menuLateral">
+      <div id="pop" class="pop">
+        <div id="up" class="up">
+          <p>
+            Senha alterada com sucesso
+          </p>
+          <button onclick="fechar()">Fechar</button>
+        </div>
+      </div>
+      <div class="menuLateral">
       <h2>PAINEL DE CONTROLE</h2>
       <div class="selecao">
         <button class="adicionar" onclick="modal()"></button>
@@ -47,8 +55,11 @@
                 <input type="password" id="senhaAtual">
                 <p>Nova senha</p>
                 <input type="password" id="novaSenha">
+                <div class="resticao" id="restricao"></div>
                 <p>Confirmar senha</p>
-                <input type="password" id="confirmarSenha">
+                <input type="password" id="confirmarSenha"><br>
+                <div class="resticao" id="confirmar"></div>
+                <button onclick="mudar()">Alterar Senha</button>
             </div>
         </div>
         <div class="bgimg"></div>
@@ -78,4 +89,17 @@
     <p>Luzion © 2025</p>
   </div>
 </footer>
+<script>
+  function mudar() {
+    if (novaSenha.value == confirmarSenha.value) {
+      pop.style.diplay = 'none';
+      up.style.diplay = 'none';
+    }
+  }
+  function fechar() {
+    pop.style.display = 'none';
+    up.style.display = 'none';
+  }
+
+</script>
 </html>

@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background-color: #B29FBD;
+    font-family: 'Roboto', sans-serif;
+    color: #311C3D;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    color: #311C3D;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+input {
+    border: none;
+    background-color: #715E7D;
+    height: 30px;
+    width: 100%;
+    border-radius: 300px;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-shadow: #311C3D 2px 5px 10px;
+    margin-bottom: 0;
+}
+
+.senha button {
+    cursor: pointer;
+    background-color: #715E7D;
+    border-radius: 300px;
+    border: none;
+    height: 30px;
+    width: 35%;
+    align-self: flex-end;
+    box-shadow: #311C3D 2px 5px 10px;
+    color: #311C3D;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.bgimg {
+    background-image: url(../Assets/meuperfil.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    aspect-ratio: 3/ 4;
+    width: 30%;
+    align-items: end;
+}
+
+.dados {
+    width: 60%;
+    padding: 2.5%;
+}
+
+.senha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+    padding: 0;
+}
+
+.restricao {
+    margin-top: 0;
+    padding: 0;
+}
+
+.pop {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.8);
+}
+
+.up {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 20%;
+    background-color: #715E7D;
+    border-radius: 30px;
+    font-size: 25px;
+}
+.up button {
+    border-radius: 300px;
+    border: none;
+    background-color: #311C3D;
+    color: #B29FBD;
+    padding: 10px;
+}
