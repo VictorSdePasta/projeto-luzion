@@ -101,7 +101,9 @@ create table Estoque (
 	idEstoque int auto_increment,
   fkPapelHigienico int,
   titulo varchar(100),
-  volumeMaximo int,
+  altura int,
+  largura int,
+  profundidade int,
   percAtual int,
   fkFilial int,
   constraint fkEstoqueFilial foreign key (fkFilial) references Filial(idFilial),
@@ -109,13 +111,13 @@ create table Estoque (
   primary key(idEstoque, fkPapelHigienico)
 );
 
-insert into Estoque (titulo,volumeMaximo,fkFilial,fkPapelHigienico) values
-('Galpão Ala A',3200,1,1),
-('Galpão Terreo',2100,2,1),
-('Galpão 12',3120,3,2),
-('Estoque',2900,4,2),
-('Galpão Ala B',2850,5,3),
-('Galpão 1',3810,6,3);
+insert into Estoque (titulo,altura,largura,profundidade,fkFilial,fkPapelHigienico) values
+('Galpão Ala A',3200,1400,1200,1,1),
+('Galpão Terreo',2100,2200,1200,2,1),
+('Galpão 12',3120,2000,1200,3,2),
+('Estoque',2900,3200,1000,4,2),
+('Galpão Ala B',2850,1200,2100,5,3),
+('Galpão 1',3810,2200,1300,6,3);
 
 create table Banheiro (
   idBanheiro int primary key auto_increment,
