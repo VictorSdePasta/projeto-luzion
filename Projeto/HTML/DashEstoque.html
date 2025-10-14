@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luzion - Estoque</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/DashboarSensor.css">
+</head>
+<header>
+  <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
+  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+    </div>
+    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
+    <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
+  </div>
+</header>
+
+<body>
+  <div class="corpo">
+    <div class="menuLateral">
+
+      <div class="headerLateral">
+        <h2>No 11º tem bolo</h2>
+        <div class="kpi">EBA</div>
+      </div>
+
+      <a href="" class="selecao">
+        <span>Estoque</span>
+        <div class="situacao estavel"></div>
+      </a>
+      <a href="" class="selecao">
+        <span>Geral Unidade</span>
+      </a>
+      <div class="selecao" onclick="colapsoBanheiro()">
+        <span>Banheiro</span>
+        <div class="situacao estavel"></div>
+      </div>
+      <div id="divDispenser">
+        <div class="opcao">
+          <a href="">Geral Banheiro</a>
+        </div>
+        <div class="opcao">
+          <a href="">Dispenser 1</a>
+          <div class="situacao atencao"></div>
+        </div>
+        <div class="opcao">
+          <a href="">Dispenser 2</a>
+          <div class="situacao critico"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pagina">
+      <div class="topo">
+        <div class="kpi">
+          <h4>Dias desde última reposição</h4>
+          <div id="divUltimaRepo">2</div>
+        </div>
+        <div class="kpi">
+          <h5>Nivel de Estoque Total</h5>
+          <div id="divEstoqueTotal">150</div>
+          <h4>rolos</h4>
+        </div>
+        <div class="kpi">
+          <h4>Papel com menor quantia</h4>
+          <div id="divMenorQtd">Jumbo</div>
+        </div>
+      </div>
+      <div class="kpisGrafico">
+        <div class="conjunto">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h3>Jumbo</h3>
+              <h5>Nível de Estoque</h5>
+              <div id="divEstoqueJumbo">75</div>
+              <h4>Rolos</h4>
+            </div>
+            <div class="kpiBottom">
+              <div class="barraStatus">
+                <div id="nivel0" class="nivel"></div>
+                <div id="nivel1" class="nivel"></div>
+                <div id="nivel2" class="nivel"></div>
+                <div id="nivel3" class="nivel"></div>
+                <div id="nivel4" class="nivel"></div>
+                <div id="nivel5" class="nivel"></div>
+                <div id="nivel6" class="nivel"></div>
+                <div id="nivel7" class="nivel"></div>
+                <div id="nivel8" class="nivel"></div>
+                <div id="nivel9" class="nivel"></div>
+              </div>
+              <div class="coluna">
+                <h6>Capacidade do Estoque</h6>
+                <span>Situação do estoque atual</span>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                Considerando que cada camada possui XX rolos
+              </div>
+
+              <div class="filtroData">
+                <span>Filtrar Data:</span>
+                <div class="linhaFiltro">
+                  <span>de:</span><input id="inptDeData">
+                  <span>até:</span><input id="inptAtéData">
+                </div>
+              </div>
+            </div>
+
+            <div class="grafico">
+              <canvas></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<footer>
+  <div class="main">
+    <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logomarca"></div>
+    <div class="informacoes">
+      <p><b>Informações</b></p>
+      <a href="">Menu</a>
+      <a href="">Sobre nós</a>
+    </div>
+    <div class="contato">
+      <p><b>Contatos</b></p>
+      <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
+      <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
+    </div>
+    <div class="redessociais">
+      <p><b>Redes Sociais</b></p>
+      <div class="icons"><a href=""><img src="../Assets/icon face.png" alt=""></a><a href=""><img
+            src="../Assets/icon twitter.png" alt=""></a><a href=""><img src="../Assets/icon linkedin.png" alt=""></a>
+      </div>
+    </div>
+  </div>
+  <div class="autoria">
+    <p>Luzion © 2025</p>
+  </div>
+</footer>
+
+</html>

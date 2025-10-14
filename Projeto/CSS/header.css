@@ -135,6 +135,7 @@ footer a {
   align-items: center;
   margin-top: 5%;
   gap: 5%;
+  text-decoration: none;
 
   & a {
     text-decoration: none;
