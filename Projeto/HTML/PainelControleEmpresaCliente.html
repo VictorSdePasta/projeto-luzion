@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luzion - Clientes</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/PainelControleCliente.css">
+</head>
+<header>
+  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+    </div>
+    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">DASHBOARD</a>
+    <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
+  </div>
+</header>
+
+<body>
+  <div class="corpo">
+    <div class="menuLateral">
+
+      <div class="headerLateral">
+        <h2>No 11º tem bolo</h2>
+        <div class="kpi">EBA</div>
+      </div>
+
+      <div class="selecao especial">
+        <button class="adicionar" onclick="redirecionarCliente()"></button>
+        <a href="./PainelControleEmpresaCliente.html" class="">Cliente</a>
+      </div>
+      <div id="divCliente"></div>
+      <div class="selecao especial">
+        <button class="adicionar" onclick="redirecionarFilial()"></button>
+        <a href="">Filial</a>
+        <div class="icone" onclick="colapsoFilial()"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      </div>
+      <div id="divFilial"></div>
+      <div class="selecao especial">
+        <button class="adicionar" onclick="redirecionarBanheiro()"></button>
+        <a href="./PainelControleBanheiro.html">Banheiro</a>
+        <div class="icone" onclick="colapsoBanheiro()"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      </div>
+      <div id="divFilial"></div>
+      <div class="selecao especial">
+        <button class="adicionar" onclick="redirecionarUsuario()"></button>
+        <a href="">Usuario</a>
+      </div>
+    </div>
+
+    <div class="pagina">
+      <div class="topo">
+        <h1>Empresas Clientes</h1>
+        <div class="buscar">
+          <div class="lupa"></div>
+          <input id="inptBuscar">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<footer>
+  <div class="main">
+    <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logomarca"></div>
+    <div class="informacoes">
+      <p><b>Informações</b></p>
+      <a href="">Menu</a>
+      <a href="">Sobre nós</a>
+    </div>
+    <div class="contato">
+      <p><b>Contatos</b></p>
+      <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
+      <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
+    </div>
+    <div class="redessociais">
+      <p><b>Redes Sociais</b></p>
+      <div class="icons"><a href=""><img src="../Assets/icon face.png" alt=""></a><a href=""><img
+            src="../Assets/icon twitter.png" alt=""></a><a href=""><img src="../Assets/icon linkedin.png" alt=""></a>
+      </div>
+    </div>
+  </div>
+  <div class="autoria">
+    <p>Luzion © 2025</p>
+  </div>
+</footer>
+
+</html>

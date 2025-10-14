@@ -96,6 +96,10 @@ footer a {
 
 /* Aqui para baixo começa o css do menu lateral da pagina */
 
+.corpo {
+  display: flex;
+}
+
 .menuLateral {
   background-color: #5A4168;
   width: 15%;

@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #B29FBD;
+}
+
+.pagina {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.topo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #311c3d;
+}
+
+h1 {
+  margin-left: 3%;
+}
