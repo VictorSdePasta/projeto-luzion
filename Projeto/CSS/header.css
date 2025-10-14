@@ -138,9 +138,10 @@ footer a {
 
   & a {
     text-decoration: none;
+    padding-left: 10%;
     color: #CC9CE7;
   }
-
+  
   & span {
     text-decoration: none;
     color: #CC9CE7;
@@ -161,7 +162,7 @@ footer a {
     aspect-ratio: 1/1;
     margin-left: 5%;
   }
-
+  
   & a {
     text-decoration: none;
     color: #311C3D;
@@ -169,6 +170,7 @@ footer a {
   
   & span {
     color: #311C3D;
+    padding-left: 10%;
     margin: 0;
   }
 }
