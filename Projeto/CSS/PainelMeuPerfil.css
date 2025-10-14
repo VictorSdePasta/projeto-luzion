@@ -74,7 +74,7 @@ input {
     display: none;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     align-self: center;
     justify-self: center;
     width: 100%;
@@ -85,7 +85,7 @@ input {
 .up {
     display: none;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     align-items: center;
     justify-content: center;
     width: 20%;
@@ -93,6 +93,8 @@ input {
     background-color: #715E7D;
     border-radius: 30px;
     font-size: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .up button {
     border-radius: 300px;

@@ -1,22 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-body{
+
+body {
     background-color: #B29FBD;
     margin: 0;
     padding: 0;
 }
-p{
+
+p {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     color: #311C3D;
 }
-h2{
+
+h2 {
     font-family: 'Roboto', sans-serif;
     font-size: 55px;
     margin-left: 75px;
     margin-bottom: 0;
     color: #311C3D;
 }
-.caixa{
+
+.caixa {
     background-color: #311c3d83;
     padding: 50px;
     padding-left: 0;
@@ -24,23 +28,28 @@ h2{
     border-radius: 250px 0px 0px 250px;
     margin-top: 2%;
 }
-.apresentacao{
+
+.apresentacao {
     display: flex;
     flex-direction: row-reverse;
-    & .caixa{
+
+    & .caixa {
         padding-left: 75px;
     }
 }
-.campoimagem{
+
+.campoimagem {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
-.simuladorimagem{
+
+.simuladorimagem {
     margin-right: 10%;
 }
-.campos{
+
+.campos {
     border-radius: 0px 300px 300px 0px;
     width: 40%;
     display: flex;
@@ -48,18 +57,21 @@ h2{
     align-items: center;
     margin-bottom: 3%;
 }
-.textoipt{
+
+.textoipt {
     margin-left: 5%;
     width: 87%;
 }
-input{
+
+input {
     text-align: center;
     padding-left: 5%;
     padding-right: 5%;
     font-size: 2rem;
     color: #311C3D;
 }
-.iptstyle{
+
+.iptstyle {
     background-color: #cb9ce783;
     width: 75%;
     height: 45px;
@@ -67,12 +79,14 @@ input{
     border: none;
     box-shadow: #311c3d8e 1px 3px 5px;
 }
-button{
+
+button {
     cursor: pointer;
     background: none;
     border: none;
 }
-.resposta{
+
+.resposta {
     margin-top: 2%;
     padding: 1%;
     background-color: #311c3d83;
@@ -80,22 +94,36 @@ button{
     flex-direction: column;
     align-items: center;
 }
-.textoresposta{
+
+.textoresposta {
     width: 75%;
     margin-bottom: 1%;
 }
-.caixaresultado{
+
+.caixaresultado {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 70px;
+    gap: 5%;
+    width: 100%;
     margin-bottom: 1%;
 }
-.resultado{
+
+.resultado {
     text-align: center;
     background-color: #B29FBD;
     padding: 1px;
-    height: 50%;
-    width: 30%;
+    width: 25%;
     border-radius: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.resultado p {
+    text-align: left;
+}
+
+.resultado h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #311C3D;
 }

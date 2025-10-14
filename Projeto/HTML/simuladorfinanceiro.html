@@ -33,19 +33,19 @@
                 <div class="textoipt">
                     <p>Quantos funcionários monitoram o nível de papel higiênico</p>
                 </div>
-                <div><input class="iptstyle" type="text" id="iptFuncionarios"></div>
+                <div><input class="iptstyle" type="number" id="iptFuncionarios"></div>
                 <div class="textoipt">
                     <p>Quantidade de dispensers monitorados por eles</p>
                 </div>
-                <div><input class="iptstyle" type="text" id="iptDispenser"></div>
+                <div><input class="iptstyle" type="number" id="iptDispenser"></div>
                 <div class="textoipt">
                     <p>Valor da hora de trabalho destes funcionários</p>
                 </div>
-                <div><input class="iptstyle" type="text" id="iptValorHora"></div>
+                <div><input class="iptstyle" type="number" id="iptValorHora"></div>
                 <div class="textoipt">
                     <p>Verificações do nível de papel por dia</p>
                 </div>
-                <div><input class="iptstyle" type="text" id="iptQtdMonitoramento"></div>
+                <div><input class="iptstyle" type="number" id="iptQtdMonitoramento"></div>
             </div>
             <div><button onclick="validar()"><img src="../Assets/Arrow 2.png" alt=""></button></div>
         </div>
@@ -77,10 +77,10 @@
 </footer>
 <script>
     function validar() {
-        var funciorarios = Number(iptFuncionarios.value);
-        var valorHora = Number(iptValorHora.value);
-        var qtdMonitoramento = Number(iptQtdMonitoramento.value);
-        var dispenser = Number(iptDispenser.value);
+        let funciorarios = Number(iptFuncionarios.value);
+        let valorHora = Number(iptValorHora.value);
+        let qtdMonitoramento = Number(iptQtdMonitoramento.value);
+        let dispenser = Number(iptDispenser.value);
         if (funciorarios <= 0) {
             alert('Insira a quantidade de funcionários que realizam o monitoramento do nível de papel higiênico nos banheiros.');
         } else if (dispenser <= 0) {
@@ -94,24 +94,49 @@
         }
     }
     function simular() {
-        var funciorarios = Number(iptFuncionarios.value);
-        var valorHora = Number(iptValorHora.value);
-        var qtdMonitoramento = Number(iptQtdMonitoramento.value);
-        var dispenser = Number(iptDispenser.value);
-        var verificacao = funciorarios * dispenser * 2 / 60;
-        var verificacaoDia = verificacao * qtdMonitoramento;
-        var verificacaoMes = verificacaoDia * 30;
-        var verificacaoAno = verificacaoMes * 12;
-        var reducaoHoraDia = verificacaoDia * 0.9;
-        var reducaoHoraMes = verificacaoMes * 0.9;
-        var reducaoHoraAno = verificacaoAno * 0.9;
-        var valorDia = verificacaoDia * valorHora;
-        var valorMes = valorDia * 30;
-        var valorAno = valorMes * 12;
-        var reducaoDia = valorDia * 0.9;
-        var reducaoMes = valorMes * 0.9;
-        var reducaoAno = valorAno * 0.9;
-        divSimulacao.innerHTML = `<div class="resposta"><div class="textoresposta"><p>Considerando um tempo médio de 2 minutos para realizar o monitoramento de cada dispenser, onde esse tempo indica a verificação e o deslocamento entre cada dispenser, nossa solução pode reduzir em até 90% o tempo gasto neste processo:</p></div><div class="caixaresultado"><div class="resultado"><p><b>Diariamente</b><br><br>Tempo gasto: ${verificacaoDia} horas.<br>Custo por dia: R$${valorDia.toFixed(2)}.<br><p>Podemos reduzir esses valores em até:<br>Redução de tempo gasto: ${reducaoHoraDia}horas.<br>Redução de custo: R$${reducaoDia.toFixed(2)}.</p></div><div class="resultado"><p><b>Mensalmente</b><br><br>Tempo gasto: ${verificacaoMes} horas.<br>Custo por dia:R$${valorMes.toFixed(2)}.<br><p>Podemos reduzir esses valores em até:<br>Redução de tempo gasto: ${reducaoHoraMes} horas.<br>Redução de custo: R$${reducaoMes.toFixed(2)}.</p></div><div class="resultado"><p><b>Anualmente</b><br><br>Tempo gasto: ${verificacaoAno} horas.<br>Custo por dia: R$${valorAno.toFixed(2)}.<br><p>Podemos reduzir esses valores em até:<br>Redução de tempo gasto: ${reducaoHoraAno} horas.<br>Redução de custo: R$${reducaoAno.toFixed(2)}.</p></div></div></div>`
+        let funciorarios = Number(iptFuncionarios.value);
+        let valorHora = Number(iptValorHora.value);
+        let qtdMonitoramento = Number(iptQtdMonitoramento.value);
+        let dispenser = Number(iptDispenser.value);
+        let verificacao = funciorarios * dispenser * 2;
+        let verificacaoDia = verificacao * qtdMonitoramento;
+        let verificacaoMes = verificacaoDia * 30;
+        let verificacaoAno = verificacaoMes * 12;
+        let valorDia = verificacaoDia * valorHora;
+        let valorMes = valorDia * 30;
+        let valorAno = valorMes * 12;
+        let reducaoDia = valorDia * 0.9;
+        let reducaoMes = valorMes * 0.9;
+        let reducaoAno = valorAno * 0.9;
+        let minutoDia = verificacaoDia % 60;
+        let minutoMes = verificacaoMes % 60;
+        let minutoAno = verificacaoAno % 60;
+        let horaDia = (verificacaoDia - minutoDia) / 60;
+        let horaMes = (verificacaoMes - minutoMes) / 60;
+        let horaAno = (verificacaoAno - minutoAno) / 60;
+        let redHoraDia = verificacaoDia * 0.9;
+        let reducaoMinutoDia = redHoraDia % 60;
+        let reducaoHoraDia = (redHoraDia - reducaoMinutoDia) / 60;
+        let redHoraMes = verificacaoMes * 0.9;
+        let reducaoMinutoMes = redHoraMes % 60;
+        let reducaoHoraMes = (redHoraMes - reducaoMinutoMes) / 60;
+        let redHoraAno = verificacaoAno * 0.9;
+        let reducaoMinutoAno = redHoraAno % 60;
+        let reducaoHoraAno = (redHoraAno - reducaoMinutoAno) / 60;
+        divSimulacao.innerHTML = `  <div class="resposta">
+                                        <div class="textoresposta"><p>Considerando um tempo médio de 2 minutos para realizar o monitoramento de cada dispenser, onde esse tempo indica a verificação e o deslocamento entre cada dispenser, nossa solução pode reduzir em até 90% o tempo gasto neste processo:</p></div>
+                                        <div class="caixaresultado">
+                                            <div class="resultado">
+                                                <h3>Diariamente</h3><p><b>Tempo gasto:</b> ${horaDia} horas e ${minutoDia} minutos.<br><b>Custo:</b> ${valorDia.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraDia)} horas e ${Math.floor(reducaoMinutoDia)} minutos.<br><b>Custo:</b> ${reducaoDia.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
+                                            </div>
+                                            <div class="resultado">
+                                                <h3>Mensalmente</h3><p><b>Tempo gasto:</b> ${horaMes} horas e ${minutoMes} minutos.<br><b>Custo:</b>${valorMes.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraMes)} horas e ${Math.floor(reducaoMinutoMes)} minutos.<br><b>Custo:</b> ${reducaoMes.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
+                                            </div>
+                                            <div class="resultado">
+                                                <h3>Anualmente</h3><p><b>Tempo gasto:</b> ${horaAno} horas e ${minutoAno} minutos.<br><b>Custo:</b> ${valorAno.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraAno)} horas e ${Math.floor(reducaoMinutoAno)} minutos.<br><b>Custo:</b> ${reducaoAno.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
+                                            </div>
+                                        </div>
+                                    </div>`
     }
 </script>
 
