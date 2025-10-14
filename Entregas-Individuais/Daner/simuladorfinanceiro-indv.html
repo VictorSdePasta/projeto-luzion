@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1>Simulador financeiro</h1>
+    Em média apenas um único funcionario leva 2 minutos para revisar o dispenser.<br><br>
+    Quantos turnos é revisado o dispenser?: <input id="iptTurno"><br>
+    Salário do funcionario por hora: <input id="iptSalario"><br>
+    Horário de trabalho do funcionario: <input id="iptHorario"><br>
+    Quantos dipensers no total possui?: <input id="iptDispenser"><br>
+    <button onclick="calcular()">Calcular</button>
+    <div id="msg"></div>
+
+</body>
+<script>
+    function calcular() {
+        var turno = Number(iptTurno.value);
+        var salario = Number(iptSalario.value);
+        var horario = Number(iptHorario.value);
+        var dispenser = Number(iptDispenser.value);
+        
+        var salarioDia = salario / 20 //2000 = 100
+        var salarioHora = salarioDia / horario  // 100/8 = 12.5
+        var salarioMinuto = (salarioHora / 60) // 12.5 = 0.20
+        dispenser *= 2 // 28*2 = 56
+        turno *= dispenser // 56*2 = 112
+        
+        var horas = Math.floor(turno / 60); // 1 hora
+        var minutos = Math.floor(turno % 60); // 52 minutos
+
+        msg.innerHTML = `Um dia de trabalho um único funcionario leva no total: ${horas} hora(s) e ${minutos} minutos para revisar todos os dipensers, uma desvalorização da sua jornada de trabalho R$${(salarioHora.toFixed(2) * horas) + (salarioMinuto.toFixed(2) * minutos)} por hora e R$${(salarioHora.toFixed(2) * horas) + (salarioMinuto.toFixed(2) * minutos)*20} por mês.<br>
+        Com a nossa solução reduzimos esse tempo em até 75% (30 segundos) tempo máximo para troca de papel higiênico`
+
+    }
+</script>
+</html>
