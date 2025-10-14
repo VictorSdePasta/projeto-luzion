@@ -31,6 +31,8 @@ display: flex;
 margin: 0;
 width: 100%;
 flex-direction: column;
+aspect-ratio: 3 / 2;
+
 }
 .Topo{
 display: flex;
@@ -43,7 +45,7 @@ align-self: flex-start;
         
     }
 }
-.Pesquisar{
+input{
     margin: 0px 3%;
     width: 30%;
     height: 15%;
@@ -54,6 +56,13 @@ align-self: flex-start;
     border-block-end: 2px;
     border-bottom-width: 2px;
     padding: 1%;
+    background-image: url(../Assets/lupa.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 3%;
+    background-size: 5%;
+    padding-left: 5%;
+    
 }
 .Tabela{
     background-color: #715E7D;
@@ -82,7 +91,7 @@ background-color: #7F5C92;
 padding: 10px 0px;
 }
 .corpo{
-    display: flex;
+ 
     margin:0;
     flex-direction: row;
     width: 100%;
