@@ -55,8 +55,8 @@ body {
   margin-top: 170px;
   background-color: #eeeeee84;
   padding: 15px 20px;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+  border-top-right-radius: 300px;
+  border-bottom-right-radius: 300px;
   max-width: 450px;
   font-family: 'poppins';
   font-size: 20px;
