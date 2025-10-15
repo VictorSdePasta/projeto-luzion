@@ -36,6 +36,12 @@ body {
     flex-direction: column;
     aspect-ratio: 3 / 2;
 
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 400;
+        color: #311C3D;
+    }
 }
 
 .Topo {
@@ -68,21 +74,26 @@ input {
     background-position-x: 3%;
     background-size: 5%;
     padding-left: 5%;
-
+    border: none;
 }
 
 .Tabela {
+    display: flex;
+    flex-direction: column;
     background-color: #715E7D;
     justify-content: center;
     align-self: center;
     width: 70%;
     height: max-content;
-    border-radius: 8px;
-    
-        img{
-            width: 3%;
-            height: 3%;
-        }
+    border-radius: 30px;
+    max-width: 100%;
+
+    p{
+          font-family: 'Roboto', sans-serif;
+          font-size: 1rem;
+          color:#311C3D;
+    }
+
 }
 
 .topoTabela {
@@ -91,16 +102,62 @@ input {
     flex-direction: row;
     background-color: #CC9CE7;
     justify-content: space-between;
-    height: 10%;
-    border-radius: 5px;
-    padding: 0px 5px;
+    border-radius: 17px;
+    padding: 1% 2%;
+    margin: 0;
+}
+#adicionarDispenser{
+    display: flex;
+    align-items: center;
+    width: 20%;
+        img{
+            width: 10%;
+            height: 10%;
+            padding: 1%;
+        }
+}
 
+.botoes{
+    margin: 0;
+    width: 15%;
+}
+button {
+    background: none;
+    border: none;
+    color: #311C3D;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 45%;
+    img {
+        width: 50%;
+        height: 50%;
+    }
+}
+#adicionar{
+    background: none;
+    border: none;
+    color: #311C3D;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 24%;
+}
+#add{
+    padding-left: 65%;
+    margin: 0;
+    width: 25%;
+    height: 25%;
+    
 }
 
 .corpoTabela {
     flex-direction: column;
     justify-content: space-between;
-    overflow: auto;
+    width: 100%;
+    max-width: 100%;
+
+
 }
 
 .linhaA {
@@ -109,8 +166,9 @@ input {
     flex-direction: row;
     background-color: #715E7D;
     justify-content: space-between;
-    width: 100%;
-    padding: 2% 2%;
+    width: 96%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .linhaB {
@@ -119,10 +177,16 @@ input {
     flex-direction: row;
     background-color: #7F5C92;
     border-radius: 5px;
-    justify-content: space-between; 
-    width: 100%;
-    padding: 2% 2%;
+    justify-content: space-between;
+    width: 96%;
+    padding-left: 2%;
+    padding-right: 2%;
 
+}
+
+.final {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .corpo {
