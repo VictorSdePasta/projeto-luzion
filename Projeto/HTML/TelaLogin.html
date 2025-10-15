@@ -13,11 +13,11 @@
     <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
     <div class="botoesGuia">
         <div class="destaque">
-            <a href="./TelaLogin.html" id="entrar">ENTRAR class</a>
+            <a href="./TelaLogin.html" id="entrar"  class="selecionado" >ENTRAR class</a>
         </div>
-        <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
+        <a href="./SiteCadastroEmpresa.html" id="cadastrar">CADASTRAR</a>
         <a href="./simuladorfinanceiro.html" id="simulador">SIMULADOR</a>
-        <a href="./HomePage.html" id="home">HOME</a>
+        <a href="#" id="home">HOME</a>
     </div>
 </header>
 
@@ -78,8 +78,8 @@
         var login = iptEmail.value;
         var senha = iptSenha.value;
 
-        if (login == ' ') { alert('Insira um email.') }
-        if (senha == ' ') { alert('Insira uma senha.') }
+        if (login == '') { alert('Insira um email.') }
+        if (senha == '') { alert('Insira uma senha.') }
         if (login == 'contato@luzion.com' && senha == 'Senha123') {
             window.location.replace('../HTML/SimuladorFinanceiro.html');
         } else {
