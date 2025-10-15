@@ -7,6 +7,7 @@
     <title>Luzion - Dashboard Sensor</title>
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/DashboarSensor.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <header>
     <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
@@ -35,7 +36,6 @@
             <div id="divCliente"></div>
             <div class="selecao especial">
                 <a href="">Filial</a>
-                <!-- <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div> -->
             </div>
             <div id="divFilial"></div>
             <div class="selecao especial">
@@ -57,7 +57,71 @@
             </div>
         </div>
         <div class="pagina">
-
+             <h1>Banheiro 1</h1>
+             <div class="banheirokpi">
+                <div class="kpibox">
+                    <h2>Horario de maior consumo</h2>
+                    <p>15:00</p>
+                </div>
+                <div class="kpibox">
+                    <h2>Reposições realizadas</h2>
+                    <p>2</p>
+                </div>
+                <div class="kpibox">
+                    <h2>Nível Atual</h2>
+                    <p>98%</p>
+                </div>
+             </div>
+             <div class="banheiroindicadores">
+                <div class="kpitabela">
+                    <div class="tabela">
+                        <div class="titulo">
+                            <div class="carga"><p>Carga %</p></div>
+                            <div class="horario"><p>Horário</p></div>
+                        </div>
+                        <div class="linha1 inicio">
+                            <div class="carga"><p>98</p></div>
+                            <div class="horario"><p>16:00</p></div>
+                        </div>
+                        <div class="linha2">
+                            <div class="carga"><p>11</p></div>
+                            <div class="horario"><p>15:00</p></div>
+                            </div>
+                        <div class="linha1">
+                            <div class="carga"><p>25</p></div>
+                            <div class="horario"><p>14:00</p></div>
+                            </div>
+                        <div class="linha2">
+                            <div class="carga"><p>37</p></div>
+                            <div class="horario"><p>13:00</p></div>
+                            </div>
+                        <div class="linha1">
+                            <div class="carga"><p>50</p></div>
+                            <div class="horario"><p>12:00</p></div>
+                        </div>
+                        <div class="linha2 final">
+                            <div class="carga"><p>68</p></div>
+                            <div class="horario"><p>11:00</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grafico">
+                    <div class="kpidecoration">
+                        <div class="kpibox">
+                            <h2>Dispenser</h2>
+                            <p>1</p>
+                        </div>
+                        <div class="kpibottom">
+                            <p>Filtrar data</p>
+                            <input type="text" placeholder="De">
+                            <input type="text" placeholder="Até">
+                        </div>
+                    </div>
+                    <div class="sensor">
+                        <canvas id="dispenser1" class="chart"></canvas>
+                    </div>
+                </div>
+             </div>
         </div>
     </div>
 </body>
@@ -86,5 +150,27 @@
         <p>Luzion © 2025</p>
     </div>
 </footer>
+<script>
+     const ctx = document.getElementById('dispenser1');
 
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+      datasets: [{
+        label: '# of Votes',
+        data: [94, 94, 94, 94, 94, 94, 92, 88, 84, 80, 72, 68, 50, 37, 25, 11, 98],
+        borderWidth: 1,
+        borderColor: 'rgba(49, 28, 61, 100)'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
 </html>
