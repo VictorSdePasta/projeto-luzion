@@ -37,7 +37,7 @@ h5 {
 
 .kpi {
   background-color: #CC9CE7;
-  border-radius: 30% 10%;
+  border-radius: 50px 20px;
   height: 100%;
   padding: 0 1%;
   aspect-ratio: 1.2/1;
@@ -46,6 +46,7 @@ h5 {
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  z-index: 1;
 
   & div {
     font-weight: bold;
@@ -67,20 +68,70 @@ h5 {
 
 .colunaEsq {
   width: 30%;
+  padding-right: 1%;
+  border-radius: 50px 0 0 20px;
+
+  & .kpi {
+    height: auto;
+    width: 100%;
+    padding: 0;
+  }
 }
 
 .colunaDir {
   width: 60%;
 }
 
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
 .conjunto.detalhado {
   grid-column: 1 / -1;
 
-  & .colunaEsq{
-    width: 20%;
+  & .colunaEsq {
+    background-color: #867391;
+    width: 15%;
+    border-radius: 20px 0 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    & .kpi {
+      border-radius: 20px 50px;
+    }
   }
 
-  & .colunaDir{
+  & .colunaDir {
+    background-color: #867391;
     width: 70%;
+    border-radius: 0 50px 20px 0;
   }
+}
+
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.kpiBottom {
+  display: flex;
+  position: relative;
+  top: -10%;
+  background-color: #7F5C92;
+  width: 90%;
+  padding: 20% 0 5% 5%;
+  border-radius: 0 0 10px 40px;
+}
+
+.barraStatus {
+  width: 50%;
+}
+
+.nivel {
+  width: 100%;
+  margin-top: 5%;
+  aspect-ratio: 9/1;
+  background-color: #A86EC8;
 }
