@@ -3,6 +3,9 @@
 
 body {
     background-color: #867391;
+    background-image: url(../Assets/mulher\ no\ telefone.png);
+    background-repeat: no-repeat;
+    background-position: right;
 }
 
 
@@ -13,11 +16,15 @@ body {
     width: 75%;
     border-bottom-right-radius: 190px;
     border-top-right-radius: 190px;
+    font-family: 'Roboto', sans-serif;
 }
-    
-    
 
 
+.botaocadastrar {
+    margin-left: 80%;
+    border: 50px;
+
+}
 
 
 

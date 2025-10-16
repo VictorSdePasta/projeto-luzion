@@ -6,10 +6,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-header {
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
-}
 
 .corpo {
     display: flex;
@@ -117,10 +113,10 @@ input {
     color: #ffffff;
     cursor: pointer;
     padding: 10px 15px;
-    border-radius: 50px;
+    border-radius: 80px;
     background-color: #311C3D;
-    width: 130px;
-    font-size: 16px;
+    width: 100%;
+    font-size: 100%;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -132,14 +128,12 @@ input {
 
 .email p,
 .senha p {
+    display: flex;
+    justify-content: center;
     font-size: 16px;
     color: #311C3D;
     margin: 5px;
     margin-left: 70px;
-    width: 220px;
-}
-
-.footer {
-    height: 100px;
-    background-color: #311C3D;
+    width: 50%;
+    margin-top: 30px;
 }
