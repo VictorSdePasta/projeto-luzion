@@ -67,7 +67,19 @@
 </footer>
 <script>
     function cadastrar() {
+        var nmEmpresa = nomeEmpresa.value;
+        var nmFantasia = nomeFantasia.value;
+        var numrCnpj = cnpj.value;
+
+        if (nmEmpresa == '') {
+            alert ('Insira o nome da empresa')
+        } if (nmFantasia == '') {
+            alert ('Insira nome fantasia')
+        } if (numrCnpj == '') {
+            alert ('Insira um cnpj válido')
+        } else {
         window.location.href = "../HTML/TelaCadastroUsuario.html"
+        }
    }
     function logar() {
         window.location.href = "../HTML/TelaLogin.html"

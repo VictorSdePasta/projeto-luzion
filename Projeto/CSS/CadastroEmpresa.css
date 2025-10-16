@@ -1,3 +1,5 @@
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    
     body{
         background-color: #B29FBD;
         border-radius: 10px;
@@ -36,6 +38,7 @@
         padding: 10px;
         outline: none;
         border: none;
+        box-shadow: #311c3d8e 1px 3px 5px
     }
     .corSombra {
         display: flex;
