@@ -9,7 +9,7 @@
     <h1>Simulador financeiro</h1>
     Em média apenas um único funcionario leva 2 minutos para revisar o dispenser.<br><br>
     Quantos turnos é revisado o dispenser?: <input id="iptTurno"><br>
-    Salário do funcionario por hora: <input id="iptSalario"><br>
+    Salário do funcionario: <input id="iptSalario"><br>
     Horário de trabalho do funcionario: <input id="iptHorario"><br>
     Quantos dipensers no total possui?: <input id="iptDispenser"><br>
     <button onclick="calcular()">Calcular</button>
@@ -26,14 +26,27 @@
         var salarioDia = salario / 20 //2000 = 100
         var salarioHora = salarioDia / horario  // 100/8 = 12.5
         var salarioMinuto = (salarioHora / 60) // 12.5 = 0.20
-        dispenser *= 2 // 28*2 = 56
-        turno *= dispenser // 56*2 = 112
+        var totalDispenser = dispenser * 2 // "2" de 2 minutos 28*2 = 56
+        var verificarTotal = totalDispenser * turno // 56*2 = 112
         
-        var horas = Math.floor(turno / 60); // 1 hora
-        var minutos = Math.floor(turno % 60); // 52 minutos
+        var horas = Math.floor(verificarTotal / 60); // 1 hora
+        var minutos = Math.floor(verificarTotal % 60); // 52 minutos
 
-        msg.innerHTML = `Um dia de trabalho um único funcionario leva no total: ${horas} hora(s) e ${minutos} minutos para revisar todos os dipensers, uma desvalorização da sua jornada de trabalho R$${(salarioHora.toFixed(2) * horas) + (salarioMinuto.toFixed(2) * minutos)} por hora e R$${(salarioHora.toFixed(2) * horas) + (salarioMinuto.toFixed(2) * minutos)*20} por mês.<br>
-        Com a nossa solução reduzimos esse tempo em até 75% (30 segundos) tempo máximo para troca de papel higiênico`
+        var novoVerificar = (dispenser / 2) * turno;
+        var novoHora = Math.floor(novoVerificar / 60)
+        var novoMinutos = Math.floor(novoVerificar % 60)
+
+
+        msg.innerHTML = `Um dia de trabalho um único funcionario leva no total:<br> ${horas} hora(s) e ${minutos} minutos para revisar todos os dipensers, uma desvalorização da sua jornada de trabalho: <br>
+        Por hora R$${((salarioHora * horas) + (salarioMinuto * minutos)).toFixed(2)}<br>
+        Por mês R$${((salarioHora * horas) + (salarioMinuto * minutos) * 20).toFixed(2)}<br>
+        Anualmente R$${((salarioHora * horas) + (salarioMinuto * minutos) * 220).toFixed(2)}.<br><br>
+        Com a nossa solução reduzimos esse tempo em até 75% (30 segundos) tempo máximo para troca de papel higiênico<br>
+        Assim as trocas diárias se tornam mais eficazes:
+        Troca geral em: ${novoVerificar.toFixed(0)} minutos<br>
+        Economizando e valorizando o salário do funcionário: <br>
+        Ao mês: R$${((salarioHora * novoHora) + (salarioMinuto * novoMinutos) * 20).toFixed(2)}<br>
+        Anualmente: R$${((salarioHora * novoHora) + (salarioMinuto * novoMinutos) * 220).toFixed(2)}`
 
     }
 </script>
