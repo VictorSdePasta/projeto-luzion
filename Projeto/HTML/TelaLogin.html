@@ -13,7 +13,7 @@
     <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
     <div class="botoesGuia">
         <div class="destaque">
-            <a href="./TelaLogin.html" id="entrar"  class="selecionado" >ENTRAR class</a>
+            <a href="./TelaLogin.html" id="entrar"  class="selecionado" >ENTRAR</a>
         </div>
         <a href="./SiteCadastroEmpresa.html" id="cadastrar">CADASTRAR</a>
         <a href="./simuladorfinanceiro.html" id="simulador">SIMULADOR</a>
@@ -22,6 +22,21 @@
 </header>
 
 <body>
+
+    <div id="pop1"class="pop">
+    <div id="up1"class="up">
+
+    <p>Insira um email válido</p>
+
+    <button onclick="fechar()">Fechar</button> </div> </div>
+
+    <div id="pop2"class="pop">
+    <div id="up2"class="up">
+
+    <p>Insira uma senha válida</p>
+
+    <button onclick="fechar()">Fechar</button> </div> </div>
+
 
     <div class="corpo">
 
@@ -45,6 +60,8 @@
         </div>
 
     </div>
+
+    
 
 
 
@@ -78,16 +95,30 @@
         var login = iptEmail.value;
         var senha = iptSenha.value;
 
-        if (login == '') { alert('Insira um email.') }
-        if (senha == '') { alert('Insira uma senha.') }
-        if (login == 'contato@luzion.com' && senha == 'Senha123') {
-            window.location.replace('../HTML/SimuladorFinanceiro.html');
-        } else {
+        if (login == '') { 
+        pop1.style.display = 'flex';
+        up1.style.display = 'flex';
+            
+      }
+        if (senha == '') { 
+        pop2.style.display = 'flex';
+        up2.style.display = 'flex'; 
+
+        } else if (login == 'contato@luzion.com' && senha == 'Senha123') {
+            window.location.href = './DashboardBanheiro.html';
+                } else {
             alert(`Cadastro não encontrado.`)
         }
 
 
     }
+
+    function fechar() {
+    pop1.style.display = 'none';
+    up1.style.display = 'none';
+    pop2.style.display = 'none';
+    up2.style.display = 'none';
+  }
 
 
 

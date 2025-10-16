@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.corpo{
+    margin: none;
+    background-color: #B29FBD;
+    background-image: url(../Assets/mulher\ no\ telefone.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+
+
+.cadastro {
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: #867391;
+    width: 60%;
+    border-bottom-right-radius: 250px;
+    border-top-right-radius: 250px;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.linha{
+    width: 80%;
+}
+
+
+.botaocadastrar{
+    margin-left: 80%;
+    border: solid 1px #000000;
+    border-radius: 30%;
+
+}
+
+
+
+input {
+    background-color: #CC9CE7;
+    border: none;
+    width: 75%;
+    height: 30px;
+    border-bottom-right-radius: 190px;
+    border-top-right-radius: 190px;
+    box-shadow: #311c3d8e 1px 3px 5px;
+}

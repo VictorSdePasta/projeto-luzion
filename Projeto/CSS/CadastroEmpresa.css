@@ -1,63 +1,96 @@
-      body{
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    
+    body{
         background-color: #B29FBD;
         border-radius: 10px;
-        margin-top: 0px;
-        margin-left: 0;
+        margin: 0;
+        background-image: url("../Assets/mulher no telefone.png");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 52%;
+        
     }
     .texto {
         font-family: 'Roboto', sans-serif;
         font-size: 20px;
-        margin: 15px;
-        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        margin: 0;
+        margin-top: 8%;
+        margin-bottom: 8%;
     }
-    .botao{
-        width: 17.5%;
-        background-color: #311c3d;
-        border-radius: 40px;
-        padding: 0;
-        position: absolute;
-        top: 37%;
-        left: 40%;
-    }
-    .botao2 {
-        width: 10%;
-        background-color: #867391;
-        border: 0;
-        position: absolute;
-        top: 30%;
-        left: 44%;
-    }
-
-    .cor {
-        font-family: sans-serif;
-        font-size: 20px;
-        letter-spacing: 5px;
-        color: white;
-    }
-    .cor2 {
-        color: #01123C;
+    p {
+        font-family: 'Roboto', sans-serif;
+        color: #311C3D;
+        font-size: 140%;
+        margin: 0;
+        margin-left: 25px;
+        margin-bottom: 10px;
     }
 
     .caixa {
         background-color: #cb9ce77f;
-        width: 40%;
-        border-radius: 0 20px 20px 0;
-        padding: 8px;
+        font-size: 100%;
+        width: 100%;
+        border-radius: 0 25px 25px 0;
+        box-shadow: 50% black;
+        padding: 10px;
+        outline: none;
+        border: none;
+        box-shadow: #311c3d8e 1px 3px 5px
     }
     .corSombra {
         display: flex;
-        flex-direction: column;
-        width:70%;
+        align-items: center;
+        width:67%;
         background-color: #867391;
-        border-radius: 0 200px 200px 0;
+        border-radius: 0 320px 320px 0;
+        margin-top: 100px;
+        margin-bottom: 100px;
     }
+
+    .botao{
+        width: 85%;
+        height: 20%;
+        border-radius: 40px;
+
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        letter-spacing: 4px;
+        background-color: #311c3d;
+        color: #DADADA;
+        
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+    .botao:hover {
+        background-color:#442855;
+    }
+    .botao2 {
+        width: 50%;
+        letter-spacing: 1px;
+        background-color: #867391;
+        color: #01123C;
+        text-decoration: underline;
+        border: 0;
+        cursor: pointer;
+    }
+    .botao2:hover {
+        font-weight: bold;
+    }
+
     .circulo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 15%;
         color: black;
         width: 300px;
         height: 300px;
         border: 1px solid;
         border-radius: 100%;
-        position: absolute;
-        top: 18%;
-        left: 39%;
     }
+

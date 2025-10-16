@@ -36,6 +36,13 @@
           <button onclick="fechar()">Fechar</button>
         </div>
       </div>
+      <div id="pop2" class="pop">
+        <div id="up2" class="up">
+          <p id="erro">
+          </p>
+          <button onclick="fechar()">Fechar</button>
+        </div>
+      </div>
       <div class="menuLateral">
 
       <div class="headerLateral">
@@ -76,7 +83,7 @@
                 <p>Confirmar senha</p>
                 <input type="password" id="confirmarSenha"><br>
                 <div class="resticao" id="confirmar"></div>
-                <button onclick="mudar()">Alterar Senha</button>
+                <button onclick="validar()">Alterar Senha</button>
             </div>
         </div>
         <div class="bgimg"></div>
@@ -107,6 +114,25 @@
   </div>
 </footer>
 <script>
+  function validar() {
+    let msg = '';
+    if (senhaAtual.value == '') {
+      msg += 'Informe sua senha atual<br>';
+    }
+    if (novaSenha.value == '') {
+      msg += 'Informe a nova senha<br>';
+    }
+    if (confirmarSenha.value == '') {
+      msg += 'Confirme a nova senha';
+    }
+    if (msg != '') {
+      erro.innerHTML = msg;
+      pop2.style.display = 'flex';
+      up2.style.display = 'flex';
+    } else {
+      mudar();
+    }
+  }
   function mudar() {
     if (novaSenha.value == confirmarSenha.value) {
       pop.style.display = 'flex';
@@ -121,6 +147,8 @@
     up.style.display = 'none';
     pop1.style.display = 'none';
     up1.style.display = 'none';
+    pop2.style.display = 'none';
+    up2.style.display = 'none';
   }
 
 </script>

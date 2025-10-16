@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luzion</title>
+    <title>Luzion - Cadastrar</title>
     <link rel="stylesheet" href="../CSS/CadastroEmpresa.css">
     <link rel="stylesheet" href="../CSS/header.css" />
 </head>
@@ -23,21 +23,22 @@
 
 <body>
     <div class="corSombra"><br>
-        <div class="texto">Informe a razão social da sua empresa:</div>
-            <input class="caixa" id="nomeEmpresa"><br>
+        <div class="texto">
+            <p>Informe a razão social da sua empresa:</p>
+                <input class="caixa" id="nomeEmpresa"><br><br>
 
-        <div class="texto">Insira nome fantasia:</div>
-            <input class="caixa" id="nomeFantasia"><br>
+            <p>Insira nome fantasia:</p>
+                <input class="caixa" id="nomeFantasia"><br><br>
 
-        <div class="texto">CNPJ:</div>
-            <input class="caixa" id="cnpj"><br> 
+            <p>CNPJ:</p>
+                <input class="caixa" id="cnpj">
+        </div>
             
-            <button class="botao2" onclick="logar()"><p class="cor2">Já tenho cadastro</p></button>
-            <button class="botao" onclick="cadastrar()"><p class="cor">CADASTRAR →</p></button>
-            
-            <div class="circulo"></div> 
-    </div>
-           
+            <div class="circulo">
+                <button class="botao2" onclick="logar()">Já tenho cadastro</button> <br>
+                <button class="botao" onclick="cadastrar()">CADASTRAR →</button>   
+            </div> 
+    </div> 
    
 </body>
 <footer>
@@ -65,6 +66,23 @@
     </div>
 </footer>
 <script>
-   
+    function cadastrar() {
+        var nmEmpresa = nomeEmpresa.value;
+        var nmFantasia = nomeFantasia.value;
+        var numrCnpj = cnpj.value;
+
+        if (nmEmpresa == '') {
+            alert ('Insira o nome da empresa')
+        } if (nmFantasia == '') {
+            alert ('Insira nome fantasia')
+        } if (numrCnpj == '') {
+            alert ('Insira um cnpj válido')
+        } else {
+        window.location.href = "../HTML/TelaCadastroUsuario.html"
+        }
+   }
+    function logar() {
+        window.location.href = "../HTML/TelaLogin.html"
+   }
 </script>
 </html>
