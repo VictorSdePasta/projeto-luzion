@@ -62,13 +62,20 @@
         border: none;
         cursor: pointer;
     }
+    .botao:hover {
+        background-color:#442855;
+    }
     .botao2 {
-        width: 40%;
+        width: 50%;
+        letter-spacing: 1px;
         background-color: #867391;
         color: #01123C;
         text-decoration: underline;
         border: 0;
         cursor: pointer;
+    }
+    .botao2:hover {
+        font-weight: bold;
     }
 
     .circulo {
