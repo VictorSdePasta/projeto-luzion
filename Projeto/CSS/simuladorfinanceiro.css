@@ -71,6 +71,17 @@ input {
     color: #311C3D;
 }
 
+input:focus {
+  outline: none;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Remove espaço extra */
+  display: none; /* Oculta as setas */
+}
+
 .iptstyle {
     background-color: #cb9ce783;
     width: 75%;

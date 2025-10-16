@@ -26,6 +26,10 @@ input {
     margin-bottom: 0;
 }
 
+input:focus {
+  outline: none;
+}
+
 .senha button {
     cursor: pointer;
     background-color: #715E7D;
@@ -41,12 +45,13 @@ input {
 .container {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 .bgimg {
     background-image: url(../Assets/meuperfil.png);
-    background-size: cover;
     background-repeat: no-repeat;
+    background-position: right;
     aspect-ratio: 3/ 4;
     width: 30%;
     align-items: end;
@@ -89,7 +94,6 @@ input {
     align-items: center;
     justify-content: center;
     width: 20%;
-    height: 20%;
     background-color: #715E7D;
     border-radius: 30px;
     font-size: 25px;
@@ -102,4 +106,5 @@ input {
     background-color: #311C3D;
     color: #B29FBD;
     padding: 10px;
+    margin-bottom: 5%;
 }
