@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 body {
-    background-color: #867391;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.corpo{
+    margin: none;
+    background-color: #B29FBD;
     background-image: url(../Assets/mulher\ no\ telefone.png);
     background-repeat: no-repeat;
     background-position: right;
@@ -11,18 +18,26 @@ body {
 
 
 .cadastro {
-    background-color: #311C3D;
-    border: none;
-    width: 75%;
-    border-bottom-right-radius: 190px;
-    border-top-right-radius: 190px;
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: #867391;
+    width: 60%;
+    border-bottom-right-radius: 250px;
+    border-top-right-radius: 250px;
     font-family: 'Roboto', sans-serif;
+    
+}
+
+.linha{
+    width: 80%;
 }
 
 
-.botaocadastrar {
+.botaocadastrar{
     margin-left: 80%;
-    border: 50px;
+    border: solid 1px #000000;
+    border-radius: 30%;
 
 }
 
@@ -36,6 +51,4 @@ input {
     border-bottom-right-radius: 190px;
     border-top-right-radius: 190px;
     box-shadow: #311c3d8e 1px 3px 5px;
-    
-
 }

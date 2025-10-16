@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Usuario</title>
     <link rel="stylesheet" href="../CSS/cadastroUsuario.css">
+    <link rel="stylesheet" href="../CSS/header.css" />
 </head>
 
 <header>
@@ -18,30 +20,37 @@
         <a href="./HomePage.html" id="home">HOME</a>
     </div>
 </header>
+
 <body>
     <div class="corpo">
-    <div class="cadastro">
-        <p>Nome: 
-            <div class="iptCampo"></div><input id="ipt_nome"></p>
-        <p>Email: 
-            <div class="iptCampo"></div><input id="ipt_email"></p>
-        <p>Senha: 
-            <div class="iptCampo"></div><input id="ipt_senha"></p>
-        <p>Confirme a senha: 
-            <div class="iptCampo"></div><input id="ipt_confirmacaoSenha"></p>
-        <p>Telefone: 
-            <div class="iptCampo"></div><input id="ipt_telefone"></p>
 
-         <div class="botaocadastrar">
+        <div class="cadastro">
+            <div class="linha">
+                <p>Nome:
+                <div class="iptCampo"></div><input id="ipt_nome"></p>
 
-        <p><a href="LOGIN">Não tenho cadastro</a></p>
+                <p>Email:
+                <div class="iptCampo"></div><input id="ipt_email"></p>
 
-        <button onclick="cadsatrar()">CADASTRAR <img src="../Assets/arrow-2-right-long.png" alt="" ></button>
+                <p>Senha:
+                <div class="iptCampo"></div><input id="ipt_senha"></p>
+
+                <p>Confirme a senha:
+                <div class="iptCampo"></div><input id="ipt_confirmacaoSenha"></p>
+
+                <p>Telefone:
+                <div class="iptCampo"></div><input id="ipt_telefone"></p>
+            </div>
+            <div class="coluna">
+                <div class="botaocadastrar">
+
+                    <a href="LOGIN">Não tenho cadastro</a>
+                    <button onclick="cadastrar()">CADASTRAR <img src="../Assets/arrow-2-right-long.png" alt=""></button>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
 
-    </div>
-    
 </body>
 
 <footer>
@@ -64,7 +73,9 @@
                         alt=""></a></div>
         </div>
     </div>
-    <div class="autoria"><p>Luzion © 2025</p></div>
+    <div class="autoria">
+        <p>Luzion © 2025</p>
+    </div>
 </footer>
 
 </html>
