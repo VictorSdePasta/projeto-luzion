@@ -114,7 +114,7 @@ footer a {
     margin: 0;
   }
 
-  & .kpi {
+  & .kpiMenu {
     font-size: 3em;
     text-shadow: 0px .1em 10px #d181ff5f;
     font-weight: bold;
@@ -133,7 +133,9 @@ footer a {
   box-shadow: .1em .1em rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   margin-top: 5%;
+  padding: 0 7% 0 0;
   gap: 5%;
   text-decoration: none;
 
@@ -142,7 +144,7 @@ footer a {
     padding-left: 10%;
     color: #CC9CE7;
   }
-  
+
   & span {
     text-decoration: none;
     color: #CC9CE7;
@@ -152,23 +154,23 @@ footer a {
 
 .especial {
   background-color: #CC9CE7;
-  
+
   & button {
     background: none;
     border: none;
-    background-image: url('../Assets/adicionar.svg');
+    background-image: url('../Assets/seta-seletor.svg');
     background-size: cover;
     background-repeat: none;
     width: 10%;
     aspect-ratio: 1/1;
     margin-left: 5%;
   }
-  
+
   & a {
     text-decoration: none;
     color: #311C3D;
   }
-  
+
   & span {
     color: #311C3D;
     padding-left: 10%;
@@ -200,10 +202,9 @@ footer a {
   display: flex;
   align-items: center;
   margin-top: 2%;
+  gap: 5%;
 
-  & a {
-    text-decoration: none;
-    color: #CC9CE7;
-    margin: 0 5%;
-  }
+  text-decoration: none;
+  color: #CC9CE7;
+  margin: 0 5%;
 }
