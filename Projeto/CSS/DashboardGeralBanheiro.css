@@ -1,0 +1,84 @@
+body{
+    margin:0;
+    background-color: #B29FBD;
+}
+
+.pagina {
+    display: flex;
+    margin: 0;
+    width: 100%;
+    flex-direction: column;
+    aspect-ratio: 3 / 2;
+
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 400;
+        color: #311C3D;
+    }
+}
+.topoPagina{
+    display: flex;
+    justify-content: space-between;
+    margin: 1%;
+    padding: 1%;
+}
+.kpiTopo{
+    display: flex;
+    flex-direction: row;
+    width: 35%;
+}
+.totalKpi{
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    padding: 1%;
+    justify-content: center;
+    align-items: center;
+
+        h1{
+            font-size: 3rem;
+            font-weight: bold;
+            margin:0;
+        }
+        h2{
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #311C3D;
+        }
+}
+.qtdKpi{
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    margin: 1%;
+
+      h1{
+            font-size: 3rem;
+            font-weight: bold;
+            margin:0;
+        }
+    h3{
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #311C3D;
+    }
+}
+.output{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+             h3{
+            margin: 5%;
+
+        }
+}
+.mediaDiv{
+    background-color: #CC9CE7;
+    width: 25%;
+    height: 50%;
+}
