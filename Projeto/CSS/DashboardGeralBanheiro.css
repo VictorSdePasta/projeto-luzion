@@ -113,14 +113,22 @@ body{
 .tabela{
     background-color: #715E7D;
     width: 30%;
-    border-radius: 5px;
+    border-radius: 15px;
+    margin-top: 5%;
+
+        p{
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #311C3D;            
+        }
 }
 .tituloTabela{
     display: flex;
     background-color: #CC9CE7;
     justify-content: space-around;
     padding: 2%;
-    border-radius: 5px;
+    border-radius: 15px;
     p{
     font-size: 1rem;
     margin: 0;
@@ -142,6 +150,10 @@ body{
     justify-content: space-around;
     background-color: #7F5C92;
 }
+.Final{
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
 .banheiro{
     display: flex;
     padding-right: 10%;
@@ -160,7 +172,7 @@ body{
 .areaGrafico{
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 40%;
 }
 .areaFiltro{
     display: flex;
@@ -173,6 +185,11 @@ body{
     margin: 0px 3%;
     border-radius: 25px;
     padding: 2%;
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #311C3D;         
 }
 input{
     display: flex;
@@ -184,7 +201,10 @@ input{
 }
 
 .grafico{
-    width: 60%;
-    background-color: #715E7D;
+    width: 90%;
+    height: 50%;
+    background-color: #867391;
+    padding: 2%;
     margin: 5%;
+    border-radius: 10px;
 }

@@ -107,19 +107,19 @@
             </div>
             <div class="linhaB">
               <div class="banheiro"><p>Banheiro 4</p></div>
-              <div class="porcentagem">50<div class="situacao atencao"></div></div>
+              <div class="porcentagem">80<div class="situacao estavel"></div></div>
             </div>
             <div class="linhaA">
               <div class="banheiro"><p>Banheiro 5</p></div>
-              <div class="porcentagem">50<div class="situacao atencao"></div></div>
+              <div class="porcentagem">80<div class="situacao estavel"></div></div>
             </div>
             <div class="linhaB">
               <div class="banheiro"><p>Banheiro 6</p></div>
-              <div class="porcentagem">50<div class="situacao atencao"></div></div>
+              <div class="porcentagem">80<div class="situacao estavel"></div></div>
             </div>
-            <div class="linhaA">
+            <div class="linhaA Final">
               <div class="banheiro"><p>Banheiro 7</p></div>
-              <div class="porcentagem">50<div class="situacao atencao"></div></div>
+              <div class="porcentagem">80<div class="situacao estavel"></div></div>
             </div>                                                                    
           </div>
         </div>
@@ -130,7 +130,7 @@
             <span class="filtro">Data: <input type="date" id="id_Data"> </span>
           </div>
           <div class="grafico">
-            a
+            <canvas id="banheiroGeral" class="chart"></canvas>
           </div>
 
         </div>
@@ -164,5 +164,28 @@
   </footer>
 
 </body>
+<script>
+     const ctx = document.getElementById('banheiroGeral');
 
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
+      datasets: [{
+        label: 'Total de Papéis trocados',
+        data: [7, 6, 16, 14, 26, 16, 31, 8, 21, 13, 21, 10, 5],
+        borderWidth: 1,
+        borderColor: 'rgba(49, 28, 61, 100)'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 35
+        }
+      }
+    }
+  });
+</script>
 </html>
