@@ -33,6 +33,7 @@ body{
     display: flex;
     flex-direction: column;
     margin: 1%;
+    margin-right: 10%;
     padding: 1%;
     justify-content: center;
     align-items: center;
@@ -112,16 +113,50 @@ body{
 .tabela{
     background-color: #715E7D;
     width: 30%;
+    border-radius: 5px;
 }
 .tituloTabela{
     display: flex;
     background-color: #CC9CE7;
     justify-content: space-around;
+    padding: 2%;
+    border-radius: 5px;
     p{
     font-size: 1rem;
     margin: 0;
     }
 }
+.corpoTabela{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.linhaA{
+    display: flex;
+    justify-content: space-around;
+    background-color: #715E7D;
+}
+.linhaB{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    background-color: #7F5C92;
+}
+.banheiro{
+    display: flex;
+    padding-right: 10%;
+}
+.porcentagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10%;
+}
+.situacao{
+  height: 25%;
+  margin-left: 25%;
+}
+
 .areaGrafico{
     display: flex;
     flex-direction: column;
