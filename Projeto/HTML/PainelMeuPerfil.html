@@ -1,93 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luzion - Meu perfil</title>
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/PainelMeuPerfil.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luzion - Meu perfil</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/PainelMeuPerfil.css">
 </head>
 <header>
   <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de paineis de controle-->
-    <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
-    <div class="botoesGuia">
-      <div class="destaque">
-        <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
-      </div>
-      <a href="./SiteCadastroEmpresa.html" id="cadastrar">DASHBOARD</a>
-      <a href="./simuladorfinanceiro.html" class="selecionado" id="simulador">MEU PERFIL</a>
+  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
     </div>
-  </header>
-  <body>
-    <div class="container">
-      <div id="pop" class="pop">
-        <div id="up" class="up">
-          <p>
-            Senha alterada com sucesso
-          </p>
-          <button onclick="fechar()">Fechar</button>
-        </div>
+    <a href="./SiteCadastroEmpresa.html" id="cadastrar">DASHBOARD</a>
+    <a href="./simuladorfinanceiro.html" class="selecionado" id="simulador">MEU PERFIL</a>
+  </div>
+</header>
+
+<body>
+  <div class="container">
+    <div id="pop" class="pop">
+      <div id="up" class="up">
+        <p>
+          Senha alterada com sucesso
+        </p>
+        <button onclick="fechar()">Fechar</button>
       </div>
-      <div id="pop1" class="pop">
-        <div id="up1" class="up">
-          <p>
-            A nova senha e a confirmação de senha devem ser iguais
-          </p>
-          <button onclick="fechar()">Fechar</button>
-        </div>
+    </div>
+    <div id="pop1" class="pop">
+      <div id="up1" class="up">
+        <p>
+          A nova senha e a confirmação de senha devem ser iguais
+        </p>
+        <button onclick="fechar()">Fechar</button>
       </div>
-      <div id="pop2" class="pop">
-        <div id="up2" class="up">
-          <p id="erro">
-          </p>
-          <button onclick="fechar()">Fechar</button>
-        </div>
+    </div>
+    <div id="pop2" class="pop">
+      <div id="up2" class="up">
+        <p id="erro">
+        </p>
+        <button onclick="fechar()">Fechar</button>
       </div>
-      <div class="menuLateral">
+    </div>
+    <div class="menuLateral">
 
       <div class="headerLateral">
         <h2>No 11º tem bolo</h2>
         <div class="kpi">EBA</div>
       </div>
 
-      <div class="selecao especial">
-        <button class="adicionar" onclick="colapsoCliente()"></button>
-        <!-- <button class="adicionar" onclick="redirecionarCliente()"></button> -->
-        <a href="" class="">Cliente</a>
+        <a href="" class="selecao especial">Cliente</a>
+        <a class="selecao especial" href="">Filial</a>
+        <a class="selecao especial" href="">Usuario</a>
+    </div>
+    <div class="dados">
+      <h1>Meu Perfil</h1>
+      <div class="info">
+        <p>Nome do usuário</p>
+        <p>E-mail</p>
       </div>
-      <div id="divCliente"></div>
-      <div class="selecao especial">
-        <button class="adicionar" onclick="colapsoFilial()"></button>
-        <!-- <button class="adicionar" onclick="redirecionarFilial()"></button> -->
-        <a href="">Filial</a>
-        <!-- <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div> -->
-      </div>
-      <div id="divFilial"></div>
-      <div class="selecao especial">
-        <button class="adicionar" onclick="redirecionarUsuario()"></button>
-        <span>Usuario</span>
+      <div class="senha">
+        <p>Senha atual</p>
+        <input type="password" id="senhaAtual">
+        <p>Nova senha</p>
+        <input type="password" id="novaSenha">
+        <div class="resticao" id="restricao"></div>
+        <p>Confirmar senha</p>
+        <input type="password" id="confirmarSenha"><br>
+        <div class="resticao" id="confirmar"></div>
+        <button onclick="validar()">Alterar Senha</button>
       </div>
     </div>
-        <div class="dados">
-            <h1>Meu Perfil</h1>
-            <div class="info">
-                <p>Nome do usuário</p>
-                <p>E-mail</p>
-            </div>
-            <div class="senha">
-                <p>Senha atual</p>
-                <input type="password" id="senhaAtual">
-                <p>Nova senha</p>
-                <input type="password" id="novaSenha">
-                <div class="resticao" id="restricao"></div>
-                <p>Confirmar senha</p>
-                <input type="password" id="confirmarSenha"><br>
-                <div class="resticao" id="confirmar"></div>
-                <button onclick="validar()">Alterar Senha</button>
-            </div>
-        </div>
-        <div class="bgimg"></div>
-    </div>
+    <div class="bgimg"></div>
+  </div>
 </body>
 <footer>
   <div class="main">
@@ -152,4 +140,5 @@
   }
 
 </script>
+
 </html>
