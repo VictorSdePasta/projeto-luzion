@@ -25,37 +25,39 @@
     <div class="corpo">
         <div class="menuLateral">
 
-            <div class="headerLateral">
-                <h2>No 11º tem bolo</h2>
-                <div class="kpi">EBA</div>
-            </div>
+      <div class="headerLateral">
+        <h2>No 11º tem bolo</h2>
+        <div class="kpiMenu">EBA</div>
+      </div>
 
-            <div class="selecao especial">
-                <a href="" class="">Cliente</a>
-            </div>
-            <div id="divCliente"></div>
-            <div class="selecao especial">
-                <a href="">Filial</a>
-            </div>
-            <div id="divFilial"></div>
-            <div class="selecao especial">
-                <span>Usuario</span>
-            </div>
-            <div class="selecao" onclick="colapsoBanheiro()">
-                <span>Banheiro</span>
-                <div class="situacao estavel"></div>
-            </div>
-            <div id="divDispenser">
-                <div class="opcao">
-                    <a href="">Dispenser 1</a>
-                    <div class="situacao critico"></div>
-                </div>
-                <div class="opcao">
-                    <a href="">Dispenser 2</a>
-                    <div class="situacao atencao"></div>
-                </div>
-            </div>
-        </div>
+      <div onclick="colapsoCliente()" class="selecao especial">
+        <span>Cliente</span>
+        <button></button>
+      </div>
+      <div id="divCliente"></div>
+      <div onclick="colapsoFilial()" class="selecao especial">
+        <span>Filial</span>
+        <button></button>
+      </div>
+      <div id="divFilial"></div>
+      <a href="" class="selecao especial">
+        <span>Usuarios</span>
+      </a>
+      <div class="selecao" onclick="colapsoBanheiro()">
+        <span>Banheiro</span>
+        <div class="situacao estavel"></div>
+      </div>
+      <div id="divDispenser">
+        <a href="" class="opcao">
+          <span>Dispenser 1</span>
+          <div class="situacao critico"></div>
+        </a>
+        <a href="" class="opcao">
+          <span>Dispenser 2</span>
+          <div class="situacao atencao"></div>
+        </a>
+      </div>
+    </div>
         <div class="pagina">
              <h1>Banheiro 1</h1>
              <div class="banheirokpi">
@@ -113,8 +115,8 @@
                         </div>
                         <div class="kpibottom">
                             <p>Filtrar data</p>
-                            <input type="text" placeholder="De">
-                            <input type="text" placeholder="Até">
+                            <div class="data">De <input type="date" placeholder="De"></div>
+                            <div class="data">Até <input type="date" placeholder="Até"></div>
                         </div>
                     </div>
                     <div class="sensor">
