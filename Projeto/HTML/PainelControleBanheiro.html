@@ -28,20 +28,30 @@
         <h2>Painel de Controle</h2>
       </div>
 
-      <div class="selecao">
-        <button class="adicionar" onclick="modal()"></button>
-        <a href="" class="">Cliente</a>
-        <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      <div onclick="colapsoCliente()" class="selecao especial">
+        <span>Cliente</span>
+        <button></button>
       </div>
-      <div class="selecao">
-        <button class="adicionar" onclick="modal()"></button>
-        <a href="">Banheiros</a>
-        <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      <div id="divCliente"></div>
+      <a href="" class="selecao especial">
+        <span>Banheiro</span>
+      </a>
+        <a href="" class="opcao">
+          <span>Unidade 1</span>
+        </a>
+        <a href="" class="opcao">
+          <span>Unidade 2</span>
+        </a>
+        <a href="" class="opcao">
+          <span>Unidade 3</span>
+        </a>
+        <a href="" class="opcao">
+          <span>Unidade 4</span>
+        </a>                
+      <div class="selecao" onclick="colapsoBanheiro()">
+        <span>Usuarios</span>
       </div>
-      <div class="selecao">
-        <button class="adicionar" onclick="modal()"></button>
-        <a href="">Usuarios</a>
-        <div class="icone"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      <div id="divDispenser">
       </div>
     </div>
 
@@ -69,7 +79,7 @@
           <div class="linhaA">
             <p>Banheiro 1</p>
             <p>6</p>
-            <p>a</p>
+            <p>1A</p>
              <div class="botoes">
                <button>
                  <img src="../Assets/edit.svg">
@@ -82,7 +92,7 @@
           <div class="linhaB">
             <p>Banheiro 2</p>
             <p>7</p>
-            <p>a</p>
+            <p>2A</p>
              <div class="botoes">
                <button>
                  <img src="../Assets/edit.svg">
@@ -95,7 +105,7 @@
           <div class="linhaA">
             <p>Banheiro 3</p>
             <p>5</p>
-            <p>a</p>
+            <p>3A</p>
              <div class="botoes">
                <button>
                  <img src="../Assets/edit.svg">
@@ -108,7 +118,7 @@
           <div class="linhaB">
             <p>Banheiro 4</p>
             <p>4</p>
-            <p>a</p>
+            <p>4B</p>
              <div class="botoes">
                <button>
                  <img src="../Assets/edit.svg">
@@ -123,7 +133,7 @@
           <div class="linhaA">
             <p>Banheiro 5</p>
             <p>4</p>
-            <p>a</p>
+            <p>5B</p>
              <div class="botoes">
                <button>
                  <img src="../Assets/edit.svg">
@@ -136,7 +146,7 @@
           <div class="linhaB">
             <p>Banheiro 6</p>
             <p>4</p>
-            <p>a</p>
+            <p>6B</p>
              <div class="botoes">
                <button>
                  <img src="../Assets/edit.svg">
@@ -149,7 +159,7 @@
           <div class="linhaA">
             <p>Banheiro 7</p>
             <p>4</p>
-            <p>a</p>
+            <p>7A</p>
              <div class="botoes">
                <button>
                  <img src="../Assets/edit.svg">
@@ -162,7 +172,7 @@
           <div class="linhaB final">
             <p>Banheiro 8</p>
             <p>4</p>
-            <p>a</p>
+            <p>8B</p>
              <div class="botoes">
                <button>
                  <img src="../Assets/edit.svg">

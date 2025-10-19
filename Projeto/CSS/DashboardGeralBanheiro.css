@@ -82,3 +82,45 @@ body{
     width: 25%;
     height: 50%;
 }
+
+.ind_visuais{
+    display: flex;
+    margin: 0;
+    justify-content: space-evenly;
+}
+
+.tabela{
+    background-color: #715E7D;
+    width: 30%;
+}
+.areaGrafico{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+.areaFiltro{
+    display: flex;
+    justify-content: space-between;
+}
+.filtro{
+    display: flex;
+    justify-content: center;
+    background-color: #715E7D;
+    margin: 0px 3%;
+    border-radius: 25px;
+    padding: 2%;
+}
+input{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    background-color: #715E7D;
+    border: none;
+    
+}
+
+.grafico{
+    width: 60%;
+    background-color: #715E7D;
+    margin: 5%;
+}
