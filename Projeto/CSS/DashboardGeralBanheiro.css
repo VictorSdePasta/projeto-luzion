@@ -19,6 +19,7 @@ body{
 }
 .topoPagina{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin: 1%;
     padding: 1%;
@@ -78,9 +79,28 @@ body{
         }
 }
 .mediaDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
     background-color: #CC9CE7;
+    border-radius: 50px 20px;
     width: 25%;
-    height: 50%;
+    height: 90%;
+    margin: 2%;
+    margin-left: 5%;
+
+          h1{
+            font-size: 3rem;
+            font-weight: bold;
+            margin:0;
+        }
+        h2{
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #311C3D;
+        }        
 }
 
 .ind_visuais{
@@ -92,6 +112,15 @@ body{
 .tabela{
     background-color: #715E7D;
     width: 30%;
+}
+.tituloTabela{
+    display: flex;
+    background-color: #CC9CE7;
+    justify-content: space-around;
+    p{
+    font-size: 1rem;
+    margin: 0;
+    }
 }
 .areaGrafico{
     display: flex;

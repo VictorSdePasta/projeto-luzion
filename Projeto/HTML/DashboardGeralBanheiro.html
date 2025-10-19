@@ -7,6 +7,7 @@
   <title>Dashboard - Geral Banheiro</title>
   <link rel="stylesheet" href="../CSS/header.css">
   <link rel="stylesheet" href="../CSS/DashboardGeralBanheiro.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -39,28 +40,30 @@
         <button></button>
       </div>
       <div id="divFilial"></div>
-      <a href="" class="selecao especial">
-        <span>Usuarios</span>
-      </a>
-      <div class="selecao" onclick="colapsoBanheiro()">
-        <span>Banheiro</span>
-        <div class="situacao estavel"></div>
-      </div>
       <div id="divDispenser">
         <a href="" class="opcao">
-          <span>Dispenser 1</span>
-          <div class="situacao atencao"></div>
+          <span>Geral</span>
+        </a>        
+
+        <a href="" class="opcao">
+        <span>Dispenser 1</span>
+          <!-- <div class="situacao atencao"></div> -->
         </a>
         <a href="" class="opcao">
           <span>Dispenser 2</span>
-          <div class="situacao critico"></div>
         </a>
+        <a href="" class="opcao">
+          <span>Dispenser 3</span>
+        </a>                
       </div>
     </div>
     <div class="pagina">
       <!-- Implemente seu código e manipule o css dessa tag pagina no css da sua pagina como se fosse o body-->
       <div class="topoPagina">
-        <div class="mediaDiv">a</div>
+        <div class="mediaDiv">
+          <h2>Media total dos banheiros (%)</h2>
+          <h1>75</h1>
+        </div>
 
         <div class="kpiTopo">
           <div class="totalKpi">
@@ -85,6 +88,10 @@
 
 
         <div class="tabela">
+          <div class="tituloTabela">
+            <p>a</p>
+            <p>b</p>
+          </div>
           a
         </div>
 
