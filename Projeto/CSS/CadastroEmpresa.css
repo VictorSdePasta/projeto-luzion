@@ -7,7 +7,7 @@
         background-image: url("../Assets/mulher no telefone.png");
         background-repeat: no-repeat;
         background-position: right;
-        background-size: 52%;
+        background-size: contain;
         
     }
     .texto {
