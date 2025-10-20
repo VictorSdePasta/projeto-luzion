@@ -68,6 +68,15 @@
         </div>
     </div>
 
+        <div id="pop6" class="pop">
+        <div id="up6" class="up">
+
+            <p>Cadatro realizado</p>
+
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
     <div class="corpo">
 
         <div class="cadastro">
@@ -158,10 +167,26 @@
 
 
         } else if (nome != '' && email != ''&& senha != ''&& confirmacaoSenha != ''&& telefone != '') {
-            alert(`Cadastro realizado.`)
+            pop6.style.display = 'flex';
+            up6.style.display = 'flex';
         }
 
     }
+
+        function fechar() {
+    pop1.style.display = 'none';
+    up1.style.display = 'none';
+    pop2.style.display = 'none';
+    up2.style.display = 'none';
+    pop3.style.display = 'none';
+    up3.style.display = 'none';
+    pop4.style.display = 'none';
+    up4.style.display = 'none';
+    pop5.style.display = 'none';
+    up5.style.display = 'none';
+    pop6.style.display = 'none';
+    up6.style.display = 'none'
+  }
 
 
 </script>
