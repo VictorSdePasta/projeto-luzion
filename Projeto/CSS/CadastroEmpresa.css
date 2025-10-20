@@ -23,7 +23,6 @@
     p {
         font-family: 'Roboto', sans-serif;
         color: #311C3D;
-        font-size: 140%;
         margin: 0;
         margin-left: 25px;
         margin-bottom: 10px;
@@ -43,7 +42,7 @@
     .corSombra {
         display: flex;
         align-items: center;
-        width:67%;
+        width:50%;
         background-color: #867391;
         border-radius: 0 320px 320px 0;
         margin-top: 100px;
