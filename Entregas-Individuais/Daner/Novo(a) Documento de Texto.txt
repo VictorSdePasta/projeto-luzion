@@ -1,0 +1,66 @@
+Pista 1
+
+Crie a tabela relatorio (id, data_relatório [data/hora], conclusão [VARCHAR(150)], pessoa_id [FK]), para registrarmos relatórios de acontecimentos. 
+*A data precisa ser inserida automaticamente, por padrão, com a data/hora atual.
+
+Pista 2
+
+Percebemos que a tabela relatório não está vinculando o projeto.
+ Atualize a tabela relatorio: Insira o campo projeto_id [FK]. 
+*Deve ser atualizado separadamente da criação da tabela 
+
+Pista 3
+
+Nova descoberta! Insira um registro de ‘Relato’ (categoria) na tabela fato, relacionado ao projeto 'Assassinato Sala 222’ : "Wagner foi visto perto da sala 222 às 17:35“ (descrição) .
+*É necessário consultar informações do projeto para fazer este comando
+
+Pista 4
+
+Selecione todas as pessoas que o nome começa com a letra 'M' e que não possuem tipo_pessoa como 'Civil’. 
+Essas pessoas foram INOCENTADAS: atualize a categoria_participação [FK] na tabela participacao_projeto para 'Inocente’.
+*É necessário consultar as informações em apenas 1 comando antes de atualizar os registros!
+*1 Comando para consulta e 1 ou mais comandos para atualização.
+
+Pista 5
+
+Foi descoberto que Carlos não estava perto da sala 222 às 17:47. Remova esse registro da tabela fato.
+
+Pista 6
+
+Descobriu-se que o culpado do assassinato é casado. Selecione todas as pessoas SOLTEIRAS que tinham status no projeto de assassinato como 'Suspeito’ e atualize o status no projeto para 'Inocente’, para essas pessoas.
+*É necessário consultar as informações em apenas 1 comando antes de atualizar os registros!
+* Precisa ser: 1 Comando para consulta (SELECT) e 1 ou mais comandos para atualização.
+
+Pista 7
+
+O campo 'conclusao' da tabela relatorio está muito curto/pequeno. Altere o campo para que suporte 200 caracteres.
+
+Pista 8
+
+Foi descoberto que o culpado do assassinato tem mais de 50 anos. Selecione todas as pessoas nascidas depois de 1975 e que tinham o status no projeto como 'Suspeito’ e atualize o status no projeto para 'Inocente’.
+*Considere que todos que nasceram depois de 1975 tem mais de 50 anos.
+*É necessário consultar as informações em apenas 1 comando antes de atualizar os registros!
+* Precisa ser: 1 Comando para consulta (SELECT) e 1 ou mais comandos para atualização.
+
+Pista 9
+
+Selecione os suspeitos e os crimes. Caso seja algum status diferente de 'Suspeito', coloque como 'Não é Suspeito’ na consulta.
+*Consulte apenas, não altere o registro.
+
+Pista 10
+
+Caso o crime tenha apenas 1 'Suspeito, atualize o status de 'Suspeito' para 'Culpado’.
+*Para isso, utilize o resultado do comando anterior e consulte o registro de ‘Culpado’, para atualizar o(s) registro(s). Pode ser usado mais de um comando para atualização.
+
+Pista 11
+
+Crie um SELECT, para todos os crimes, que traga EXATAMENTE a seguinte frase: 
+“Dentro do projeto [NOME PROJETO] temos o crime [CRIME] com o culpado [NOME CULPADO].”
+Se o crime não possui um culpado, coloque a informação 'Não Identificado'.
+
+*Apenas 1 comando (SELECT), com o resultado sendo as frases, com a coluna tendo o apelido "Culpados do Crime".
+
+Pista 12 (ÚLTIMO!)
+
+Percebemos que a tabela relatorio é redundante! Como último comando, remova esta tabela.
+*Agora pode usar o comando proibido! – Proibição removida para esta pista.
