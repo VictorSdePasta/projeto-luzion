@@ -22,28 +22,27 @@
 <body>
   <div class="corpo">
     <div class="menuLateral">
-      <div class="selecao especial">
-        <button class="adicionar" onclick="redirecionarCliente()"></button>
-        <a href="./PainelControleEmpresaCliente.html" class="">Cliente</a>
+
+      <div class="headerLateral">
+        <h2>No 11º tem bolo</h2>
+        <div class="kpiMenu">EBA</div>
+      </div>
+
+      <div onclick="colapsoCliente()" class="selecao especial">
+        <span>Cliente</span>
+        <button></button>
       </div>
       <div id="divCliente"></div>
-      <div class="selecao especial">
-        <button class="adicionar" onclick="redirecionarFilial()"></button>
-        <a href="">Filial</a>
-        <div class="icone" onclick="colapsoFilial()"><img src="../Assets/seta-seletor.svg" alt=""></div>
+      <div onclick="colapsoFilial()" class="selecao especial">
+        <span>Filial</span>
+        <button></button>
       </div>
-      <div class="selecao especial">
-        <button class="adicionar" onclick="redirecionarBanheiro()"></button>
-        <a href="./PainelControleBanheiro.html">Banheiro</a>
-        <div class="icone" onclick="colapsoBanheiro()"></div>
-      </div>  
       <div id="divFilial"></div>
-      <div class="selecao especial">
-        <button class="adicionar" onclick="redirecionarUsuario()"></button>
-        <a href="">Usuario</a>
-      </div>
+      <a href="" class="selecao especial">
+        <span>Usuarios</span>
+      </a>
     </div>
-    
+
     <div class="pagina">
       <div class="topo">
         <h1>Empresas Clientes</h1>
@@ -53,77 +52,77 @@
       </div>
       <div class="tabela">
         <div class="comecoTabela">
-          <a>Empresas</a>
-          <a>Filiais</a>
+          <p>Empresas</p>
+          <p>Filiais</p>
           <img src="../Assets/adicionar.svg" alt="">
         </div>
         <div class="corpoTabela">
           <div class="linhaImpar">
-            <a>Nome fantasia 1</a>
-            <a>2</a>
+            <p>Nome fantasia 1</p>
+            <p>2</p>
             <div class="icones">
               <img src="../Assets/editar.png" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
           <div class="linhaPar">
-            <a>Nome fantasia 2</a>
-            <a>6</a>
+            <p>Nome fantasia 2</p>
+            <p>6</p>
             <div class="icones">
               <img src="../Assets/editar.png" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
           <div class="linhaImpar">
-            <a>Nome fantasia 3</a>
-            <a>12</a>
+            <p>Nome fantasia 3</p>
+            <p>12</p>
             <div class="icones">
               <img src="../Assets/editar.png" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
           <div class="linhaPar">
-            <a>Nome fantasia 4</a>
-            <a>4</a>
+            <p>Nome fantasia 4</p>
+            <p>4</p>
             <div class="icones">
               <img src="../Assets/editar.png" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
           <div class="linhaImpar">
-            <a>Nome fantasia 5</a>
-            <a>9</a>
+            <p>Nome fantasia 5</p>
+            <p>9</p>
             <div class="icones">
               <img src="../Assets/editar.png" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
           <div class="linhaPar">
-            <a>Nome fantasia 6</a>
-            <a>8</a>
+            <p>Nome fantasia 6</p>
+            <p>8</p>
             <div class="icones">
               <img src="../Assets/editar.png" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
           <div class="linhaImpar">
-            <a>Nome fantasia 7</a>
-            <a>5</a>
+            <p>Nome fantasia 7</p>
+            <p>5</p>
             <div class="icones">
               <img src="../Assets/editar.png" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
-          <div class="linhaPar">
-            <a>Nome fantasia 8</a>
-            <a>15</a>
-            <div class="icones">
+          <div class="linhaPar linhaFinal">
+            <p>Nome fantasia 8</p>
+            <p>15</p>
+            <p class="icones">
               <img src="../Assets/editar.png" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
-            </div>
           </div>
         </div>
       </div>
+    </div>
 
   </div>
   </div>
