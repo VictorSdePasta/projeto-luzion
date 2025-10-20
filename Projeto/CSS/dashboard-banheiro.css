@@ -46,6 +46,7 @@
     background-color: #715E7D;
     border-radius: 20px;
     width: 20%;
+    height: 100%;
 }
 .tituloTab {
     display: flex;
@@ -71,7 +72,8 @@
 
 .tabGrafico {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    margin-bottom: 5%;
 }
 .filtro, input{
     background-color: #715E7D; 
@@ -81,4 +83,7 @@
 } 
 p {
     margin: 0;
+}
+.grafico {
+    width: 50%;
 }

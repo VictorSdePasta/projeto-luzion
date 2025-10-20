@@ -6,6 +6,7 @@
     <title>Luzion</title>
     <link rel="stylesheet" href="../CSS/dashboard-banheiro.css">
     <link rel="stylesheet" href="../CSS/header.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <header>
      <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
@@ -58,61 +59,64 @@
     <div class="pagina">
       <h1>Atual</h1>
 
-        <div class="container">
-            <div class="card">
-                <div class="titulo">Média de carga total (%)</div>
-                <div class="dado">70</div>
-            </div>
-            <div class="card2 card">
-                <div class="titulo">Dispensers que necessitam reposição</div>
-                <div class="dado">-</div>
-            </div>
-
-            <div class="card">
-                <div class="titulo">Reposições realizadas</div>
-                <div class="dado">3</div>
-            </div>
+      <div class="container">
+        <div class="card">
+          <div class="titulo">Média de carga total (%)</div>
+          <div class="dado">70</div>
         </div>
-        <div class="tabGrafico">
-            <div class="tabela">
-                <div class="tituloTab">
-                    <div>Dispenser</div>
-                    <div>Carga %</div>
-                    <div>Trocas</div>
-                </div>
-                <div class="linha1">
-                    <div>Dispenser 1</div>
-                    <div>85</div>
-                    <div>1</div>
-                </div>
-                <div class="linha2">
-                    <div>Dispenser 2</div>
-                    <div>48</div>
-                    <div>2</div>
-                </div>
-                <div class="linha1">
-                    <div>Dispenser 3</div>
-                    <div>30</div>
-                    <div>0</div>
-                </div>
-                <div class="linha2">
-                    <div>Dispenser 4</div>
-                    <div>100</div>
-                    <div>1</div>
-                </div>
-                <div class="linha1">
-                    <div>Dispenser 5</div>
-                    <div>100</div>
-                    <div>1</div>
-                </div>
-            </div>
-        <div>
-            <p>Filtrar data:</p>
-            <span class="filtro">De:<input type="date" id="data1"></span> <span class="filtro">Até:<input type="date" id="data2"></span>
+        <div class="card2 card">
+          <div class="titulo">Dispensers que necessitam reposição</div>
+          <div class="dado">-</div>
         </div>
+        <div class="card">
+          <div class="titulo">Reposições realizadas</div>
+          <div class="dado">3</div>
+        </div>
+      </div>
+      <div class="tabGrafico">
+        <div class="tabela">
+          <div class="tituloTab">
+            <div>Dispenser</div>
+            <div>Carga %</div>
+            <div>Trocas</div>
+          </div>
+          <div class="linha1">
+            <div>Dispenser 1</div>
+            <div>85</div>
+            <div>1</div>
+          </div>
+          <div class="linha2">
+            <div>Dispenser 2</div>
+            <div>48</div>
+            <div>2</div>
+          </div>
+          <div class="linha1">
+            <div>Dispenser 3</div>
+            <div>30</div>
+            <div>0</div>
+          </div>
+          <div class="linha2">
+            <div>Dispenser 4</div>
+            <div>100</div>
+            <div>1</div>
+          </div>
+          <div class="linha1">
+            <div>Dispenser 5</div>
+            <div>100</div>
+            <div>1</div>
+          </div>
+        </div>
+        <div class="grafico">
+          <p>Filtrar data:</p>
+          <span class="filtro">De:<input type="date" id="data1"></span> <span class="filtro">Até:<input type="date" id="data2"></span>
+          <div>
+            <canvas id="chart"></canvas>
+          </div> 
+        </div>
+      </div>
+      
     </div>
     </div>
-  </div>
 
 </body>
 <footer>
@@ -140,4 +144,33 @@
         <p>Luzion © 2025</p>
     </div>
 </footer>
+<script>
+  const ctx = document.getElementById('chart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Dispenser 1', 'Dispenser 2', 'Dispenser 3', 'Dispenser 4','Dispenser 5'],
+      datasets: [{
+        label: 'Qtd papel em dispensers',
+        data: [85, 48, 30, 100, 100],
+        backgroundColor: ['#715E7D',
+        '#7F5C92' 
+        ]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        },
+        x: {
+          grid: {
+            display: false
+          }
+        } 
+      }
+    }
+  });
+</script>
 </html>
