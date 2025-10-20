@@ -25,19 +25,20 @@ body {
 }
 
 input {
-    align-self: center;
-    background-color: #715E7D;
-    border-radius: 25px;
-    border-color: #B29FBD;
-    border-block-end: 2px;
-    border-bottom-width: 2px;
-    background-image: url(../Assets/lupa.svg);
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: 3%;
-    background-size: 15%;
-    padding-left: 10%;
-    background-size: auto;
+  align-self: center;
+  width:70%;
+  background-color: #715E7D;
+  border-radius: 25px;
+  
+  border-block-end: 2px;
+  border-bottom-width: 2px;
+  background-image: url(../Assets/lupa.svg);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 3%;
+  background-size: 15%;
+  padding-left: 10%;
+  background-size: auto;
 }
 
 
@@ -47,13 +48,22 @@ h1 {
 
 
 .tabela {
+  display: flex;
+  flex-direction: column;
   background-color: #715E7D;
   justify-content: center;
   align-self: center;
   width: 80%;
+  border-radius: 6%;
   height: max-content;
-  border-radius: 8px;
-  margin-bottom: 8%;
+  margin-bottom: 11%;
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #311C3D;
+  }
+
   img {
     width: 3%;
     height: 3%;
@@ -66,11 +76,13 @@ h1 {
   flex-direction: row;
   background-color: #CC9CE7;
   justify-content: space-between;
-  height: 10%;
-  border-radius: 5px;
+  border-radius:3% 3% 3% 3% / 50% 50% 50% 50% ;
+
   padding: 5px;
+  margin: 0;
 }
-.comecoTabela a {
+
+.comecoTabela p {
   margin-left: 2%;
 }
 
@@ -81,10 +93,10 @@ h1 {
 }
 
 .corpoTabela {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
-
+  width: auto;
 }
 
 .linhaImpar {
@@ -93,9 +105,9 @@ h1 {
   flex-direction: row;
   background-color: #715E7D;
   justify-content: space-between;
-  width: 97%;
   height: 5%;
-  padding: 6px 10px;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 
@@ -106,16 +118,16 @@ h1 {
   align-items: center;
   flex-direction: row;
   background-color: #7F5C92;
-  border-radius: 5px;
   justify-content: space-between;
-  width: 97%;
   height: 5%;
-  padding: 6px 10px;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .icones {
-  display: flex;      
+  display: flex;
 }
+
 .icones img {
   width: 22px;
   height: 22px;
@@ -126,5 +138,11 @@ h1 {
   display: flex;
   align-items: center;
   width: 35%;
-  height:100px;
+  height: 100px;
+}
+
+.linhaFinal{
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+
 }
