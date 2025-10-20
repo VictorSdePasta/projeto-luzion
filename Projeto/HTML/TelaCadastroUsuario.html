@@ -22,6 +22,52 @@
 </header>
 
 <body>
+
+    <div id="pop1" class="pop">
+        <div id="up1" class="up">
+
+            <p>Insira um nome válido</p>
+
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
+    <div id="pop2" class="pop">
+        <div id="up2" class="up">
+
+            <p>Insira um email válido</p>
+
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
+    <div id="pop3" class="pop">
+        <div id="up3" class="up">
+
+            <p>Insira uma senha válida</p>
+
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
+    <div id="pop4" class="pop">
+        <div id="up4" class="up">
+
+            <p>Insira a confirmação válida e igual a senha</p>
+
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
+    <div id="pop5" class="pop">
+        <div id="up5" class="up">
+
+            <p>Insira um telefone válido</p>
+
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
     <div class="corpo">
 
         <div class="cadastro">
@@ -44,7 +90,7 @@
             <div class="coluna">
                 <div class="botaocadastrar">
 
-                    <a href="LOGIN">Não tenho cadastro</a>
+                    <a href="./SiteCadastroEmpresa.html">Não tenho cadastro</a>
                     <button onclick="cadastrar()">CADASTRAR <img src="../Assets/arrow-2-right-long.png" alt=""></button>
                 </div>
             </div>
@@ -77,5 +123,47 @@
         <p>Luzion © 2025</p>
     </div>
 </footer>
+
+<script>
+    function cadastrar() {
+        var nome = ipt_nome.value;
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+        var confirmacaoSenha = ipt_confirmacaoSenha.value;
+        var telefone = ipt_telefone.value;
+
+        if (nome == '') {
+            pop1.style.display = 'flex';
+            up1.style.display = 'flex';
+
+        }
+        if (email == '') {
+            pop2.style.display = 'flex';
+            up2.style.display = 'flex';
+        }
+
+        if (senha == '') {
+            pop3.style.display = 'flex';
+            up3.style.display = 'flex';
+        }
+
+        if (confirmacaoSenha == '' && confirmacaoSenha == senha) {
+            pop4.style.display = 'flex';
+            up4.style.display = 'flex';
+        }
+
+        if (telefone == '') {
+            pop5.style.display = 'flex';
+            up5.style.display = 'flex';
+
+
+        } else if (nome != '' && email != ''&& senha != ''&& confirmacaoSenha != ''&& telefone != '') {
+            alert(`Cadastro realizado.`)
+        }
+
+    }
+
+
+</script>
 
 </html>
