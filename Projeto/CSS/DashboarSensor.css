@@ -46,15 +46,13 @@ input:focus {
 
 .kpibox h2{
     font-weight: 400;
-    font-size: 20px;
     display: flex;
     width: fit-content;
     margin: 0;
 }
 
-.kpibox p{
+.kpibox h1{
     font-weight: 900;
-    font-size: 350%;
     margin: 0;
 }
 
@@ -78,7 +76,7 @@ input:focus {
 .tabela {
     display: flex;
     flex-direction: column;
-    width: 45%;
+    width: 55%;
     transform: translateY(-20px);
     box-shadow: #311C3D 5px 5px 10px;
     border-bottom-left-radius: 25px;
@@ -86,7 +84,7 @@ input:focus {
 }
 
 .titulo {
-    width: 40%;
+    width: 50%;
     padding-left: 3%;
     padding-right: 3%;
     background-color: #CC9CE7;
@@ -127,7 +125,7 @@ input:focus {
 
 .grafico {
     width: 60%;
-    margin: 7%;
+    margin-right: 5%;
     background-color: #867391;
     border-radius: 25px 55px 25px 55px;
     display: flex;

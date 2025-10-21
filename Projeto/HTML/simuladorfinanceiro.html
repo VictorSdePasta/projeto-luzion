@@ -21,7 +21,7 @@
 </header>
 
 <body>
-    <h2>Simulador<br><b>Financeiro</b></h2>
+    <h1>Simulador<br><b>Financeiro</b></h1>
     <div class="apresentacao">
         <div class="caixa">
             <p> O simulador financeiro Luzion permite calcular o impacto da nossa solução de monitoramento de papel higiênico nas empresas onde você atua. Ele oferece uma visualização clara da redução de custos, relacionados aos funcionários responsáveis pela reposição e verificação do papel higiênico, além de otimizar o uso de recursos e melhorar o planejamento de compras. Com isso, sua empresa pode operar de forma mais eficiente, reduzindo desperdícios e garantindo a conformidade com as normas de higiene NR 17 e NR 24.</p>
@@ -102,7 +102,7 @@
         let verificacaoDia = verificacao * qtdMonitoramento;
         let verificacaoMes = verificacaoDia * 30;
         let verificacaoAno = verificacaoMes * 12;
-        let valorDia = verificacaoDia * valorHora;
+        let valorDia = (verificacaoDia * valorHora) / 60;
         let valorMes = valorDia * 30;
         let valorAno = valorMes * 12;
         let reducaoDia = valorDia * 0.9;
@@ -127,13 +127,13 @@
                                         <div class="textoresposta"><p>Considerando um tempo médio de 2 minutos para realizar o monitoramento de cada dispenser, onde esse tempo indica a verificação e o deslocamento entre cada dispenser, nossa solução pode reduzir em até 90% o tempo gasto neste processo:</p></div>
                                         <div class="caixaresultado">
                                             <div class="resultado">
-                                                <h3>Diariamente</h3><p><b>Tempo gasto:</b> ${horaDia} horas e ${minutoDia} minutos.<br><b>Custo:</b> ${valorDia.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraDia)} horas e ${Math.floor(reducaoMinutoDia)} minutos.<br><b>Custo:</b> ${reducaoDia.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
+                                                <h5>Diariamente</h5><p><b>Tempo gasto:</b> ${horaDia} horas e ${minutoDia} minutos.<br><b>Custo:</b> ${valorDia.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraDia)} horas e ${Math.floor(reducaoMinutoDia)} minutos.<br><b>Custo:</b> ${reducaoDia.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
                                             </div>
                                             <div class="resultado">
-                                                <h3>Mensalmente</h3><p><b>Tempo gasto:</b> ${horaMes} horas e ${minutoMes} minutos.<br><b>Custo:</b>${valorMes.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraMes)} horas e ${Math.floor(reducaoMinutoMes)} minutos.<br><b>Custo:</b> ${reducaoMes.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
+                                                <h5>Mensalmente</h5><p><b>Tempo gasto:</b> ${horaMes} horas e ${minutoMes} minutos.<br><b>Custo:</b>${valorMes.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraMes)} horas e ${Math.floor(reducaoMinutoMes)} minutos.<br><b>Custo:</b> ${reducaoMes.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
                                             </div>
                                             <div class="resultado">
-                                                <h3>Anualmente</h3><p><b>Tempo gasto:</b> ${horaAno} horas e ${minutoAno} minutos.<br><b>Custo:</b> ${valorAno.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraAno)} horas e ${Math.floor(reducaoMinutoAno)} minutos.<br><b>Custo:</b> ${reducaoAno.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
+                                                <h5>Anualmente</h5><p><b>Tempo gasto:</b> ${horaAno} horas e ${minutoAno} minutos.<br><b>Custo:</b> ${valorAno.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraAno)} horas e ${Math.floor(reducaoMinutoAno)} minutos.<br><b>Custo:</b> ${reducaoAno.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
                                             </div>
                                         </div>
                                     </div>`

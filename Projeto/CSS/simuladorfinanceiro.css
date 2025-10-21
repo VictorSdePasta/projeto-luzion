@@ -8,13 +8,11 @@ body {
 
 p {
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
     color: #311C3D;
 }
 
-h2 {
+h1 {
     font-family: 'Roboto', sans-serif;
-    font-size: 55px;
     margin-left: 75px;
     margin-bottom: 0;
     color: #311C3D;
@@ -134,7 +132,6 @@ button {
     text-align: left;
 }
 
-.resultado h3 {
-    font-family: 'Roboto', sans-serif;
+.resultado h5 {
     color: #311C3D;
 }
