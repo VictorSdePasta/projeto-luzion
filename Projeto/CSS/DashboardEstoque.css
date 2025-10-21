@@ -12,13 +12,14 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 0 1%;
 }
 
 .topo {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 1% 0;
+  padding: 3% 0;
   width: 100%;
   aspect-ratio: 9/1;
 }
@@ -66,6 +67,7 @@ h5 {
   display: flex;
   justify-content: center;
   margin: 3% 0;
+  padding-left: 10%;
 }
 
 .colunaEsq {
@@ -91,6 +93,7 @@ h3 {
 
 .conjunto.detalhado {
   grid-column: 1 / -1;
+  padding-left: 0;
 
   & .colunaEsq {
     background-color: #867391;
