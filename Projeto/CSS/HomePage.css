@@ -147,13 +147,16 @@ body a .btn img {
   flex-direction: column;
   height: 510px;
   width: 400px;
-  border-radius: 10px;
   background-color: #FCF7F0;
+  border-radius: 10px;
   align-items: center;
   width: 100%;
 }
 
-
+.cards img {
+  width: 100%;
+  height: 300px;
+}
 
 .container3 {
   display: flex;
@@ -183,3 +186,4 @@ body a .btn img {
     color: #311C3D;
   }
 }
+
