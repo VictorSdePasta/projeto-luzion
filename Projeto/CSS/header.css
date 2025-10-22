@@ -103,8 +103,17 @@ footer a {
 .informacoes {
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
+}
+
+.contato {
+  align-self: flex-start;
+}
+
+.redessociais {
+  align-self: flex-start;
 }
 
 .icons {

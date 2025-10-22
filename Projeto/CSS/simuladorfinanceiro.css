@@ -30,7 +30,7 @@ h1 {
 .apresentacao {
     display: flex;
     flex-direction: row-reverse;
-
+    
     & .caixa {
         padding-left: 75px;
     }
@@ -43,8 +43,23 @@ h1 {
     justify-content: space-between;
 }
 
+.bordabotao {
+    width: 40%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px #311C3D solid;
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+}
+
 .simuladorimagem {
     margin-right: 10%;
+}
+
+.topo {
+    padding-right: 3%;
 }
 
 .campos {
@@ -54,10 +69,10 @@ h1 {
     flex-direction: row;
     align-items: center;
     margin-bottom: 3%;
+    padding-left: 3%;
 }
 
 .textoipt {
-    margin-left: 5%;
     width: 87%;
 }
 
@@ -76,23 +91,28 @@ input:focus {
 
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0; /* Remove espaço extra */
-  display: none; /* Oculta as setas */
+  margin: 0;
+  display: none;
 }
 
 .iptstyle {
     background-color: #cb9ce783;
     width: 75%;
-    height: 45px;
-    border-radius: 0px 250px 250px 0px;
+    height: 35px;
+    border-radius: 250px 250px 250px 250px;
     border: none;
     box-shadow: #311c3d8e 1px 3px 5px;
 }
 
 button {
     cursor: pointer;
-    background: none;
+    border-radius: 250px;
     border: none;
+    width: 60%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #311C3D;
+    color: white;
 }
 
 .resposta {
