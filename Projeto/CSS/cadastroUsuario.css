@@ -8,20 +8,28 @@ body {
 
 
 .corpo{
+    display: flex;
+    flex-direction: column;
     margin: none;
-    background-color: #B29FBD;
+    background-color: #5A4168;
     background-image: url(../Assets/mulher\ no\ telefone.png);
     background-repeat: no-repeat;
     background-position: right;
+     background-size: contain;
+    color: #ffffff;
+   
+    
 }
+.corpo h1 {
+    margin-left: 3%;
 
+}
 
 
 .cadastro {
     display: flex;
-    margin-top: 5%;
     margin-bottom: 5%;
-    background-color: #867391;
+    background-color: #CC9CE7;
     width: 60%;
     border-bottom-right-radius: 250px;
     border-top-right-radius: 250px;
@@ -80,7 +88,7 @@ body {
 
 
 input {
-    background-color: #cb9ce77f;
+    background-color: #ffffff;
     border: none;
     width: 75%;
     height: 30px;
