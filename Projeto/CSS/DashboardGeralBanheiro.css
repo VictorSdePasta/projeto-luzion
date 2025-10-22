@@ -1,6 +1,6 @@
 body{
     margin:0;
-    background-color: #ece8ef;
+    background-color: #B29FBD;
 }
 
 .pagina {
@@ -11,10 +11,7 @@ body{
     aspect-ratio: 3 / 2;
 
     h1 {
-        font-family: 'Roboto', sans-serif;
-        font-size: 2.5rem;
-        font-weight: 400;
-        color: #311C3D;
+
     }
 }
 .topoPagina{
@@ -26,8 +23,10 @@ body{
 }
 .kpiTopo{
     display: flex;
+    justify-content: space-between;
+    margin-right: 5%;
     flex-direction: row;
-    width: 35%;
+    width: 40%;
 }
 .totalKpi{
     display: flex;
@@ -39,9 +38,8 @@ body{
     align-items: center;
 
         h1{
-            font-size: 3rem;
-            font-weight: bold;
-            margin:0;
+        font-family: 'Roboto', sans-serif;    
+        font-size:2rem;
         }
         h2{
         font-family: 'Roboto', sans-serif;
@@ -57,8 +55,6 @@ body{
     margin: 1%;
 
       h1{
-            font-size: 3rem;
-            font-weight: bold;
             margin:0;
         }
     h3{
@@ -86,11 +82,15 @@ body{
     align-items: center;    
     background-color: #CC9CE7;
     border-radius: 50px 20px;
-    width: 25%;
-    height: 90%;
-    margin: 2%;
+    width: 15%;
+    height: 60%;
+
     margin-left: 5%;
 
+    aspect-ratio: 1.2/1;
+    background-color: #CC9CE7;
+    border-radius: 45px 15px 45px 15px;
+    box-shadow: #311C3D 5px 5px 10px;  
           h1{
             font-size: 3rem;
             font-weight: bold;
@@ -115,13 +115,6 @@ body{
     width: 30%;
     border-radius: 15px;
     margin-top: 5%;
-
-        p{
-        font-family: 'Roboto', sans-serif;
-        font-size: 1rem;
-        font-weight: bold;
-        color: #311C3D;            
-        }
 }
 .tituloTabela{
     display: flex;
@@ -169,28 +162,103 @@ body{
   margin-left: 25%;
 }
 
-.areaGrafico{
+.grafico{
+    width: 60%;
+    margin-right: 5%;
+    background-color: #867391;
+    border-radius: 25px 55px 25px 55px;
+    display: flex;
+    flex-direction: row;
+}
+
+.kpibox {
+    padding: 1%;
     display: flex;
     flex-direction: column;
-    width: 40%;
-}
-.areaFiltro{
-    display: flex;
-    justify-content: space-between;
-}
-.filtro{
-    display: flex;
     justify-content: center;
-    background-color: #715E7D;
-    margin: 0px 3%;
-    border-radius: 25px;
-    padding: 2%;
+    align-items: center;
+    text-align: center;
+    width: 40%;
     
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #311C3D;         
+    aspect-ratio: 1.2/1;
+    background-color: #CC9CE7;
+    border-radius: 45px 15px 45px 15px;
+    box-shadow: #311C3D 5px 5px 10px;
+
+           h1{
+        font-family: 'Roboto', sans-serif;    
+        font-size:3rem;
+        }
+                h2{
+        font-family: 'Roboto', sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #311C3D;
+        }   
 }
+
+.kpibottom {
+    width: 87%;
+    aspect-ratio: 0.5/ 0.4;
+    margin-left: 3%;
+    padding-bottom: 8%;
+    padding-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+    background-color: #5A4168;
+    border-radius: 0 0 15px 45px;
+    transform: translateY(-30%);
+    box-shadow: #311C3D 5px 5px 10px;
+}
+
+.kpibottom input {
+    width: 70%;
+    background-color: #7F5C92;
+    margin: 0;
+    border-radius: 50px;
+    border: none;
+}
+
+.kpibottom input::placeholder {
+    color: #311C3D;
+}
+
+.data{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 8%;
+    margin-left: 10%;
+    background-color: #7F5C92;
+    border-radius: 50px;
+}
+
+.kpibottom p {
+    margin: 0;
+    margin-left: 10%;
+}
+
+#geralGrafico{
+    width: 90%;
+}
+
+.kpidecoration {
+    width: 30%;
+}
+
+.grafico .kpibox{
+    border-radius: 15px 45px 15px 45px;
+    width: 90%;
+    z-index: 2;
+    position: relative;
+}
+
 input{
     display: flex;
     justify-content: center;
@@ -199,8 +267,14 @@ input{
     border: none;
     
 }
-
-.grafico{
+.sensor {
+    width: 70%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.a{
     width: 90%;
     height: 50%;
     background-color: #867391;
