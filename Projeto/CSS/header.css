@@ -74,6 +74,26 @@ header {
     background-color: #cb9ce77f;
     box-shadow: 0 3px 5px black;
   }
+
+  & .divisao {
+    border: white 1px solid;
+
+  }
+
+  & .mainnav {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2%;
+    align-items: center;
+  }
+  
+  & .subnav {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2%;
+    align-items: center;
+    justify-self: center;
+  }
 }
 
 footer {
@@ -86,7 +106,7 @@ footer {
 .main {
   display: flex;
   flex-direction: row;
-  gap: 10%;
+  gap: 20%;
   align-items: center;
 }
 
