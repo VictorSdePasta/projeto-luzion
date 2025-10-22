@@ -26,6 +26,7 @@ body {
     border-bottom-right-radius: 250px;
     border-top-right-radius: 250px;
     font-family: 'Roboto', sans-serif;
+    padding-left: 3%;
 }
 
 .coluna {
@@ -79,13 +80,16 @@ body {
 
 
 input {
-    background-color: #CC9CE7;
+    background-color: #B29FBD;
     border: none;
     width: 75%;
     height: 30px;
     border-bottom-right-radius: 190px;
     border-top-right-radius: 190px;
+    border-bottom-left-radius: 190px;
+    border-top-left-radius: 190px;
     box-shadow: #311c3d8e 1px 3px 5px;
+    
 }
 
 button{

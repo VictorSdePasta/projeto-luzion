@@ -20,6 +20,7 @@ body {
     background-repeat: no-repeat;
     background-color: #B29FBD;
     background-position: bottom-center;
+   
 }
 
 .container {
@@ -30,6 +31,7 @@ body {
     border: none;
     margin: 0;
     padding: 0;
+
 
 
 
@@ -54,24 +56,23 @@ body {
     padding-top: 30px;
     padding-bottom: 30px;
     color: #311C3D;
+     padding-right: 3%;
 
 
 }
 
 
 input {
-    background-color: #CC9CE7;
+    background-color: #B29FBD;
     border: none;
     width: 75%;
     height: 30px;
     border-bottom-left-radius: 190px;
     border-top-left-radius: 190px;
+     border-bottom-right-radius: 190px;
+    border-top-right-radius: 190px;
     box-shadow: #311c3d8e 1px 3px 5px;
     margin: 0;
-
-
-
-
 }
 
 
