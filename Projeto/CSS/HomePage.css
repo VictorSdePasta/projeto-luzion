@@ -24,12 +24,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  background-image: url(../Assets/dispenser.png);
+  background-image: url(../Assets/dispenser01.png);
   width: 100%;
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  aspect-ratio: 8/5;
+  aspect-ratio: 10;
+}
 
+.container img {
+  height: 50%;
 }
 
 .titulo {
@@ -52,7 +56,7 @@ body {
 }
 
 .texto1 {
-  margin-top: 170px;
+  margin-top: 5%;
   background-color: #eeeeee84;
   padding: 15px 20px;
   border-top-right-radius: 300px;
@@ -75,6 +79,7 @@ body {
   font-size: 17px;
   font-weight: 300;
   margin-left: 0px;
+  margin-bottom: 2%;
 }
 
 .btn {
@@ -118,10 +123,10 @@ body a .btn img {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  background-color: #B09DBA;
+  background-color: #5A4168;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 250px;
+  height: 190px;
 }
 
 .sobreNos {
@@ -156,16 +161,16 @@ body a .btn img {
 
 .cards img {
   width: 100%;
-  height: 300px;
+  height: 256px;
 }
 
 .container3 {
   display: flex;
-  padding: 100px 45px;
+  padding: 0px 45px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #B09DBA;
+  background-color: #5A4168;
   background-size: cover;
   background-repeat: no-repeat;
   height: auto;
@@ -192,6 +197,6 @@ body a .btn img {
 
   & h1 {
     font-size: 50px;
-    color: #311C3D;
+    color: #FCF7F0;
   }
 }
