@@ -146,11 +146,12 @@ body a .btn img {
   display: flex;
   flex-direction: column;
   height: 510px;
-  width: 400px;
+  width: 350px;
   background-color: #FCF7F0;
   border-radius: 10px;
   align-items: center;
   width: 100%;
+  gap: 30px;
 }
 
 .cards img {
@@ -160,7 +161,7 @@ body a .btn img {
 
 .container3 {
   display: flex;
-  padding-bottom: 200px;
+  padding: 100px 45px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -176,9 +177,17 @@ body a .btn img {
   flex-direction: column;
   text-align: center;
   font-family: "Roboto";
+  width: fit-content;
 
   & span {
-    padding-top: 15%;
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: start;
+  }
+
+  & p {
+    margin-left: 6%;
+    margin-right: 6%;
   }
 
   & h1 {
@@ -186,4 +195,3 @@ body a .btn img {
     color: #311C3D;
   }
 }
-
