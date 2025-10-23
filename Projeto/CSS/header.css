@@ -98,6 +98,47 @@ header {
     align-items: center;
     justify-self: center;
   }
+
+  & .expandirbtn {
+    background-color: #311C3D;
+    color: white;
+    font-size: 15px;
+    border: none;
+  }
+
+  & .expandir {
+    position: relative;
+    display: inline-block;
+  }
+
+  & .conteudoexpandido{
+    display: none;
+    position: absolute;
+    background-color: #311C3D;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  & .conteudoexpandido a{
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border: white 1px solid;
+  }
+  
+  & .conteudoexpandido a:hover {
+    background-color: #311C3D;
+  }
+
+  & .expandir:hover .conteudoexpandido{
+    display: block;
+  }
+
+  & .expandir:hover .expandirbtn{
+    background-color: #311C3D;
+  }
 }
 
 footer {
