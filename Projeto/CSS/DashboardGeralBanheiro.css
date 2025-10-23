@@ -254,7 +254,6 @@ body{
     background-color: #7F5C92;
     border-radius: 50px;
 }
-
 .kpibottom p {
     margin: 0;
     margin-left: 10%;
@@ -293,6 +292,14 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.banheiroGeral{
+    background-color: #B29FBD;
+    width: 95%;
+    height: 65%;
+    border-radius: 15px;
+    justify-self: center;
+    justify-content: center;   
 }
 .a{
     width: 90%;
