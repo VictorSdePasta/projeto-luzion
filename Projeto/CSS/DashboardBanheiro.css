@@ -90,9 +90,13 @@
 input {
     display: flex;
     justify-content: center;
-    width: 90%;
-    background-color: #715E7D;
+    width: 100%;
+    padding: 3%;
+    margin-left: 3px;
+    background-color: #5A4168;
     border: none;
+    outline: none;
+    border-radius: 50px;
 }
 p {
     margin: 0;
@@ -104,4 +108,56 @@ p {
     border-radius: 25px 55px 25px 55px;
     display: flex;
     flex-direction: row;
+}
+
+.kpibox {
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 30%;
+    aspect-ratio: 1.2/1;
+    background-color: #CC9CE7;
+    border-radius: 45px 15px 45px 15px;
+    box-shadow: #311C3D 5px 5px 10px;
+}
+.kpibox h2{
+    font-weight: 400;
+    display: flex;
+    width: fit-content;
+    margin: 0;
+}
+
+.kpibox h1{
+    font-weight: 900;
+    margin: 0;
+}
+.grafico .kpibox{
+    border-radius: 15px 45px 15px 45px;
+    width: 90%;
+    z-index: 2;
+    position: relative;
+}
+
+.kpibottom {
+    width: 87%;
+    aspect-ratio: 0.5/ 0.6;
+    margin-left: 3%;
+    padding-bottom: 8%;
+    padding-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+    background-color: #5A4168;
+    border-radius: 0 0 15px 45px;
+    transform: translateY(-30%);
+    box-shadow: #311C3D 5px 5px 10px;
+}
+.sensor {
+display: flex;
+align-items: center;
+width: 70%;
 }
