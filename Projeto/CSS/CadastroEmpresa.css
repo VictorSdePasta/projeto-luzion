@@ -1,14 +1,19 @@
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
     
     body{
-        background-color: #B29FBD;
-        border-radius: 10px;
+        background-color: #5A4168;
         margin: 0;
+        padding: 0;
         background-image: url("../Assets/mulher no telefone.png");
         background-repeat: no-repeat;
         background-position: right;
-        background-size: contain;
+        background-size:contain;
         
+    }
+    h1 {
+        margin: 0;
+        padding: 25px;
+        color: #FFFFFF;
     }
     .texto {
         display: flex;
@@ -25,7 +30,7 @@
     }
 
     .caixa {
-        background-color: #cb9ce77f;
+        background-color: #FCF7EF;
         font-size: 100%;
         width: 100%;
         border-radius: 25px;
@@ -40,9 +45,9 @@
         display: flex;
         align-items: center;
         width:50%;
-        background-color: #867391;
+        background-color: #CC9CE7;
         border-radius: 0 320px 320px 0;
-        margin-top: 100px;
+        margin-top: 0;
         margin-bottom: 100px;
         padding-left: 3%;
     }
@@ -67,7 +72,7 @@
     .botao2 {
         width: 150px;
         letter-spacing: 1px;
-        background-color: #867391;
+        background-color: transparent;
         color: #01123C;
         text-decoration: underline;
         border: 0;

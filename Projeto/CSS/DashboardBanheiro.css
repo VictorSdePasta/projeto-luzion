@@ -2,7 +2,7 @@
  
  body {
     margin: 0;
-    background-color: #B29FBD;
+    background-color: #5A4168;
 }
 .pagina {
     color: #311C3D;
@@ -35,11 +35,6 @@
     width: 75%;
     color: #311C3D;
 }
-.dado {
-    font-size: 40px;
-    font-weight:bolder;
-    color: #311C3D;
-}
     
 .tabela {
     background-color: #715E7D;
@@ -51,22 +46,22 @@
     display: flex;
     justify-content: space-around;
     font-weight: bold;
-    padding: 6px 0;
+    padding: 15px;
     background:  #CC9CE7;
-    border-radius: 20px;
+    border-radius: 30px;
 }
 .linha1 {
     display: flex;
     justify-content: space-around;
     background-color: #715E7D;
-    padding: 6px 0;
+    padding: 12px;
     border-radius: 20px;
 }
 .linha2 {
     display: flex;
     justify-content: space-around;
     background: #7F5C92;
-    padding: 6px 0;
+    padding: 12px;
 }
 
 .tabGrafico {
@@ -74,15 +69,39 @@
     justify-content: space-evenly;
     margin-bottom: 5%;
 }
-.filtro, input{
-    background-color: #715E7D; 
-    border-radius: 20px 20px 20px 20px;
-    width: 100px;
+.dado {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.filtro{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+    
+    background-color: #715E7D;
+    width: 50%;
+    outline: none;
     border: none;
-} 
+}
+input {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    background-color: #715E7D;
+    border: none;
+}
 p {
     margin: 0;
 }
 .grafico {
-    width: 50%;
+    width: 60%;
+    margin-right: 5%;
+    background-color: #867391;
+    border-radius: 25px 55px 25px 55px;
+    display: flex;
+    flex-direction: row;
 }
