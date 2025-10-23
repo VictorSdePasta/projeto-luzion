@@ -9,7 +9,7 @@
 }
 
 p {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 h1 {
@@ -57,6 +57,10 @@ header {
     width: 30%;
   }
 
+  & .institucional {
+    gap: 5%;
+  }
+
   & .selecionado {
     border-top: 2px solid white;
     border-bottom: 2px solid white;
@@ -77,20 +81,20 @@ header {
 
   & .divisao {
     border: white 1px solid;
-
+    height: 35px;
   }
 
   & .mainnav {
     display: flex;
     flex-direction: row-reverse;
-    gap: 2%;
+    gap: 10%;
     align-items: center;
   }
   
   & .subnav {
     display: flex;
-    flex-direction: row-reverse;
-    gap: 2%;
+    flex-direction: row;
+    gap: 10%;
     align-items: center;
     justify-self: center;
   }
@@ -118,6 +122,7 @@ footer a {
   color: white;
   text-decoration: none;
   margin-bottom: 1em;
+  font-size: 20px;
 }
 
 .informacoes {
@@ -125,7 +130,6 @@ footer a {
   flex-direction: column;
   align-self: flex-start;
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
 }
 
 .contato {
@@ -153,119 +157,4 @@ footer a {
 
 .autoria p {
   color: #c8c8c88c;
-}
-
-/* Aqui para baixo começa o css do menu lateral da pagina */
-
-.corpo {
-  display: flex;
-}
-
-.menuLateral {
-  background-color: #5A4168;
-  width: 15%;
-  color: #CC9CE7;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  padding: 3% 0;
-
-  & h2 {
-    margin: 0;
-  }
-
-  & .kpiMenu {
-    font-size: 3em;
-    text-shadow: 0px .1em 10px #d181ff5f;
-    font-weight: bold;
-  }
-}
-
-.headerLateral {
-  text-align: center;
-}
-
-.selecao {
-  width: 80%;
-  aspect-ratio: 4 / 1;
-  background-color: #715E7D;
-  border-radius: 0 30% 30% 0 / 0 100% 100% 0;
-  box-shadow: .1em .1em rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 5%;
-  padding: 0 7% 0 0;
-  gap: 5%;
-  text-decoration: none;
-
-  & a {
-    text-decoration: none;
-    padding-left: 10%;
-    color: #CC9CE7;
-  }
-
-  & span {
-    text-decoration: none;
-    color: #CC9CE7;
-    margin: 0 0 0 20%;
-  }
-}
-
-.especial {
-  background-color: #CC9CE7;
-
-  & button {
-    background: none;
-    border: none;
-    background-image: url('../Assets/seta-seletor.svg');
-    background-size: cover;
-    background-repeat: none;
-    width: 10%;
-    aspect-ratio: 1/1;
-    margin-left: 5%;
-  }
-
-  & a {
-    text-decoration: none;
-    color: #311C3D;
-  }
-
-  & span {
-    color: #311C3D;
-    padding-left: 10%;
-    margin: 0;
-  }
-}
-
-.situacao {
-  height: 50%;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-}
-
-.estavel {
-  background-color: limegreen;
-}
-
-.atencao {
-  background-color: yellow;
-}
-
-.critico {
-  background-color: red;
-}
-
-.opcao {
-  width: 80%;
-  aspect-ratio: 5/1;
-  display: flex;
-  align-items: center;
-  margin-top: 2%;
-  gap: 5%;
-
-  text-decoration: none;
-  color: #CC9CE7;
-  margin: 0 5%;
 }
