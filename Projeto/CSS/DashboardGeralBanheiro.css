@@ -1,6 +1,6 @@
 body{
     margin:0;
-    background-color: #B29FBD;
+    background-color: #5A4168;
 }
 
 .pagina {
@@ -27,6 +27,14 @@ body{
     margin-right: 5%;
     flex-direction: row;
     width: 40%;
+
+        h1{
+            margin:0%;
+        }
+        h2{
+            margin:0%;
+            padding: 0% 2%;
+        }
 }
 .totalKpi{
     display: flex;
@@ -65,13 +73,17 @@ body{
     }
 }
 .output{
-    display: flex;
+
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 5%;
+    margin: 0%;
+
+            h1{
+                margin: 0%
+            }
              h3{
-            margin: 5%;
+            margin: 0%;
 
         }
 }
@@ -82,7 +94,7 @@ body{
     align-items: center;    
     background-color: #CC9CE7;
     border-radius: 50px 20px;
-    width: 15%;
+  
     height: 60%;
 
     margin-left: 5%;
@@ -94,13 +106,15 @@ body{
           h1{
             font-size: 3rem;
             font-weight: bold;
-            margin:0;
+            margin: 0%;
         }
         h2{
         font-family: 'Roboto', sans-serif;
-        font-size: 1rem;
+        font-size: 2rem;
         font-weight: bold;
         color: #311C3D;
+        padding: 5%;
+        margin: 0%;        
         }        
 }
 
@@ -114,7 +128,8 @@ body{
     background-color: #715E7D;
     width: 30%;
     border-radius: 15px;
-    margin-top: 5%;
+    margin-top: 0%;
+    margin-left: 5%;
 }
 .tituloTabela{
     display: flex;
@@ -165,6 +180,7 @@ body{
 .grafico{
     width: 60%;
     margin-right: 5%;
+    margin-left: 5%;
     background-color: #867391;
     border-radius: 25px 55px 25px 55px;
     display: flex;
@@ -238,7 +254,6 @@ body{
     background-color: #7F5C92;
     border-radius: 50px;
 }
-
 .kpibottom p {
     margin: 0;
     margin-left: 10%;
@@ -257,6 +272,10 @@ body{
     width: 90%;
     z-index: 2;
     position: relative;
+
+    h4{
+        margin: 0%;
+    }
 }
 
 input{
@@ -273,6 +292,14 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.banheiroGeral{
+    background-color: #B29FBD;
+    width: 95%;
+    height: 65%;
+    border-radius: 15px;
+    justify-self: center;
+    justify-content: center;   
 }
 .a{
     width: 90%;

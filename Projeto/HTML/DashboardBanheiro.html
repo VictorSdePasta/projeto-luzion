@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luzion</title>
-    <link rel="stylesheet" href="../CSS/dashboard-banheiro.css">
+    <link rel="stylesheet" href="../CSS/DashboardBanheiro.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -15,7 +15,7 @@
     <div class="destaque">
       <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
     </div>
-    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
+    <a href="./TelaSCadastroEmpresa.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
     <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
   </div>
 </header>
@@ -27,11 +27,11 @@
       <div class="container">
         <div class="card">
           <h4>Média de carga total (%)</h>
-          <h1>70</h1>
+          <h1>72.6</h1>
         </div>
         <div class="card2 card">
-          <h4>Dispensers que necessitam reposição</h4>
-          <h1>0</h1>
+          <h4>Dispensador(es) que necessitam de reposição</h4>
+          <h1>Dispensador 3</h1>
         </div>
         <div class="card">
           <h4>Reposições realizadas</h4>
@@ -41,46 +41,48 @@
       <div class="tabGrafico">
         <div class="tabela">
           <div class="tituloTab">
-            <p>Dispenser</p>
+            <p>Dispensador</p>
             <p>Carga %</p>
-            <p>Trocas</p>
           </div>
           <div class="linha1">
-            <p>Dispenser 1</p>
-            <p>85</p>
-            <p>1</p>
+            <p>Dispensador 1</p>
+            <div class="dado"><p>85</p><div class="situacao estavel"></div></div>
           </div>
           <div class="linha2">
-            <p>Dispenser 2</p>
-            <p>48</p>
-            <p>2</p>
+            <p>Dispensador 2</p>
+            <div class="dado"><p>48</p><div class="situacao atencao"></div></div>
           </div>
           <div class="linha1">
-            <p>Dispenser 3</p>
-            <p>30</p>
-            <p>0</p>
+            <p>Dispensador 3</p>
+            <div class="dado"><p>30</p><div class="situacao critico"></div></div>
           </div>
           <div class="linha2">
-            <p>Dispenser 4</p>
-            <p>100</p>
-            <p>1</p>
+            <p>Dispensador 4</p>
+            <div class="dado"><p>100</p><div class="situacao estavel"></div></div>
           </div>
           <div class="linha1">
-            <p>Dispenser 5</p>
-            <p>100</p>
-            <p>1</p>
+            <p>Dispensador 5</p>
+            <div class="dado"><p>100</p><div class="situacao estavel"></div></div>
           </div>
         </div>
         <div class="grafico">
-          <p>Filtrar data:</p>
-          <span class="filtro">De:<input type="date" id="data1"></span> <span class="filtro">Até:<input type="date" id="data2"></span>
-          <div>
-            <canvas id="chart"></canvas>
-          </div> 
+          <div class="kpidecoration">
+            <div class="kpibox">
+              <h4>Média de carga(%)</h4>
+              <h1>72.60</h1>
+            </div>
+            <div class="kpibottom">
+              <p>Filtrar data</p>
+              <div class="data">De <input type="date" placeholder="De"></div>
+              <div class="data">Até <input type="date" placeholder="Até"></div>
+            </div>
+          </div>
+          <div class="sensor">
+            <canvas id="chart" class="chart"></canvas>
+          </div>
         </div>
-      </div>
-      
-    </div>
+            
+      </div> 
     </div>
 
 </body>
