@@ -1,4 +1,4 @@
 # Projeto Luzion
-Integrantes: Arthur Fernandes, Cesar Vequiato, Eric Barbosa, Gabriela Santana, Isabel Lin, Larissa Rocha e Lavinia Todarelli.
+Integrantes: Ana Jardim, Daner Quispe, Reginaldo de Souza, Igor Dias, Victor David e Victor Silva.
 
 Documentação do projeto: https://docs.google.com/document/d/1a-o3iPqo3CwjD5CNAVbP76hL67LrCf_oykNkApSuNPU/edit?usp=sharing
