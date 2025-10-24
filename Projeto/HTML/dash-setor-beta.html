@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Geral Banheiro</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <header>
+    <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
+    <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+    <div class="botoesGuia">
+      <div class="destaque">
+        <a href="./login.html" id="entrar">LOGOUT</a>
+      </div>
+      <a href="./dash-setor-beta.html" class="selecionado" id="cadastrar">DASHBOARDS</a>
+      <a href="./simulador-financeiro.html" id="simulador">MEU PERFIL</a>
+    </div>
+  </header>
+  <div class="corpo">
+    <div class="pagina">
+      <!-- Implemente seu código e manipule o css dessa tag pagina no css da sua pagina como se fosse o body-->
+     
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  const ctx = document.getElementById('banheiroGeral');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
+      datasets: [{
+        label: 'Horários - Papéis trocados',
+        data: [7, 6, 16, 14, 26, 16, 31, 8, 21, 13, 21, 10, 5],
+        borderWidth: 1,
+        borderColor: 'rgba(49, 28, 61, 100)'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 35,
+        }
+      }
+    }
+  });
+</script>
+
+</html>
