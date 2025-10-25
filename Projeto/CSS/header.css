@@ -49,6 +49,11 @@ header {
   padding-bottom: 0.5%;
   padding-left: 1%;
 
+  & img {
+    width: 65px;
+    height: 65px;
+  }
+
   & .botoesGuia {
     display: flex;
     flex-direction: row-reverse;
