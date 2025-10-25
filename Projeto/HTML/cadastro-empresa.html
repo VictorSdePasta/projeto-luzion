@@ -22,6 +22,13 @@
 </header>
 
 <body>
+    <div id="pop1" class="pop">
+        <div id="up1" class="up">
+            <p>Cadastro realizado!</p>
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
     <h1>Cadastro<br><b>Empresa</b></h1>
     <div class="corSombra"><br>
         <div class="texto">
@@ -75,6 +82,9 @@
         var nmEmpresa = nomeEmpresa.value;
         var nmFantasia = nomeFantasia.value;
         var numrCnpj = cnpj.value;
+        let validoUm = false
+        let validoDois = false
+        let validoTres = false
 
         if (nomeEmpresa.value == '') {
             erroNomeEmp.innerHTML = `*Preencha o campo acima*` 
@@ -90,6 +100,8 @@
                 erroNomeEmp.innerHTML = `*Insira um nome válido.*`
             } else {
                 erroNomeEmp.innerHTML = ''
+                validoUm = true
+                
             }
             for (let index = 0; index < nmFantasia.length; index++) {
                 
@@ -97,27 +109,35 @@
                     erroNomeFan.innerHTML = `*Insira um nome válido.*`
                 } else {
                     erroNomeFan.innerHTML = ''  
+                    validoDois = true
                 }
             
-                for (let index = 1; index < numrCnpj.length; index++) {
+                for (let index = 0; index < numrCnpj.length; index++) {
                 
                     if (index < 13) {
                         erroCnpj.innerHTML = `*Insira um CNPJ válido*`
                     } else {
-                        erroCnpj.innerHTML = ''
-                        window.location.href = "../HTML/cadastro-usuario.html"
-                        break;
-                        
+                        erroCnpj.innerHTML = '' 
+                        validoTres = true 
                     }
                 }
-            }
+            } 
         }
-        
-
-         
-   }
+        if (validoUm == true && validoDois == true && validoTres) {
+            pop1.style.display = 'flex';
+            up1.style.display = 'flex';
+        }
+    }
+    
     function logar() {
         window.location.href = "../HTML/login.html"
+    }
+    function fechar() {
+
+        pop1.style.display = 'none';
+
+        up1.style.display = 'none';
+        window.location.href = "../HTML/cadastro-usuario.html"
    }
 </script>
 </html>
