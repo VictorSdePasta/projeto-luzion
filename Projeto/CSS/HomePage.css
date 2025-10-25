@@ -58,32 +58,40 @@ body {
 .texto1 {
   margin-top: 5%;
   background-color: #eeeeee84;
-  padding: 15px 20px;
+  padding: 10px 10px;
+  padding-right: 3% ;
   border-top-right-radius: 300px;
   border-bottom-right-radius: 300px;
-  max-width: 450px;
-  font-family: 'poppins';
-  font-size: 20px;
+  width: 35%;
+  height: 19%;
   font-weight: 300;
   margin-left: 0px;
+  
+  
 }
 
 .texto2 {
   align-self: flex-end;
   background-color: #eeeeee84;
-  padding: 15px 20px;
+  padding: 10px 5px;
+  padding-left: 3%;
   border-bottom-left-radius: 300px;
   border-top-left-radius: 300px;
-  max-width: 450px;
-  font-family: 'poppins';
-  font-size: 17px;
+  width:35%;
+  height: 19%;
   font-weight: 300;
   margin-left: 0px;
   margin-bottom: 2%;
 }
 
+.texto1 p {
+  margin-left: 7%;
+  margin-right: 2%;
+}
 .texto2 p {
-  padding-left: 8%;
+  margin-left: 2%;
+  margin-right: 3.9%;
+  
 }
 
 .btn {
@@ -100,6 +108,7 @@ body {
   margin-top: 50px;
   font-size: 15px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btn:hover {
