@@ -26,15 +26,15 @@
     <div class="corSombra"><br>
         <div class="texto">
             <p>Informe a razão social da sua empresa:</p>
-                <input class="caixa" id="nomeEmpresa">
+                <input class="caixa" id="nomeEmpresa" placeholder="Ex: Luzion">
                 <div class="divmsg" id="erroNomeEmp"></div><br>
 
             <p>Insira nome fantasia:</p>
-                <input class="caixa" id="nomeFantasia">
+                <input class="caixa" id="nomeFantasia" placeholder="Ex: Luzion">
                 <div class="divmsg" id="erroNomeFan"></div><br>
 
             <p>CNPJ:</p>
-                <input class="caixa" id="cnpj">
+                <input class="caixa" id="cnpj" placeholder="00.000.000/0000-00">
                 <div class="divmsg" id="erroCnpj"></div>
         </div>
             
@@ -102,11 +102,12 @@
                 for (let index = 1; index < numrCnpj.length; index++) {
                 
                     if (index < 13) {
-                        erroCnpj.innerHTML = `*Insira um CNPJ Inválido*`
+                        erroCnpj.innerHTML = `*Insira um CNPJ válido*`
                     } else {
                         erroCnpj.innerHTML = ''
-                        alert('Cadastro realizado')
+                        window.location.href = "../HTML/cadastro-usuario.html"
                         break;
+                        
                     }
                 }
             }

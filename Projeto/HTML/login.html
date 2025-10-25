@@ -1,47 +1,86 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
 
+
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Login</title>
+
     <link rel="stylesheet" href="../CSS/TelaLogin.css" />
+
     <link rel="stylesheet" href="../CSS/header.css" />
+
 </head>
+
 <header>
+
     <!-- Header padrão, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>)-->
+
     <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+
     <div class="botoesGuia">
+
         <div class="destaque">
-            <a href="./login.html" id="entrar"  class="selecionado" >ENTRAR</a>
+
+            <a href="./TelaLogin.html" id="entrar" class="selecionado">ENTRAR</a>
+
         </div>
-        <a href="./cadastro-empresa.html" id="cadastrar">CADASTRAR</a>
-        <a href="./simulador-financeiro.html" id="simulador">SIMULADOR</a>
-        <a href="./homepage.html" id="home">HOME</a>
+
+        <a href="./TelaCadastroEmpresa.html" id="cadastrar">CADASTRAR</a>
+
+        <a href="./simuladorfinanceiro.html" id="simulador">SIMULADOR</a>
+
+        <a href="./HomePage.html" id="home">HOME</a>
+
     </div>
+
 </header>
+
+
 
 <body>
 
-    
-    <div id="pop1"class="pop">
-        <div id="up1"class="up">
-            
+    <div id="pop1" class="pop">
+        <div id="up1" class="up">
             <p>Insira um email válido</p>
-            
-            <button onclick="fechar()">Fechar</button> </div> </div>
-            
-            <div id="pop2"class="pop">
-                <div id="up2"class="up">
-                    
-                    <p>Insira uma senha válida</p>
-                    
-                    <button onclick="fechar()">Fechar</button> </div> </div>
-                    
-                    
-                    <div class="corpo">
-        <h1>Login<br><b>Usuário</b></h1>
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
 
+
+
+    <div id="pop2" class="pop">
+        <div id="up2" class="up">
+            <p>Insira uma senha válida</p>
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
+
+    <div id="pop3" class="pop">
+        <div id="up3" class="up">
+            <p>Senha incorreta tente novamente</p>
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+
+
+    <div id="pop4" class="pop">
+        <div id="up4" class="up">
+            <p>Usuário bloqueado</p>
+            <button onclick="fechar()">Fechar</button>
+        </div>
+    </div>
+    <div class="corpo">
+
+        <h1>Login<br><b>Usuário</b></h1>
+        
         <div class="login">
             <div class="container">
                 <div class="email">
@@ -49,27 +88,19 @@
                 </div>
                 <div class="iptCampo"><input type="text" id="iptEmail"></div>
                 <div class="senha">
-                    <p>Senha:</p>
+                <p>Senha:</p>
                 </div>
                 <div class="iptCampo"><input type="password" id="iptSenha"></div>
             </div>
-
             <div class="entrar">
-                <p><a href="./cadastro-empresa.html">Não tenho cadastro</a></p>
-
-
+                <p><a href="./TelaCadastroEmpresa.html">Não tenho cadastro</a></p>
                 <button onclick="logar()">ENTRAR <img src="../Assets/arrow-2-right-long.png" alt=""></button>
             </div>
         </div>
-
     </div>
-
-    
-
-
-
 </body>
 <footer>
+
     <div class="main">
         <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logomarca"></div>
         <div class="informacoes">
@@ -77,16 +108,18 @@
             <a href="">Menu</a>
             <a href="">Sobre nós</a>
         </div>
+
         <div class="contato">
             <p><b>Contatos</b></p>
             <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
             <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com</p>
         </div>
+
         <div class="redessociais">
             <p><b>Redes Sociais</b></p>
             <div class="icons"><a href=""><img src="../Assets/icon face.png" alt=""></a><a href=""><img
                         src="../Assets/icon twitter.png" alt=""></a><a href=""><img src="../Assets/icon linkedin.png"
-                        alt=""></a></div>
+                     alt=""></a></div>
         </div>
     </div>
     <div class="autoria">
@@ -94,37 +127,61 @@
     </div>
 </footer>
 <script>
+
+    var contador = 0;
+
     function logar() {
         var login = iptEmail.value;
         var senha = iptSenha.value;
 
-        if (login == '') { 
-        pop1.style.display = 'flex';
-        up1.style.display = 'flex';
-            
-      }
-        if (senha == '') { 
-        pop2.style.display = 'flex';
-        up2.style.display = 'flex'; 
-
-        } else if (login == 'contato@luzion.com' && senha == 'Senha123') {
-            window.location.href = './dash-board-setor.html';
-                } else {
-            alert(`Cadastro não encontrado.`)
+        if (login == '') {
+            pop1.style.display = 'flex';
+            up1.style.display = 'flex';
         }
 
+        if (senha == '') {
+            pop2.style.display = 'flex';
+            up2.style.display = 'flex';
 
+        } else if (login == 'contato@luzion.com' && senha == 'Senha123') {
+            window.location.href = './DashboardGeralBanheiro.html';
+        }
+
+        if (senha != 'Senha123') {
+            contador++;
+            while (contador <= 2) {
+                if (contador < 2) {
+                    pop3.style.display = 'flex';
+                    up3.style.display = 'flex';
+                    break;
+                } else {
+                    pop4.style.display = 'flex';
+                    up4.style.display = 'flex';
+                    break;
+                }
+            }
+        }
     }
 
     function fechar() {
-    pop1.style.display = 'none';
-    up1.style.display = 'none';
-    pop2.style.display = 'none';
-    up2.style.display = 'none';
-  }
 
+        pop1.style.display = 'none';
 
+        up1.style.display = 'none';
+
+        pop2.style.display = 'none';
+
+        up2.style.display = 'none';
+
+        pop3.style.display = 'none';
+
+        up3.style.display = 'none';
+
+        pop4.style.display = 'none';
+
+        up4.style.display = 'none';
+
+    }
 
 </script>
-
 </html>
