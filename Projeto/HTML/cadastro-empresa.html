@@ -27,12 +27,15 @@
         <div class="texto">
             <p>Informe a razão social da sua empresa:</p>
                 <input class="caixa" id="nomeEmpresa"><br>
+                <div class="divmsg" id="erroNomeEmp"></div>
 
             <p>Insira nome fantasia:</p>
                 <input class="caixa" id="nomeFantasia"><br>
+                <div id="erroNomeFan"></div>
 
             <p>CNPJ:</p>
                 <input class="caixa" id="cnpj">
+                <div id="erroCnpj"></div>
         </div>
             
             <div class="circulo">
@@ -67,6 +70,7 @@
     </div>
 </footer>
 <script>
+   
     function cadastrar() {
         var nmEmpresa = nomeEmpresa.value;
         var nmFantasia = nomeFantasia.value;
@@ -81,6 +85,9 @@
         } else {
         window.location.href = "../HTML/cadastro-usuario.html"
         }
+        
+
+         
    }
     function logar() {
         window.location.href = "../HTML/login.html"
