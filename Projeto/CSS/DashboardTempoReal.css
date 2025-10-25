@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  background-color: #5A4168;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #311C3D;
+  overflow-x: hidden;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.pagina {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 1%;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 3% 0;
+  width: 100%;
+  aspect-ratio: 9/1;
+
+  & .conjunto.detalhado {
+    & .colunaEsq {
+      background: none;
+
+      & .kpi {
+        border-radius: 50px 20px;
+        aspect-ratio: 2/1;
+      }
+
+      & .legenda {
+        position: relative;
+        top: -8%;
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+
+        & .situacao {
+          height: 12px;
+        }
+
+        & h6 {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          color: white;
+
+          & span {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    & .colunaDir {
+      background: none;
+
+      & .header {
+        justify-content: space-between;
+
+        & .descricaoKpi {
+          background-color: #B29FBD;
+          flex-direction: column;
+          padding-right: 0;
+          aspect-ratio: 6/1;
+          justify-content: center;
+        }
+
+        & .titulo {
+          margin-right: 7%;
+          color: white;
+        }
+      }
+
+      & .grafico {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 93%;
+        height: 80%;
+        background-color: #867391;
+        border-radius: 50px;
+        aspect-ratio: 3/1;
+
+        & h5 {
+          text-align: center;
+          color: white;
+        }
+
+        & .campoGrafico {
+          height: 85%;
+        }
+      }
+    }
+  }
+}
+
+h1 {
+  margin: 0;
+}
+
+h4 {
+  font-weight: 500;
+  margin: 0;
+}
+
+h5 {
+  font-weight: 400;
+  margin: 0;
+}
+
+.kpi {
+  background-color: #CC9CE7;
+  border-radius: 50px 20px;
+  height: 100%;
+  padding: 0 1%;
+  aspect-ratio: 1.2/1;
+  box-shadow: #311C3D 0px 5px 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  z-index: 99;
+
+  & div {
+    font-weight: bold;
+  }
+}
+
+.kpisGrafico {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.conjunto {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 3% 0;
+  padding-left: 10%;
+}
+
+.colunaEsq {
+  width: 30%;
+  padding-right: 1%;
+  border-radius: 50px 0 0 20px;
+
+  & .kpi {
+    height: auto;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.colunaDir {
+  width: 60%;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.conjunto.detalhado {
+  grid-column: 1 / -1;
+  padding-left: 0;
+
+  & .colunaEsq {
+    background-color: #867391;
+    width: 15%;
+    border-radius: 20px 0 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    & .kpi {
+      border-radius: 20px 50px;
+    }
+
+    .kpiBottom {
+      display: flex;
+    }
+  }
+
+  & .colunaDir {
+    background-color: #867391;
+    width: 70%;
+    border-radius: 0 50px 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & .header .descricaoKpi {
+      width: 30%;
+      padding-right: 5%;
+      aspect-ratio: 4/1;
+    }
+
+    .filtroData {
+      display: flex;
+    }
+
+    .campoGrafico {
+      display: flex;
+    }
+
+    & .botaoExpandir {
+      position: static;
+      display: flex;
+      padding: 0;
+      margin-bottom: 2%;
+      width: 95%;
+      background-color: none;
+      color: #D181FF;
+      z-index: 0;
+      border-radius: 0;
+      box-shadow: none;
+      justify-content: end;
+    }
+  }
+}
+
+h6 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h6:first-child {
+  color: #D181FF;
+}
+
+.kpiBottom {
+  display: none;
+  position: relative;
+  top: -10%;
+  background-color: #7F5C92;
+  width: 88%;
+  padding: 20% 0 8% 0;
+  border-radius: 0 0 10px 20px;
+  justify-content: space-between;
+  box-shadow: 0px 3px 7px #15151b;
+}
+
+.legenda {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.nivel {
+  width: 100%;
+  margin-top: 5%;
+  aspect-ratio: 9/1;
+  background-color: #A86EC8;
+}
+
+.atual {
+  background-color: #D181FF;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.descricaoKpi {
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: -10%;
+  width: 60%;
+  aspect-ratio: 5/1;
+  border-radius: 0 8% 8% 0 / 0 50% 50% 0;
+  padding: 0 5% 0 10%;
+  background-color: #7F5C92;
+  box-shadow: 0px 3px 7px #15151b;
+}
+
+.listaPrioridade {
+  width: 100%;
+  color: #ffffff;
+}
+
+.identificacaoLista {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 30px;
+}
+
+.coluna {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.par {
+  background-color: #715E7D;
+}
+
+.situacao {
+  background-color: yellow;
+  aspect-ratio: 1/1;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.critico {
+  background-color: red;
+}
+
+.filtroData {
+  width: 75%;
+  display: none;
+  flex-direction: column;
+  margin-left: 10%;
+}
+
+.inputFiltro {
+  display: flex;
+  background-color: #7F5C92;
+  width: 85%;
+  justify-content: space-around;
+  border-radius: 2.5% 2.5% 2.5% 2.5% / 50% 50% 50% 50%;
+  box-shadow: 0px 3px 7px #15151b;
+
+  & input {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: start;
+    text-align: start;
+    width: 30%;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  & input:focus {
+    background: none;
+    border: none;
+    outline: none;
+  }
+}
+
+.campoGrafico {
+  background-color: #B29FBD;
+  width: 95%;
+  height: 65%;
+  border-radius: 15px;
+  justify-self: center;
+  display: none;
+  justify-content: center;
+}
+
+.botaoExpandir {
+  position: relative;
+  left: -5%;
+  display: flex;
+  padding: 5% 10%;
+  width: fit-content;
+  background-color: #867391;
+  color: #D181FF;
+  z-index: -1;
+  border-radius: 0 0 30% 0 / 0 0 100% 0;
+}
+
+.divisao {
+  border: white 1px solid;
+}

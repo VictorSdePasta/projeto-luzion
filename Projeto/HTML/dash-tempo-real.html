@@ -6,17 +6,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luzion - Estoque</title>
   <link rel="stylesheet" href="../CSS/header.css">
+<<<<<<< HEAD
+  <link rel="stylesheet" href="../CSS/DashboardTempoReal.css">
+=======
   <link rel="stylesheet" href="../CSS/DashboardEstoque.css">
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
 </head>
 <header>
   <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
   <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+<<<<<<< HEAD
+  <div class="subnav">
+    <div class="expandir">
+      <button class="expandirbtn">CLIENTES</button>
+      <div class="conteudoexpandido">
+        <a href="">CLIENTE 1</a>
+      </div>
+    </div>
+    <div class="divisao"></div>
+    <div class="expandir">
+      <button class="expandirbtn">FILIAIS</button>
+      <div class="conteudoexpandido">
+        <a href="">FILIAL 1</a>
+      </div>
+    </div>
+    <div class="divisao"></div>
+    <div class="expandir">
+      <button class="expandirbtn">BANHEIROS</button>
+      <div class="conteudoexpandido">
+        <a href="">BANHEIRO 1</a>
+      </div>
+    </div>
+  </div>
   <div class="botoesGuia">
     <div class="destaque">
-      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+<<<<<<<< HEAD:Projeto/HTML/dash-tempo-real.html
+      <a href="./tela-login.html" id="entrar">LOGOUT</a>
     </div>
-    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
-    <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
+    <div class="mainnav">
+      <a href="./cadastro-empresa.html" class="selecionado" id="cadastrar">DASHBOARD</a>
+      <div class="divisao"></div>
+      <a href="./SiteCadastroEmpresa.html" class="" id="cadastrar">CONFIGURAÇÕES</a>
+      <div class="divisao"></div>
+      <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
+    </div>
+========
+      <a href="./login.html" id="entrar">LOGOUT</a>
+    </div>
+    <a href="./cadastro-empresa.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
+    <a href="./simulador-financeiro.html" id="simulador">MEU PERFIL</a>
+>>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643:Projeto/HTML/dash-estoque.html
+=======
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./login.html" id="entrar">LOGOUT</a>
+    </div>
+    <a href="./cadastro-usuario.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
+    <a href="./simulador-financeiro.html" id="simulador">MEU PERFIL</a>
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
   </div>
 </header>
 
@@ -24,6 +71,79 @@
   <div class="corpo">
     <div class="pagina">
       <div class="topo">
+<<<<<<< HEAD
+        <div class="conjunto detalhado">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h5>Setor em estado<br>de urgência</h5>
+              <div id="divEstoqueJumbo">
+                <h2>Administrativo</h2>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="listaPrioridade">
+                <div class="identificacaoLista">
+                  Banheiro <div class="divisao"></div> Situação
+                </div>
+                <div class="linha par">
+                  <div class="coluna">
+                    Ala Oeste
+                  </div>
+                  <div class="coluna">
+                    <div class="situacao critico"></div>
+                  </div>
+                </div>
+                <div class="linha">
+                  <div class="coluna">
+                    Ala Leste
+                  </div>
+                  <div class="coluna">
+                    <div class="situacao critico"></div>
+                  </div>
+                </div>
+                <div class="linha par">
+                  <div class="coluna">
+                    Ala Sul
+                  </div>
+                  <div class="coluna">
+                    <div class="situacao"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="legenda">
+              <h6>As cores representam as situações dos banheiros:<br>
+                <span>
+                  <div class="situacao critico"></div>
+                  Vermelho - Estado crítico
+                </span>
+                <span>
+                  <div class="situacao"></div>
+                  Amarelo - Estado de atenção
+                </span>
+              </h6>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                Tempo em estado crítico
+                <h2>1h 37min</h2>
+              </div>
+
+              <h1 class="titulo">Nível de carga dos setores</h1>
+            </div>
+
+            <div class="grafico">
+              <div class="campoGrafico">
+                <canvas id="estoqueJumbo"></canvas>
+              </div>
+              <div class="legenda"><h5>
+                Clique no setor para ver mais detalhes.
+              </h5></div>
+            </div>
+          </div>
+=======
         <div class="kpi">
           <h4>Dias desde última<br>reposição</h4>
           <div id="divUltimaRepo"><h1>2</h1></div>
@@ -36,6 +156,7 @@
         <div class="kpi">
           <h4>Papel com menor<br>quantia</h4>
           <div id="divMenorQtd"><h1>Jumbo</h1></div>
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
         </div>
       </div>
       <div class="kpisGrafico">
@@ -44,7 +165,13 @@
             <div class="kpi">
               <h3>Jumbo</h3>
               <h5>Nível de Estoque</h5>
+<<<<<<< HEAD
+              <div id="divEstoqueJumbo">
+                <h1>75</h1>
+              </div>
+=======
               <div id="divEstoqueJumbo"><h1>75</h1></div>
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
               <h4>Rolos</h4>
             </div>
             <div class="kpiBottom">
@@ -81,7 +208,11 @@
               </div>
             </div>
 
+<<<<<<< HEAD
+            <div class="campoGrafico">
+=======
             <div class="grafico">
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
               <canvas id="estoqueJumbo"></canvas>
             </div>
 
@@ -96,7 +227,13 @@
             <div class="kpi">
               <h3>Jumbo</h3>
               <h5>Nível de Estoque</h5>
+<<<<<<< HEAD
+              <div id="divEstoqueJumbo">
+                <h1>75</h1>
+              </div>
+=======
               <div id="divEstoqueJumbo"><h1>75</h1></div>
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
               <h4>Rolos</h4>
             </div>
             <div class="kpiBottom">
@@ -133,7 +270,11 @@
               </div>
             </div>
 
+<<<<<<< HEAD
+            <div class="campoGrafico">
+=======
             <div class="grafico">
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
               <canvas id="estoqueJumbo"></canvas>
             </div>
 
@@ -146,7 +287,13 @@
             <div class="kpi">
               <h3>Jumbo</h3>
               <h5>Nível de Estoque</h5>
+<<<<<<< HEAD
+              <div id="divEstoqueJumbo">
+                <h1>75</h1>
+              </div>
+=======
               <div id="divEstoqueJumbo"><h1>75</h1></div>
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
               <h4>Rolos</h4>
             </div>
             <div class="kpiBottom">
@@ -183,7 +330,11 @@
               </div>
             </div>
 
+<<<<<<< HEAD
+            <div class="campoGrafico">
+=======
             <div class="grafico">
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
               <canvas id="estoqueJumbo"></canvas>
             </div>
 
@@ -196,7 +347,13 @@
             <div class="kpi">
               <h3>Jumbo</h3>
               <h5>Nível de Estoque</h5>
+<<<<<<< HEAD
+              <div id="divEstoqueJumbo">
+                <h1>75</h1>
+              </div>
+=======
               <div id="divEstoqueJumbo"><h1>75</h1></div>
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
               <h4>Rolos</h4>
             </div>
             <div class="kpiBottom">
@@ -233,7 +390,11 @@
               </div>
             </div>
 
+<<<<<<< HEAD
+            <div class="campoGrafico">
+=======
             <div class="grafico">
+>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643
               <canvas id="estoqueJumbo"></canvas>
             </div>
 
