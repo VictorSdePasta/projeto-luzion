@@ -227,29 +227,17 @@ input {
 
 
 .entrar button {
-
     display: flex;
-
     flex-direction: row;
-
     justify-content: center;
-
     align-items: center;
-
     border: none;
-
     color: #ffffff;
-
     cursor: pointer;
-
     padding: 10px 15px;
-
     border-radius: 80px;
-
     background-color: #311C3D;
-
     width: 100%;
-
     font-family: 'Roboto', sans-serif;
 
 }
@@ -257,9 +245,7 @@ input {
 
 
 .entrar button:hover {
-
     background-color: #311C3D;
-
     color: #fff;
 
 
@@ -271,17 +257,11 @@ input {
 .email p,
 
 .senha p {
-
     display: flex;
-
     justify-content: center;
-
     color: #311C3D;
-
     margin: 2%;
-
     margin-left: 70px;
-
     width: 50%;
 
 }
@@ -291,25 +271,15 @@ input {
 
 
 .pop {
-
     display: none;
-
     align-items: center;
-
     justify-content: center;
-
     position: fixed;
-
     align-self: center;
-
     justify-self: center;
-
     width: 150%;
-
     height: 150%;
-
     background-color: rgb(0, 0, 0, 0.8);
-
     z-index: 1000;
 
 }
@@ -319,42 +289,25 @@ input {
 .up {
 
     display: none;
-
     flex-direction: column;
-
     position: fixed;
-
     align-items: center;
-
     justify-content: center;
-
     width: 20%;
-
     background-color: #715E7D;
-
     border-radius: 30px;
-
     padding-left: 15px;
-
     padding-right: 15px;
-
     z-index: 1000;
-
     top: 35%
 }
 
 .up button {
-
     border-radius: 300px;
-
     border: none;
-
     background-color: #311C3D;
-
     color: #B29FBD;
-
     padding: 10px;
-
     margin-bottom: 5%;
 
 }

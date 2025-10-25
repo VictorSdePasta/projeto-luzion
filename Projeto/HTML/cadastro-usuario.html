@@ -146,31 +146,69 @@
             pop1.style.display = 'flex';
             up1.style.display = 'flex';
 
-        }
-        if (email == '') {
+        } else if (email == '') {
             pop2.style.display = 'flex';
             up2.style.display = 'flex';
         }
 
-        if (senha == '') {
+       else if (senha == '') {
             pop3.style.display = 'flex';
             up3.style.display = 'flex';
         }
 
-        if (confirmacaoSenha == '' && confirmacaoSenha == senha) {
+        else if (confirmacaoSenha == '' && confirmacaoSenha == senha) {
             pop4.style.display = 'flex';
             up4.style.display = 'flex';
         }
 
-        if (telefone == '') {
+       else if (telefone == '') {
             pop5.style.display = 'flex';
             up5.style.display = 'flex';
+
+                for (let i = 0; i < nome.length; i++) {
+        if (nome.length < 3) {
+            pop1.style.display = 'flex';
+            up1.style.display = 'flex';
+            return;
+        }
+    }
+
+    for (let i = 0; i < senha.length; i++) {
+        if (senha.length < 6) {
+            pop3.style.display = 'flex';
+            up3.style.display = 'flex';
+            return;
+        }
+    }
+
+    for (let i = 0; i < confirmacaoSenha.length; i++) {
+        if (senha !== confirmacaoSenha) {
+            pop4.style.display = 'flex';
+            up4.style.display = 'flex';
+            return;
+        }
+    }
+
+    for (let i = 0; i < telefone.length; i++) {
+        if (telefone.length < 9) {
+            pop5.style.display = 'flex';
+            up5.style.display = 'flex';
+            return;
+        }
+    }
 
 
         } else if (nome != '' && email != ''&& senha != ''&& confirmacaoSenha != ''&& telefone != '') {
             pop6.style.display = 'flex';
             up6.style.display = 'flex';
+
+            setTimeout(function() {
+        fechar(); 
+        window.location.href = "./login.html"; 
+    }, 2000);
+    
         }
+        
 
     }
 
@@ -186,8 +224,13 @@
     pop5.style.display = 'none';
     up5.style.display = 'none';
     pop6.style.display = 'none';
-    up6.style.display = 'none'
+    up6.style.display = 'none';
+
+
+
   }
+
+
 
 
 </script>
