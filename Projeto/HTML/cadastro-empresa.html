@@ -26,16 +26,16 @@
     <div class="corSombra"><br>
         <div class="texto">
             <p>Informe a razão social da sua empresa:</p>
-                <input class="caixa" id="nomeEmpresa"><br>
-                <div class="divmsg" id="erroNomeEmp"></div>
+                <input class="caixa" id="nomeEmpresa">
+                <div class="divmsg" id="erroNomeEmp"></div><br>
 
             <p>Insira nome fantasia:</p>
-                <input class="caixa" id="nomeFantasia"><br>
-                <div id="erroNomeFan"></div>
+                <input class="caixa" id="nomeFantasia">
+                <div class="divmsg" id="erroNomeFan"></div><br>
 
             <p>CNPJ:</p>
                 <input class="caixa" id="cnpj">
-                <div id="erroCnpj"></div>
+                <div class="divmsg" id="erroCnpj"></div>
         </div>
             
             <div class="circulo">
@@ -76,14 +76,40 @@
         var nmFantasia = nomeFantasia.value;
         var numrCnpj = cnpj.value;
 
-        if (nmEmpresa == '') {
-            alert ('Insira o nome da empresa')
-        } if (nmFantasia == '') {
-            alert ('Insira nome fantasia')
-        } if (numrCnpj == '') {
-            alert ('Insira um CNPJ válido')
-        } else {
-        window.location.href = "../HTML/cadastro-usuario.html"
+        if (nomeEmpresa.value == '') {
+            erroNomeEmp.innerHTML = `*Preencha o campo acima*` 
+        } if (nomeFantasia.value == '') {
+            erroNomeFan.innerHTML = `*Preencha o campo acima*`
+        } if (cnpj.value == '') {
+            erroCnpj.innerHTML = `*Preencha o campo acima*`
+        }
+
+        for (let index = 0; index < nmEmpresa.length; index++) {
+
+            if (index < 3) {
+                erroNomeEmp.innerHTML = `*Insira um nome válido.*`
+            } else {
+                erroNomeEmp.innerHTML = ''
+            }
+            for (let index = 0; index < nmFantasia.length; index++) {
+                
+                if (index < 3) {
+                    erroNomeFan.innerHTML = `*Insira um nome válido.*`
+                } else {
+                    erroNomeFan.innerHTML = ''  
+                }
+            
+                for (let index = 1; index < numrCnpj.length; index++) {
+                
+                    if (index < 13) {
+                        erroCnpj.innerHTML = `*Insira um CNPJ Inválido*`
+                    } else {
+                        erroCnpj.innerHTML = ''
+                        alert('Cadastro realizado')
+                        break;
+                    }
+                }
+            }
         }
         
 

@@ -95,3 +95,11 @@
         border: 1px solid;
         border-radius: 100%;
     }
+    .divmsg {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        color: red;
+        padding: 5px;
+        font-weight: bold;
+    }
