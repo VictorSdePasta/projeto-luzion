@@ -24,34 +24,34 @@
     <h1>Simulador<br><b>Financeiro</b></h1>
     <div class="apresentacao">
         <div class="caixa">
-            <p> O simulador financeiro Luzion permite calcular o impacto da nossa solução de monitoramento de papel higiênico nas empresas onde você atua. Ele oferece uma visualização clara da redução de custos, relacionados aos funcionários responsáveis pela reposição e verificação do papel higiênico, além de otimizar o uso de recursos e melhorar o planejamento de compras. Com isso, sua empresa pode operar de forma mais eficiente, reduzindo desperdícios e garantindo a conformidade com as normas de higiene NR 17 e NR 24.</p>
+            <p> O simulador financeiro Luzion permite calcular o impacto da nossa solução em sua empresa e visualizar de forma clara a redução de custos na reposição e verificação dos dispensadores, além de otimizar o uso de recursos. Assim, sua empresa opera com mais eficiência, reduzindo desperdícios e garantindo a conformidade com as normas regulamentadoras NR-17 e NR-24.</p>
+        </div>
+        <div id="pop" class="pop">
+            <div id="up" class="up">
+                <p id="error">
+                </p>
+                <button onclick="fechar()">Fechar</button>
+            </div>
         </div>
     </div>
-    <div class="campoimagem">
+    <div id="iptsimulacao" class="campoimagem">
         <div class="caixa campos">
             <div class="camposipt">
                 <div class="textoipt">
-                    <p>Quantos funcionários monitoram o nível de papel higiênico nos dispensadores</p>
+                    <p>Quantos funcionários verificam o nível de papel higiênico nos dispensadores</p>
                 </div>
-                <div><input class="iptstyle" type="number" id="iptFuncionarios"></div>
+                <input class="iptstyle" type="number" id="iptFuncionarios" placeholder="Quantidade de funcionarios">
                 <div class="textoipt">
-                    <p>Quantidade de dispensadores monitorados por eles</p>
+                    <p>Qual a porcentagem de tempo gasto mensalmente com as verificações do nível de papel higiênico dos
+                        dispensadores</p>
                 </div>
-                <div><input class="iptstyle" type="number" id="iptDispenser"></div>
-                <div class="textoipt">
-                    <p>Valor da hora de trabalho destes funcionários</p>
-                </div>
-                <div><input class="iptstyle" type="number" id="iptValorHora"></div>
-                <div class="textoipt">
-                    <p>Verificações do nível de papel nos dispensadores por dia</p>
-                </div>
-                <div><input class="iptstyle" type="number" id="iptQtdMonitoramento"></div>
+                <input class="iptstyle" type="number" id="iptTempo" placeholder="Porcentagem de tempo gasto">
             </div>
             <div class="bordabotao"><button onclick="validar()">SIMULAR →</button></div>
         </div>
         <div class="simuladorimagem"><img src="../Assets/imgSimulador.png" alt=""></div>
     </div>
-    <div id="divSimulacao"></div>
+    <div id="respostasimulacao" class="resposta"></div>
 </body>
 <footer>
     <div class="main">
@@ -64,7 +64,7 @@
         <div class="contato">
             <p><b>Contatos</b></p>
             <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
-            <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
+            <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com</p>
         </div>
         <div class="redessociais">
             <p><b>Redes Sociais</b></p>
@@ -73,70 +73,66 @@
                         alt=""></a></div>
         </div>
     </div>
-    <div class="autoria"><p>Luzion © 2025</p></div>
+    <div class="autoria">
+        <p>Luzion © 2025</p>
+    </div>
 </footer>
 <script>
     function validar() {
-        let funciorarios = Number(iptFuncionarios.value);
-        let valorHora = Number(iptValorHora.value);
-        let qtdMonitoramento = Number(iptQtdMonitoramento.value);
-        let dispenser = Number(iptDispenser.value);
-        if (funciorarios <= 0) {
-            alert('Insira a quantidade de funcionários que realizam o monitoramento do nível de papel higiênico nos banheiros.');
-        } else if (dispenser <= 0) {
-            alert('Insira a quantidade de dispensers que os funcinários monitoram.');
-        } else if (valorHora <= 0) {
-            alert('Insira o valor da hora trabalhada dos funcinários que realizam o monitoramento do nível de papel higiênico nos banheiros');
-        } else if (qtdMonitoramento <= 0) {
-            alert('Insira quantas vezes ao dia são reazlizadas as verificações de papel higiênico nos banheiros.');
+        let funcionarios = Number(iptFuncionarios.value);
+        let tempo = Number(iptTempo.value);
+        let erro = '';
+        if (funcionarios <= 0) {
+            erro += 'Preencha a quantidade de funcionários <br>';
+        }
+        if (tempo <= 0) {
+            erro += 'Preencha a porcentagem de tempo gasto com verificações';
+        }
+        if (erro != '') {
+            error.innerHTML = erro;
+            pop.style.display = 'flex';
+            up.style.display = 'flex';
         } else {
             simular();
         }
     }
     function simular() {
-        let funciorarios = Number(iptFuncionarios.value);
-        let valorHora = Number(iptValorHora.value);
-        let qtdMonitoramento = Number(iptQtdMonitoramento.value);
-        let dispenser = Number(iptDispenser.value);
-        let verificacao = funciorarios * dispenser * 2;
-        let verificacaoDia = verificacao * qtdMonitoramento;
-        let verificacaoMes = verificacaoDia * 30;
-        let verificacaoAno = verificacaoMes * 12;
-        let valorDia = (verificacaoDia * valorHora) / 60;
-        let valorMes = valorDia * 30;
-        let valorAno = valorMes * 12;
-        let reducaoDia = valorDia * 0.9;
-        let reducaoMes = valorMes * 0.9;
-        let reducaoAno = valorAno * 0.9;
-        let minutoDia = verificacaoDia % 60;
-        let minutoMes = verificacaoMes % 60;
-        let minutoAno = verificacaoAno % 60;
-        let horaDia = (verificacaoDia - minutoDia) / 60;
-        let horaMes = (verificacaoMes - minutoMes) / 60;
-        let horaAno = (verificacaoAno - minutoAno) / 60;
-        let redHoraDia = verificacaoDia * 0.9;
-        let reducaoMinutoDia = redHoraDia % 60;
-        let reducaoHoraDia = (redHoraDia - reducaoMinutoDia) / 60;
-        let redHoraMes = verificacaoMes * 0.9;
-        let reducaoMinutoMes = redHoraMes % 60;
-        let reducaoHoraMes = (redHoraMes - reducaoMinutoMes) / 60;
-        let redHoraAno = verificacaoAno * 0.9;
-        let reducaoMinutoAno = redHoraAno % 60;
-        let reducaoHoraAno = (redHoraAno - reducaoMinutoAno) / 60;
-        divSimulacao.innerHTML = `  <div class="resposta">
-                                        <div class="textoresposta"><p>Considerando um tempo médio de 2 minutos para realizar o monitoramento de cada dispenser, onde esse tempo indica a verificação e o deslocamento entre cada dispenser, nossa solução pode reduzir em até 90% o tempo gasto neste processo:</p></div>
-                                        <div class="caixaresultado">
-                                            <div class="resultado">
-                                                <h5>Diariamente</h5><p><b>Tempo gasto:</b> ${horaDia} horas e ${minutoDia} minutos.<br><b>Custo:</b> ${valorDia.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraDia)} horas e ${Math.floor(reducaoMinutoDia)} minutos.<br><b>Custo:</b> ${reducaoDia.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
-                                            </div>
-                                            <div class="resultado">
-                                                <h5>Mensalmente</h5><p><b>Tempo gasto:</b> ${horaMes} horas e ${minutoMes} minutos.<br><b>Custo:</b>${valorMes.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraMes)} horas e ${Math.floor(reducaoMinutoMes)} minutos.<br><b>Custo:</b> ${reducaoMes.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
-                                            </div>
-                                            <div class="resultado">
-                                                <h5>Anualmente</h5><p><b>Tempo gasto:</b> ${horaAno} horas e ${minutoAno} minutos.<br><b>Custo:</b> ${valorAno.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.<br><p><b>Reduziremos esses valores em até:</b><br><br><b>Tempo gasto:</b> ${Math.floor(reducaoHoraAno)} horas e ${Math.floor(reducaoMinutoAno)} minutos.<br><b>Custo:</b> ${reducaoAno.toLocaleString('pt-br', { style: "currency", currency: "BRL" })}.</p>
-                                            </div>
-                                        </div>
-                                    </div>`
+        let funcionarios = Number(iptFuncionarios.value);
+        let tempo = Number(iptTempo.value);
+        let tempoPercent = tempo / 100;
+        let salario = 1717.20;
+        let solucao = 0.4;
+        let prejuizo = tempoPercent * salario * funcionarios;
+        let prejuizoAnual = tempoPercent * salario * funcionarios * 12;
+        let ganho = prejuizo * solucao;
+        let ganhoAnual = prejuizoAnual * solucao;
+        respostasimulacao.innerHTML = `<div class="caixa campos camposresposta">
+            <div class="resultadosimulacao">
+                <h1>Resultado da simulação</h1>
+                <h4>Perdendo <b>${prejuizo.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</b> por mês*
+                    somente para verificar o nível de papel higiênico?</h4>
+                <h4>Com a Luzion sua empresa economiza até <b>${ganho.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL"
+        })}</b> por mês!*</h4>
+                <h4>Cadastre-se e elimine verificações desnecessárias!</h4>
+                <p><i>*O cálculo desta sumulação é realizado identificando ${tempo}% (tempo informado pelo usuário) do salário do funcionário e na
+                        quantidade de funcionários que verificam os dispensadores de papel higiênico. Nossa solução
+                        ajudará sua empresa a reduzir em até 40% o tempo gasto com verificações desnecessárias.
+                        Utilizamos o valor de R$1.717,20 (piso salarial mínimo divulgado pela SEAC-SP para o ano de
+                        2025).</i></p>
+            </div>
+            <div class="bordabotao">
+                <a href="cadastro-empresa.html"><button class="pisca">CADASTRE-SE</button></a>
+            </div>
+        </div>
+        <div class="simuladorimagem"><img src="../Assets/Simulador-banheiro.png" alt=""></div>`;
+        respostasimulacao.style.display = 'flex';
+        iptsimulacao.style.display = 'none';
+    }
+    function fechar() {
+        pop.style.display = 'none';
+        up.style.display = 'none';
     }
 </script>
 
