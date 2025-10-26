@@ -15,8 +15,8 @@
         <div class="destaque">
             <a href="./login.html" id="entrar">ENTRAR</a>
         </div>
-        <a href="./cadastro-empresa.html"  class="selecionado" id="cadastrar">CADASTRAR</a>
-        <a href="./simulador-financeiro.html"id="simulador">SIMULADOR</a>
+        <a href="./cadastro-empresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
+        <a href="./simulador-financeiro.html" id="simulador">SIMULADOR</a>
         <a href="./homepage.html" id="home">HOME</a>
     </div>
 </header>
@@ -44,7 +44,7 @@
     <div id="pop3" class="pop">
         <div id="up3" class="up">
 
-            <p>Insira uma senha válida</p>
+            <p>Insira uma senha</p>
 
             <button onclick="fechar()">Fechar</button>
         </div>
@@ -53,7 +53,7 @@
     <div id="pop4" class="pop">
         <div id="up4" class="up">
 
-            <p>Insira a confirmação válida e igual a senha</p>
+            <p>A senha e a confirmação de senha devem ser iguais</p>
 
             <button onclick="fechar()">Fechar</button>
         </div>
@@ -68,7 +68,7 @@
         </div>
     </div>
 
-        <div id="pop6" class="pop">
+    <div id="pop6" class="pop">
         <div id="up6" class="up">
 
             <p>Cadatro realizado</p>
@@ -78,35 +78,42 @@
     </div>
 
     <div class="corpo">
-           <h1>Cadastro<br><b>Usuário</b></h1>
+        <div class="completo">
+            <div class="inputs">
+                <h1>Cadastro<br><b>Usuário</b></h1>
+                <div class="cadastro">
+                    <div class="linha">
+                        <p>Nome:
+                        <div class="iptCampo"><input id="ipt_nome" placeholder="Seu nome"></div>
+                        </p>
 
-        <div class="cadastro">
-            <div class="linha">
-                <p>Nome:
-                <div class="iptCampo"></div><input id="ipt_nome"></p>
+                        <p>Email:
+                        <div class="iptCampo"><input id="ipt_email" placeholder="silvalu@email.com"></div>
+                        </p>
 
-                <p>Email:
-                <div class="iptCampo"></div><input id="ipt_email"></p>
+                        <p>Telefone:
+                        <div class="iptCampo"><input type="number" id="ipt_telefone" placeholder="(99)99999-9999"></div>
+                        </p>
 
-                <p>Senha:
-                <div class="iptCampo"></div><input id="ipt_senha"></p>
+                        <p>Senha:
+                        <div class="iptCampo"><input type="password" id="ipt_senha" placeholder="******"></div>
+                        </p>
 
-                <p>Confirme a senha:
-                <div class="iptCampo"></div><input id="ipt_confirmacaoSenha"></p>
-
-                <p>Telefone:
-                <div class="iptCampo"></div><input id="ipt_telefone"></p>
-            </div>
-            <div class="coluna">
-                <div class="botaocadastrar">
-
-                    <a href="./cadastro-empresa.html">Não tenho cadastro</a>
-                    <button onclick="cadastrar()">CADASTRAR <img src="../Assets/arrow-2-right-long.png" alt=""></button>
+                        <p>Confirme a senha:
+                        <div class="iptCampo"><input type="password" id="ipt_confirmacaoSenha" placeholder="******">
+                        </div>
+                        </p>
+                    </div>
+                    <div class="coluna">
+                        <div class="botaocadastrar">
+                            <button onclick="cadastrar()">CADASTRAR →</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <img src="../Assets/mulher-telefone.png" alt="">
         </div>
     </div>
-
 </body>
 
 <footer>
@@ -142,93 +149,62 @@
         var confirmacaoSenha = ipt_confirmacaoSenha.value;
         var telefone = ipt_telefone.value;
 
-        if (nome == '') {
+        if (nome == '' || nome.length < 3) {
             pop1.style.display = 'flex';
             up1.style.display = 'flex';
 
-        } else if (email == '') {
+        } else if (email == '' || !email.includes('@') || !email.includes('.com')) {
             pop2.style.display = 'flex';
             up2.style.display = 'flex';
-        }
 
-       else if (senha == '') {
+        } else if (senha == '') {
             pop3.style.display = 'flex';
             up3.style.display = 'flex';
-        }
 
-        else if (confirmacaoSenha == '' && confirmacaoSenha == senha) {
+        } else if (senha.length < 6) {
+            pop3.style.display = 'flex';
+            up3.style.display = 'flex';
+
+        } else if (senha != confirmacaoSenha) {
             pop4.style.display = 'flex';
             up4.style.display = 'flex';
-        }
 
-       else if (telefone == '') {
+        } else if (telefone == '') {
             pop5.style.display = 'flex';
             up5.style.display = 'flex';
 
-                for (let i = 0; i < nome.length; i++) {
-        if (nome.length < 3) {
-            pop1.style.display = 'flex';
-            up1.style.display = 'flex';
-            return;
-        }
-    }
-
-    for (let i = 0; i < senha.length; i++) {
-        if (senha.length < 6) {
-            pop3.style.display = 'flex';
-            up3.style.display = 'flex';
-            return;
-        }
-    }
-
-    for (let i = 0; i < confirmacaoSenha.length; i++) {
-        if (senha !== confirmacaoSenha) {
-            pop4.style.display = 'flex';
-            up4.style.display = 'flex';
-            return;
-        }
-    }
-
-    for (let i = 0; i < telefone.length; i++) {
-        if (telefone.length < 9) {
+        } else if (telefone.length < 11) {
             pop5.style.display = 'flex';
             up5.style.display = 'flex';
-            return;
-        }
-    }
 
-
-        } else if (nome != '' && email != ''&& senha != ''&& confirmacaoSenha != ''&& telefone != '') {
+        } else {
             pop6.style.display = 'flex';
             up6.style.display = 'flex';
 
-            setTimeout(function() {
-        fechar(); 
-        window.location.href = "./login.html"; 
-    }, 2000);
-    
+            setTimeout(function () {
+                fechar();
+                window.location.href = "./login.html";
+            }, 2000);
         }
-        
-
     }
 
-        function fechar() {
-    pop1.style.display = 'none';
-    up1.style.display = 'none';
-    pop2.style.display = 'none';
-    up2.style.display = 'none';
-    pop3.style.display = 'none';
-    up3.style.display = 'none';
-    pop4.style.display = 'none';
-    up4.style.display = 'none';
-    pop5.style.display = 'none';
-    up5.style.display = 'none';
-    pop6.style.display = 'none';
-    up6.style.display = 'none';
+    function fechar() {
+        pop1.style.display = 'none';
+        up1.style.display = 'none';
+        pop2.style.display = 'none';
+        up2.style.display = 'none';
+        pop3.style.display = 'none';
+        up3.style.display = 'none';
+        pop4.style.display = 'none';
+        up4.style.display = 'none';
+        pop5.style.display = 'none';
+        up5.style.display = 'none';
+        pop6.style.display = 'none';
+        up6.style.display = 'none';
 
 
 
-  }
+    }
 
 
 
