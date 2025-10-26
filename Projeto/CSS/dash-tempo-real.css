@@ -24,6 +24,10 @@ h2 {
   padding: 0 1%;
 }
 
+.cliente h1 {
+  color: white;
+}
+
 .topo {
   display: flex;
   align-items: center;
@@ -243,6 +247,8 @@ h3 {
         }
 
         & h4:first-child {
+          margin: 5% 0;
+          font-weight: bold;
           justify-content: center;
           text-align: center;
         }

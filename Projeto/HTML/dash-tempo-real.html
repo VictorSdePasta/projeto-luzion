@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luzion - Estoque</title>
+  <title>Luzion - Tempo Real</title>
   <link rel="stylesheet" href="../CSS/header.css">
   <link rel="stylesheet" href="../CSS/dash-tempo-real.css">
 </head>
@@ -51,7 +51,11 @@
 <body>
   <div class="corpo">
     <div class="pagina">
+      <div class="cliente">
+        <h1>CLIENTE XPTO</h1>
+      </div>
       <div class="topo">
+
         <div class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
@@ -111,12 +115,12 @@
                 <h2>1h 37min</h2>
               </div>
 
-              <h1 class="titulo">Nível de carga dos setores</h1>
+              <h1 class="titulo">Nível de abastecimento dos setores</h1>
             </div>
 
             <div class="grafico">
               <div class="campoGrafico">
-                <canvas id="graficoAdministrativo"></canvas>
+                <canvas id="graficoSetores"></canvas>
               </div>
               <div class="legenda">
                 <h5>
@@ -127,7 +131,9 @@
           </div>
         </div>
       </div>
+
       <div class="kpisGrafico">
+        <!--  -->
         <div class="divisaSetor">
           <div class="linhaDivisa"></div>
           <h1>ADMINISTRATIVO</h1>
@@ -145,6 +151,41 @@
               <div class="legendaSituacao">
                 <h4>Situação do Banheiro</h4>
                 <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">2</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">3</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h2>Nível de abastecimento dos dispensadores</h2>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoAlaOeste"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Ocultar</div>
+          </div>
+        </div>
+
+        <!-- -->
+        <div class="conjunto">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Leste</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
                 <h4>Crítico: <div id="divDispensadoresCritico">5</div>
                 </h4>
                 <h4>Alerta: <div id="divDispensadoresCritico">7</div>
@@ -155,26 +196,57 @@
           <div class="colunaDir">
             <div class="header">
               <div class="descricaoKpi">
-                <h2>Nível de carga dos dispensadores</h2>
+                <h3>Situação do banheiro: <div class="situacao"></div>
+                </h3>
               </div>
             </div>
-
-            <div class="campoGrafico">
-              <canvas id="estoqueJumbo"></canvas>
-            </div>
-
-            <div class="botaoExpandir">Ocultar</div>
+            <div class="campoGrafico"> <canvas id="graficoAlaLeste"></canvas> </div>
+            <div class="botaoExpandir">Mais Detalhes</div>
           </div>
         </div>
-
-        <!--  -->
-
         <div class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
               <div id="divEstoqueJumbo">
-                <h1>Ala Leste</h1>
+                <h1>Ala Sul</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h3>Situação do banheiro: <div class="situacao"></div>
+                </h3>
+              </div>
+            </div>
+            <div class="campoGrafico"> <canvas id="graficoAlaSul"></canvas> </div>
+            <div class="botaoExpandir">Mais Detalhes</div>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="divisaSetor">
+          <div class="linhaDivisa"></div>
+          <h1>CONTÁBIL</h1>
+        </div>
+
+        <div class="conjunto detalhado">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Fiscal</h1>
               </div>
             </div>
             <div class="kpiBottom">
@@ -198,12 +270,206 @@
             </div>
 
             <div class="campoGrafico">
-              <canvas id="estoqueJumbo"></canvas>
+              <canvas id="graficoAlaFiscal"></canvas>
             </div>
 
             <div class="botaoExpandir">Mais Detalhes</div>
           </div>
         </div>
+
+        <!--  -->
+
+        <div class="conjunto">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Patrimonial</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h3>Situação do banheiro:
+                  <div class="situacao"></div>
+                </h3>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoAlaPatrimonial"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Mais Detalhes</div>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="divisaSetor">
+          <div class="linhaDivisa"></div>
+          <h1>RH</h1>
+        </div>
+
+        <div class="conjunto detalhado">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Convivência</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">2</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">3</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h2>Nível de abastecimento dos dispensadores</h2>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoAlaConvivencia"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Ocultar</div>
+          </div>
+        </div>
+
+        <!--  -->
+
+        <div class="conjunto">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Treinamento</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h3>Situação do banheiro:
+                  <div class="situacao"></div>
+                </h3>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoAlaTreinamento"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Mais Detalhes</div>
+          </div>
+        </div>
+
+        <div class="conjunto">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Benefícios</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h3>Situação do banheiro:
+                  <div class="situacao"></div>
+                </h3>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoAlaBeneficios"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Mais Detalhes</div>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="divisaSetor">
+          <div class="linhaDivisa"></div>
+          <h1>OPERACIONAL</h1>
+        </div>
+
+        <div class="conjunto detalhado">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Norte</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">2</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">3</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h2>Nível de abastecimento dos dispensadores</h2>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoOpeAlaNorte"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Ocultar</div>
+          </div>
+        </div>
+
+        <!--  -->
 
         <div class="conjunto">
           <div class="colunaEsq">
@@ -234,10 +500,122 @@
             </div>
 
             <div class="campoGrafico">
-              <canvas id="estoqueJumbo"></canvas>
+              <canvas id="graficoOpeAlaSul"></canvas>
             </div>
 
             <div class="botaoExpandir">Mais Detalhes</div>
+          </div>
+        </div>
+
+        <div class="conjunto">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Leste</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h3>Situação do banheiro:
+                  <div class="situacao"></div>
+                </h3>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoOpeAlaLeste"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Mais Detalhes</div>
+          </div>
+        </div>
+
+        <div class="conjunto">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Oeste</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h3>Situação do banheiro:
+                  <div class="situacao"></div>
+                </h3>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoOpeAlaOeste"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Mais Detalhes</div>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="divisaSetor">
+          <div class="linhaDivisa"></div>
+          <h1>FINANCEIRO</h1>
+        </div>
+
+        <div class="conjunto detalhado">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h2>Banheiro</h2>
+              <div id="divEstoqueJumbo">
+                <h1>Ala Cofre</h1>
+              </div>
+            </div>
+            <div class="kpiBottom">
+              <div class="legendaSituacao">
+                <h4>Situação do Banheiro</h4>
+                <h4>Dispensadores em estado:</h4>
+                <h4>Crítico: <div id="divDispensadoresCritico">2</div>
+                </h4>
+                <h4>Alerta: <div id="divDispensadoresCritico">3</div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                <h2>Nível de abastecimento dos dispensadores</h2>
+              </div>
+            </div>
+
+            <div class="campoGrafico">
+              <canvas id="graficoAlaCofre"></canvas>
+            </div>
+
+            <div class="botaoExpandir">Ocultar</div>
           </div>
         </div>
 
@@ -247,16 +625,51 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
 <script>
+  const setorCrit = {
+    type: 'line',
+    yMin: 25,
+    yMax: 25,
+    borderColor: 'red',
+    borderWidth: 2,
+    borderDash: [6, 6]
+  }
 
+  const setorAten = {
+    type: 'line',
+    yMin: 75,
+    yMax: 75,
+    borderColor: 'yellow',
+    borderWidth: 2,
+    borderDash: [6, 6]
+  }
 
-  const ctx = document.getElementById('graficoAdministrativo');
+  const dispenserCrit = {
+    type: 'line',
+    yMin: 15,
+    yMax: 15,
+    borderColor: 'red',
+    borderWidth: 2,
+    borderDash: [6, 6]
+  }
+
+  const dispenserAten = {
+    type: 'line',
+    yMin: 40,
+    yMax: 40,
+    borderColor: 'yellow',
+    borderWidth: 2,
+    borderDash: [6, 6]
+  }
+
+  const ctx = document.getElementById('graficoSetores');
 
   new Chart(ctx, {
-    type: 'bar',
     data: {
-      labels: ['Administrativo', 'Comercial', 'RH', 'Operacional', 'Financeiro'],
+      labels: ['Administrativo', 'Contábil', 'RH', 'Operacional', 'Financeiro'],
       datasets: [{
+        type: 'bar',
         label: '',
         data: [23, 89, 57, 65, 97, 40],
         backgroundColor: 'rgba(127, 92, 146, 100)'
@@ -266,6 +679,12 @@
       plugins: {
         legend: {
           display: false
+        },
+        annotation: {
+          annotations: {
+            setorCrit,
+            setorAten
+          }
         }
       },
       responsive: true,
@@ -273,7 +692,7 @@
       scales: {
         x: {
           ticks: {
-            color: '', // Cor dos valores no eixo X
+            color: '#5A4168',
             font: {
               size: 14,
               weight: 'bold'
@@ -281,8 +700,8 @@
           },
           title: {
             display: true,
-            text: 'Horário',
-            color: 'black',
+            text: 'Setores',
+            color: '#5A4168',
             font: {
               size: 14,
               weight: 'bold'
@@ -290,10 +709,933 @@
           }
         },
         y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
           title: {
             display: true,
-            text: 'Nível do estoque(%)',
-            color: 'black',
+            text: 'Índice de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // Banheiros
+
+  const ctx1 = document.getElementById('graficoAlaOeste');
+
+  new Chart(ctx1, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4', 'Cabine 5'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [14, 37, 40, 10, 67],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx2 = document.getElementById('graficoAlaLeste');
+
+  new Chart(ctx2, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [23, 14, 27, 50],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx3 = document.getElementById('graficoAlaSul');
+
+  new Chart(ctx3, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [13, 89, 30, 37],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // [Setor] 
+
+  // Banheiros
+
+  const ctx4 = document.getElementById('graficoAlaFiscal');
+
+  new Chart(ctx4, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4', 'Cabine 5'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [14, 37, 40, 10, 67],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx5 = document.getElementById('graficoAlaPatrimonial');
+
+  new Chart(ctx5, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [23, 14, 27, 50],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx6 = document.getElementById('graficoAlaConvivencia');
+
+  new Chart(ctx6, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [13, 89, 30, 37],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // [Setor] 
+
+  // Banheiros
+
+  const ctx7 = document.getElementById('graficoAlaTreinamento');
+
+  new Chart(ctx7, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4', 'Cabine 5'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [14, 37, 40, 10, 67],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx8 = document.getElementById('graficoAlaBeneficios');
+
+  new Chart(ctx8, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [23, 14, 27, 50],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx9 = document.getElementById('graficoOpeAlaNorte');
+
+  new Chart(ctx9, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [13, 89, 30, 37],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // [Setor] 
+
+  // Banheiros
+
+  const ctx10 = document.getElementById('graficoOpeAlaSul');
+
+  new Chart(ctx10, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4', 'Cabine 5'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [14, 37, 40, 10, 67],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx11 = document.getElementById('graficoOpeAlaLeste');
+
+  new Chart(ctx11, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [23, 14, 27, 50],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx12 = document.getElementById('graficoOpeAlaOeste');
+
+  new Chart(ctx12, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [13, 89, 30, 37],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // [Setor] 
+
+  // Banheiros
+
+  const ctx13 = document.getElementById('graficoAlaCofre');
+
+  new Chart(ctx13, {
+    data: {
+      labels: ['Cabine 1', 'Cabine 2', 'Cabine 3', 'Cabine 4', 'Cabine 5'],
+      datasets: [{
+        type: 'bar',
+        label: '',
+        data: [14, 37, 40, 10, 67],
+        backgroundColor: 'rgba(127, 92, 146, 100)'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        annotation: {
+          annotations: {
+            dispenserCrit,
+            dispenserAten
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Dispensadores',
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        y: {
+          max: 100,
+          ticks: {
+            color: '#5A4168',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Nível de Abastecimento(%)',
+            color: '#5A4168',
             font: {
               size: 14,
               weight: 'bold'
