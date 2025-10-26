@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luzion - Estoque</title>
   <link rel="stylesheet" href="../CSS/header.css">
-  <link rel="stylesheet" href="../CSS/DashboardTempoReal.css">
+  <link rel="stylesheet" href="../CSS/dash-tempo-real.css">
 </head>
 
 <header>
@@ -272,6 +272,13 @@
       maintainAspectRatio: false,
       scales: {
         x: {
+          ticks: {
+            color: '', // Cor dos valores no eixo X
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
           title: {
             display: true,
             text: 'Horário',
