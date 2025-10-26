@@ -1,29 +1,29 @@
 create database luzion;
 use luzion;
 
-create table Facility (
-  idFacility int primary key auto_increment,
+create table Empresa (
+  idEmpresa int primary key auto_increment,
   razaoSocial varchar(100) not null unique,
   nomeFantasia varchar(100) not null,
   cnpj char(11) not null unique,
   contrato tinyint
 );
 
-insert into Facility (razaoSocial,nomeFantasia,cnpj,contrato) values
+insert into Empresa (razaoSocial,nomeFantasia,cnpj,contrato) values
 ('facilitariamos a sua vida LTDA','Facilitariamos TUDO','00300300300',2),
 ('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',0),
 ('servicos felicity LTDA','Felicity em te ajudar','00200200200',1);
 
-create table Empresa (
-  idEmpresa int primary key auto_increment,
+create table Cliente (
+  idCliente int primary key auto_increment,
   razaoSocial varchar(100) not null unique,
   nomeFantasia varchar(100) not null,
   cnpj char(14) not null unique,
-  fkFacility int not null,
-  constraint fkEmpresaFacility foreign key (fkFacility) references Facility(idFacility)
+  fkEmpresa int not null,
+  constraint fkClienteEmpresa foreign key (fkEmpresa) references Empresa(idEmpresa)
 );
 
-insert into Empresa (razaoSocial,nomeFantasia,cnpj,fkFacility) values
+insert into Cliente (razaoSocial,nomeFantasia,cnpj,fkEmpresa) values
 ('SenGases LTDA','SenGas','00300300300',1),
 ('SmartsBeefs LTDA','SmartBeef','00400400400',1),
 ('Vegetal Temperature Transformation Technology LTDA','V3T','00500500500',2),
@@ -51,13 +51,13 @@ insert into Endereco (logradouro,numero,cep,estado,uf) values
 create table Filial (
   idFilial int primary key auto_increment,
   titulo varchar(100),
-  fkEmpresa int,
-  constraint fkFilialEmpresa foreign key (fkEmpresa) references Empresa(idEmpresa),
+  fkCliente int,
+  constraint fkFilialCliente foreign key (fkCliente) references Cliente(idCliente),
   fkEndereco int,
   constraint fkFilialEndereco foreign key (fkEndereco) references Endereco(idEndereco)
 );
 
-insert into Filial (titulo,fkEmpresa,fkEndereco) values
+insert into Filial (titulo,fkCliente,fkEndereco) values
 ('Sede SenGas',1,1),
 ('Sede SmartBeef',2,2),
 ('Sede V3T',3,3),
@@ -122,27 +122,28 @@ insert into Estoque (titulo,altura,largura,profundidade,fkFilial,fkPapelHigienic
 create table Banheiro (
   idBanheiro int primary key auto_increment,
   titulo varchar(100),
+  setor varchar(100),
   fkFilial int,
   constraint fkBanheiroFilial foreign key (fkFilial) references Filial(idFilial)
 );
 
-insert into Banheiro (titulo,fkFilial) values
-('Terreo',1),
-('Terreo',2),
-('Terreo',3),
-('Terreo',4),
-('Terreo',5),
-('Terreo 1',6),
-('Terreo 2',6),
-('Terreo 3',6),
-('Andar 1',1),
-('Andar 1',2),
-('Andar 1',3),
-('Andar 2',2),
-('Andar 2',3),
-('Andar 2 - Funcionarios',6),
-('Andar 2 - Publico',6),
-('Andar 3',6);
+insert into Banheiro (titulo, setor, fkFilial) values
+('Ala Sul','Terreo',1),
+('Ala Sul', 'Terreo', 2),
+('Ala Norte','Terreo',3),
+('Ala Norte','Terreo',4),
+('Ala Norte','Terreo',5),
+('Ala Leste','Terreo',6),
+('Ala Leste', 'Terreo',6),
+('Ala Oeste','Terreo',6),
+('1','Andar 1',1),
+('2','Andar 1',2),
+('3','Andar 1',3),
+('1','Andar 2',2),
+('1','Andar 2',3),
+('1','Andar 2 - Funcionarios',6),
+('2','Andar 2 - Publico',6),
+('1','Andar 3',6);
 
 create table Dispenser (
   idDispenser int primary key auto_increment,
@@ -511,31 +512,34 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 (8, '2025-11-14 20:00:00', 56),
 (8, '2025-11-15 08:00:00', 56);
 
-select f.nomeFantasia as Facility,
-  e.nomeFantasia as Empresa,
+select e.nomeFantasia as Empresa,
+  c.nomeFantasia as 'Empresa Cliente',
   fl.titulo as Filial,
   fun.nome as Funcionario,
   fun.email as 'E-mail',
   fun.telefone as Contato
-from Facility as f join Empresa as e on e.fkFacility = f.idFacility
-join Filial as fl on e.idEmpresa = fl.fkEmpresa 
+from Empresa as e join Cliente as c on c.fkEmpresa = e.idEmpresa
+join Filial as fl on c.idCliente = fl.fkCliente
 join Funcionario as fun on fl.idFilial = fun.fkFilial;
 
-select fy.nomeFantasia as Facility,
-  e.nomeFantasia as 'Contratante Facility',
-  fl.titulo as 'Filial a prestar serviço'
-from Facility as fy join Empresa as e on idFacility = fkFacility join Filial as fl on fkEmpresa = idEmpresa;
+select e.nomeFantasia as Empresa,
+  e.nomeFantasia as 'Empresa Cliente',
+  fl.titulo as 'Filial'
+from Empresa as e join Cliente as c on idEmpresa = fkEmpresa join Filial as fl on fkCliente = idCliente;
 
-select titulo, concat(logradouro, ' ', numero, ' - CEP: ', cep) as Endereço from Filial join Endereco on fkFilial = idFilial;
+select titulo, concat(logradouro, ' ', numero, ' - CEP: ', cep) as Endereço from Filial join Endereco on fkEndereco = idFilial;
 
-select Filial.titulo as 'Empresa contratante',
-  b.titulo as 'Cabine sanitária', 
-  identificacao as Dispenser, 
-  valor as 'Percentual de consumo', 
-  dtRegistro as 'Data de registro' 
-from Registro join Dispenser on fkDispenser = idDispenser
-    join Banheiro as b on fkBanheiro = idBanheiro
+select identificacao as Dispenser,
+b.titulo as 'Banheiro',
+b.setor as 'Setor',
+Filial.titulo as 'Empresa contratante',   
+valor as 'Percentual de consumo', 
+dtRegistro as 'Data de registro' 
+from Registro
+	join Dispenser on fkDispenser = idDispenser
+    join Banheiro as b on fkFilial = idBanheiro
     join Filial on fkfilial = idFilial
+    join Cliente on fkCliente = idCliente
     join Empresa on fkEmpresa = idEmpresa
-    join Facility on fkFacility = idFacility
-  where Facility.nomeFantasia = 'Felicity em te ajudar'
+  where Empresa.nomeFantasia = 'Facilitariamos TUDO';
+  

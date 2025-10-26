@@ -12,10 +12,9 @@ body {
     flex-direction: column;
     margin: none;
     background-color: #5A4168;
-    background-image: url(../Assets/mulher\ no\ telefone.png);
     background-repeat: no-repeat;
     background-position: right;
-     background-size: contain;
+    background-size: contain;
     color: #ffffff;
    
     
@@ -30,9 +29,9 @@ body {
     display: flex;
     margin-bottom: 5%;
     background-color: #CC9CE7;
-    width: 60%;
-    border-bottom-right-radius: 250px;
-    border-top-right-radius: 250px;
+    width: 90%;
+    border-bottom-right-radius: 300px;
+    border-top-right-radius: 300px;
     font-family: 'Roboto', sans-serif;
     padding-left: 3%;
 }
@@ -41,32 +40,33 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-  
     justify-content: center;
-
-
-
 }
 
 .linha{
     width: 70%;
+    margin-top: 4%;
+    margin-bottom: 4%;
 }
 
 .linha p {
     padding-left: 3%;
     color: #311C3D;
+    margin-top: 0;
+    margin-bottom: 2%;
 }
 
 
 
 .botaocadastrar{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 65%;
+    height: 25%;
+    margin-right: 20%;
     padding: 70px 50px;
     border: solid 1px #000000;
-    border-radius: 60%;
+    border-radius: 80%;
     color: #ffffff;
     font-family: 'Roboto', sans-serif;
 }
@@ -87,17 +87,25 @@ body {
 
 
 
-input {
+.iptCampo input{
     background-color: #ffffff;
     border: none;
+    font-size: 100%;
     width: 75%;
-    height: 30px;
+    padding: 2%;
     border-bottom-right-radius: 190px;
     border-top-right-radius: 190px;
     border-bottom-left-radius: 190px;
     border-top-left-radius: 190px;
     box-shadow: #311c3d8e 1px 3px 5px;
+    outline: none;
     
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  margin: 0;
+  display: none;
 }
 
 button{
@@ -115,6 +123,15 @@ button{
 
 
 
+}
+button:hover {
+    background-color: #442855;
+}
+
+.botaocadastrar button {
+    width: 100%;
+    height: 35%;
+    letter-spacing: 4px;
 }
 
 .pop {
@@ -157,4 +174,19 @@ button{
     padding: 10px;
     margin-bottom: 5%;
 
+}
+.inputs {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    width: 60%;
+}
+
+.completo {
+    display: flex;
+    flex-direction: row;
+}
+
+.completo img{
+    width: 40%;
 }
