@@ -1,6 +1,7 @@
 create database luzion;
 use luzion;
 
+
 create table Facility (
   idFacility int primary key auto_increment,
   razaoSocial varchar(100) not null unique,
@@ -122,27 +123,28 @@ insert into Estoque (titulo,altura,largura,profundidade,fkFilial,fkPapelHigienic
 create table Banheiro (
   idBanheiro int primary key auto_increment,
   titulo varchar(100),
+  setor varchar(100),
   fkFilial int,
   constraint fkBanheiroFilial foreign key (fkFilial) references Filial(idFilial)
 );
 
-insert into Banheiro (titulo,fkFilial) values
-('Terreo',1),
-('Terreo',2),
-('Terreo',3),
-('Terreo',4),
-('Terreo',5),
-('Terreo 1',6),
-('Terreo 2',6),
-('Terreo 3',6),
-('Andar 1',1),
-('Andar 1',2),
-('Andar 1',3),
-('Andar 2',2),
-('Andar 2',3),
-('Andar 2 - Funcionarios',6),
-('Andar 2 - Publico',6),
-('Andar 3',6);
+insert into Banheiro (titulo, setor, fkFilial) values
+('Ala Sul','Terreo',1),
+('Ala Sul', 'Terreo', 2),
+('Ala Norte','Terreo',3),
+('Ala Norte','Terreo',4),
+('Ala Norte','Terreo',5),
+('Ala Leste','Terreo',6),
+('Ala Leste', 'Terreo',6),
+('Ala Oeste','Terreo',6),
+('1','Andar 1',1),
+('2','Andar 1',2),
+('3','Andar 1',3),
+('1','Andar 2',2),
+('1','Andar 2',3),
+('1','Andar 2 - Funcionarios',6),
+('2','Andar 2 - Publico',6),
+('1','Andar 3',6);
 
 create table Dispenser (
   idDispenser int primary key auto_increment,
@@ -511,8 +513,8 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 (8, '2025-11-14 20:00:00', 56),
 (8, '2025-11-15 08:00:00', 56);
 
-select f.nomeFantasia as Facility,
-  e.nomeFantasia as Empresa,
+select f.nomeFantasia as Empresa,
+  e.nomeFantasia as 'Empresa Cliente',
   fl.titulo as Filial,
   fun.nome as Funcionario,
   fun.email as 'E-mail',
@@ -521,21 +523,24 @@ from Facility as f join Empresa as e on e.fkFacility = f.idFacility
 join Filial as fl on e.idEmpresa = fl.fkEmpresa 
 join Funcionario as fun on fl.idFilial = fun.fkFilial;
 
-select fy.nomeFantasia as Facility,
-  e.nomeFantasia as 'Contratante Facility',
-  fl.titulo as 'Filial a prestar serviço'
+select fy.nomeFantasia as Empresa,
+  e.nomeFantasia as 'Empresa Cliente',
+  fl.titulo as 'Filial'
 from Facility as fy join Empresa as e on idFacility = fkFacility join Filial as fl on fkEmpresa = idEmpresa;
 
-select titulo, concat(logradouro, ' ', numero, ' - CEP: ', cep) as Endereço from Filial join Endereco on fkFilial = idFilial;
+select titulo, concat(logradouro, ' ', numero, ' - CEP: ', cep) as Endereço from Filial join Endereco on fkEndereco = idFilial;
 
-select Filial.titulo as 'Empresa contratante',
-  b.titulo as 'Cabine sanitária', 
-  identificacao as Dispenser, 
-  valor as 'Percentual de consumo', 
-  dtRegistro as 'Data de registro' 
-from Registro join Dispenser on fkDispenser = idDispenser
-    join Banheiro as b on fkBanheiro = idBanheiro
+select identificacao as Dispenser,
+b.titulo as 'Banheiro',
+b.setor as 'Setor',
+Filial.titulo as 'Empresa contratante',   
+valor as 'Percentual de consumo', 
+dtRegistro as 'Data de registro' 
+from Registro
+	join Dispenser on fkDispenser = idDispenser
+    join Banheiro as b on fkFilial = idBanheiro
     join Filial on fkfilial = idFilial
     join Empresa on fkEmpresa = idEmpresa
     join Facility on fkFacility = idFacility
-  where Facility.nomeFantasia = 'Felicity em te ajudar'
+  where Facility.nomeFantasia = 'Facilitariamos TUDO';
+  
