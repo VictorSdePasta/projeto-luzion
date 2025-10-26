@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luzion - Cadastrar</title>
-    <link rel="stylesheet" href="../CSS/CadastroEmpresa.css">
+    <title>Luzion - Cadastrar empresa</title>
+    <link rel="stylesheet" href="../CSS/cadastro-empresa.css">
     <link rel="stylesheet" href="../CSS/header.css" />
 </head>
 
 <header>
-    <!-- Header padrão, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>)-->
-    <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
-    <div class="botoesGuia">
-        <div class="destaque">
-            <a href="./login.html" id="entrar">ENTRAR</a>
-        </div>
-        <a href="./cadastro-empresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
-        <a href="./simulador-financeiro.html" id="simulador">SIMULADOR</a>
-        <a href="./homepage.html" id="home">HOME</a>
+  <!-- Header padrão pré-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas antes do acesso a dashboard-->
+  <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia institucional">
+    <div class="destaque">
+      <a href="login.html" id="entrar">ENTRAR</a>
     </div>
+    <a href="cadastro-empresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
+    <div class="divisao"></div>
+    <a href="simulador-financeiro.html" id="simulador">SIMULADOR</a>
+    <div class="divisao"></div>
+    <a href="home-page.html" id="home">HOME</a>
+  </div>
 </header>
 
 <body>
@@ -28,53 +30,56 @@
             <button onclick="fechar()">Fechar</button>
         </div>
     </div>
-
+    <div class="completo">
+<div class="info">
     <h1>Cadastro<br><b>Empresa</b></h1>
-    <div class="corSombra"><br>
+    <div class="corSombra">
         <div class="texto">
             <p>Informe a razão social da sua empresa:</p>
                 <input class="caixa" id="nomeEmpresa" placeholder="Ex: Luzion">
                 <div class="divmsg" id="erroNomeEmp"></div><br>
-
+    
             <p>Insira nome fantasia:</p>
                 <input class="caixa" id="nomeFantasia" placeholder="Ex: Luzion">
                 <div class="divmsg" id="erroNomeFan"></div><br>
-
+    
             <p>CNPJ:</p>
-                <input class="caixa" id="cnpj" placeholder="00.000.000/0000-00">
+                <input class="caixa" type="number" id="cnpj" placeholder="00.000.000/0000-00">
                 <div class="divmsg" id="erroCnpj"></div>
         </div>
-            
             <div class="circulo">
                 <button class="botao2" onclick="logar()">Já tenho cadastro</button> <br>
                 <button class="botao" onclick="cadastrar()">CADASTRAR →</button>   
             </div> 
     </div> 
+</div>
+    <img src="../Assets/mulher-telefone.png" alt="">
+</div>
    
 </body>
 <footer>
-    <div class="main">
-        <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logomarca"></div>
-        <div class="informacoes">
-            <p><b>Informações</b></p>
-            <a href="">Menu</a>
-            <a href="">Sobre nós</a>
-        </div>
-        <div class="contato">
-            <p><b>Contatos</b></p>
-            <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
-            <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
-        </div>
-        <div class="redessociais">
-            <p><b>Redes Sociais</b></p>
-            <div class="icons"><a href=""><img src="../Assets/icon-facebook.png" alt=""></a><a href=""><img
-                        src="../Assets/icon-twitter.png" alt=""></a><a href=""><img src="../Assets/icon-linkedin.png"
-                        alt=""></a></div>
-        </div>
+  <div class="main">
+    <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logomarca"></div>
+    <div class="informacoes">
+      <p><b>Informações</b></p>
+      <a href="home-page.html">Home</a>
+      <a href="simulador-financeiro.html">Simulador Financeiro</a>
     </div>
-    <div class="autoria">
-        <p>Luzion © 2025</p>
+    <div class="contato">
+      <p><b>Contatos</b></p>
+      <p><img src="../Assets/icon-telefone.png" alt=""> (11) 99999-9999</p>
+      <p><img src="../Assets/icon-email.png" alt=""> contato@luzion.com</p>
     </div>
+    <div class="redessociais">
+      <p><b>Redes Sociais</b></p>
+      <div class="icons"><a href=""><img src="../Assets/icon-facebook.png" alt=""></a><a href=""><img
+            src="../Assets/icon-twitter.png" alt=""></a><a href=""><img src="../Assets/icon-linkedin.png" alt=""></a>
+      </div>
+    </div>
+  </div>
+  <div class="autoria">
+    <p>Luzion © 2025</p>
+  </div>
 </footer>
 <script>
    
@@ -126,6 +131,10 @@
         if (validoUm == true && validoDois == true && validoTres) {
             pop1.style.display = 'flex';
             up1.style.display = 'flex';
+            setTimeout(function() {
+        fechar(); 
+        window.location.href = "./cadastro-usuario.html"; 
+    }, 2000);
         }
     }
     

@@ -157,7 +157,7 @@ input {
     text-align: center;
     padding-left: 5%;
     padding-right: 5%;
-    font-size: 2rem;
+    font-size: 20px;
     color: #311C3D;
 }
 
@@ -199,6 +199,10 @@ button {
     color: white;
     font-size: larger;
 }
+
+button:hover {
+        background-color: #442855;
+    }
 
 .pop {
     display: none;

@@ -4,24 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Luzion - Login</title>
     <link rel="stylesheet" href="../CSS/tela-login.css" />
     <link rel="stylesheet" href="../CSS/header.css" />
 </head>
 
 <header>
-    <!-- Header padrão, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>)-->
-    <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
-    <div class="botoesGuia">
-        <div class="destaque">
-            <a href="./tela-login.html" id="entrar" class="selecionado">ENTRAR</a>
-        </div>
-        <a href="./cadastro-empresa.html" id="cadastrar">CADASTRAR</a>
-        <a href="./simulador-financeiro.html" id="simulador">SIMULADOR</a>
-        <a href="./HomePage.html" id="home">HOME</a>
-
+  <!-- Header padrão pré-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas antes do acesso a dashboard-->
+  <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia institucional">
+    <div class="destaque">
+      <a href="login.html" id="entrar">ENTRAR</a>
     </div>
-
+    <a href="cadastro-empresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
+    <div class="divisao"></div>
+    <a href="simulador-financeiro.html" id="simulador">SIMULADOR</a>
+    <div class="divisao"></div>
+    <a href="home-page.html" id="home">HOME</a>
+  </div>
 </header>
 
 
@@ -68,45 +68,42 @@
                 <div class="email">
                     <p>Email:</p>
                 </div>
-                <div class="iptCampo"><input type="text" id="iptEmail"></div>
+                <div class="iptCampo"><input type="text" id="iptEmail" placeholder="Email"></div>
                 <div class="senha">
                 <p>Senha:</p>
                 </div>
-                <div class="iptCampo"><input type="password" id="iptSenha"></div>
+                <div class="iptCampo"><input type="password" id="iptSenha" placeholder="Senha"></div>
             </div>
             <div class="entrar">
                 <p><a href="./cadastro-empresa.html">Não tenho cadastro</a></p>
-                <button onclick="logar()">ENTRAR <img src="../Assets/arrow-2-right-long.png" alt=""></button>
+                <button onclick="logar()">ENTRAR <img src="../Assets/seta-direita.png" alt=""></button>
             </div>
         </div>
     </div>
 </body>
 <footer>
-
-    <div class="main">
-        <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logomarca"></div>
-        <div class="informacoes">
-            <p><b>Informações</b></p>
-            <a href="">Menu</a>
-            <a href="">Sobre nós</a>
-        </div>
-
-        <div class="contato">
-            <p><b>Contatos</b></p>
-            <p><img src="../Assets/icon-telefone.png" alt=""> (11) 99999-9999</p>
-            <p><img src="../Assets/icon-email.png" alt=""> contato@luzion.com</p>
-        </div>
-
-        <div class="redessociais">
-            <p><b>Redes Sociais</b></p>
-            <div class="icons"><a href=""><img src="../Assets/icon-facebook.png" alt=""></a><a href=""><img
-                        src="../Assets/icon-twitter.png" alt=""></a><a href=""><img src="../Assets/icon-linkedin.png"
-                     alt=""></a></div>
-        </div>
+  <div class="main">
+    <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logomarca"></div>
+    <div class="informacoes">
+      <p><b>Informações</b></p>
+      <a href="home-page.html">Home</a>
+      <a href="simulador-financeiro.html">Simulador Financeiro</a>
     </div>
-    <div class="autoria">
-        <p>Luzion © 2025</p>
+    <div class="contato">
+      <p><b>Contatos</b></p>
+      <p><img src="../Assets/icon-telefone.png" alt=""> (11) 99999-9999</p>
+      <p><img src="../Assets/icon-email.png" alt=""> contato@luzion.com</p>
     </div>
+    <div class="redessociais">
+      <p><b>Redes Sociais</b></p>
+      <div class="icons"><a href=""><img src="../Assets/icon-facebook.png" alt=""></a><a href=""><img
+            src="../Assets/icon-twitter.png" alt=""></a><a href=""><img src="../Assets/icon-linkedin.png" alt=""></a>
+      </div>
+    </div>
+  </div>
+  <div class="autoria">
+    <p>Luzion © 2025</p>
+  </div>
 </footer>
 <script>
 
@@ -126,7 +123,7 @@
             up2.style.display = 'flex';
 
         } else if (login == 'contato@luzion.com' && senha == 'Senha123') {
-            window.location.href = './DashboardGeralBanheiro.html';
+            window.location.href = './dash-tempo-real.html';
         }
 
         if (senha != 'Senha123') {

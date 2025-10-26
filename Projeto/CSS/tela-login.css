@@ -58,8 +58,6 @@ body {
 
     margin-right: 3%;
 
-
-
 }
 
 
@@ -80,14 +78,6 @@ body {
 
     padding: 0;
 
-
-
-
-
-
-
-
-
 }
 
 
@@ -97,10 +87,6 @@ body {
 .login {
 
     display: flex;
-
-    margin-top: 100px;
-
-    margin-bottom: 100px;
 
     padding: 0;
 
@@ -116,8 +102,6 @@ body {
 
     border-top-left-radius: 190px;
 
-    text-align: right;
-
     background-color: #CC9CE7;
 
     margin: 0;
@@ -132,13 +116,11 @@ body {
 
     padding-right: 3%;
 
-
-
-
-
 }
 
-
+.iptCampo {
+    padding-left: 20%;
+}
 
 
 
@@ -164,10 +146,17 @@ input {
 
     margin: 0;
 
+    padding-left: 3%;
 }
 
 
+input:focus {
+    outline: none;
+}
 
+input:focus::-webkit-input-placeholder{
+    color: transparent;
+}
 
 
 .entrar {
@@ -213,17 +202,18 @@ input {
 
 
 .entrar p {
-
+    
     margin: 0;
-
+    
     text-align: center;
-
+    
     width: 100%;
-
-
-
+    
 }
 
+.entrar p {
+    font-size: 13.3333px;
+}
 
 
 .entrar button {
@@ -245,13 +235,13 @@ input {
 
 
 .entrar button:hover {
-    background-color: #311C3D;
+    background-color: #442855;
     color: #fff;
-
-
-
 }
 
+.entrar img{
+    width: 20%;
+}
 
 
 .email p,
@@ -261,7 +251,7 @@ input {
     justify-content: center;
     color: #311C3D;
     margin: 2%;
-    margin-left: 70px;
+    margin-left: 2%;
     width: 50%;
 
 }
