@@ -12,38 +12,12 @@
 <header>
   <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
   <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
-  <div class="subnav">
-    <div class="expandir">
-      <button class="expandirbtn">CLIENTES</button>
-      <div class="conteudoexpandido">
-        <a href="">CLIENTE 1</a>
-      </div>
-    </div>
-    <div class="divisao"></div>
-    <div class="expandir">
-      <button class="expandirbtn">FILIAIS</button>
-      <div class="conteudoexpandido">
-        <a href="">FILIAL 1</a>
-      </div>
-    </div>
-    <div class="divisao"></div>
-    <div class="expandir">
-      <button class="expandirbtn">BANHEIROS</button>
-      <div class="conteudoexpandido">
-        <a href="">BANHEIRO 1</a>
-      </div>
-    </div>
-  </div>
   <div class="botoesGuia">
     <div class="destaque">
       <a href="./login.html" id="entrar">LOGOUT</a>
     </div>
     <div class="mainnav">
       <a href="./cadastro-empresa.html" class="selecionado" id="cadastrar">DASHBOARD</a>
-      <div class="divisao"></div>
-      <a href="./cadastro-empresa.html" class="" id="cadastrar">CONFIGURAÇÕES</a>
-      <div class="divisao"></div>
-      <a href="./simulador-financeiro.html" id="simulador">MEU PERFIL</a>
     </div>
   </div>
 </header>
@@ -54,9 +28,9 @@
       <div class="cliente">
         <h1>CLIENTE XPTO</h1>
       </div>
-      <div class="topo">
 
-        <div class="conjunto detalhado">
+      <div class="topo">
+        <div id="divConjunto" class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
               <h5>Setor em estado<br>de urgência</h5>
@@ -96,7 +70,7 @@
               </div>
             </div>
             <div class="legenda">
-              <h6>As cores representam as situações dos banheiros:<br>
+              <h5>As cores representam as situações dos banheiros:<br>
                 <span>
                   <div class="situacao critico"></div>
                   Vermelho - Estado crítico
@@ -105,12 +79,16 @@
                   <div class="situacao"></div>
                   Amarelo - Estado de atenção
                 </span>
-              </h6>
+                <span>
+                  <div class="situacao ideal"></div>
+                  Verde - Estado ideal
+                </span>
+              </h5>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi" class="descricaoKpi">
                 Tempo em estado crítico
                 <h2>1h 37min</h2>
               </div>
@@ -121,11 +99,6 @@
             <div class="grafico">
               <div class="campoGrafico">
                 <canvas id="graficoSetores"></canvas>
-              </div>
-              <div class="legenda">
-                <h5>
-                  Clique no setor para ver mais detalhes.
-                </h5>
               </div>
             </div>
           </div>
@@ -139,7 +112,7 @@
           <h1>ADMINISTRATIVO</h1>
         </div>
 
-        <div class="conjunto detalhado">
+        <div id="divConjunto1" class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -149,18 +122,21 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">2</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">3</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Crítico</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">2</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">3</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi1" class="descricaoKpi">
                 <h2>Nível de abastecimento dos dispensadores</h2>
               </div>
             </div>
@@ -169,12 +145,13 @@
               <canvas id="graficoAlaOeste"></canvas>
             </div>
 
-            <div class="botaoExpandir">Ocultar</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir1" class="conteudoBotao" onclick="abrir1()">Ocultar</div> </div>
           </div>
         </div>
 
         <!-- -->
-        <div class="conjunto">
+
+        <div id="divConjunto2" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -184,27 +161,31 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">2</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">2</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
-                <h3>Situação do banheiro: <div class="situacao"></div>
+              <div id="divDescricaoKpi2" class="descricaoKpi">
+                <h3>Situação do banheiro: <div class="situacao critico"></div>
                 </h3>
               </div>
             </div>
             <div class="campoGrafico"> <canvas id="graficoAlaLeste"></canvas> </div>
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir2" class="conteudoBotao" onclick="abrir2()">Mais Detalhes</div> </div>
           </div>
         </div>
-        <div class="conjunto">
+
+        <div id="divConjunto3" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -214,24 +195,27 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">2</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi3" class="descricaoKpi">
                 <h3>Situação do banheiro: <div class="situacao"></div>
                 </h3>
               </div>
             </div>
             <div class="campoGrafico"> <canvas id="graficoAlaSul"></canvas> </div>
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir3" class="conteudoBotao" onclick="abrir3()">Mais Detalhes</div> </div>
           </div>
         </div>
 
@@ -241,7 +225,7 @@
           <h1>CONTÁBIL</h1>
         </div>
 
-        <div class="conjunto detalhado">
+        <div id="divConjunto4" class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -251,21 +235,22 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Ideal</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">0</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
-                <h3>Situação do banheiro:
-                  <div class="situacao"></div>
-                </h3>
+              <div id="divDescricaoKpi4" class="descricaoKpi">
+                <h2>Nível de abastecimento dos dispensadores</h2>
               </div>
             </div>
 
@@ -273,13 +258,13 @@
               <canvas id="graficoAlaFiscal"></canvas>
             </div>
 
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir4" class="conteudoBotao" onclick="abrir4()">Mais Detalhes</div> </div>
           </div>
         </div>
 
         <!--  -->
 
-        <div class="conjunto">
+        <div id="divConjunto5" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -289,20 +274,23 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Ideal</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">0</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi5" class="descricaoKpi">
                 <h3>Situação do banheiro:
-                  <div class="situacao"></div>
+                  <div class="situacao ideal"></div>
                 </h3>
               </div>
             </div>
@@ -311,7 +299,7 @@
               <canvas id="graficoAlaPatrimonial"></canvas>
             </div>
 
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir5" class="conteudoBotao" onclick="abrir5()">Mais Detalhes</div> </div>
           </div>
         </div>
 
@@ -321,7 +309,7 @@
           <h1>RH</h1>
         </div>
 
-        <div class="conjunto detalhado">
+        <div id="divConjunto6" class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -331,18 +319,21 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">2</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">3</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">2</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi6" class="descricaoKpi">
                 <h2>Nível de abastecimento dos dispensadores</h2>
               </div>
             </div>
@@ -351,13 +342,13 @@
               <canvas id="graficoAlaConvivencia"></canvas>
             </div>
 
-            <div class="botaoExpandir">Ocultar</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir6" class="conteudoBotao" onclick="abrir6()">Ocultar</div> </div>
           </div>
         </div>
 
         <!--  -->
 
-        <div class="conjunto">
+        <div id="divConjunto7" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -367,18 +358,21 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">1</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi7" class="descricaoKpi">
                 <h3>Situação do banheiro:
                   <div class="situacao"></div>
                 </h3>
@@ -389,11 +383,11 @@
               <canvas id="graficoAlaTreinamento"></canvas>
             </div>
 
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir7" class="conteudoBotao" onclick="abrir7()">Mais Detalhes</div> </div>
           </div>
         </div>
 
-        <div class="conjunto">
+        <div id="divConjunto8" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -403,18 +397,21 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">3</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi8" class="descricaoKpi">
                 <h3>Situação do banheiro:
                   <div class="situacao"></div>
                 </h3>
@@ -425,7 +422,7 @@
               <canvas id="graficoAlaBeneficios"></canvas>
             </div>
 
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir8" class="conteudoBotao" onclick="abrir8()">Mais Detalhes</div> </div>
           </div>
         </div>
 
@@ -435,7 +432,7 @@
           <h1>OPERACIONAL</h1>
         </div>
 
-        <div class="conjunto detalhado">
+        <div id="divConjunto9" class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -445,18 +442,21 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">2</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">3</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">3</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi9" class="descricaoKpi">
                 <h2>Nível de abastecimento dos dispensadores</h2>
               </div>
             </div>
@@ -465,13 +465,13 @@
               <canvas id="graficoOpeAlaNorte"></canvas>
             </div>
 
-            <div class="botaoExpandir">Ocultar</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir9" class="conteudoBotao" onclick="abrir9()">Ocultar</div> </div>
           </div>
         </div>
 
         <!--  -->
 
-        <div class="conjunto">
+        <div id="divConjunto10" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -481,18 +481,21 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">1</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">1</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi10" class="descricaoKpi">
                 <h3>Situação do banheiro:
                   <div class="situacao"></div>
                 </h3>
@@ -503,11 +506,11 @@
               <canvas id="graficoOpeAlaSul"></canvas>
             </div>
 
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir10" class="conteudoBotao" onclick="abrir10()">Mais Detalhes</div> </div>
           </div>
         </div>
 
-        <div class="conjunto">
+        <div id="divConjunto11" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -517,20 +520,23 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">0</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi11" class="descricaoKpi">
                 <h3>Situação do banheiro:
-                  <div class="situacao"></div>
+                  <div class="situacao ideal"></div>
                 </h3>
               </div>
             </div>
@@ -539,11 +545,11 @@
               <canvas id="graficoOpeAlaLeste"></canvas>
             </div>
 
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir11" class="conteudoBotao" onclick="abrir11()">Mais Detalhes</div> </div>
           </div>
         </div>
 
-        <div class="conjunto">
+        <div id="divConjunto12" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -553,18 +559,21 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">5</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">7</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Atenção</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">2</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi12" class="descricaoKpi">
                 <h3>Situação do banheiro:
                   <div class="situacao"></div>
                 </h3>
@@ -575,7 +584,7 @@
               <canvas id="graficoOpeAlaOeste"></canvas>
             </div>
 
-            <div class="botaoExpandir">Mais Detalhes</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir12" class="conteudoBotao" onclick="abrir12()">Mais Detalhes</div> </div>
           </div>
         </div>
 
@@ -585,7 +594,7 @@
           <h1>FINANCEIRO</h1>
         </div>
 
-        <div class="conjunto detalhado">
+        <div id="divConjunto13" class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
               <h2>Banheiro</h2>
@@ -595,18 +604,21 @@
             </div>
             <div class="kpiBottom">
               <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>Crítico: <div id="divDispensadoresCritico">2</div>
-                </h4>
-                <h4>Alerta: <div id="divDispensadoresCritico">3</div>
-                </h4>
+                <h5>Situação do Banheiro</h5>
+                <h5>Ideal</h5>
+                <h5>Dispensadores em estado:</h5>
+                <h5>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico">0</div>
+                </h5>
+                <h5>
+                  <div class="situacao"></div> Alerta: <div id="divDispensadoresCritico">0</div>
+                </h5>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
-              <div class="descricaoKpi">
+              <div id="divDescricaoKpi13" class="descricaoKpi">
                 <h2>Nível de abastecimento dos dispensadores</h2>
               </div>
             </div>
@@ -615,7 +627,7 @@
               <canvas id="graficoAlaCofre"></canvas>
             </div>
 
-            <div class="botaoExpandir">Ocultar</div>
+            <div class="botaoExpandir"><div id="divBotaoExpandir13" class="conteudoBotao" onclick="abrir13()">Ocultar</div> </div>
           </div>
         </div>
 
@@ -627,6 +639,206 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
 <script>
+  let descricaoIdeal = `<h3>Situação do banheiro: <div class="situacao ideal"></div></h3>`
+  let descricaoAtencao = `<h3>Situação do banheiro: <div class="situacao"></div></h3>`
+  let descricaoCritico = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`
+
+  function abrir1() {
+    let conjunto = document.getElementById('divConjunto1')
+    let descricao = document.getElementById('divDescricaoKpi1')
+    let botao = document.getElementById('divBotaoExpandir1')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoCritico
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir2() {
+    let conjunto = document.getElementById('divConjunto2')
+    let descricao = document.getElementById('divDescricaoKpi2')
+    let botao = document.getElementById('divBotaoExpandir2')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoCritico
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir3() {
+    let conjunto = document.getElementById('divConjunto3')
+    let descricao = document.getElementById('divDescricaoKpi3')
+    let botao = document.getElementById('divBotaoExpandir3')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoAtencao
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir4() {
+    let conjunto = document.getElementById('divConjunto4')
+    let descricao = document.getElementById('divDescricaoKpi4')
+    let botao = document.getElementById('divBotaoExpandir4')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir5() {
+    let conjunto = document.getElementById('divConjunto5')
+    let descricao = document.getElementById('divDescricaoKpi5')
+    let botao = document.getElementById('divBotaoExpandir5')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir6() {
+    let conjunto = document.getElementById('divConjunto6')
+    let descricao = document.getElementById('divDescricaoKpi6')
+    let botao = document.getElementById('divBotaoExpandir6')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir7() {
+    let conjunto = document.getElementById('divConjunto7')
+    let descricao = document.getElementById('divDescricaoKpi7')
+    let botao = document.getElementById('divBotaoExpandir7')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir8() {
+    let conjunto = document.getElementById('divConjunto8')
+    let descricao = document.getElementById('divDescricaoKpi8')
+    let botao = document.getElementById('divBotaoExpandir8')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir9() {
+    let conjunto = document.getElementById('divConjunto9')
+    let descricao = document.getElementById('divDescricaoKpi9')
+    let botao = document.getElementById('divBotaoExpandir9')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir10() {
+    let conjunto = document.getElementById('divConjunto10')
+    let descricao = document.getElementById('divDescricaoKpi10')
+    let botao = document.getElementById('divBotaoExpandir10')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir11() {
+    let conjunto = document.getElementById('divConjunto11')
+    let descricao = document.getElementById('divDescricaoKpi11')
+    let botao = document.getElementById('divBotaoExpandir11')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir12() {
+    let conjunto = document.getElementById('divConjunto12')
+    let descricao = document.getElementById('divDescricaoKpi12')
+    let botao = document.getElementById('divBotaoExpandir12')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir13() {
+    let conjunto = document.getElementById('divConjunto13')
+    let descricao = document.getElementById('divDescricaoKpi13')
+    let botao = document.getElementById('divBotaoExpandir13')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+
   const setorCrit = {
     type: 'line',
     yMin: 25,
@@ -732,7 +944,7 @@
     }
   });
 
-  // Banheiros
+  // Banheiros Administrativo
 
   const ctx1 = document.getElementById('graficoAlaOeste');
 
@@ -742,7 +954,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [14, 37, 40, 10, 67],
+        data: [14, 37, 40, 10, 37],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -811,7 +1023,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [23, 14, 27, 50],
+        data: [23, 14, 27, 10],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -880,7 +1092,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [13, 89, 30, 37],
+        data: [93, 89, 30, 37],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -943,7 +1155,7 @@
 
   // [Setor] 
 
-  // Banheiros
+  // Banheiros Contábil
 
   const ctx4 = document.getElementById('graficoAlaFiscal');
 
@@ -953,7 +1165,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [14, 37, 40, 10, 67],
+        data: [64, 77, 60, 80, 97],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1022,7 +1234,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [23, 14, 27, 50],
+        data: [83, 74, 87, 90],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1082,6 +1294,8 @@
       }
     }
   });
+
+  // Setor RH
 
   const ctx6 = document.getElementById('graficoAlaConvivencia');
 
@@ -1091,7 +1305,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [13, 89, 30, 37],
+        data: [93, 89, 30, 37],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1152,10 +1366,6 @@
     }
   });
 
-  // [Setor] 
-
-  // Banheiros
-
   const ctx7 = document.getElementById('graficoAlaTreinamento');
 
   new Chart(ctx7, {
@@ -1164,7 +1374,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [14, 37, 40, 10, 67],
+        data: [54, 67, 70, 30, 67],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1233,7 +1443,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [23, 14, 27, 50],
+        data: [23, 34, 27, 60],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1302,7 +1512,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [13, 89, 30, 37],
+        data: [23, 89, 30, 37],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1363,10 +1573,6 @@
     }
   });
 
-  // [Setor] 
-
-  // Banheiros
-
   const ctx10 = document.getElementById('graficoOpeAlaSul');
 
   new Chart(ctx10, {
@@ -1375,7 +1581,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [14, 37, 40, 10, 67],
+        data: [74, 37, 80, 10, 67],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1444,7 +1650,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [23, 14, 27, 50],
+        data: [93, 74, 67, 80],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1513,7 +1719,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [13, 89, 30, 37],
+        data: [73, 89, 30, 37],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
@@ -1574,9 +1780,7 @@
     }
   });
 
-  // [Setor] 
-
-  // Banheiros
+  // Banheiros Financeiro
 
   const ctx13 = document.getElementById('graficoAlaCofre');
 
@@ -1586,7 +1790,7 @@
       datasets: [{
         type: 'bar',
         label: '',
-        data: [14, 37, 40, 10, 67],
+        data: [94, 87, 90, 80, 77],
         backgroundColor: 'rgba(127, 92, 146, 100)'
       }]
     },
