@@ -1,5 +1,4 @@
 #include "Ultrasonic.h"
-
 const int PINO_TRIGGER = 12;
 const int PINO_ECHO = 13;
 
@@ -10,8 +9,8 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("");
-  Serial.println(sensor.distance());
+    Serial.print("DistanciaMM:");
+    Serial.println(sensor.distance());
 
   delay(1000);
 }

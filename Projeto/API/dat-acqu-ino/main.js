@@ -52,8 +52,8 @@ const serial = async (
     // processa os dados recebidos do Arduino
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
-        const valores = data.split(';');
-        const valorDistancia = parseFloat(valores[0]);
+        const valores = data.split(':');
+        const valorDistancia = parseFloat(valores[1]);
 
         //Registra a data e hora de processamento dos dados
         const dtAtual = new Date()
@@ -143,6 +143,8 @@ const servidor = (
     // inicia a comunicação serial
     await serial(
         valoresDispenser1,
+        valoresDispenser2,
+        valoresDispenser3,
         dtRegistros
     );
 
@@ -150,6 +152,7 @@ const servidor = (
     servidor(
         valoresDispenser1,
         valoresDispenser2,
-        valoresDispenser3
+        valoresDispenser3,
+        dtRegistros
     );
 })();
