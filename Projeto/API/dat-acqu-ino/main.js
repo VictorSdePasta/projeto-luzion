@@ -12,7 +12,9 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
-    valoresDistancia,
+    valoresDispenser1,
+    valoresDispenser2,
+    valoresDispenser3,
     dtRegistros
 ) => {
 
@@ -61,12 +63,16 @@ const serial = async (
         dtRegistros.push(stData);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        valoresDistancia.push(valorDistancia);
+        valoresDispenser1.push(valorDistancia);
+        valoresDispenser2.push(valorDistancia+20);
+        valoresDispenser3.push(valorDistancia+15);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
           
-            console.log("valores inseridos no banco: ", valorDistancia, "Data atual ", stData);
+            console.log("valores inseridos no banco Dispenser 1: ", valorDistancia, "Data atual ", stData);
+            console.log("valores inseridos no banco Dispenser 2: ", valorDistancia+20, "Data atual ", stData);
+            console.log("valores inseridos no banco Dispenser 3: ", valorDistancia+15, "Data atual ", stData);
             
             // este insert irá inserir os dados na tabela "Registro"
             await poolBancoDados.execute(
@@ -76,12 +82,12 @@ const serial = async (
 
             await poolBancoDados.execute(
               `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 2);`,
-              [valorDistancia, stData]
+              [valorDistancia+20, stData]
             );
             
             await poolBancoDados.execute(
               `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 3);`,
-              [valorDistancia, stData]
+              [valorDistancia+15, stData]
             );
 
         }
@@ -96,8 +102,9 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresDistancia,
-    dtRegistros
+    valoresDispenser1,
+    valoresDispenser2,
+    valoresDispenser3
 ) => {
     const app = express();
 
@@ -114,30 +121,35 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/distancia', (_, response) => {
-        return response.json(valoresDistancia);
+    app.get('/sensores/dispenser1', (_, response) => {
+        return response.json(valoresDispenser1);
     });
-    
-    app.get('/sensores/dataHora', (_, response) => {
-        return response.json(dtRegistros);
+    app.get('/sensores/dispenser2', (_, response) => {
+        return response.json(valoresDispenser2);
+    });
+    app.get('/sensores/dispenser3', (_, response) => {
+        return response.json(valoresDispenser3);
     });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
-    const valoresDistancia = [];
+    const valoresDispenser1 = [];
+    const valoresDispenser2 = [];
+    const valoresDispenser3 = [];
     const dtRegistros = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresDistancia,
+        valoresDispenser1,
         dtRegistros
     );
 
     // inicia o servidor web
     servidor(
-        valoresDistancia,
-        dtRegistros
+        valoresDispenser1,
+        valoresDispenser2,
+        valoresDispenser3
     );
 })();
