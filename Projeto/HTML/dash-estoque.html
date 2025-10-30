@@ -4,392 +4,240 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luzion - Estoque</title>
+  <title>Luzion - Tempo Real</title>
   <link rel="stylesheet" href="../CSS/header.css">
-  <link rel="stylesheet" href="../CSS/DashboardTempoReal.css">
+  <link rel="stylesheet" href="../CSS/dash-tempo-real.css">
 </head>
+
 <header>
   <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
   <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
-  <div class="subnav">
-    <div class="expandir">
-      <button class="expandirbtn">CLIENTES</button>
-      <div class="conteudoexpandido">
-        <a href="">CLIENTE 1</a>
-      </div>
-    </div>
-    <div class="divisao"></div>
-    <div class="expandir">
-      <button class="expandirbtn">FILIAIS</button>
-      <div class="conteudoexpandido">
-        <a href="">FILIAL 1</a>
-      </div>
-    </div>
-    <div class="divisao"></div>
-    <div class="expandir">
-      <button class="expandirbtn">BANHEIROS</button>
-      <div class="conteudoexpandido">
-        <a href="">BANHEIRO 1</a>
-      </div>
-    </div>
-  </div>
   <div class="botoesGuia">
     <div class="destaque">
-
-      <a href="./tela-login.html" id="entrar">LOGOUT</a>
+      <a href="./login.html" id="entrar">LOGOUT</a>
     </div>
     <div class="mainnav">
       <a href="./cadastro-empresa.html" class="selecionado" id="cadastrar">DASHBOARD</a>
-      <div class="divisao"></div>
-      <a href="./SiteCadastroEmpresa.html" class="" id="cadastrar">CONFIGURAÇÕES</a>
-      <div class="divisao"></div>
-      <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
     </div>
-========
-      <a href="./login.html" id="entrar">LOGOUT</a>
-    </div>
-    <a href="./cadastro-empresa.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
-    <a href="./simulador-financeiro.html" id="simulador">MEU PERFIL</a>
->>>>>>>> 3b166aacb50e792058539dc9370104a2eba47643:Projeto/HTML/dash-estoque.html
   </div>
 </header>
 
 <body>
   <div class="corpo">
     <div class="pagina">
-      <div class="topo">
-        <div class="conjunto detalhado">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h5>Setor em estado<br>de urgência</h5>
-              <div id="divEstoqueJumbo">
-                <h2>Administrativo</h2>
-              </div>
-            </div>
-            <div class="kpiBottom">
-              <div class="listaPrioridade">
-                <div class="identificacaoLista">
-                  Banheiro <div class="divisao"></div> Situação
-                </div>
-                <div class="linha par">
-                  <div class="coluna">
-                    Ala Oeste
-                  </div>
-                  <div class="coluna">
-                    <div class="situacao critico"></div>
-                  </div>
-                </div>
-                <div class="linha">
-                  <div class="coluna">
-                    Ala Leste
-                  </div>
-                  <div class="coluna">
-                    <div class="situacao critico"></div>
-                  </div>
-                </div>
-                <div class="linha par">
-                  <div class="coluna">
-                    Ala Sul
-                  </div>
-                  <div class="coluna">
-                    <div class="situacao"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="legenda">
-              <h6>As cores representam as situações dos banheiros:<br>
-                <span>
-                  <div class="situacao critico"></div>
-                  Vermelho - Estado crítico
-                </span>
-                <span>
-                  <div class="situacao"></div>
-                  Amarelo - Estado de atenção
-                </span>
-              </h6>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div class="descricaoKpi">
-                Tempo em estado crítico
-                <h2>1h 37min</h2>
-              </div>
-
-              <h1 class="titulo">Nível de carga dos setores</h1>
-            </div>
-
-            <div class="grafico">
-              <div class="campoGrafico">
-                <canvas id="estoqueJumbo"></canvas>
-              </div>
-              <div class="legenda"><h5>
-                Clique no setor para ver mais detalhes.
-              </h5></div>
-            </div>
-          </div>
-        </div>
+      <div class="cliente">
+        <h1>CLIENTE XPTO</h1>
       </div>
-      <div class="kpisGrafico">
-        <div class="conjunto detalhado">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h3>Jumbo</h3>
-              <h5>Nível de Estoque</h5>
-              <div id="divEstoqueJumbo">
-                <h1>75</h1>
-              </div>
-              <h4>Rolos</h4>
-            </div>
-            <div class="kpiBottom">
-              <div class="barraStatus">
-                <div id="nivel0" class="nivel"></div>
-                <div id="nivel1" class="nivel"></div>
-                <div id="nivel2" class="nivel"></div>
-                <div id="nivel3" class="nivel"></div>
-                <div id="nivel4" class="nivel"></div>
-                <div id="nivel5" class="nivel atual"></div>
-                <div id="nivel6" class="nivel atual"></div>
-                <div id="nivel7" class="nivel atual"></div>
-                <div id="nivel8" class="nivel atual"></div>
-                <div id="nivel9" class="nivel atual"></div>
-              </div>
-              <div class="legenda">
-                <h6>Capacidade do Estoque</h6>
-                <h6>Recomenda-se realizar a compra de uma nova leva.</h6>
-              </div>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div class="descricaoKpi">
-                Considerando que cada camada possui XX rolos
-              </div>
 
-              <div class="filtroData">
-                <span>Filtrar Data:</span>
-                <div class="inputFiltro">
-                  <span>de:</span><input id="inptDeData" type="date">
-                  <span>até:</span><input id="inptAtéData" type="date">
-                </div>
-              </div>
-            </div>
+      <div class="topo" id="divTopo"></div>
 
-            <div class="campoGrafico">
-              <canvas id="estoqueJumbo"></canvas>
-            </div>
-
-            <div class="botaoExpandir">Ocultar</div>
-          </div>
-        </div>
-
-        <!--  -->
-
-        <div class="conjunto">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h3>Jumbo</h3>
-              <h5>Nível de Estoque</h5>
-              <div id="divEstoqueJumbo">
-                <h1>75</h1>
-              </div>
-              <h4>Rolos</h4>
-            </div>
-            <div class="kpiBottom">
-              <div class="barraStatus">
-                <div id="nivel0" class="nivel"></div>
-                <div id="nivel1" class="nivel"></div>
-                <div id="nivel2" class="nivel"></div>
-                <div id="nivel3" class="nivel"></div>
-                <div id="nivel4" class="nivel"></div>
-                <div id="nivel5" class="nivel atual"></div>
-                <div id="nivel6" class="nivel atual"></div>
-                <div id="nivel7" class="nivel atual"></div>
-                <div id="nivel8" class="nivel atual"></div>
-                <div id="nivel9" class="nivel atual"></div>
-              </div>
-              <div class="legenda">
-                <h6>Capacidade do Estoque</h6>
-                <h6>Recomenda-se realizar a compra de uma nova leva.</h6>
-              </div>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div class="descricaoKpi">
-                Considerando que cada camada possui XX rolos
-              </div>
-
-              <div class="filtroData">
-                <span>Filtrar Data:</span>
-                <div class="inputFiltro">
-                  <span>de:</span><input id="inptDeData" type="date">
-                  <span>até:</span><input id="inptAtéData" type="date">
-                </div>
-              </div>
-            </div>
-
-            <div class="campoGrafico">
-              <canvas id="estoqueJumbo"></canvas>
-            </div>
-
-            <div class="botaoExpandir">Mais Detalhes</div>
-          </div>
-        </div>
-
-        <div class="conjunto">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h3>Jumbo</h3>
-              <h5>Nível de Estoque</h5>
-              <div id="divEstoqueJumbo">
-                <h1>75</h1>
-              </div>
-              <h4>Rolos</h4>
-            </div>
-            <div class="kpiBottom">
-              <div class="barraStatus">
-                <div id="nivel0" class="nivel"></div>
-                <div id="nivel1" class="nivel"></div>
-                <div id="nivel2" class="nivel"></div>
-                <div id="nivel3" class="nivel"></div>
-                <div id="nivel4" class="nivel"></div>
-                <div id="nivel5" class="nivel atual"></div>
-                <div id="nivel6" class="nivel atual"></div>
-                <div id="nivel7" class="nivel atual"></div>
-                <div id="nivel8" class="nivel atual"></div>
-                <div id="nivel9" class="nivel atual"></div>
-              </div>
-              <div class="legenda">
-                <h6>Capacidade do Estoque</h6>
-                <h6>Recomenda-se realizar a compra de uma nova leva.</h6>
-              </div>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div class="descricaoKpi">
-                Considerando que cada camada possui XX rolos
-              </div>
-
-              <div class="filtroData">
-                <span>Filtrar Data:</span>
-                <div class="inputFiltro">
-                  <span>de:</span><input id="inptDeData" type="date">
-                  <span>até:</span><input id="inptAtéData" type="date">
-                </div>
-              </div>
-            </div>
-
-            <div class="campoGrafico">
-              <canvas id="estoqueJumbo"></canvas>
-            </div>
-
-            <div class="botaoExpandir">Mais Detalhes</div>
-          </div>
-        </div>
-
-        <div class="conjunto">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h3>Jumbo</h3>
-              <h5>Nível de Estoque</h5>
-              <div id="divEstoqueJumbo">
-                <h1>75</h1>
-              </div>
-              <h4>Rolos</h4>
-            </div>
-            <div class="kpiBottom">
-              <div class="barraStatus">
-                <div id="nivel0" class="nivel"></div>
-                <div id="nivel1" class="nivel"></div>
-                <div id="nivel2" class="nivel"></div>
-                <div id="nivel3" class="nivel"></div>
-                <div id="nivel4" class="nivel"></div>
-                <div id="nivel5" class="nivel atual"></div>
-                <div id="nivel6" class="nivel atual"></div>
-                <div id="nivel7" class="nivel atual"></div>
-                <div id="nivel8" class="nivel atual"></div>
-                <div id="nivel9" class="nivel atual"></div>
-              </div>
-              <div class="legenda">
-                <h6>Capacidade do Estoque</h6>
-                <h6>Recomenda-se realizar a compra de uma nova leva.</h6>
-              </div>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div class="descricaoKpi">
-                Considerando que cada camada possui XX rolos
-              </div>
-
-              <div class="filtroData">
-                <span>Filtrar Data:</span>
-                <div class="inputFiltro">
-                  <span>de:</span><input id="inptDeData" type="date">
-                  <span>até:</span><input id="inptAtéData" type="date">
-                </div>
-              </div>
-            </div>
-
-            <div class="campoGrafico">
-              <canvas id="estoqueJumbo"></canvas>
-            </div>
-
-            <div class="botaoExpandir">Mais Detalhes</div>
-          </div>
-        </div>
-      </div>
+      <div class="kpisGrafico" id="divSetores"></div>
     </div>
-  </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
+<script src="../Javascript/dash-tempo-real.js"></script>
 <script>
+  let descricaoIdeal = `<h3>Situação do banheiro: <div class="situacao ideal"></div></h3>`
+  let descricaoAtencao = `<h3>Situação do banheiro: <div class="situacao"></div></h3>`
+  let descricaoCritico = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`
 
+  function abrir1() {
+    let conjunto = document.getElementById('divConjunto1')
+    let descricao = document.getElementById('divDescricaoKpi1')
+    let botao = document.getElementById('divBotaoExpandir1')
 
-  const ctx = document.getElementById('estoqueJumbo');
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-      datasets: [{
-        label: 'Porcentagem de estoque',
-        data: [94, 94, 94, 94, 94, 94, 92, 88, 84, 80, 72, 68, 50, 37, 25, 11, 8, 99, 95, 80, 74, 74, 65, 50],
-        backgroundColor: 'rgba(127, 92, 146, 100)'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          title: {
-            display: true,
-            text: 'Horário',
-            font: {
-              size: 14,
-              weight: 'bold'
-            }
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Nível do estoque(%)',
-            font: {
-              size: 14,
-              weight: 'bold'
-            }
-          },
-          beginAtZero: true
-        }
-      }
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoCritico
+      conjunto.classList.remove("detalhado");
     }
-  });
+  }
+  function abrir2() {
+    let conjunto = document.getElementById('divConjunto2')
+    let descricao = document.getElementById('divDescricaoKpi2')
+    let botao = document.getElementById('divBotaoExpandir2')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoCritico
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir3() {
+    let conjunto = document.getElementById('divConjunto3')
+    let descricao = document.getElementById('divDescricaoKpi3')
+    let botao = document.getElementById('divBotaoExpandir3')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoAtencao
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir4() {
+    let conjunto = document.getElementById('divConjunto4')
+    let descricao = document.getElementById('divDescricaoKpi4')
+    let botao = document.getElementById('divBotaoExpandir4')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir5() {
+    let conjunto = document.getElementById('divConjunto5')
+    let descricao = document.getElementById('divDescricaoKpi5')
+    let botao = document.getElementById('divBotaoExpandir5')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir6() {
+    let conjunto = document.getElementById('divConjunto6')
+    let descricao = document.getElementById('divDescricaoKpi6')
+    let botao = document.getElementById('divBotaoExpandir6')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoAtencao
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir7() {
+    let conjunto = document.getElementById('divConjunto7')
+    let descricao = document.getElementById('divDescricaoKpi7')
+    let botao = document.getElementById('divBotaoExpandir7')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir8() {
+    let conjunto = document.getElementById('divConjunto8')
+    let descricao = document.getElementById('divDescricaoKpi8')
+    let botao = document.getElementById('divBotaoExpandir8')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoAtencao
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir9() {
+    let conjunto = document.getElementById('divConjunto9')
+    let descricao = document.getElementById('divDescricaoKpi9')
+    let botao = document.getElementById('divBotaoExpandir9')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoAtencao
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir10() {
+    let conjunto = document.getElementById('divConjunto10')
+    let descricao = document.getElementById('divDescricaoKpi10')
+    let botao = document.getElementById('divBotaoExpandir10')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoAtencao
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir11() {
+    let conjunto = document.getElementById('divConjunto11')
+    let descricao = document.getElementById('divDescricaoKpi11')
+    let botao = document.getElementById('divBotaoExpandir11')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir12() {
+    let conjunto = document.getElementById('divConjunto12')
+    let descricao = document.getElementById('divDescricaoKpi12')
+    let botao = document.getElementById('divBotaoExpandir12')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
+  function abrir13() {
+    let conjunto = document.getElementById('divConjunto13')
+    let descricao = document.getElementById('divDescricaoKpi13')
+    let botao = document.getElementById('divBotaoExpandir13')
+
+    if (!conjunto.classList.contains("detalhado")) {
+      botao.innerHTML = `Ocultar`
+      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+      conjunto.classList.add("detalhado");
+    } else {
+      botao.innerHTML = `Mais Detalhes`
+      descricao.innerHTML = descricaoIdeal
+      conjunto.classList.remove("detalhado");
+    }
+  }
 </script>
 
 </html>
