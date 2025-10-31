@@ -81,6 +81,7 @@ h2 {
           padding-right: 0;
           aspect-ratio: 6/1;
           justify-content: center;
+          align-self: flex-start;
 
           & h2 {
             font-weight: bold;
@@ -114,6 +115,13 @@ h2 {
           height: 85%;
         }
       }
+
+      & h4 {
+        align-self: center;
+        width: 80%;
+        color: white;
+        margin-top: 1%;
+      }
     }
   }
 }
@@ -136,11 +144,6 @@ h2 {
 }
 
 h1 {
-  margin: 0;
-}
-
-h4 {
-  font-weight: 500;
   margin: 0;
 }
 
@@ -294,19 +297,13 @@ h3 {
       padding: 0;
       margin-bottom: 2%;
       width: 95%;
-      background-color: none;
+      background-color: transparent;
       color: #311C3D;
       border-radius: 0;
       box-shadow: none;
       justify-content: end;
     }
   }
-}
-
-h4 {
-  margin: 0;
-  padding: 0;
-  text-align: center;
 }
 
 .kpiBottom {
@@ -452,7 +449,7 @@ h4 {
   display: flex;
   padding: 5% 10%;
   width: fit-content;
-  background-color: #867391;
+  background-color: #B29FBD;
   color: #311C3D;
   z-index: 0;
   border-radius: 0 0 30% 0 / 0 0 100% 0;

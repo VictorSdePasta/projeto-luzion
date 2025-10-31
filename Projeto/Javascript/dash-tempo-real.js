@@ -112,6 +112,7 @@ conteudoTopo += `
         <canvas id="graficoSetores"></canvas>
       </div>
     </div>
+    <h4>O índice mostra a situação geral dos banheiros de cada setor, levando em conta o estado dos dispensadores. Quanto mais dispensadores estiverem em atenção ou crítico, maior será a urgência de reposição naquele setor.</h4>
   </div>
 </div>
 `
