@@ -6,30 +6,21 @@ create table Empresa (
   razaoSocial varchar(100) not null unique,
   nomeFantasia varchar(100) not null,
   cnpj char(11) not null unique,
-  contrato tinyint
+  contrato tinyint,
+  fkCliente int,
+  constraint fkEmpresaCliente foreign key (fkCliente) references Empresa(idEmpresa)
 );
 
-insert into Empresa (razaoSocial,nomeFantasia,cnpj,contrato) values
-('facilitariamos a sua vida LTDA','Facilitariamos TUDO','00300300300',2),
-('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',0),
-('servicos felicity LTDA','Felicity em te ajudar','00200200200',1);
-
-create table Cliente (
-  idCliente int primary key auto_increment,
-  razaoSocial varchar(100) not null unique,
-  nomeFantasia varchar(100) not null,
-  cnpj char(14) not null unique,
-  fkEmpresa int not null,
-  constraint fkClienteEmpresa foreign key (fkEmpresa) references Empresa(idEmpresa)
-);
-
-insert into Cliente (razaoSocial,nomeFantasia,cnpj,fkEmpresa) values
-('SenGases LTDA','SenGas','00300300300',1),
-('SmartsBeefs LTDA','SmartBeef','00400400400',1),
-('Vegetal Temperature Transformation Technology LTDA','V3T','00500500500',2),
-('Armory Safe LTDA','Armory Safe','00600600600',2),
-('Neoguard LTDA','NeoGuard','00700700700',1),
-('Shopping do bairro LTDA','Shopping do bairro','00800800800',2);
+insert into Empresa (razaoSocial,nomeFantasia,cnpj,contrato, fkCliente) values
+('facilitariamos a sua vida LTDA','Facilitariamos TUDO','00300300300',2, null),
+('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',0, null),
+('servicos felicity LTDA','Felicity em te ajudar','00200200200',1,null),
+('SenGases LTDA','SenGas','00900900900',3,1),
+('SmartsBeefs LTDA','SmartBeef','00400400400',3,1),
+('Vegetal Temperature Transformation Technology LTDA','V3T','00500500500',3,2),
+('Armory Safe LTDA','Armory Safe','00600600600',3,2),
+('Neoguard LTDA','NeoGuard','00700700700',3,1),
+('Shopping do bairro LTDA','Shopping do bairro','00800800800',3,2);
 
 create table Endereco (
   idEndereco int primary key auto_increment,
@@ -41,6 +32,9 @@ create table Endereco (
 );
 
 insert into Endereco (logradouro,numero,cep,estado,uf) values
+('Rua Fácil','235','07070700','São Paulo','SP'),
+('Rua Facilidade','128','08080800','São Paulo','SP'),
+('Rua Facilimo','980','09090900','São Paulo','SP'),
 ('Rua Sem Gas','412','01010100','São Paulo','SP'),
 ('Rua do gado','2450','02020200','São Paulo','SP'),
 ('Avenida Vegetal','120','03030300','São Paulo','SP'),
@@ -51,19 +45,22 @@ insert into Endereco (logradouro,numero,cep,estado,uf) values
 create table Filial (
   idFilial int primary key auto_increment,
   titulo varchar(100),
-  fkCliente int,
-  constraint fkFilialCliente foreign key (fkCliente) references Cliente(idCliente),
+  fkEmpresa int,
+  constraint fkFilialEmpresa foreign key (fkEmpresa) references Empresa(idEmpresa),
   fkEndereco int,
   constraint fkFilialEndereco foreign key (fkEndereco) references Endereco(idEndereco)
 );
 
-insert into Filial (titulo,fkCliente,fkEndereco) values
-('Sede SenGas',1,1),
-('Sede SmartBeef',2,2),
-('Sede V3T',3,3),
+insert into Filial (titulo,fkEmpresa,fkEndereco) values
+('Sede Facilitariamos TUDO',1,1),
+('Sede Facilitadores Impecaveis',2,2),
+('Sede Felicity em te ajudar',3,3),
 ('Sede SenGas',4,4),
-('Sede SenGas',5,5),
-('Shopping do Bairro',6,6);
+('Sede SmartBeef',5,5),
+('Sede V3T',6,6),
+('Sede Armory Safe',7,7),
+('Sede NeoGuard',8,8),
+('Shopping do Bairro',9,9);
 
 create table Funcionario (
   idFuncionario int primary key auto_increment,
@@ -112,12 +109,15 @@ create table Estoque (
 );
 
 insert into Estoque (titulo,altura,largura,profundidade,fkFilial,fkPapelHigienico) values
-('Galpão Ala A',3200,1400,1200,1,1),
-('Galpão Terreo',2100,2200,1200,2,1),
-('Galpão 12',3120,2000,1200,3,2),
-('Estoque',2900,3200,1000,4,2),
-('Galpão Ala B',2850,1200,2100,5,3),
-('Galpão 1',3810,2200,1300,6,3);
+('Estoque 1',2950,1500,1200,1,1),
+('Galpão 1',3300,1450,1300,2,2),
+('Estoque A',2740,1320,1000,3,3),
+('Galpão Ala A',3200,1400,1200,4,1),
+('Galpão Terreo',2100,2200,1200,5,1),
+('Galpão 12',3120,2000,1200,6,2),
+('Estoque',2900,3200,1000,7,2),
+('Galpão Ala B',2850,1200,2100,8,3),
+('Galpão 1',3810,2200,1300,9,3);
 
 create table Banheiro (
   idBanheiro int primary key auto_increment,
@@ -129,12 +129,23 @@ create table Banheiro (
 
 insert into Banheiro (titulo, setor, fkFilial) values
 ('Ala Sul','Terreo',1),
-('Ala Sul', 'Terreo', 2),
+('Ala Sul','Terreo',2),
+('Ala Sul','Terreo',3),
+('Ala Sul','Terreo',4),
+('Ala Sul','Terreo',5),
+('Ala Sul','Terreo',6),
+('Ala Norte','Terreo',1),
+('Ala Norte','Terreo',2),
 ('Ala Norte','Terreo',3),
 ('Ala Norte','Terreo',4),
 ('Ala Norte','Terreo',5),
+('Ala Norte','Terreo',6),
+('Ala Leste','Terreo',1),
+('Ala Leste','Terreo',2),
+('Ala Leste','Terreo',3),
+('Ala Leste','Terreo',4),
+('Ala Leste','Terreo',5),
 ('Ala Leste','Terreo',6),
-('Ala Leste', 'Terreo',6),
 ('Ala Oeste','Terreo',6),
 ('1','Andar 1',1),
 ('2','Andar 1',2),
@@ -210,7 +221,27 @@ insert into Dispenser (identificacao,fkBanheiro,fkPapelHigienico) values
 ('Cabine 1',16,2),
 ('Cabine 2',16,2),
 ('Cabine 3',16,2),
-('Cabine 4',16,2);
+('Cabine 4',16,2),
+('Cabine 1',17,2),
+('Cabine 2',17,2),
+('Cabine 1',18,2),
+('Cabine 2',18,2),
+('Cabine 1',19,2),
+('Cabine 2',19,2),
+('Cabine 1',20,2),
+('Cabine 2',20,2),
+('Cabine 1',21,2),
+('Cabine 2',21,2),
+('Cabine 1',22,2),
+('Cabine 2',22,2),
+('Cabine 1',23,2),
+('Cabine 2',23,2),
+('Cabine 1',24,2),
+('Cabine 2',24,2),
+('Cabine 1',25,2),
+('Cabine 2',25,2),
+('Cabine 2',26,2),
+('Cabine 1',26,2);
 
 create table Registro (
   idRegistro int primary key auto_increment,
@@ -510,7 +541,107 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 (8, '2025-11-14 12:00:00', 56),
 (8, '2025-11-14 16:00:00', 56),
 (8, '2025-11-14 20:00:00', 56),
-(8, '2025-11-15 08:00:00', 56);
+(8, '2025-11-15 08:00:00', 56),
+(8, '2025-09-20 08:00:00', 57),
+(8, '2025-09-20 12:00:00', 57),
+(8, '2025-09-20 16:00:00', 57),
+(8, '2025-09-20 20:00:00', 57),
+(8, '2025-09-21 08:00:00', 57),
+(8, '2025-09-20 08:00:00', 58),
+(8, '2025-09-20 12:00:00', 58),
+(8, '2025-09-20 16:00:00', 58),
+(8, '2025-09-20 20:00:00', 58),
+(8, '2025-09-21 08:00:00', 58),
+(8, '2025-09-20 08:00:00', 59),
+(8, '2025-09-20 12:00:00', 59),
+(8, '2025-09-20 16:00:00', 59),
+(8, '2025-09-20 20:00:00', 59),
+(8, '2025-09-21 08:00:00', 59),
+(8, '2025-09-20 08:00:00', 60),
+(8, '2025-09-20 12:00:00', 60),
+(8, '2025-09-20 16:00:00', 60),
+(8, '2025-09-20 20:00:00', 60),
+(8, '2025-09-21 08:00:00', 60),
+(8, '2025-09-20 08:00:00', 61),
+(8, '2025-09-20 12:00:00', 61),
+(8, '2025-09-20 16:00:00', 61),
+(8, '2025-09-20 20:00:00', 61),
+(8, '2025-09-21 08:00:00', 61),
+(8, '2025-09-20 08:00:00', 62),
+(8, '2025-09-20 12:00:00', 62),
+(8, '2025-09-20 16:00:00', 62),
+(8, '2025-09-20 20:00:00', 62),
+(8, '2025-09-21 08:00:00', 62),
+(8, '2025-09-20 08:00:00', 63),
+(8, '2025-09-20 12:00:00', 63),
+(8, '2025-09-20 16:00:00', 63),
+(8, '2025-09-20 20:00:00', 63),
+(8, '2025-09-21 08:00:00', 63),
+(8, '2025-09-20 08:00:00', 64),
+(8, '2025-09-20 12:00:00', 64),
+(8, '2025-09-20 16:00:00', 64),
+(8, '2025-09-20 20:00:00', 64),
+(8, '2025-09-21 08:00:00', 64),
+(8, '2025-09-20 08:00:00', 65),
+(8, '2025-09-20 12:00:00', 65),
+(8, '2025-09-20 16:00:00', 65),
+(8, '2025-09-20 20:00:00', 65),
+(8, '2025-09-21 08:00:00', 65),
+(8, '2025-09-20 08:00:00', 66),
+(8, '2025-09-20 12:00:00', 66),
+(8, '2025-09-20 16:00:00', 66),
+(8, '2025-09-20 20:00:00', 66),
+(8, '2025-09-21 08:00:00', 66),
+(8, '2025-09-20 08:00:00', 67),
+(8, '2025-09-20 12:00:00', 67),
+(8, '2025-09-20 16:00:00', 67),
+(8, '2025-09-20 20:00:00', 67),
+(8, '2025-09-21 08:00:00', 67),
+(8, '2025-09-20 08:00:00', 68),
+(8, '2025-09-20 12:00:00', 68),
+(8, '2025-09-20 16:00:00', 68),
+(8, '2025-09-20 20:00:00', 68),
+(8, '2025-09-21 08:00:00', 68),
+(8, '2025-09-20 08:00:00', 69),
+(8, '2025-09-20 12:00:00', 69),
+(8, '2025-09-20 16:00:00', 69),
+(8, '2025-09-20 20:00:00', 69),
+(8, '2025-09-21 08:00:00', 69),
+(8, '2025-09-20 08:00:00', 70),
+(8, '2025-09-20 12:00:00', 70),
+(8, '2025-09-20 16:00:00', 70),
+(8, '2025-09-20 20:00:00', 70),
+(8, '2025-09-21 08:00:00', 70),
+(8, '2025-09-20 08:00:00', 71),
+(8, '2025-09-20 12:00:00', 71),
+(8, '2025-09-20 16:00:00', 71),
+(8, '2025-09-20 20:00:00', 71),
+(8, '2025-09-21 08:00:00', 71),
+(8, '2025-09-20 08:00:00', 72),
+(8, '2025-09-20 12:00:00', 72),
+(8, '2025-09-20 16:00:00', 72),
+(8, '2025-09-20 20:00:00', 72),
+(8, '2025-09-21 08:00:00', 72),
+(8, '2025-09-20 08:00:00', 73),
+(8, '2025-09-20 12:00:00', 73),
+(8, '2025-09-20 16:00:00', 73),
+(8, '2025-09-20 20:00:00', 73),
+(8, '2025-09-21 08:00:00', 73),
+(8, '2025-09-20 08:00:00', 74),
+(8, '2025-09-20 12:00:00', 74),
+(8, '2025-09-20 16:00:00', 74),
+(8, '2025-09-20 20:00:00', 74),
+(8, '2025-09-21 08:00:00', 74),
+(8, '2025-09-20 08:00:00', 75),
+(8, '2025-09-20 12:00:00', 75),
+(8, '2025-09-20 16:00:00', 75),
+(8, '2025-09-20 20:00:00', 75),
+(8, '2025-09-21 08:00:00', 75),
+(8, '2025-09-20 08:00:00', 76),
+(8, '2025-09-20 12:00:00', 76),
+(8, '2025-09-20 16:00:00', 76),
+(8, '2025-09-20 20:00:00', 76),
+(8, '2025-09-21 08:00:00', 76);
 
 select e.nomeFantasia as Empresa,
   c.nomeFantasia as 'Empresa Cliente',
@@ -518,16 +649,16 @@ select e.nomeFantasia as Empresa,
   fun.nome as Funcionario,
   fun.email as 'E-mail',
   fun.telefone as Contato
-from Empresa as e join Cliente as c on c.fkEmpresa = e.idEmpresa
-join Filial as fl on c.idCliente = fl.fkCliente
+from Empresa as e join Empresa as c on c.fkCliente = e.idEmpresa
+join Filial as fl on e.idEmpresa = fl.fkEmpresa
 join Funcionario as fun on fl.idFilial = fun.fkFilial;
 
 select e.nomeFantasia as Empresa,
-  e.nomeFantasia as 'Empresa Cliente',
+  c.nomeFantasia as 'Empresa Cliente',
   fl.titulo as 'Filial'
-from Empresa as e join Cliente as c on idEmpresa = fkEmpresa join Filial as fl on fkCliente = idCliente;
+from Empresa as e join Empresa as c on e.idEmpresa = c.fkCliente join Filial as fl on fkEmpresa = c.idEmpresa;
 
-select titulo, concat(logradouro, ' ', numero, ' - CEP: ', cep) as Endereço from Filial join Endereco on fkEndereco = idFilial;
+select titulo, concat(logradouro, ' ', numero, ' - CEP: ', cep) as Endereço from Filial join Endereco on fkEndereco = idEndereco;
 
 select identificacao as Dispenser,
 b.titulo as 'Banheiro',
@@ -539,7 +670,6 @@ from Registro
 	join Dispenser on fkDispenser = idDispenser
     join Banheiro as b on fkFilial = idBanheiro
     join Filial on fkfilial = idFilial
-    join Cliente on fkCliente = idCliente
     join Empresa on fkEmpresa = idEmpresa
   where Empresa.nomeFantasia = 'Facilitariamos TUDO';
   
