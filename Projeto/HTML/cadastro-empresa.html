@@ -35,21 +35,21 @@
     <h1>Cadastro<br><b>Empresa</b></h1>
     <div class="corSombra">
         <div class="texto">
-            <p>Informe a razão social da sua empresa:</p>
+            <p>Razão Social:</p>
                 <input class="caixa" id="nomeEmpresa" placeholder="Ex: Luzion">
-                <div class="divmsg" id="erroNomeEmp"></div><br>
+                <div class="divmsg" id="erroNomeEmp"></div>
     
-            <p>Insira nome fantasia:</p>
+            <p>Nome Fantasia:</p>
                 <input class="caixa" id="nomeFantasia" placeholder="Ex: Luzion">
-                <div class="divmsg" id="erroNomeFan"></div><br>
+                <div class="divmsg" id="erroNomeFan"></div>
     
             <p>CNPJ:</p>
-                <input class="caixa" type="number" id="cnpj" placeholder="00.000.000/0000-00">
+                <input class="caixa" type="number" id="cnpj" placeholder="00.000.000/0000-00" onkeyup="verificar()">
                 <div class="divmsg" id="erroCnpj"></div>
         </div>
             <div class="circulo">
-                <button class="botao2" onclick="logar()">Já tenho cadastro</button> <br>
-                <button class="botao" onclick="cadastrar()">CADASTRAR →</button>   
+                <button class="botao" onclick="cadastrar()">CADASTRAR →</button> 
+                <button class="botao2" onclick="logar()">Já tenho cadastro</button> 
             </div> 
     </div> 
 </div>
@@ -82,61 +82,53 @@
   </div>
 </footer>
 <script>
+    var validoDois = false
+    function verificar() {
+        var numrCnpj = cnpj.value;
+        
+        for (let index = 0; index < numrCnpj.length; index++) {
+                var falta = 13 - index
+
+            if (falta > 0) {
+                erroCnpj.innerHTML = `Faltam ${falta} número(s) para completar o CNPJ`
+            } else {
+                erroCnpj.innerHTML = '' 
+                validoDois = true 
+            }
+            }
+            
+        
+    }
+    
    
     function cadastrar() {
         var nmEmpresa = nomeEmpresa.value;
         var nmFantasia = nomeFantasia.value;
         var numrCnpj = cnpj.value;
-        let validoUm = false
-        let validoDois = false
-        let validoTres = false
+        var validoUm = false
 
-        if (nomeEmpresa.value == '') {
+        if (nmEmpresa == '') {
             erroNomeEmp.innerHTML = `*Preencha o campo acima*` 
-        } if (nomeFantasia.value == '') {
-            erroNomeFan.innerHTML = `*Preencha o campo acima*`
-        } if (cnpj.value == '') {
+        } else if (nmEmpresa.length < 3){
+            erroNomeEmp.innerHTML = `*Insira um nome válido*`
+        } else {
+            erroNomeEmp = ''
+            validoUm = true
+        }
+        if (numrCnpj == '') {
             erroCnpj.innerHTML = `*Preencha o campo acima*`
-        }
-
-        for (let index = 0; index < nmEmpresa.length; index++) {
-
-            if (index < 3) {
-                erroNomeEmp.innerHTML = `*Insira um nome válido.*`
-            } else {
-                erroNomeEmp.innerHTML = ''
-                validoUm = true
-                
-            }
-            for (let index = 0; index < nmFantasia.length; index++) {
-                
-                if (index < 3) {
-                    erroNomeFan.innerHTML = `*Insira um nome válido.*`
-                } else {
-                    erroNomeFan.innerHTML = ''  
-                    validoDois = true
-                }
-            
-                for (let index = 0; index < numrCnpj.length; index++) {
-                
-                    if (index < 13) {
-                        erroCnpj.innerHTML = `*Insira um CNPJ válido*`
-                    } else {
-                        erroCnpj.innerHTML = '' 
-                        validoTres = true 
-                    }
-                }
-            } 
-        }
-        if (validoUm == true && validoDois == true && validoTres) {
+        } else {
+            if (validoUm == true && validoDois == true) {
             pop1.style.display = 'flex';
             up1.style.display = 'flex';
             setTimeout(function() {
-        fechar(); 
-        window.location.href = "./cadastro-usuario.html"; 
-    }, 2000);
+            fechar(); 
+            window.location.href = "./cadastro-usuario.html"; 
+            }, 2000);
         }
-    }
+        }
+    } 
+        
     
     function logar() {
         window.location.href = "../HTML/login.html"

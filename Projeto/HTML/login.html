@@ -30,31 +30,13 @@
 
     <div id="pop1" class="pop">
         <div id="up1" class="up">
-            <p>Insira um email válido</p>
+            <p id="msgPop"></p>
             <button onclick="fechar()">Fechar</button>
         </div>
     </div>
-
-
 
     <div id="pop2" class="pop">
         <div id="up2" class="up">
-            <p>Insira uma senha válida</p>
-            <button onclick="fechar()">Fechar</button>
-        </div>
-    </div>
-
-
-    <div id="pop3" class="pop">
-        <div id="up3" class="up">
-            <p>Senha incorreta tente novamente</p>
-            <button onclick="fechar()">Fechar</button>
-        </div>
-    </div>
-
-
-    <div id="pop4" class="pop">
-        <div id="up4" class="up">
             <p>Usuário bloqueado</p>
             <button onclick="fechar()">Fechar</button>
         </div>
@@ -68,15 +50,17 @@
                 <div class="email">
                     <p>Email:</p>
                 </div>
-                <div class="iptCampo"><input type="text" id="iptEmail" placeholder="Email"></div>
+                <div class="iptCampo"><input type="text" id="iptEmail" placeholder="seuemail@exemplo.com"></div>
+                <div class="divmsg" id="erroEmail"></div>
                 <div class="senha">
-                <p>Senha:</p>
+                    <p>Senha:</p>
                 </div>
                 <div class="iptCampo"><input type="password" id="iptSenha" placeholder="Senha"></div>
+                <div class="divmsg" id="erroSenha"></div>
             </div>
             <div class="entrar">
-                <p><a href="./cadastro-empresa.html">Não tenho cadastro</a></p>
-                <button onclick="logar()">ENTRAR <img src="../Assets/seta-direita.png" alt=""></button>
+                <button class="botao1" onclick="logar()">ENTRAR →</button>
+                <button class="botao2" onclick="cadastrar()">Não tenho cadastro</button>
             </div>
         </div>
     </div>
@@ -106,40 +90,52 @@
   </div>
 </footer>
 <script>
-
-    var contador = 0;
-
+    var tentativas = 3
     function logar() {
         var login = iptEmail.value;
         var senha = iptSenha.value;
 
-        if (login == '') {
-            pop1.style.display = 'flex';
-            up1.style.display = 'flex';
-        }
+        if (login == '' || senha == '') {
+            if (login == '') {
+                erroEmail.innerHTML = '*Preencha o campo acima*'
+            } else {
+                erroEmail.innerHTML = ''
+            }
+            if (senha == '') {
+                erroSenha.innerHTML = '*Preencha o campo acima*'
+            } else {
+            erroSenha.innerHTML = ''
+            }
 
-        if (senha == '') {
-            pop2.style.display = 'flex';
-            up2.style.display = 'flex';
-
-        } else if (login == 'contato@luzion.com' && senha == 'Senha123') {
-            window.location.href = './dash-tempo-real.html';
-        }
-
-        if (senha != 'Senha123') {
-            contador++;
-            while (contador <= 2) {
-                if (contador < 2) {
-                    pop3.style.display = 'flex';
-                    up3.style.display = 'flex';
-                    break;
+        } else {
+            if (tentativas == 0) {
+                pop2.style.display = 'flex'
+                up2.style.display = 'flex'
+                erroEmail.innerHTML = ''
+                erroSenha.innerHTML = ''
+            } else {
+                if (login == 'contato@luzion.com' && senha == 'Senha123') {
+                    window.location.href = './dash-tempo-real.html';
+                    tentativas = 3
                 } else {
-                    pop4.style.display = 'flex';
-                    up4.style.display = 'flex';
-                    break;
+                    tentativas -= 1
+                    pop1.style.display = 'flex';
+                    up1.style.display = 'flex';
+                    msgPop.innerHTML = `Login inválido <br> Você tem ${tentativas} tentativa(s) restantes`
+                    erroEmail.innerHTML = '*Email ou senha inválido*'
+                    erroSenha.innerHTML = '*Email ou senha inválido*'
+                } if (tentativas == 0) {
+                    pop2.style.display = 'flex'
+                    up2.style.display = 'flex'
+                    erroEmail.innerHTML = ''
+                    erroSenha.innerHTML = ''
                 }
             }
         }
+    }
+
+    function cadastrar() {
+        window.location.href = "./cadastro-empresa.html"
     }
 
     function fechar() {
@@ -147,11 +143,6 @@
         up1.style.display = 'none';
         pop2.style.display = 'none';
         up2.style.display = 'none';
-        pop3.style.display = 'none';
-        up3.style.display = 'none';
-        pop4.style.display = 'none';
-        up4.style.display = 'none';
-
     }
 
 </script>

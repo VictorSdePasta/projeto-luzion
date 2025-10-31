@@ -1,154 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-
 body {
-
     display: flex;
-
     flex-direction: column;
-
     margin: 0;
-
     padding: 0;
-
     font-family: 'Roboto', sans-serif;
-
 }
-
-
-
-
 
 .corpo {
-
     background-size: contain;
-
     display: flex;
-
     flex-direction: column;
-
     padding: 0;
-
     background-color: #5A4168;
-
     padding-bottom: 8%;
-
     margin: 0;
-
     flex-direction: column;
-
     justify-content: center;
-
     align-items: flex-end;
-
     background-image: url(../Assets/computador.png);
-
     background-repeat: no-repeat;
-
     background-position: bottom-center;
-
     color: #ffffff;
-
 }
-
-
 
 .corpo h1 {
-
     margin-right: 3%;
-
 }
-
-
 
 .container {
-
     display: flex;
-
     flex-direction: column;
-
     align-self: center;
-
     width: 80%;
-
     border: none;
-
     margin: 0;
-
     padding: 0;
-
 }
 
-
-
-
-
 .login {
-
     display: flex;
-
     padding: 0;
-
     flex-direction: row-reverse;
-
     justify-content: center;
-
     align-items: center;
-
     width: 60%;
-
     border-bottom-left-radius: 190px;
-
     border-top-left-radius: 190px;
-
     background-color: #CC9CE7;
-
     margin: 0;
-
     font-family: 'Roboto', sans-serif;
-
     padding-top: 30px;
-
     padding-bottom: 30px;
-
     color: #311C3D;
-
     padding-right: 3%;
-
 }
 
 .iptCampo {
     padding-left: 20%;
 }
 
-
-
 input {
-
     background-color: #ffffff;
-
     border: none;
-
     width: 75%;
-
-    height: 30px;
-
-    border-bottom-left-radius: 190px;
-
-    border-top-left-radius: 190px;
-
-    border-bottom-right-radius: 190px;
-
-    border-top-right-radius: 190px;
-
+    font-size: 100%;
+    border-radius: 190px 190px 190px 190px;
     box-shadow: #311c3d8e 1px 3px 5px;
-
     margin: 0;
-
-    padding-left: 3%;
+    padding: 2%;
 }
-
 
 input:focus {
     outline: none;
@@ -158,106 +80,76 @@ input:focus::-webkit-input-placeholder{
     color: transparent;
 }
 
-
 .entrar {
-
     display: flex;
-
     justify-content: center;
-
     flex-direction: column;
-
     align-items: center;
-
     gap: 10px;
-
     border: 1px solid #311C3D;
-
     border-radius: 50%;
-
     padding: 30px 30px;
-
     color: #01123C;
-
     font-family: 'Roboto', sans-serif;
-
     width: 200px;
-
     height: 200px;
-
     margin-top: 10px;
-
     margin-right: 10px;
-
     padding: 20;
-
     position: relative;
-
     margin-left: 5%;
-
-
-
 }
 
-
-
 .entrar p {
-    
     margin: 0;
-    
     text-align: center;
-    
     width: 100%;
-    
 }
 
-.entrar p {
-    font-size: 13.3333px;
-}
-
-
-.entrar button {
+.botao1 {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     border: none;
+    letter-spacing: 2px;
     color: #ffffff;
     cursor: pointer;
     padding: 10px 15px;
     border-radius: 80px;
     background-color: #311C3D;
     width: 100%;
-    font-family: 'Roboto', sans-serif;
-
 }
 
-
-
-.entrar button:hover {
+.botao1:hover {
     background-color: #442855;
 }
 
-.entrar img{
-    width: 20%;
+.botao2 {
+    width: 150px;
+    letter-spacing: 1px;
+    background-color: transparent;
+    color: #01123C;
+    text-decoration: underline;
+    border: 0;
+    cursor: pointer;
 }
+.botao2:hover {
+        font-weight: bold;
+    }
 
 
 .email p,
-
 .senha p {
     display: flex;
     justify-content: center;
     color: #311C3D;
     margin: 2%;
     margin-left: 2%;
+    margin-bottom: 1%;
     width: 50%;
 
 }
-
-
-
-
 
 .pop {
     display: none;
@@ -272,8 +164,6 @@ input:focus::-webkit-input-placeholder{
     z-index: 1000;
 
 }
-
-
 
 .up {
 
@@ -299,4 +189,14 @@ input:focus::-webkit-input-placeholder{
     padding: 10px;
     margin-bottom: 5%;
 
+}
+
+.divmsg {
+    display: flex;
+    justify-content: center;
+    font-size: 90%;
+    margin: 0;
+    color: red;
+    padding: 5px;
+    font-weight: bold;
 }
