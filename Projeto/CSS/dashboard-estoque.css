@@ -12,29 +12,26 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 1%;
 }
 
 .topo {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 3% 0;
+  padding: 1% 0;
   width: 100%;
   aspect-ratio: 9/1;
 }
 
-h1 {
-  margin: 0;
-}
-
 h4 {
   font-weight: 500;
+  font-size: 1.3rem;
   margin: 0;
 }
 
 h5 {
   font-weight: 400;
+  font-size: 1.1rem;
   margin: 0;
 }
 
@@ -54,6 +51,7 @@ h5 {
 
   & div {
     font-weight: bold;
+    font-size: 2.5rem;
   }
 }
 
@@ -67,7 +65,6 @@ h5 {
   display: flex;
   justify-content: center;
   margin: 3% 0;
-  padding-left: 10%;
 }
 
 .colunaEsq {
@@ -93,7 +90,6 @@ h3 {
 
 .conjunto.detalhado {
   grid-column: 1 / -1;
-  padding-left: 0;
 
   & .colunaEsq {
     background-color: #867391;
@@ -154,9 +150,6 @@ h6 {
   margin: 0;
   padding: 0;
   text-align: center;
-}
-
-h6:first-child {
   color: #D181FF;
 }
 
@@ -181,6 +174,10 @@ h6:first-child {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  & span {
+    font-size: 85%;
+  }
 }
 
 .nivel {
@@ -264,4 +261,5 @@ h6:first-child {
   color: #D181FF;
   z-index: -1;
   border-radius: 0 0 30% 0 / 0 0 100% 0;
+  box-shadow: 0px 3px 7px #15151b;
 }
