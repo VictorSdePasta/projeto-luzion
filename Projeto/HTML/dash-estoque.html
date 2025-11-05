@@ -22,38 +22,6 @@
 
 <body>
   <div class="corpo">
-    <div class="menuLateral">
-
-      <div class="headerLateral">
-        <h2>No 11º tem bolo</h2>
-        <div class="kpiMenu">EBA</div>
-      </div>
-
-      <a href="" class="selecao">
-        <span>Estoque</span>
-        <div class="situacao estavel"></div>
-      </a>
-      <a href="" class="selecao">
-        <span>Geral Unidade</span>
-      </a>
-      <div class="selecao" onclick="colapsoBanheiro()">
-        <span>Banheiro</span>
-        <div class="situacao estavel"></div>
-      </div>
-      <div id="divDispenser">
-        <a href="" class="opcao">
-          <span>Geral Banheiro</span>
-        </a>
-        <a href="" class="opcao">
-          <span>Dispenser 1</span>
-          <div class="situacao atencao"></div>
-        </a>
-        <a href="" class="opcao">
-          <span>Dispenser 2</span>
-          <div class="situacao critico"></div>
-        </a>
-      </div>
-    </div>
     <div class="pagina">
       <div class="topo">
         <div class="kpi">
@@ -74,10 +42,9 @@
         <div class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
-              <h3>Jumbo</h3>
-              <h5>Nível de Estoque</h5>
-              <div id="divEstoqueJumbo">75</div>
-              <h4>Rolos</h4>
+              <h3>Consumo de rolos do mês vigente:</h3>
+              <div id="divEstoqueJumbo">30</div>
+              <h3>Rolos</h3>
             </div>
             <div class="kpiBottom">
               <div class="barraStatus">
@@ -93,15 +60,16 @@
                 <div id="nivel9" class="nivel atual"></div>
               </div>
               <div class="legenda">
-                <h6>Capacidade do Estoque</h6>
-                <span>Recomenda-se realizar a compra de uma nova leva.</span>
+                <h4>Capacidade de Estoque Atual</h4>
               </div>
             </div>
           </div>
           <div class="colunaDir">
             <div class="header">
               <div class="descricaoKpi">
-                Considerando que cada camada possui XX rolos
+                <h2>
+                  Consumo total de papel higiênico durante o ano
+                </h2>
               </div>
 
               <div class="filtroData">
@@ -117,7 +85,6 @@
               <canvas id="estoqueJumbo"></canvas>
             </div>
 
-            <div class="botaoExpandir">Ocultar</div>
           </div>
         </div>
 
@@ -168,8 +135,6 @@
             <div class="grafico">
               <canvas id="estoqueJumbo"></canvas>
             </div>
-
-            <div class="botaoExpandir">Mais Detalhes</div>
           </div>
         </div>
 
@@ -218,8 +183,6 @@
             <div class="grafico">
               <canvas id="estoqueJumbo"></canvas>
             </div>
-
-            <div class="botaoExpandir">Mais Detalhes</div>
           </div>
         </div>
 
@@ -268,8 +231,6 @@
             <div class="grafico">
               <canvas id="estoqueJumbo"></canvas>
             </div>
-
-            <div class="botaoExpandir">Mais Detalhes</div>
           </div>
         </div>
       </div>
@@ -302,29 +263,86 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  const ctx = document.getElementById('estoqueJumbo');
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1"></script>
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-      datasets: [{
-        label: '# of Votes',
-        data: [94, 94, 94, 94, 94, 94, 92, 88, 84, 80, 72, 68, 50, 37, 25, 11, 8],
-        backgroundColor: 'rgba(127, 92, 146, 100)'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true
+<canvas id="estoqueJumbo"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<canvas id="estoqueJumbo"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<canvas id="estoqueJumbo" style="width:100%; height:400px;"></canvas>
+
+<script>
+const ctx = document.getElementById('estoqueJumbo');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: [
+      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ],
+    datasets: [{
+      label: 'Número de rolos utilizados',
+      data: [230, 255, 269, 280, 255, 243, 280, 265, 274, 284, 309, 30],
+      backgroundColor: 'rgba(127, 92, 146, 0.6)',
+      borderColor: 'rgba(127, 92, 146, 1)',
+      borderWidth: 2,
+      borderRadius: 5
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        ticks: {
+          color: '#5A4168',
+          font: {
+            size: 18,
+            weight: 'bold'
+          }
+        },
+        title: {
+          display: false,
+          text: 'Meses',
+          color: '#5A4168',
+          font: {
+            size: 18,
+            weight: 'bold'
+          }
         }
+      },
+      y: {
+        max: 400,
+        ticks: {
+          color: '#5A4168',
+          font: {
+            size: 18,
+            weight: 'bold'
+          }
+        },
+        title: {
+          display: true,
+          text: 'Quantidade de rolos utilizados',
+          color: '#5A4168',
+          font: {
+            size: 18,
+            weight: 'bold'
+          }
+        },
+        beginAtZero: true
+      }
+    },
+    plugins: {
+      legend: {
+        display: false
       }
     }
-  });
+  }
+});
 </script>
-
 </html>
