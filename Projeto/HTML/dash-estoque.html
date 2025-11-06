@@ -10,42 +10,118 @@
 </head>
 <header>
   <!-- Header padrão pós-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas de dashboard-->
-  <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logo Luzion"></div>
+  <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
+  <div class="subnav">
+    <div class="expandir">
+      <button class="expandirbtn">CLIENTES</button>
+      <div class="conteudoexpandido">
+        <a href="">CLIENTE 1</a>
+      </div>
+    </div>
+    <div class="divisao"></div>
+    <div class="expandir">
+      <button class="expandirbtn">FILIAIS</button>
+      <div class="conteudoexpandido">
+        <a href="">FILIAL 1</a>
+      </div>
+    </div>
+    <div class="divisao"></div>
+    <div class="expandir">
+      <button class="expandirbtn">BANHEIROS</button>
+      <div class="conteudoexpandido">
+        <a href="">BANHEIRO 1</a>
+      </div>
+    </div>
+  </div>
   <div class="botoesGuia">
     <div class="destaque">
-      <a href="./TelaLogin.html" id="entrar">LOGOUT</a>
+      <a href="login.html" id="entrar">LOGOUT</a>
     </div>
-    <a href="./SiteCadastroEmpresa.html" class="selecionado" id="cadastrar">CONFIGURAÇÕES</a>
-    <a href="./simuladorfinanceiro.html" id="simulador">MEU PERFIL</a>
+    <div class="mainnav">
+      <a href="dash-tempo-real.html" class="selecionado" id="cadastrar">DASHBOARD</a>
+    </div>
   </div>
 </header>
 
 <body>
   <div class="corpo">
     <div class="pagina">
+      <h1 style="color: white;">Estoque</h1>
       <div class="topo">
         <div class="kpi">
-          <h4>Dias desde última<br>reposição</h4>
-          <div id="divUltimaRepo">2</div>
+          <h4>Papel simples</h4>
+          <p>Nível de Estoque</p>
+          <h1>40%</h1>
+          <p>Restante<br>240 Rolos</p>
+          <p class="capa">Capacidade Máxima:<br>600 Rolos</p>
         </div>
         <div class="kpi">
-          <h5>Nivel de Estoque<br>Total</h5>
-          <div id="divEstoqueTotal">150</div>
-          <h4>Rolos</h4>
+          <h4>Papel Folha dupla</h4>
+          <p>Nivel de Estoque</p>
+          <h1>60%</h1>
+          <p>Restante<br>144 Rolos</p>
+          <p class="capa">Capacidade Máxima:<br>240 Rolos</p>
         </div>
         <div class="kpi">
-          <h4>Papel com menor<br>quantia</h4>
-          <div id="divMenorQtd">Jumbo</div>
+          <h4>Papel Folha tripla</h4>
+          <p>Nível de Estoque</p>
+          <h1>20%</h1>
+          <p>Restante<br>16 Rolos</p>
+          <p class="capa">Capacidade Máxima:<br>80 Rolos</p>
         </div>
       </div>
-      <div class="kpisGrafico">
-        <div class="conjunto detalhado">
-          <div class="colunaEsq">
+        <div class="conjunto">
             <div class="kpi">
-              <h3>Consumo de rolos do mês vigente:</h3>
-              <div id="divEstoqueJumbo">30</div>
-              <h3>Rolos</h3>
+              <h4>Rolos utilizados<br>no mês</h4>
+              <h1>350</h1>
             </div>
+            <!--<div class="kpiBottom">
+              <div class="barraStatus">
+                <div id="nivel0" class="nivel"></div>
+                <div id="nivel1" class="nivel"></div>
+                <div id="nivel2" class="nivel"></div>
+                <div id="nivel3" class="nivel"></div>
+                <div id="nivel4" class="nivel"></div>
+                <div id="nivel5" class="nivel atual"></div>
+                <div id="nivel6" class="nivel atual"></div>
+                <div id="nivel7" class="nivel atual"></div>
+                <div id="nivel8" class="nivel atual"></div>
+                <div id="nivel9" class="nivel atual"></div>
+              </div>
+              <div class="legenda">
+                <h6>Capacidade do Estoque</h6>
+                <span>Recomenda-se realizar a compra de uma nova leva.</span>
+              </div>
+            </div> -->
+          <!--<div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                Considerando que cada camada possui XX rolos
+              </div>-->
+
+              <!--<div class="filtroData">
+                <span>Filtrar Data:</span>
+                <div class="inputFiltro">
+                  <span>de:</span><input id="inptDeData" type="date">
+                  <span>até:</span><input id="inptAtéData" type="date">
+                </div>
+              </div>
+            </div> -->
+
+            <!--<div class="grafico">
+              <canvas id="estoqueJumbo"></canvas>
+            </div>
+          </div>-->
+          
+            <div class="kpi">
+              <h4>Previsão de Falta<br>de papel</h4>
+              <h1>4 Dias</h1>
+            </div>
+          
+        </div>
+
+        <!--<div class="conjunto">
+          
             <div class="kpiBottom">
               <div class="barraStatus">
                 <div id="nivel0" class="nivel"></div>
@@ -60,6 +136,52 @@
                 <div id="nivel9" class="nivel atual"></div>
               </div>
               <div class="legenda">
+                <h6>Capacidade do Estoque</h6>
+                <span>Recomenda-se realizar a compra de uma nova leva.</span>
+              </div>
+            </div>
+          </div> -->
+          <!--<div class="colunaDir">
+            <div class="header">
+              <div class="descricaoKpi">
+                Considerando que cada camada possui XX rolos
+              </div>
+
+              <div class="filtroData">
+                <span>Filtrar Data:</span>
+                <div class="inputFiltro">
+                  <span>de:</span><input id="inptDeData" type="date">
+                  <span>até:</span><input id="inptAtéData" type="date">
+                </div>
+              </div>
+            </div>-->
+
+            <!--<div class="grafico">
+              <canvas id="estoqueJumbo"></canvas>
+            </div>
+        </div> -->
+      <div class="kpisGrafico">
+        <div class="conjunto detalhado">
+          <div class="colunaEsq">
+            <div class="kpi">
+              <h3>Consumo de rolos do mês vigente:</h3>
+              <div id="divEstoqueJumbo">30</div>
+              <h3>Rolos</h3>
+            </div>
+            <div class="kpiBottom">
+              <!--<div class="barraStatus">
+                <div id="nivel0" class="nivel"></div>
+                <div id="nivel1" class="nivel"></div>
+                <div id="nivel2" class="nivel"></div>
+                <div id="nivel3" class="nivel"></div>
+                <div id="nivel4" class="nivel"></div>
+                <div id="nivel5" class="nivel atual"></div>
+                <div id="nivel6" class="nivel atual"></div>
+                <div id="nivel7" class="nivel atual"></div>
+                <div id="nivel8" class="nivel atual"></div>
+                <div id="nivel9" class="nivel atual"></div>
+              </div> -->
+              <div class="legenda">
                 <h4>Capacidade de Estoque Atual</h4>
               </div>
             </div>
@@ -67,9 +189,9 @@
           <div class="colunaDir">
             <div class="header">
               <div class="descricaoKpi">
-                <h2>
+                <h4>
                   Consumo total de papel higiênico durante o ano
-                </h2>
+                </h4>
               </div>
 
               <div class="filtroData">
@@ -90,7 +212,7 @@
 
         <!--  -->
 
-        <div class="conjunto">
+        <!--0<div class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
               <h3>Jumbo</h3>
@@ -136,136 +258,16 @@
               <canvas id="estoqueJumbo"></canvas>
             </div>
           </div>
-        </div>
-
-        <div class="conjunto">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h3>Jumbo</h3>
-              <h5>Nível de Estoque</h5>
-              <div id="divEstoqueJumbo">75</div>
-              <h4>Rolos</h4>
-            </div>
-            <div class="kpiBottom">
-              <div class="barraStatus">
-                <div id="nivel0" class="nivel"></div>
-                <div id="nivel1" class="nivel"></div>
-                <div id="nivel2" class="nivel"></div>
-                <div id="nivel3" class="nivel"></div>
-                <div id="nivel4" class="nivel"></div>
-                <div id="nivel5" class="nivel atual"></div>
-                <div id="nivel6" class="nivel atual"></div>
-                <div id="nivel7" class="nivel atual"></div>
-                <div id="nivel8" class="nivel atual"></div>
-                <div id="nivel9" class="nivel atual"></div>
-              </div>
-              <div class="legenda">
-                <h6>Capacidade do Estoque</h6>
-                <span>Recomenda-se realizar a compra de uma nova leva.</span>
-              </div>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div class="descricaoKpi">
-                Considerando que cada camada possui XX rolos
-              </div>
-
-              <div class="filtroData">
-                <span>Filtrar Data:</span>
-                <div class="inputFiltro">
-                  <span>de:</span><input id="inptDeData" type="date">
-                  <span>até:</span><input id="inptAtéData" type="date">
-                </div>
-              </div>
-            </div>
-
-            <div class="grafico">
-              <canvas id="estoqueJumbo"></canvas>
-            </div>
-          </div>
-        </div>
-
-        <div class="conjunto">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h3>Jumbo</h3>
-              <h5>Nível de Estoque</h5>
-              <div id="divEstoqueJumbo">75</div>
-              <h4>Rolos</h4>
-            </div>
-            <div class="kpiBottom">
-              <div class="barraStatus">
-                <div id="nivel0" class="nivel"></div>
-                <div id="nivel1" class="nivel"></div>
-                <div id="nivel2" class="nivel"></div>
-                <div id="nivel3" class="nivel"></div>
-                <div id="nivel4" class="nivel"></div>
-                <div id="nivel5" class="nivel atual"></div>
-                <div id="nivel6" class="nivel atual"></div>
-                <div id="nivel7" class="nivel atual"></div>
-                <div id="nivel8" class="nivel atual"></div>
-                <div id="nivel9" class="nivel atual"></div>
-              </div>
-              <div class="legenda">
-                <h6>Capacidade do Estoque</h6>
-                <span>Recomenda-se realizar a compra de uma nova leva.</span>
-              </div>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div class="descricaoKpi">
-                Considerando que cada camada possui XX rolos
-              </div>
-
-              <div class="filtroData">
-                <span>Filtrar Data:</span>
-                <div class="inputFiltro">
-                  <span>de:</span><input id="inptDeData" type="date">
-                  <span>até:</span><input id="inptAtéData" type="date">
-                </div>
-              </div>
-            </div>
-
-            <div class="grafico">
-              <canvas id="estoqueJumbo"></canvas>
-            </div>
-          </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
 </body>
-<footer>
-  <div class="main">
-    <div class="logo"><img src="../Assets/Luzion logo.png" alt="Logomarca"></div>
-    <div class="informacoes">
-      <p><b>Informações</b></p>
-      <a href="">Menu</a>
-      <a href="">Sobre nós</a>
-    </div>
-    <div class="contato">
-      <p><b>Contatos</b></p>
-      <p><img src="../Assets/icon tel.png" alt=""> (11) 99999-9999</p>
-      <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
-    </div>
-    <div class="redessociais">
-      <p><b>Redes Sociais</b></p>
-      <div class="icons"><a href=""><img src="../Assets/icon face.png" alt=""></a><a href=""><img
-            src="../Assets/icon twitter.png" alt=""></a><a href=""><img src="../Assets/icon linkedin.png" alt=""></a>
-      </div>
-    </div>
-  </div>
-  <div class="autoria">
-    <p>Luzion © 2025</p>
-  </div>
-</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1"></script>
 
-<canvas id="estoqueJumbo"></canvas>
+<!--<canvas id="estoqueJumbo"></canvas>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -273,7 +275,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<canvas id="estoqueJumbo" style="width:100%; height:400px;"></canvas>
+<canvas id="estoqueJumbo" style="width:100%; height:400px;"></canvas>-->
 
 <script>
 const ctx = document.getElementById('estoqueJumbo');

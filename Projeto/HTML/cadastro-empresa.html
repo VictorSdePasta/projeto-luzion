@@ -95,7 +95,7 @@
                 erroCnpj.innerHTML = '' 
                 validoDois = true 
             }
-            }
+        }
             
         
     }
@@ -106,19 +106,28 @@
         var nmFantasia = nomeFantasia.value;
         var numrCnpj = cnpj.value;
         var validoUm = false
+        var validoTres = false
 
         if (nmEmpresa == '') {
             erroNomeEmp.innerHTML = `*Preencha o campo acima*` 
         } else if (nmEmpresa.length < 3){
             erroNomeEmp.innerHTML = `*Insira um nome válido*`
         } else {
-            erroNomeEmp = ''
+            erroNomeEmp.innerHTML = ''
             validoUm = true
         }
+
+        if (nmFantasia == '') {
+            erroNomeFan.innerHTML = `*Preencha o campo acima*`
+        } else {
+            erroNomeFan.innerHTML = ''
+            validoTres = true
+        }
+
         if (numrCnpj == '') {
             erroCnpj.innerHTML = `*Preencha o campo acima*`
         } else {
-            if (validoUm == true && validoDois == true) {
+            if (validoUm == true && validoDois == true && validoTres == true) {
             pop1.style.display = 'flex';
             up1.style.display = 'flex';
             setTimeout(function() {
