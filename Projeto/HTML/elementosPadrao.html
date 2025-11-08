@@ -96,7 +96,62 @@
 </header>-->
 
 <body>
-
+  <div class="modalFundo filial" id="fundoFilial">
+    <div class="fecharFilial"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
+    <div class="modalCadastro dois">
+      <h2>NOVA FILIAL</h2>
+      <div class="modalFilialInputs">
+        <div class="iptNome">
+          <p>Nome</p>
+          <input type="text" id="">
+        </div>
+        <div class="iptEndereco">
+          <div class="logradouro">
+            <p>Logradouro</p>
+            <input type="text" id="">
+          </div>
+          <div class="numero">
+            <p>Número</p>
+            <input type="number" id="">
+          </div>
+        </div>
+        <div class="complementar">
+          <div class="cidade">
+            <p>Cidade</p>
+            <input type="text" id="">
+          </div>
+          <div class="uf">
+            <p>UF</p>
+            <input type="text" id="">
+          </div>
+          <div class="cep">
+            <p>CEP</p>
+            <input type="text" id="">
+          </div>
+        </div>
+      </div>
+      <button onclick="cadastrar()">CADASTRAR</button>
+    </div>
+  </div>
+  <div class="modalFundo banheiro" id="fundoBanheiro">
+    <div class="fechar"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
+    <div class="modalCadastro">
+      <h2>NOVO BANHEIRO</h2>
+      <div class="modalInputs">
+        <div>
+          <p>Titulo</p>
+          <input type="text" id="">
+        </div>
+        <div>
+          <p>Dispensadores</p>
+          <input type="number" id="">
+        </div>
+      </div>
+      <button onclick="cadastrar()">CADASTRAR</button>
+    </div>
+  </div>
+  <button onclick="abrirBanheiro()">Cadastrar banheiro</button>
+  <button onclick="abrirFilial()">Cadastrar filial</button>
 </body>
 <!--Footer padrão, apenas adicione o conteudo html ao final de sua página (Após o fechamento da tag </body>)-->
 <footer>
@@ -123,5 +178,16 @@
     <p>Luzion © 2025</p>
   </div>
 </footer>
-
+<script>
+  function abrirBanheiro() {
+    fundoBanheiro.style.display = 'flex';
+  }
+  function abrirFilial() {
+    fundoFilial.style.display = 'flex';
+  }
+  function fechar() {
+    fundoBanheiro.style.display = 'none';
+    fundoFilial.style.display = 'none';
+  }
+</script>
 </html>

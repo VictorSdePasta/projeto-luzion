@@ -204,3 +204,213 @@ footer a {
 .autoria p {
   color: #c8c8c88c;
 }
+
+.modalFundo {
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-20%);
+}
+
+.modalCadastro {
+  background-color: #311C3D;
+  padding: 3%;
+  border-radius: 20% 5% 20% 5% / 26% 5% 26% 5%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.banheiro{
+  display: none;
+}
+
+.filial{
+  display: none;
+}
+
+.dois {
+  background-color: #311C3D;
+  padding: 3%;
+  border-radius: 23% 5% 23% 5% / 22% 5% 22% 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalCadastro h2 {
+  color: white;
+}
+
+.modalCadastro p {
+  color: white;
+  margin-bottom: 0;
+  transform: translateX(5%);
+}
+
+.modalCadastro input{
+  margin-bottom: 30%;
+  border: none;
+  background-color: #B29FBD;
+  color: #311C3D;
+  font-family: 'Roboto', sans-serif;
+  height: 30%;
+  width: 90%;
+  padding-left: 10%;
+  border-radius: 15% 15% 15% 15% / 60% 60% 60% 60%;
+}
+
+input:focus {
+  outline: none;
+}
+
+input:focus::-webkit-input-placeholder{
+  color: transparent;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  margin: 0;
+  display: none;
+}
+
+input::placeholder {
+    color: #311c3d85;
+}
+
+.modalCadastro button{
+  background-color: #D181FF;
+  color: #311C3D;
+  font-size: 15px;
+  border: none;
+  width: 50%;
+  aspect-ratio: 1/0.3;
+  border-radius: 15% 15% 15% 15% / 60% 60% 60% 60%;
+  cursor: pointer;
+}
+
+.fechar {
+  background-color: #D181FF;
+  width: 5%;
+  aspect-ratio: 1 / 1;
+  justify-self: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 35% 35% 35% 35% / 35% 35% 35% 35%;
+  transform: translate(190%, 80%);
+  & button{
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+}
+.fecharFilial {
+  background-color: #D181FF;
+  width: 5%;
+  aspect-ratio: 1 / 1;
+  justify-self: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 35% 35% 35% 35% / 35% 35% 35% 35%;
+  transform: translate(270%, 80%);
+  & button{
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.modalInputs {
+  display: flex;
+  gap: 3%;
+}
+
+.modalFilialInputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.iptEndereco {
+  display: flex;
+  gap: 3%;
+}
+
+.logradouro {
+  width: 70%;
+}
+
+.numero {
+  width: 30%;
+}
+
+.numero input {
+  width: 80%;
+  height: 36%;
+  border-radius: 18% 18% 18% 18% / 60% 60% 60% 60%;
+}
+
+.logradouro input{
+  width: 90%;
+  height: 36%;
+  padding-left: 6%;
+  margin-bottom: 8%;
+  border-radius: 7% 7% 7% 7% / 50% 50% 50% 50%;
+}
+
+.complementar {
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+}
+
+.cidade {
+  width: 50%;
+}
+
+.cidade input {
+  border-radius: 10% 10% 10% 10% / 50% 50% 50% 50%;
+}
+
+.uf {
+  width: 20%;
+}
+
+.uf input{
+  border-radius: 25% 25% 25% 25% / 50% 50% 50% 50%;
+  padding-left: 20%;
+  width: 80%;
+}
+
+.cep {
+  width: 30%;
+}
+
+.cep input {
+  border-radius: 16% 16% 16% 16% / 50% 50% 50% 50%;
+  width: 80%;
+}
+
+.iptNome {
+  padding: 0;
+}
+
+.iptNome p {
+  transform: translateX(2%);
+}
+
+.iptNome input {
+  height: 36%;
+  margin-bottom: 10%;
+  padding-left: 4%;
+  padding-right: 4%;
+  border-radius: 5% 5% 5% 5% / 60% 60% 60% 60%;
+}
