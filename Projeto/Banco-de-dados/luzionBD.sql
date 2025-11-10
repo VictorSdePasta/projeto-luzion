@@ -94,31 +94,6 @@ insert into PapelHigienico (modelo, diametroExternoMM, diametroInternoMM, largur
 ('Jumbo',10,4,10),
 ('Folha Dupla',12,5,10);
 
-create table Estoque (
-	idEstoque int auto_increment,
-  fkPapelHigienico int,
-  titulo varchar(100),
-  altura int,
-  largura int,
-  profundidade int,
-  percAtual int,
-  fkFilial int,
-  constraint fkEstoqueFilial foreign key (fkFilial) references Filial(idFilial),
-  constraint fkPapelEstoque foreign key (fkPapelHigienico) references PapelHigienico(idPapelHigienico),
-  primary key(idEstoque, fkPapelHigienico)
-);
-
-insert into Estoque (titulo,altura,largura,profundidade,fkFilial,fkPapelHigienico) values
-('Estoque 1',2950,1500,1200,1,1),
-('Galpão 1',3300,1450,1300,2,2),
-('Estoque A',2740,1320,1000,3,3),
-('Galpão Ala A',3200,1400,1200,4,1),
-('Galpão Terreo',2100,2200,1200,5,1),
-('Galpão 12',3120,2000,1200,6,2),
-('Estoque',2900,3200,1000,7,2),
-('Galpão Ala B',2850,1200,2100,8,3),
-('Galpão 1',3810,2200,1300,9,3);
-
 create table Banheiro (
   idBanheiro int primary key auto_increment,
   titulo varchar(100),
@@ -248,18 +223,8 @@ create table Registro (
   valor int,
   dtRegistro datetime default current_timestamp,
   fkDispenser int,
-  fkEstoque int,
-  constraint fkRegistroEstoque foreign key (fkEstoque) references Estoque(idEstoque),
   constraint fkRegistroDispenser foreign key (fkDispenser) references Dispenser(idDispenser)
 );
-
-insert into Registro (valor,dtRegistro,fkEstoque) values
-(1200,'2025-09-20 08:00:00',1),
-(1320,'2025-09-20 08:00:00',2),
-(1110,'2025-09-20 08:00:00',3),
-(980,'2025-09-20 08:00:00',4),
-(1100,'2025-09-20 08:00:00',5),
-(1210,'2025-09-20 08:00:00',6);
 
 insert into Registro (valor,dtRegistro,fkDispenser) values
 (8, '2025-09-20 08:00:00', 1),
