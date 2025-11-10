@@ -43,7 +43,7 @@ h1 {
 
 h4 {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin: 0;
 }
 
@@ -108,6 +108,8 @@ h3 {
 
 .conjunto.detalhado {
   grid-column: 1 / -1;
+  justify-content: center;
+
 
   & .colunaEsq {
     background-color: #867391;
@@ -128,7 +130,7 @@ h3 {
 
   & .colunaDir {
     background-color: #867391;
-    width: 85%;
+    width: 70%;
     border-radius: 0 50px 20px 0;
     display: flex;
     flex-direction: column;
