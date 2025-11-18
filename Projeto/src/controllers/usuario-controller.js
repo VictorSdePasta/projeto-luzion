@@ -1,5 +1,5 @@
-var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
+var usuarioModel = require("../models/usuario-model");
+var aquarioModel = require("../models/aquario-model");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
