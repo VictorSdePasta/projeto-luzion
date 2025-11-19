@@ -638,3 +638,10 @@ from Registro
     join Empresa on fkEmpresa = idEmpresa
   where Empresa.nomeFantasia = 'Facilitariamos TUDO';
   
+create view vw_empresa_cadastrada as
+select razaoSocial, cnpj from empresa where razaoSocial = '' or cnpj = '';
+create view vw_funcionario_cadastrado as
+select email from funcionario where email = '';
+
+create view vw_login_funcioanrio as
+select nome as funcionario, email, nivelPermissao, contrato from Funcionario join Filial on fkFilial = idFilial join Empresa on fkEmpresa = idEmpresa where email = '';
