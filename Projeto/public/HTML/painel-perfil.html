@@ -45,22 +45,11 @@
         <button onclick="fechar()">Fechar</button>
       </div>
     </div>
-    <div class="menuLateral">
-
-      <div class="headerLateral">
-        <h2>No 11º tem bolo</h2>
-        <div class="kpi">EBA</div>
-      </div>
-
-        <a href="" class="selecao especial">Cliente</a>
-        <a class="selecao especial" href="">Filial</a>
-        <a class="selecao especial" href="">Usuario</a>
-    </div>
     <div class="dados">
       <h1>Meu Perfil</h1>
       <div class="info">
-        <p>Nome do usuário</p>
-        <p>E-mail</p>
+        <p id="nomeUsuario">Nome do usuário</p>
+        <p id="emailUsuario">E-mail</p>
       </div>
       <div class="senha">
         <p>Senha atual</p>
@@ -74,7 +63,6 @@
         <button onclick="validar()">Alterar Senha</button>
       </div>
     </div>
-    <div class="bgimg"></div>
   </div>
 </body>
 <footer>
@@ -102,6 +90,8 @@
   </div>
 </footer>
 <script>
+  sessionStorage.EMAIL_USUARIO = json.email;
+  sessionStorage.NOME_USUARIO = json.nome;
   function validar() {
     let msg = '';
     if (senhaAtual.value == '') {
@@ -118,17 +108,72 @@
       pop2.style.display = 'flex';
       up2.style.display = 'flex';
     } else {
-      mudar();
+      alterar();
     }
   }
-  function mudar() {
-    if (novaSenha.value == confirmarSenha.value) {
-      pop.style.display = 'flex';
-      up.style.display = 'flex';
-    } else {
-      pop1.style.display = 'flex';
-      up1.style.display = 'flex';
-    }
+  function consultar() {
+    var senhaVar = senhaAtual.value;
+    fetch("/usuarios/consultar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        senhaServer: senhaVar
+
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+        alterar();
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
+  function alterar() {
+    var novaSenhaVar = novaSenha.value;
+    var emailVar = sessionStorage.EMAIL_USUARIO = json.email;
+    fetch("/usuarios/alterar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idFuncionarioServer: idFuncionarioVar,
+        novaSenhaServer: novaSenhaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
   }
   function fechar() {
     pop.style.display = 'none';

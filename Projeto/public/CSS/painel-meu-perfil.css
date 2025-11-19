@@ -1,15 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+html {
+    height: 100%;
+}
 body {
-    background-color: #B29FBD;
+    height: 80%;
+    background-color: #5A4168;
     font-family: 'Roboto', sans-serif;
-    color: #311C3D;
+    color: white;
     padding: 0;
     margin: 0;
+    background-image: url(../Assets/papel-higienico.png);
+    background-repeat: no-repeat;
+    background-position: right;
 }
 
 h1 {
-    color: #311C3D;
+    color: white;
     margin-top: 0;
     margin-bottom: 50px;
 }
@@ -46,15 +53,6 @@ input:focus {
     display: flex;
     flex-direction: row;
     height: 100%;
-}
-
-.bgimg {
-    background-image: url(../Assets/meuperfil.png);
-    background-repeat: no-repeat;
-    background-position: right;
-    aspect-ratio: 3/ 4;
-    width: 30%;
-    align-items: end;
 }
 
 .dados {
