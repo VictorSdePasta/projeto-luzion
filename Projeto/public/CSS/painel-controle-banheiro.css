@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
 
-
 }
 
 .selecao {
@@ -40,7 +39,7 @@ body {
         font-family: 'Roboto', sans-serif;
         font-size: 2.5rem;
         font-weight: 400;
-        color: #311C3D;
+        
     }
 }
 
@@ -53,6 +52,8 @@ body {
 
     h1 {
         margin: 3% 2%;
+        color: white;
+        font-weight: bold;
 
     }
 }
@@ -91,9 +92,8 @@ input {
     p{
           font-family: 'Roboto', sans-serif;
           font-size: 1rem;
-          color:#311C3D;
+          color: white;
     }
-
 }
 
 .topoTabela {
@@ -124,7 +124,7 @@ input {
 button {
     background: none;
     border: none;
-    color: #311C3D;
+    color: white;
     cursor: pointer;
     margin: 0;
     padding: 0;
@@ -137,7 +137,7 @@ button {
 #adicionar{
     background: none;
     border: none;
-    color: #311C3D;
+    color: white;
     cursor: pointer;
     margin: 0;
     padding: 0;

@@ -20,7 +20,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding-right: 10px;
-  color: #311c3d;
+  color: white;
   margin-bottom: 5%;
 }
 
@@ -43,6 +43,7 @@ input {
 
 h1 {
   margin-left: 3%;
+  
 }
 
 
@@ -60,7 +61,7 @@ h1 {
   p {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    color: #311C3D;
+    color: white;
   }
 
   img {
