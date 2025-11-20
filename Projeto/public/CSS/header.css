@@ -156,8 +156,9 @@ footer {
 .main {
   display: flex;
   flex-direction: row;
-  gap: 20%;
+  gap: 15%;
   align-items: center;
+  justify-content: center;
 }
 
 footer p {
