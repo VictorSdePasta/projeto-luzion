@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel de controle - Banheiros</title>
+  <title>Luzion - Clientes</title>
   <link rel="stylesheet" href="../CSS/header.css">
-  <link rel="stylesheet" href="../CSS/painel-controle-banheiro.css">
+  <link rel="stylesheet" href="../CSS/painel-controle-cliente.css">
 </head>
 <header>
- 
   <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
   <div class="botoesGuia">
     <div class="destaque">
@@ -21,188 +20,136 @@
 </header>
 
 <body>
-  <div class="modalFundo banheiro" id="fundoBanheiro">
-            <div class="fechar"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
-            <div class="modalCadastro">
-              <h2>NOVO BANHEIRO</h2>
-                <div class="modalInputs">
-                  <div>
-                    <p>Titulo</p>
-                    <input type="text" id="iptBanheiro">
-                  </div>
-                  <div>
-                    <p>Dispensadores</p>
-                    <input type="number" id="iptDispensador">
-                  </div>
-                </div>
-              <button onclick="cadastrar()">CADASTRAR</button>
-            </div>
-          </div>
-  <div class="corpo">
-    <!--<div class="menuLateral">
-
-      <div class="headerLateral">
-        <h2>Painel de Controle</h2>
-      </div>
-
-      <div onclick="colapsoCliente()" class="selecao especial">
-        <span>Cliente</span>
-        <button></button>
-      </div>
-      <div id="divCliente"></div>
-      <a href="" class="selecao especial">
-        <span>Banheiro</span>
-      </a>
-        <a href="" class="opcao">
-          <span>Unidade 1</span>
-        </a>
-        <a href="" class="opcao">
-          <span>Unidade 2</span>
-        </a>
-        <a href="" class="opcao">
-          <span>Unidade 3</span>
-        </a>
-        <a href="" class="opcao">
-          <span>Unidade 4</span>
-        </a>                
-      <div class="selecao" onclick="colapsoBanheiro()">
-        <span>Usuarios</span>
-      </div>
-      <div id="divDispenser">
-      </div>
-    </div>-->
-
-    <div class="pagina">
-  
-      <div class="Topo">
-       <h1>Banheiros</h1>
-      </div>
-      <div class="Tabela">
-        <div class="topoTabela">
-          <p>Banheiros</p>
-
-            <div id="adicionarDispenser">
-              <p>Qtd.Dispensers</p>
-          </div>
-          <p>Andar</p>
-          <button onclick="abrirBanheiro()" id="adicionar"><img id="add" src="../Assets/adicionar.svg"></button>
-
+  <div class="modalFundo filial" id="fundoFilial">
+    <!-- Botão para fechar o modal-->
+    <div class="fecharFilial"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
+    <!-- Div que recebe os elementos do modal-->
+    <div class="modalCadastro dois">
+      <h2>NOVA FILIAL</h2>
+      <!-- Inputs -->
+      <div class="modalFilialInputs">
+        <div class="iptNome">
+          <p>Nome</p>
+          <input type="text" id="">
         </div>
-        <div class="corpoTabela">
-          <div class="linhaA">
-            <p>Banheiro 1</p>
-            <p>6</p>
-            <p>1A</p>
-             <div class="botoes">
-               <button>
-                 <img src="../Assets/edit.svg">
-               </button>
-               <button>
-                 <img src="../Assets/lixeira.svg">
-               </button>
-             </div>            
+        <div class="iptEndereco">
+          <div class="logradouro">
+            <p>Logradouro</p>
+            <input type="text" id="">
           </div>
-          <div class="linhaB">
-            <p>Banheiro 2</p>
-            <p>7</p>
-            <p>2A</p>
-             <div class="botoes">
-               <button>
-                 <img src="../Assets/edit.svg">
-               </button>
-               <button>
-                 <img src="../Assets/lixeira.svg">
-               </button>
-             </div>
-          </div>
-          <div class="linhaA">
-            <p>Banheiro 3</p>
-            <p>5</p>
-            <p>3A</p>
-             <div class="botoes">
-               <button>
-                 <img src="../Assets/edit.svg">
-               </button>
-               <button>
-                 <img src="../Assets/lixeira.svg">
-               </button>
-             </div>
-          </div>
-          <div class="linhaB">
-            <p>Banheiro 4</p>
-            <p>4</p>
-            <p>4B</p>
-             <div class="botoes">
-               <button>
-                 <img src="../Assets/edit.svg">
-               </button>
-               <button>
-                 <img src="../Assets/lixeira.svg">
-               </button>
-             </div>
-            
-            </div>
-          
-          <div class="linhaA">
-            <p>Banheiro 5</p>
-            <p>4</p>
-            <p>5B</p>
-             <div class="botoes">
-               <button>
-                 <img src="../Assets/edit.svg">
-               </button>
-               <button>
-                 <img src="../Assets/lixeira.svg">
-               </button>
-             </div>            
-          </div>
-          <div class="linhaB">
-            <p>Banheiro 6</p>
-            <p>4</p>
-            <p>6B</p>
-             <div class="botoes">
-               <button>
-                 <img src="../Assets/edit.svg">
-               </button>
-               <button>
-                 <img src="../Assets/lixeira.svg">
-               </button>
-             </div>            
-          </div>
-          <div class="linhaA">
-            <p>Banheiro 7</p>
-            <p>4</p>
-            <p>7A</p>
-             <div class="botoes">
-               <button>
-                 <img src="../Assets/edit.svg">
-               </button>
-               <button>
-                 <img src="../Assets/lixeira.svg">
-               </button>
-             </div>            
-          </div>
-          <div class="linhaB final">
-            <p>Banheiro 8</p>
-            <p>4</p>
-            <p>8B</p>
-             <div class="botoes">
-               <button>
-                 <img src="../Assets/edit.svg">
-               </button>
-               <button>
-                 <img src="../Assets/lixeira.svg">
-               </button>
-             </div>
+          <div class="numero">
+            <p>Número</p>
+            <input type="number" id="">
           </div>
         </div>
+        <div class="complementar">
+          <div class="cidade">
+            <p>Cidade</p>
+            <input type="text" id="">
+          </div>
+          <div class="uf">
+            <p>UF</p>
+            <input type="text" id="">
+          </div>
+          <div class="cep">
+            <p>CEP</p>
+            <input type="text" id="">
+          </div>
         </div>
       </div>
-
+      <!-- Botão para chamar a função do modal -->
+      
     </div>
   </div>
+
+  <div class="corpo">
+
+    <div class="pagina">
+      <div class="topo">
+        <h1>Empresas Clientes</h1>
+        <div class="buscar">
+
+        </div>
+      </div>
+      <div class="tabela">
+        <div class="comecoTabela">
+          <p>Empresas</p>
+          <p>Filiais</p>
+          <button onclick="abrirFilial()" id="adicionar"><img id="add" src="../Assets/adicionar.svg"></button>
+          
+        </div>
+        <div class="corpoTabela">
+          <div class="linhaImpar">
+            <p>Nome fantasia 1</p>
+            <p>2</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" onclick="abrirBanheiro()" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaPar">
+            <p>Nome fantasia 2</p>
+            <p>6</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaImpar">
+            <p>Nome fantasia 3</p>
+            <p>12</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaPar">
+            <p>Nome fantasia 4</p>
+            <p>4</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaImpar">
+            <p>Nome fantasia 5</p>
+            <p>9</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaPar">
+            <p>Nome fantasia 6</p>
+            <p>8</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaImpar">
+            <p>Nome fantasia 7</p>
+            <p>5</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaPar linhaFinal">
+            <p>Nome fantasia 8</p>
+            <p>15</p>
+            <p class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
 </body>
-<!--<footer>
+<footer>
   <div class="main">
     <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logomarca"></div>
     <div class="informacoes">
@@ -213,7 +160,7 @@
     <div class="contato">
       <p><b>Contatos</b></p>
       <p><img src="../Assets/icon-telefone.png" alt=""> (11) 99999-9999</p>
-      <p><img src="../Assets/icon-email.png" alt=""> contato@luzion.com.br</p>
+      <p><img src="../Assets/icon mail.png" alt=""> contato@luzion.com.br</p>
     </div>
     <div class="redessociais">
       <p><b>Redes Sociais</b></p>
@@ -225,23 +172,15 @@
   <div class="autoria">
     <p>Luzion © 2025</p>
   </div>
-</footer> -->
-<script>
-
-  function abrirBanheiro() {
-    fundoBanheiro.style.display = 'flex';
-  }
-  function fechar() {
-    fundoBanheiro.style.display = 'none';
-  }
-
-
-  function cadastrar() {
-    var addBanheiro = iptBanheiro.value;
-    var addDispensador = iptDispensador.value;
-
-    
-  }
-</script>
+</footer>
 
 </html>
+<script>
+  function abrirFilial() {
+    fundoFilial.style.display = 'flex';
+  }
+    function fechar() {
+      
+    fundoFilial.style.display = 'none';
+  }
+</script>
