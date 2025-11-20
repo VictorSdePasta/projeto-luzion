@@ -44,7 +44,7 @@
                 <div class="divmsg" id="erroNomeFan"></div>
     
             <p>CNPJ:</p>
-                <input class="caixa" type="number" id="cnpj" placeholder="00.000.000/0000-00" onkeyup="verificar()">
+                <input class="caixa" type="text" id="cnpj" placeholder="00.000.000/0000-00" onkeyup="verificar()">
                 <div class="divmsg" id="erroCnpj"></div>
         </div>
             <div class="circulo">
@@ -82,12 +82,15 @@
   </div>
 </footer>
 <script>
-    var validoDois = false
+    var validoUm = false;
+    var validoDois = false;
+    var validoTres = false;
+
     function verificar() {
         var numrCnpj = cnpj.value;
         
         for (let index = 0; index < numrCnpj.length; index++) {
-                var falta = 13 - index
+                var falta = 14 - numrCnpj.length;
 
             if (falta > 0) {
                 erroCnpj.innerHTML = `Faltam ${falta} número(s) para completar o CNPJ`
@@ -99,55 +102,66 @@
             
         
     }
-    
-   
-    function cadastrar() {
-        var nmEmpresa = nomeEmpresa.value;
-        var nmFantasia = nomeFantasia.value;
-        var numrCnpj = cnpj.value;
-        var validoUm = false
-        var validoTres = false
 
-        if (nmEmpresa == '') {
-            erroNomeEmp.innerHTML = `*Preencha o campo acima*` 
-        } else if (nmEmpresa.length < 3){
-            erroNomeEmp.innerHTML = `*Insira um nome válido*`
-        } else {
-            erroNomeEmp.innerHTML = ''
-            validoUm = true
-        }
+function cadastrar() {
 
-        if (nmFantasia == '') {
-            erroNomeFan.innerHTML = `*Preencha o campo acima*`
-        } else {
-            erroNomeFan.innerHTML = ''
-            validoTres = true
-        }
+    var nmEmpresa = nomeEmpresa.value;
+    var nmFantasia = nomeFantasia.value;
+    var numrCnpj = cnpj.value;
 
-        if (numrCnpj == '') {
-            erroCnpj.innerHTML = `*Preencha o campo acima*`
-        } else {
-            if (validoUm == true && validoDois == true && validoTres == true) {
-            pop1.style.display = 'flex';
-            up1.style.display = 'flex';
-            setTimeout(function() {
-            fechar(); 
-            window.location.href = "./cadastro-usuario.html"; 
-            }, 2000);
-        }
-        }
-    } 
-        
-    
-    function logar() {
-        window.location.href = "../HTML/login.html"
+    validoUm = nmEmpresa.length > 0;
+    validoTres = nmFantasia.length > 0;
+
+    if (!validoUm || !validoDois || !validoTres) {
+        alert("Preencha todos os campos corretamente.");
+        return;
     }
-    function fechar() {
 
-        pop1.style.display = 'none';
+    fetch("/empresas/cadastrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            nomeEmpresa: nmEmpresa,
+            nomeFantasia: nmFantasia,
+            cnpj: numrCnpj
+        })
+    })
+    .then(res => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            throw "Erro ao cadastrar empresa.";
+        }
+    })
+    .then(data => {
+        sessionStorage.ID_EMPRESA = data.insertId;
 
-        up1.style.display = 'none';
-        window.location.href = "../HTML/cadastro-usuario.html"
-   }
+        pop1.style.display = 'flex';
+        up1.style.display = 'flex';
+
+        setTimeout(() => {
+            fechar();
+            window.location.href = "cadastro-usuario.html";
+        }, 2000);
+    })
+    .catch(err => {
+        console.error("Erro:", err);
+    });
+}
+
+function fechar() {
+    pop1.style.display = "none";
+    up1.style.display = "none";
+}
+
+function logar() {
+    window.location.href = "./login.html";
+}
+
+function irParaCadastroUsuario() {
+    window.location.href = "./cadastro-usuario.html";
+}
+
+
 </script>
 </html>

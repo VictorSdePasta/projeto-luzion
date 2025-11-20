@@ -98,6 +98,7 @@
 
 <script>
     
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
 
     function verificar() {
         var senha = ipt_senha.value;
@@ -138,6 +139,11 @@
         var senha = ipt_senha.value;
         var confirmacaoSenha = ipt_confirmacaoSenha.value;
         var telefone = ipt_telefone.value;
+
+if (!fkEmpresa) {
+    alert("Empresa não encontrada. Cadastre a empresa antes de cadastrar o usuário.");
+    return;
+}
 
         var validacao1 = false
         var validacao2 = false
@@ -188,12 +194,29 @@
             if (validacao1 == true && validacao2 == true && validacao3 == true && validacao4 == true && validacao5 == true) {
                 pop1.style.display = 'flex';
                 up1.style.display = 'flex';
-
-                setTimeout(function () {
-                fechar();
-                window.location.href = "./login.html";
-                }, 2000);
+fetch("/usuarios/cadastrar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        senha: senha,
+        fkEmpresa: fkEmpresa
+    })
+})
+.then(res => res.json())
+.then(data => {
+    if (data.erro) {
+        alert("Erro ao cadastrar usuário: " + data.erro);
+    } else {
+        pop1.style.display = 'flex';
+        setTimeout(() => { window.location.href = "login.html"; }, 2000);
+    }
+})
+.catch(err => console.error(err));
             }
+
     }
 
     function fechar() {
