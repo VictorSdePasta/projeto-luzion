@@ -96,15 +96,20 @@
 </header>-->
 
 <body>
-  <div class="modalFundo filial" id="fundoFilial">
-    <div class="fecharFilial"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
-    <div class="modalCadastro dois">
-      <h2>NOVA FILIAL</h2>
-      <div class="modalFilialInputs">
-        <div class="iptNome">
-          <p>Nome</p>
-          <input type="text" id="">
-        </div>
+<!-- Inicio da estrutura do modal-->
+<!-- Div de fundo do modal-->
+<div class="modalFundo filial" id="fundoFilial">
+  <!-- Botão para fechar o modal-->
+  <div class="fecharFilial"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
+  <!-- Div que recebe os elementos do modal-->
+  <div class="modalCadastro dois">
+    <h2>NOVA FILIAL</h2>
+    <!-- Inputs -->
+    <div class="modalFilialInputs">
+      <div class="iptNome">
+        <p>Nome</p>
+        <input type="text" id="">
+      </div>
         <div class="iptEndereco">
           <div class="logradouro">
             <p>Logradouro</p>
@@ -130,13 +135,19 @@
           </div>
         </div>
       </div>
+      <!-- Botão para chamar a função do modal -->
       <button onclick="cadastrar()">CADASTRAR</button>
     </div>
   </div>
+  <!-- Inicio da estrutura do modal-->
+  <!-- Div de fundo do modal-->
   <div class="modalFundo banheiro" id="fundoBanheiro">
+    <!-- Botão para fechar o modal-->
     <div class="fechar"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
+    <!-- Div que recebe os elementos do modal-->
     <div class="modalCadastro">
       <h2>NOVO BANHEIRO</h2>
+      <!-- Inputs -->
       <div class="modalInputs">
         <div>
           <p>Titulo</p>
@@ -147,6 +158,7 @@
           <input type="number" id="">
         </div>
       </div>
+      <!-- Botão para chamar a função do modal -->
       <button onclick="cadastrar()">CADASTRAR</button>
     </div>
   </div>
