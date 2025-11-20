@@ -20,6 +20,48 @@
 </header>
 
 <body>
+  <div class="modalFundo filial" id="fundoFilial">
+    <!-- Botão para fechar o modal-->
+    <div class="fecharFilial"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
+    <!-- Div que recebe os elementos do modal-->
+    <div class="modalCadastro dois">
+      <h2>NOVA FILIAL</h2>
+      <!-- Inputs -->
+      <div class="modalFilialInputs">
+        <div class="iptNome">
+          <p>Nome</p>
+          <input type="text" id="">
+        </div>
+        <div class="iptEndereco">
+          <div class="logradouro">
+            <p>Logradouro</p>
+            <input type="text" id="">
+          </div>
+          <div class="numero">
+            <p>Número</p>
+            <input type="number" id="">
+          </div>
+        </div>
+        <div class="complementar">
+          <div class="cidade">
+            <p>Cidade</p>
+            <input type="text" id="">
+          </div>
+          <div class="uf">
+            <p>UF</p>
+            <input type="text" id="">
+          </div>
+          <div class="cep">
+            <p>CEP</p>
+            <input type="text" id="">
+          </div>
+        </div>
+      </div>
+      <!-- Botão para chamar a função do modal -->
+      
+    </div>
+  </div>
+
   <div class="corpo">
 
     <div class="pagina">
@@ -33,14 +75,15 @@
         <div class="comecoTabela">
           <p>Empresas</p>
           <p>Filiais</p>
-          <img src="../Assets/adicionar.svg" alt="">
+          <button onclick="abrirFilial()" id="adicionar"><img id="add" src="../Assets/adicionar.svg"></button>
+          
         </div>
         <div class="corpoTabela">
           <div class="linhaImpar">
             <p>Nome fantasia 1</p>
             <p>2</p>
             <div class="icones">
-              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/editar.png" onclick="abrirBanheiro()" alt="Editar">
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
@@ -132,3 +175,12 @@
 </footer>
 
 </html>
+<script>
+  function abrirFilial() {
+    fundoFilial.style.display = 'flex';
+  }
+    function fechar() {
+      
+    fundoFilial.style.display = 'none';
+  }
+</script>
