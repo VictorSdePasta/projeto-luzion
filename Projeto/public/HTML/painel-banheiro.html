@@ -21,6 +21,23 @@
 </header>
 
 <body>
+  <div class="modalFundo banheiro" id="fundoBanheiro">
+            <div class="fechar"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
+            <div class="modalCadastro">
+              <h2>NOVO BANHEIRO</h2>
+                <div class="modalInputs">
+                  <div>
+                    <p>Titulo</p>
+                    <input type="text" id="iptBanheiro">
+                  </div>
+                  <div>
+                    <p>Dispensadores</p>
+                    <input type="number" id="iptDispensador">
+                  </div>
+                </div>
+              <button onclick="cadastrar()">CADASTRAR</button>
+            </div>
+          </div>
   <div class="corpo">
     <!--<div class="menuLateral">
 
@@ -68,9 +85,7 @@
               <p>Qtd.Dispensers</p>
           </div>
           <p>Andar</p>
-          <button onclick="add()" id="adicionar">
-            <img id="add" src="../Assets/adicionar.svg">
-          </button>
+          <button onclick="abrirBanheiro()" id="adicionar"><img id="add" src="../Assets/adicionar.svg"></button>
 
         </div>
         <div class="corpoTabela">
@@ -212,8 +227,19 @@
   </div>
 </footer> -->
 <script>
-  function add() {
-    var addBanheiro = iptBanheiro.value
+
+  function abrirBanheiro() {
+    fundoBanheiro.style.display = 'flex';
+  }
+  function fechar() {
+    fundoBanheiro.style.display = 'none';
+  }
+
+
+  function cadastrar() {
+    var addBanheiro = iptBanheiro.value;
+    var addDispensador = iptDispensador.value;
+
     
   }
 </script>

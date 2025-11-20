@@ -1,47 +1,43 @@
 var empresaModel = require("../models/empresa-model");
 
-function buscarPorCnpj(req, res) {
-  var cnpj = req.query.cnpj;
+function cadastrar(req, res) {
+    var nomeEmpresa = req.body.nomeEmpresa;
+    var nomeFantasia = req.body.nomeFantasia;
+    var cnpj = req.body.cnpj;
 
-  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-    res.status(200).json(resultado);
-  });
+    empresaModel.cadastrar(nomeEmpresa, nomeFantasia, cnpj)
+        .then(result => res.status(200).json(result))
+        .catch(erro => {
+            console.log("Erro ao cadastrar empresa:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
-function listar(req, res) {
-  empresaModel.listar().then((resultado) => {
-    res.status(200).json(resultado);
-  });
+function buscarPorCnpj(req, res) {
+    var cnpj = req.query.cnpj;
+
+    empresaModel.buscarPorCnpj(cnpj)
+        .then(result => res.json(result))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
 function buscarPorId(req, res) {
-  var id = req.params.id;
+    var id = req.params.id;
 
-  empresaModel.buscarPorId(id).then((resultado) => {
-    res.status(200).json(resultado);
-  });
+    empresaModel.buscarPorId(id)
+        .then(result => res.json(result))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
-function cadastrar(req, res) {
-  var cnpj = req.body.cnpj;
-  var razaoSocial = req.body.razaoSocial;
-
-  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-    if (resultado.length > 0) {
-      res
-        .status(401)
-        .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
-    } else {
-      empresaModel.cadastrar(razaoSocial, cnpj).then((resultado) => {
-        res.status(201).json(resultado);
-      });
-    }
-  });
+function listar(req, res) {
+    empresaModel.listar()
+        .then(result => res.json(result))
+        .catch(erro => res.status(500).json(erro.sqlMessage));
 }
 
 module.exports = {
-  buscarPorCnpj,
-  buscarPorId,
-  cadastrar,
-  listar,
+    cadastrar,
+    buscarPorCnpj,
+    buscarPorId,
+    listar
 };
