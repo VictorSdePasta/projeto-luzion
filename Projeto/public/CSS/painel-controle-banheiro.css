@@ -58,26 +58,6 @@ body {
     }
 }
 
-input {
-    margin: 0px 3%;
-    width: 30%;
-    height: 15%;
-    align-self: center;
-    background-color: #715E7D;
-    border-radius: 25px;
-    border-color: #B29FBD;
-    border-block-end: 2px;
-    border-bottom-width: 2px;
-    padding: 1%;
-    background-image: url(../Assets/lupa.svg);
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: 3%;
-    background-size: 5%;
-    padding-left: 5%;
-    border: none;
-}
-
 .Tabela {
     display: flex;
     flex-direction: column;
