@@ -1,4 +1,4 @@
-var database = require("../Banco-de-dados/config");
+var database = require("../database/config");
 
 function buscarAquariosPorEmpresa(empresaId) {
 
