@@ -17,34 +17,23 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
+var avisosRouter = require("./src/routes/avisos");
+var medidasRouter = require("./src/routes/medidas");
+var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public"), { index: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
+app.use("/avisos", avisosRouter);
+app.use("/medidas", medidasRouter);
+app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
-
-app.get("/cadastro-usuario.html", (req, res) => {
-    res.sendFile(path.join(__dirname, "public/HTML/cadastro-usuario.html"));
-});
-
-app.get("/login.html", (req, res) => {
-    res.sendFile(path.join(__dirname, "public/HTML/login.html"));
-});
-
-app.get("/home-page.html", (req, res) => {
-    res.sendFile(path.join(__dirname, "public/HTML/home-page.html"));
-});
-
-app.get("/cadastro-empresa.html", (req, res) => {
-    res.sendFile(path.join(__dirname, "public/HTML/cadastro-empresa.html"));
-});
-
 
 app.listen(PORTA_APP, function () {
     console.log(`
