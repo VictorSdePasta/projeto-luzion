@@ -416,3 +416,8 @@ input::placeholder {
   padding-right: 4%;
   border-radius: 5% 5% 5% 5% / 60% 60% 60% 60%;
 }
+
+.ultimoCampoModal {
+  display: flex;
+  justify-content: space-between;
+}

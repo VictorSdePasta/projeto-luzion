@@ -27,20 +27,20 @@ fetch(`/paineis/buscarFuncionarios/${idFilial}`).then(function (resposta) {
           msg +=
             `<div class="corpoTabela">
               <div class="linhaImpar">
-                <p>${dados.email}</p>
+                <p class="colunasNome">${dados.email}</p>
                 <p>${dados.permissao}</p>
                 <div class="icones">
-                  <img src="../Assets/editar.png" alt="Editar" onclick="editarUsuario(${dados.idUsuario})">
+                  <img src="../Assets/editar.png" alt="Editar" onclick="editarFuncionario(${dados.idUsuario})">
                   <img src="../Assets/lixeira.svg" alt="Excluir" onclick="excluirFuncionario(${dados.idUsuario})">
                 </div>
               </div>`
         } else {
           msg +=
             `<div class="linhaPar">
-              <p>${dados.email}</p>
+              <p class="colunasNome">${dados.email}</p>
               <p>${dados.permissao}</p>
               <div class="icones">
-                <img src="../Assets/editar.png" alt="Editar" onclick="editarUsuario(${dados.idUsuario})">
+                <img src="../Assets/editar.png" alt="Editar" onclick="editarFuncionario(${dados.idUsuario})">
                 <img src="../Assets/lixeira.svg" alt="Excluir" onclick="excluirFuncionario(${dados.idUsuario})">
               </div>
             </div>`
@@ -49,11 +49,11 @@ fetch(`/paineis/buscarFuncionarios/${idFilial}`).then(function (resposta) {
       }
 
       tabela.innerHTML +=
-        `<div class="linhaPar linhaFinal">
-          <p>${resposta[resposta.length - 1].email}</p>
+        `<div class="linhaPar final">
+          <p class="colunasNome">${resposta[resposta.length - 1].email}</p>
           <p>${resposta[resposta.length - 1].permissao}</p>
           <div class="icones">
-            <img src="../Assets/editar.png" alt="Editar" onclick="editarUsuario(${resposta[resposta.length - 1].idUsuario})">
+            <img src="../Assets/editar.png" alt="Editar" onclick="editarFuncionario(${resposta[resposta.length - 1].idUsuario})">
             <img src="../Assets/lixeira.svg" alt="Excluir" onclick="excluirFuncionario(${resposta[resposta.length - 1].idUsuario})">
           </div>
         </div>
