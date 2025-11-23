@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luzion - Usuários</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/painel-controle-cliente.css">
+</head>
+<header>
+  <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
+  <div class="botoesGuia">
+    <div class="destaque">
+      <a href="./login.html" id="entrar">LOGOUT</a>
+    </div>
+    <a href="dash-tempo-real.html" id="cadastrar">DASHBOARD</a>
+    <a href="painel-perfil.html" class="selecionado" id="simulador">MEU PERFIL</a>
+  </div>
+</header>
+
+<body>
+  <div class="modalFundo filial" id="fundoFilial">
+    <!-- Botão para fechar o modal-->
+    <div class="fecharFilial"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
+    <!-- Div que recebe os elementos do modal-->
+    <div class="modalCadastro dois">
+      <h2>NOVA FILIAL</h2>
+      <!-- Inputs -->
+      <div class="modalFilialInputs">
+        <div class="iptNome">
+          <p>Nome</p>
+          <input type="text" id="">
+        </div>
+        <div class="iptEndereco">
+          <div class="logradouro">
+            <p>Logradouro</p>
+            <input type="text" id="">
+          </div>
+          <div class="numero">
+            <p>Número</p>
+            <input type="number" id="">
+          </div>
+        </div>
+        <div class="complementar">
+          <div class="cidade">
+            <p>Cidade</p>
+            <input type="text" id="">
+          </div>
+          <div class="uf">
+            <p>UF</p>
+            <input type="text" id="">
+          </div>
+          <div class="cep">
+            <p>CEP</p>
+            <input type="text" id="">
+          </div>
+        </div>
+      </div>
+      <!-- Botão para chamar a função do modal -->
+    </div>
+  </div>
+
+  <div class="corpo">
+
+    <div class="pagina">
+      <div class="topo">
+        <h1>Usuários</h1>
+        <div class="buscar">
+        </div>
+      </div>
+      <div class="tabela" id="divTabela">
+        <div class="comecoTabela">
+          <p>Email</p>
+          <p>Permissão</p>
+          <button onclick="abrirNovo()" id="adicionar"><img id="add" src="../Assets/adicionar.svg"></button>
+        </div>
+
+        <div class="corpoTabela">
+          <div class="linhaImpar">
+            <p>Nome fantasia 1</p>
+            <p>2</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" onclick="abrirBanheiro()" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+
+          <div class="linhaPar">
+            <p>Nome fantasia 2</p>
+            <p>6</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+
+
+          <div class="linhaImpar">
+            <p>Nome fantasia 3</p>
+            <p>12</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaPar">
+            <p>Nome fantasia 4</p>
+            <p>4</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaImpar">
+            <p>Nome fantasia 5</p>
+            <p>9</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaPar">
+            <p>Nome fantasia 6</p>
+            <p>8</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaImpar">
+            <p>Nome fantasia 7</p>
+            <p>5</p>
+            <div class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+            </div>
+          </div>
+          <div class="linhaPar linhaFinal">
+            <p>Nome fantasia 8</p>
+            <p>15</p>
+            <p class="icones">
+              <img src="../Assets/editar.png" alt="Editar">
+              <img src="../Assets/lixeira.svg" alt="Excluir">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</body>
+
+</html>
+
+<script src="../Js/painel-controle.js"></script>
