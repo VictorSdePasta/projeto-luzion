@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luzion - Clientes</title>
+  <title>Luzion - Usuários</title>
   <link rel="stylesheet" href="../CSS/header.css">
-  <link rel="stylesheet" href="../CSS/painel-controle.css">
+  <link rel="stylesheet" href="../CSS/painel-controle-cliente.css">
 </head>
 <header>
   <div class="logo"><img src="../Assets/luzion-logo.png" alt="Logo Luzion"></div>
@@ -58,23 +58,24 @@
         </div>
       </div>
       <!-- Botão para chamar a função do modal -->
-      
     </div>
   </div>
 
   <div class="corpo">
 
     <div class="pagina">
-      <div class="Topo">
-        <h1>Empresas Clientes</h1>
-      </div>
-      <div class="Tabela">
-        <div class="comecoTabela">
-          <p>Empresas</p>
-          <p class="titulo">Filiais</p>
-          <button onclick="abrirFilial()" id="adicionar"><img id="add" src="../Assets/adicionar.svg"></button>
-          
+      <div class="topo">
+        <h1>Usuários</h1>
+        <div class="buscar">
         </div>
+      </div>
+      <div class="tabela" id="divTabela">
+        <div class="comecoTabela">
+          <p>Email</p>
+          <p>Permissão</p>
+          <button onclick="abrirNovo()" id="adicionar"><img id="add" src="../Assets/adicionar.svg"></button>
+        </div>
+
         <div class="corpoTabela">
           <div class="linhaImpar">
             <p>Nome fantasia 1</p>
@@ -84,6 +85,7 @@
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
+
           <div class="linhaPar">
             <p>Nome fantasia 2</p>
             <p>6</p>
@@ -92,6 +94,8 @@
               <img src="../Assets/lixeira.svg" alt="Excluir">
             </div>
           </div>
+
+
           <div class="linhaImpar">
             <p>Nome fantasia 3</p>
             <p>12</p>
@@ -148,12 +152,5 @@
 </body>
 
 </html>
-<script>
-  function abrirFilial() {
-    fundoFilial.style.display = 'flex';
-  }
-    function fechar() {
-      
-    fundoFilial.style.display = 'none';
-  }
-</script>
+
+<script src="../Js/painel-controle.js"></script>

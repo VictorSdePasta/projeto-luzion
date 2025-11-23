@@ -89,6 +89,10 @@ margin-left: 3%;
     margin: 0;
 }
 
+.titulo {
+    padding-left: 10%;
+}
+
 .icones{
     display: flex;
 }
