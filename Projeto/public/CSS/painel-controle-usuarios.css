@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #5A4168;
+}
+
+.pagina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+}
+
+.topo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0;
+  color: white;
+  margin-bottom: 5%;
+}
+
+h1 {
+  margin-left: 3%;
+}
+
+
+.tabela {
+  display: flex;
+  flex-direction: column;
+  background-color: #715E7D;
+  justify-content: center;
+  align-self: center;
+  width: 80%;
+  border-radius: 15px;
+  height: max-content;
+  margin-bottom: 11%;
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: white;
+  }
+
+  img {
+    width: 3%;
+    height: 3%;
+  }
+}
+
+.comecoTabela {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: #CC9CE7;
+  justify-content: space-between;
+  border-radius: 15px;
+  padding: 5px;
+  margin: 0;
+}
+
+.comecoTabela p:first-child {
+  padding-left: 5%;
+  width: 25%;
+}
+
+.comecoTabela img {
+  display: flex;
+  align-self: center;
+  padding: 5px;
+}
+
+.corpoTabela {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+}
+
+.linhaImpar {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: #715E7D;
+  justify-content: space-between;
+  height: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+
+  & p:first-child {
+    width: 30%;
+  }
+}
+
+.linhaPar {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: #7F5C92;
+  justify-content: space-between;
+  height: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+
+  & p:first-child {
+    width: 30%;
+  }
+}
+
+.icones {
+  display: flex;
+}
+
+.icones img {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.buscar {
+  display: flex;
+  align-items: center;
+  width: 35%;
+  height: 100px;
+}
+
+.linhaFinal{
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}

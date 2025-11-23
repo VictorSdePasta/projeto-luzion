@@ -6,7 +6,7 @@ function fechar() {
   fundoFilial.style.display = 'none';
 }
 
-const idFilial = sessionStorage.ID_FILIAL
+const idFilial = 1
 const idUsuario = sessionStorage.ID_USUARIO
 const nivelPerm = sessionStorage.NIVEL_PERMISSAO
 
@@ -27,7 +27,7 @@ fetch(`/paineis/buscarFuncionarios/${idFilial}`).then(function (resposta) {
           msg +=
             `<div class="corpoTabela">
               <div class="linhaImpar">
-                <p>${dados.usuario}</p>
+                <p>${dados.email}</p>
                 <p>${dados.permissao}</p>
                 <div class="icones">
                   <img src="../Assets/editar.png" alt="Editar" onclick="editarUsuario(${dados.idUsuario})">
@@ -37,7 +37,7 @@ fetch(`/paineis/buscarFuncionarios/${idFilial}`).then(function (resposta) {
         } else {
           msg +=
             `<div class="linhaPar">
-              <p>${dados.usuario}</p>
+              <p>${dados.email}</p>
               <p>${dados.permissao}</p>
               <div class="icones">
                 <img src="../Assets/editar.png" alt="Editar" onclick="editarUsuario(${dados.idUsuario})">
@@ -50,7 +50,7 @@ fetch(`/paineis/buscarFuncionarios/${idFilial}`).then(function (resposta) {
 
       tabela.innerHTML +=
         `<div class="linhaPar linhaFinal">
-          <p>${resposta[resposta.length - 1].usuario}</p>
+          <p>${resposta[resposta.length - 1].email}</p>
           <p>${resposta[resposta.length - 1].permissao}</p>
           <div class="icones">
             <img src="../Assets/editar.png" alt="Editar" onclick="editarUsuario(${resposta[resposta.length - 1].idUsuario})">

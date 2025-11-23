@@ -637,4 +637,3 @@ from Registro
     join Filial on fkfilial = idFilial
     join Empresa on fkEmpresa = idEmpresa
   where Empresa.nomeFantasia = 'Facilitariamos TUDO';
-  
