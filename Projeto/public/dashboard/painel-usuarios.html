@@ -25,35 +25,31 @@
     <div class="fecharFilial"><button onclick="fechar()"><img src="../Assets/icon-fechar.svg" alt=""></button></div>
     <!-- Div que recebe os elementos do modal-->
     <div class="modalCadastro dois">
-      <h2>NOVA FILIAL</h2>
+      <h2>NOVA USUÁRIO</h2>
       <!-- Inputs -->
       <div class="modalFilialInputs">
-        <div class="iptNome">
-          <p>Nome</p>
-          <input type="text" id="">
-        </div>
         <div class="iptEndereco">
           <div class="logradouro">
-            <p>Logradouro</p>
-            <input type="text" id="">
+            <p>Nome</p>
+            <input type="text" id="inptNome">
           </div>
           <div class="numero">
-            <p>Número</p>
-            <input type="number" id="">
+            <p>Permissão</p>
+            <input type="number" id="inptNivel">
           </div>
+        </div>
+        <div class="iptNome">
+          <p>Email</p>
+          <input type="text" id="inptEmail">
         </div>
         <div class="complementar">
           <div class="cidade">
-            <p>Cidade</p>
-            <input type="text" id="">
-          </div>
-          <div class="uf">
-            <p>UF</p>
-            <input type="text" id="">
+            <p>Senha</p>
+            <input type="text" id="inptSenha">
           </div>
           <div class="cep">
-            <p>CEP</p>
-            <input type="text" id="">
+            <p>Telefone</p>
+            <input type="text" id="inptTelefone">
           </div>
         </div>
       </div>
@@ -148,9 +144,8 @@
     </div>
 
   </div>
-  </div>
 </body>
 
 </html>
 
-<script src="../Js/painel-controle.js"></script>
+<script src="../Js/painel-usuarios.js"></script>
