@@ -1,229 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro Usuario</title>
-    <link rel="stylesheet" href="./CSS/cadastro-usuario.css">
+    <link rel="stylesheet" href="./CSS/cadastro-usuario.css" />
     <link rel="stylesheet" href="./CSS/header.css" />
-</head>
+  </head>
 
-<header>
-    <div class="logo"><img src="./Assets/luzion-logo.png" alt="Logo Luzion"></div>
-    <div class="botoesGuia">
-        <div class="destaque">
-            <a href="login.html" id="entrar">ENTRAR</a>
-        </div>
-        <a href="cadastro-empresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
-        <a href="simulador-financeiro.html" id="simulador">SIMULADOR</a>
-        <a href="homepage.html" id="home">HOME</a>
+  <header>
+    <div class="logo">
+      <img src="./Assets/luzion-logo.png" alt="Logo Luzion" />
     </div>
-</header>
+    <div class="botoesGuia">
+      <div class="destaque">
+        <a href="login.html" id="entrar">ENTRAR</a>
+      </div>
+      <a href="cadastro-empresa.html" class="selecionado" id="cadastrar"
+        >CADASTRAR</a
+      >
+      <a href="simulador-financeiro.html" id="simulador">SIMULADOR</a>
+      <a href="homepage.html" id="home">HOME</a>
+    </div>
+  </header>
 
-<body>
-
+  <body>
     <div id="pop1" class="pop">
-        <div id="up1" class="up">
+      <div id="up1" class="up">
+        <p>Cadastro realizado</p>
 
-            <p>Cadastro realizado</p>
-
-            <button onclick="fechar()">Fechar</button>
-        </div>
+        <button onclick="fechar()">Fechar</button>
+      </div>
     </div>
 
     <div class="corpo">
-        <div class="completo">
-            <div class="inputs">
-                <h1>Cadastro<br><b>Usuário</b></h1>
-                <div class="cadastro">
-                    <div class="linha">
-                        <p>Nome:</p>
-                        <div class="iptCampo"><input id="ipt_nome" placeholder="Seu nome"></div>
-                        <div class="divmsg" id="nomeErro"></div>
+      <div class="completo">
+        <div class="inputs">
+          <h1>Cadastro<br /><b>Usuário</b></h1>
+          <div class="cadastro">
+            <div class="linha">
+              <p>Nome:</p>
+              <div class="iptCampo">
+                <input id="ipt_nome" placeholder="Seu nome" />
+              </div>
+              <div class="divmsg" id="nomeErro"></div>
 
-                        <p>Email:</p>
-                        <div class="iptCampo"><input id="ipt_email" placeholder="nome@email.com"></div>
-                        <div class="divmsg" id="emailErro"></div>
+              <p>Email:</p>
+              <div class="iptCampo">
+                <input id="ipt_email" placeholder="nome@email.com" />
+              </div>
+              <div class="divmsg" id="emailErro"></div>
 
-                        <p>Telefone:</p>
-                        <div class="iptCampo"><input type="number" id="ipt_telefone" placeholder="(99)99999-9999"></div>
-                        <div class="divmsg" id="telfErro"></div>
+              <p>Telefone:</p>
+              <div class="iptCampo">
+                <input
+                  type="number"
+                  id="ipt_telefone"
+                  placeholder="(99)99999-9999"
+                />
+              </div>
+              <div class="divmsg" id="telfErro"></div>
 
-                        <p>Senha:</p>
-                        <div class="iptCampo"><input type="password" id="ipt_senha" placeholder="Senha" onkeyup="verificar()"></div>
-                        <div class="divmsg" id="senhaErro"></div>
+              <p>Senha:</p>
+              <div class="iptCampo">
+                <input
+                  type="password"
+                  id="ipt_senha"
+                  placeholder="Senha"
+                  onkeyup="verificar()"
+                />
+              </div>
+              <div class="divmsg" id="senhaErro"></div>
 
-                        <p>Confirme a senha:</p>
-                        <div class="iptCampo"><input type="password" id="ipt_confirmacaoSenha" placeholder="Confirmar senha">
-                        </div>
-                        <div class="divmsg" id="confSenhaErro"></div>
-                    </div>
-                    <div class="coluna">
-                        <div class="botaocadastrar">
-                            <button onclick="cadastrar()">CADASTRAR →</button>
-                        </div>
-                    </div>
-                </div>
+              <p>Confirme a senha:</p>
+              <div class="iptCampo">
+                <input
+                  type="password"
+                  id="ipt_confirmacaoSenha"
+                  placeholder="Confirmar senha"
+                />
+              </div>
+              <div class="divmsg" id="confSenhaErro"></div>
             </div>
-            <img src="./Assets/mulher-telefone.png" alt="">
+            <div class="coluna">
+              <div class="botaocadastrar">
+                <button onclick="cadastrar()">CADASTRAR →</button>
+              </div>
+            </div>
+          </div>
         </div>
+        <img src="./Assets/mulher-telefone.png" alt="" />
+      </div>
     </div>
-</body>
+  </body>
 
-<footer>
+  <footer>
     <div class="main">
-        <div class="logo"><img src="./Assets/luzion-logo.png" alt="Logomarca"></div>
-        <div class="informacoes">
-            <p><b>Informações</b></p>
-            <a href="">Menu</a>
-            <a href="">Sobre nós</a>
+      <div class="logo">
+        <img src="./Assets/luzion-logo.png" alt="Logomarca" />
+      </div>
+      <div class="informacoes">
+        <p><b>Informações</b></p>
+        <a href="">Menu</a>
+        <a href="">Sobre nós</a>
+      </div>
+      <div class="contato">
+        <p><b>Contatos</b></p>
+        <p><img src="./Assets/icon-telefone.png" alt="" /> (11) 99999-9999</p>
+        <p>
+          <img src="./Assets/icon-email.png" alt="" /> contato@luzion.com.br
+        </p>
+      </div>
+      <div class="redessociais">
+        <p><b>Redes Sociais</b></p>
+        <div class="icons">
+          <a href=""><img src="./Assets/icon-facebook.png" alt="" /></a
+          ><a href=""><img src="./Assets/icon-twitter.png" alt="" /></a
+          ><a href=""><img src="./Assets/icon-linkedin.png" alt="" /></a>
         </div>
-        <div class="contato">
-            <p><b>Contatos</b></p>
-            <p><img src="./Assets/icon-telefone.png" alt=""> (11) 99999-9999</p>
-            <p><img src="./Assets/icon-email.png" alt=""> contato@luzion.com.br</p>
-        </div>
-        <div class="redessociais">
-            <p><b>Redes Sociais</b></p>
-            <div class="icons"><a href=""><img src="./Assets/icon-facebook.png" alt=""></a><a href=""><img
-                        src="./Assets/icon-twitter.png" alt=""></a><a href=""><img src="./Assets/icon-linkedin.png"
-                        alt=""></a></div>
-        </div>
+      </div>
     </div>
     <div class="autoria">
-        <p>Luzion © 2025</p>
+      <p>Luzion © 2025</p>
     </div>
-</footer>
+  </footer>
 
-<script>
-    
-    var fkEmpresa = sessionStorage.ID_EMPRESA;
+  <script>
+    var fkFilial = sessionStorage.ID_EMPRESA;
 
     function verificar() {
-        var senha = ipt_senha.value;
-        var index = 0
-        var forca = 0
-        let combinacao1 = false
-        let combinacao2 = false
-        let combinacao3 = false
-            while (index < senha.length) {
-            var c = senha[index];
+      var senha = ipt_senha.value;
+      var index = 0;
+      var forca = 0;
+      let combinacao1 = false;
+      let combinacao2 = false;
+      let combinacao3 = false;
+      while (index < senha.length) {
+        var c = senha[index];
 
-                if (c >= 'a' && c <= 'z' ) {
-                    forca += 1
-                    combinacao1 = true
-                } else if (c >= 'A' && c <= 'Z') {
-                    forca += 2
-                    combinacao2 = true
-                } else if (c >= '0' && c <= '9') {
-                    forca += 2
-                    combinacao3 = true
-                }
-                index++
-            }
-            if (combinacao1 && combinacao2 && combinacao3) {
-                forca += 3
-            }
+        if (c >= "a" && c <= "z") {
+          forca += 1;
+          combinacao1 = true;
+        } else if (c >= "A" && c <= "Z") {
+          forca += 2;
+          combinacao2 = true;
+        } else if (c >= "0" && c <= "9") {
+          forca += 2;
+          combinacao3 = true;
+        }
+        index++;
+      }
+      if (combinacao1 && combinacao2 && combinacao3) {
+        forca += 3;
+      }
 
-            if (forca < 12) {
-                senhaErro.innerHTML = `Senha fraca`
-            } else if (forca >= 12) {
-                senhaErro.innerHTML = '<span style="color: green;">Senha forte</span>'
-            }
-            }
+      if (forca < 12) {
+        senhaErro.innerHTML = `Senha fraca`;
+      } else if (forca >= 12) {
+        senhaErro.innerHTML = '<span style="color: green;">Senha forte</span>';
+      }
+    }
 
     function cadastrar() {
-        var nome = ipt_nome.value;
-        var email = ipt_email.value;
-        var senha = ipt_senha.value;
-        var confirmacaoSenha = ipt_confirmacaoSenha.value;
-        var telefone = ipt_telefone.value;
+      var nome = ipt_nome.value;
+      var email = ipt_email.value;
+      var senha = ipt_senha.value;
+      var confirmacaoSenha = ipt_confirmacaoSenha.value;
+      var telefone = ipt_telefone.value;
 
-if (!fkEmpresa) {
-    alert("Empresa não encontrada. Cadastre a empresa antes de cadastrar o usuário.");
-    return;
-}
+      if (!fkEmpresa) {
+        alert(
+          "Empresa não encontrada. Cadastre a empresa antes de cadastrar o usuário."
+        );
+        return;
+      }
 
-        var validacao1 = false
-        var validacao2 = false
-        var validacao3 = false
-        var validacao4 = false
-        var validacao5 = false
+      var validacao1 = false;
+      var validacao2 = false;
+      var validacao3 = false;
+      var validacao4 = false;
+      var validacao5 = false;
 
-        if (nome == '') {
-            nomeErro.innerHTML = '*Preencha o campo acima*'
-        } else if (nome.length < 3) {
-            nomeErro.innerHTML = '*Insira um nome válido*'
-        } else {
-            nomeErro.innerHTML = ''
-            validacao1 = true
-        }
-        if (email == '') {
-            emailErro.innerHTML = '*Preencha o campo acima*'
-        } else if (!email.includes('@') || !email.includes('.com')) {
-            emailErro.innerHTML = '*Insira um email válido*'
-        } else{
-            emailErro.innerHTML = ''
-            validacao2 = true
-        }
-        if (telefone == '') {
-            telfErro.innerHTML = '*Preencha o campo acima*'
-        } else if (telefone.length < 11) {
-            telfErro.innerHTML = '*Insira um numero de telefone válido*'
-        } else {
-            telfErro.innerHTML = ''
-            validacao3 = true
-        }
-        if (senha == '') {
-            senhaErro.innerHTML = '*Preencha o campo acima*'
-        } else {
-            senhaErro.innerHTML = ''
-            validacao4 = true
-        } 
-        if (confirmacaoSenha == '') {
-            confSenhaErro.innerHTML = '*Preencha o campo acima*'
-        } else if (confirmacaoSenha != senha) {
-            senhaErro.innerHTML = '*Senhas devem ser iguais*'
-            confSenhaErro.innerHTML = '*Senhas devem ser iguais*'
-        } else {
-            confSenhaErro.innerHTML = ''
-            validacao5 = true
-        }
+      if (nome == "") {
+        nomeErro.innerHTML = "*Preencha o campo acima*";
+      } else if (nome.length < 3) {
+        nomeErro.innerHTML = "*Insira um nome válido*";
+      } else {
+        nomeErro.innerHTML = "";
+        validacao1 = true;
+      }
+      if (email == "") {
+        emailErro.innerHTML = "*Preencha o campo acima*";
+      } else if (!email.includes("@") || !email.includes(".com")) {
+        emailErro.innerHTML = "*Insira um email válido*";
+      } else {
+        emailErro.innerHTML = "";
+        validacao2 = true;
+      }
+      if (telefone == "") {
+        telfErro.innerHTML = "*Preencha o campo acima*";
+      } else if (telefone.length < 11) {
+        telfErro.innerHTML = "*Insira um numero de telefone válido*";
+      } else {
+        telfErro.innerHTML = "";
+        validacao3 = true;
+      }
+      if (senha == "") {
+        senhaErro.innerHTML = "*Preencha o campo acima*";
+      } else {
+        senhaErro.innerHTML = "";
+        validacao4 = true;
+      }
+      if (confirmacaoSenha == "") {
+        confSenhaErro.innerHTML = "*Preencha o campo acima*";
+      } else if (confirmacaoSenha != senha) {
+        senhaErro.innerHTML = "*Senhas devem ser iguais*";
+        confSenhaErro.innerHTML = "*Senhas devem ser iguais*";
+      } else {
+        confSenhaErro.innerHTML = "";
+        validacao5 = true;
+      }
 
-            if (validacao1 == true && validacao2 == true && validacao3 == true && validacao4 == true && validacao5 == true) {
-                pop1.style.display = 'flex';
-                up1.style.display = 'flex';
-fetch("/usuarios/cadastrar", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-        nome: nome,
-        email: email,
-        telefone: telefone,
-        senha: senha,
-        fkEmpresa: fkEmpresa
-    })
-})
-.then(res => res.json())
-.then(data => {
-    if (data.erro) {
-        alert("Erro ao cadastrar usuário: " + data.erro);
-    } else {
-        pop1.style.display = 'flex';
-        setTimeout(() => { window.location.href = "login.html"; }, 2000);
-    }
-})
-.catch(err => console.error(err));
+      if (
+        validacao1 == true &&
+        validacao2 == true &&
+        validacao3 == true &&
+        validacao4 == true &&
+        validacao5 == true
+      ) {
+        pop1.style.display = "flex";
+        up1.style.display = "flex";
+        fetch("/usuarios/cadastrar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nome: nome,
+            email: email,
+            telefone: telefone,
+            senha: senha,
+            fkEmpresa: fkEmpresa
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.erro) {
+              alert("Erro ao cadastrar usuário: " + data.erro);
+            } else {
+              pop1.style.display = "flex";
+              setTimeout(() => {
+                window.location.href = "login.html";
+              }, 2000);
             }
-
+          })
+          .catch((err) => console.error(err));
+      }
     }
 
     function fechar() {
-        pop1.style.display = 'none';
-        up1.style.display = 'none';
+      pop1.style.display = "none";
+      up1.style.display = "none";
     }
-
-</script>
-
+  </script>
 </html>

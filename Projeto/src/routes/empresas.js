@@ -8,6 +8,14 @@ router.post("/cadastrar", function (req, res) {
     empresaController.cadastrar(req, res);
 })
 
+router.post("/cadastrarFilial/:idEmpresa", function (req, res) {
+    empresaController.cadastrarFilial(req, res);
+})
+
+router.get("/selecionarFilial", function (req, res) {
+    empresaController.selecionarFilial(req, res);
+})
+
 router.get("/buscar", function (req, res) {
     empresaController.buscarPorCnpj(req, res);
 });
@@ -19,5 +27,7 @@ router.get("/buscar/:id", function (req, res) {
 router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
 });
+
+
 
 module.exports = router;

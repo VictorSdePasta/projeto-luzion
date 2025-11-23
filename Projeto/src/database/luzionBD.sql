@@ -5,7 +5,7 @@ create table Empresa (
   idEmpresa int primary key auto_increment,
   razaoSocial varchar(100) not null unique,
   nomeFantasia varchar(100) not null,
-  cnpj char(11) not null unique,
+  cnpj char(14) not null unique,
   contrato tinyint,
   fkCliente int,
   constraint fkEmpresaCliente foreign key (fkCliente) references Empresa(idEmpresa)

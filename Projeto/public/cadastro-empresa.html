@@ -1,167 +1,195 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Luzion - Cadastrar empresa</title>
-    <link rel="stylesheet" href="./CSS/cadastro-empresa.css">
+    <link rel="stylesheet" href="./CSS/cadastro-empresa.css" />
     <link rel="stylesheet" href="./CSS/header.css" />
-</head>
+  </head>
 
-<header>
-  <!-- Header padrão pré-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas antes do acesso a dashboard-->
-  <div class="logo"><img src="./Assets/luzion-logo.png" alt="Logo Luzion"></div>
-  <div class="botoesGuia institucional">
-    <div class="destaque">
-      <a href="login.html" id="entrar">ENTRAR</a>
+  <header>
+    <!-- Header padrão pré-login, apenas adicione o conteudo html no inicio da sua página (Antes da abertura da tag <body>) SOMENTE nas páginas antes do acesso a dashboard-->
+    <div class="logo">
+      <img src="./Assets/luzion-logo.png" alt="Logo Luzion" />
     </div>
-    <a href="cadastro-empresa.html" class="selecionado" id="cadastrar">CADASTRAR</a>
-    <div class="divisao"></div>
-    <a href="simulador-financeiro.html" id="simulador">SIMULADOR</a>
-    <div class="divisao"></div>
-    <a href="home-page.html" id="home">HOME</a>
-  </div>
-</header>
+    <div class="botoesGuia institucional">
+      <div class="destaque">
+        <a href="login.html" id="entrar">ENTRAR</a>
+      </div>
+      <a href="cadastro-empresa.html" class="selecionado" id="cadastrar"
+        >CADASTRAR</a
+      >
+      <div class="divisao"></div>
+      <a href="simulador-financeiro.html" id="simulador">SIMULADOR</a>
+      <div class="divisao"></div>
+      <a href="home-page.html" id="home">HOME</a>
+    </div>
+  </header>
 
-<body>
+  <body>
     <div id="pop1" class="pop">
-        <div id="up1" class="up">
-            <p>Cadastro realizado!</p>
-            <button onclick="fechar()">Fechar</button>
-        </div>
-    </div>
-    <div class="completo">
-<div class="info">
-    <h1>Cadastro<br><b>Empresa</b></h1>
-    <div class="corSombra">
-        <div class="texto">
-            <p>Razão Social:</p>
-                <input class="caixa" id="nomeEmpresa" placeholder="Ex: Luzion">
-                <div class="divmsg" id="erroNomeEmp"></div>
-    
-            <p>Nome Fantasia:</p>
-                <input class="caixa" id="nomeFantasia" placeholder="Ex: Luzion">
-                <div class="divmsg" id="erroNomeFan"></div>
-    
-            <p>CNPJ:</p>
-                <input class="caixa" type="text" id="cnpj" placeholder="00.000.000/0000-00" onkeyup="verificar()">
-                <div class="divmsg" id="erroCnpj"></div>
-        </div>
-            <div class="circulo">
-                <button class="botao" onclick="cadastrar()">CADASTRAR →</button> 
-                <button class="botao2" onclick="logar()">Já tenho cadastro</button> 
-            </div> 
-    </div> 
-</div>
-    <img src="./Assets/mulher-telefone.png" alt="">
-</div>
-   
-</body>
-<footer>
-  <div class="main">
-    <div class="logo"><img src="./Assets/luzion-logo.png" alt="Logomarca"></div>
-    <div class="informacoes">
-      <p><b>Informações</b></p>
-      <a href="home-page.html">Home</a>
-      <a href="simulador-financeiro.html">Simulador Financeiro</a>
-    </div>
-    <div class="contato">
-      <p><b>Contatos</b></p>
-      <p><img src="./Assets/icon-telefone.png" alt=""> (11) 99999-9999</p>
-      <p><img src="./Assets/icon-email.png" alt=""> contato@luzion.com</p>
-    </div>
-    <div class="redessociais">
-      <p><b>Redes Sociais</b></p>
-      <div class="icons"><a href=""><img src="./Assets/icon-facebook.png" alt=""></a><a href=""><img
-            src="./Assets/icon-twitter.png" alt=""></a><a href=""><img src="./Assets/icon-linkedin.png" alt=""></a>
+      <div id="up1" class="up">
+        <p>Cadastro realizado!</p>
+        <button onclick="fechar()">Fechar</button>
       </div>
     </div>
-  </div>
-  <div class="autoria">
-    <p>Luzion © 2025</p>
-  </div>
-</footer>
-<script>
+    <div class="completo">
+      <div class="info">
+        <h1>Cadastro<br /><b>Empresa</b></h1>
+        <div class="corSombra">
+          <div class="texto">
+            <p>Razão Social:</p>
+            <input class="caixa" id="nomeEmpresa" placeholder="Ex: Luzion" />
+            <div class="divmsg" id="erroNomeEmp"></div>
+
+            <p>Nome Fantasia:</p>
+            <input class="caixa" id="nomeFantasia" placeholder="Ex: Luzion" />
+            <div class="divmsg" id="erroNomeFan"></div>
+
+            <p>CNPJ:</p>
+            <input
+              class="caixa"
+              type="text"
+              id="cnpj"
+              placeholder="00.000.000/0000-00"
+              onkeyup="verificar()"
+            />
+            <div class="divmsg" id="erroCnpj"></div>
+          </div>
+          <div class="circulo">
+            <button class="botao" onclick="cadastrar()">CADASTRAR →</button>
+            <button class="botao2" onclick="logar()">Já tenho cadastro</button>
+          </div>
+        </div>
+      </div>
+      <img src="./Assets/mulher-telefone.png" alt="" />
+    </div>
+  </body>
+  <footer>
+    <div class="main">
+      <div class="logo">
+        <img src="./Assets/luzion-logo.png" alt="Logomarca" />
+      </div>
+      <div class="informacoes">
+        <p><b>Informações</b></p>
+        <a href="home-page.html">Home</a>
+        <a href="simulador-financeiro.html">Simulador Financeiro</a>
+      </div>
+      <div class="contato">
+        <p><b>Contatos</b></p>
+        <p><img src="./Assets/icon-telefone.png" alt="" /> (11) 99999-9999</p>
+        <p><img src="./Assets/icon-email.png" alt="" /> contato@luzion.com</p>
+      </div>
+      <div class="redessociais">
+        <p><b>Redes Sociais</b></p>
+        <div class="icons">
+          <a href=""><img src="./Assets/icon-facebook.png" alt="" /></a
+          ><a href=""><img src="./Assets/icon-twitter.png" alt="" /></a
+          ><a href=""><img src="./Assets/icon-linkedin.png" alt="" /></a>
+        </div>
+      </div>
+    </div>
+    <div class="autoria">
+      <p>Luzion © 2025</p>
+    </div>
+  </footer>
+  <script>
     var validoUm = false;
     var validoDois = false;
     var validoTres = false;
 
     function verificar() {
-        var numrCnpj = cnpj.value;
-        
-        for (let index = 0; index < numrCnpj.length; index++) {
-                var falta = 14 - numrCnpj.length;
+      var numrCnpj = cnpj.value;
 
-            if (falta > 0) {
-                erroCnpj.innerHTML = `Faltam ${falta} número(s) para completar o CNPJ`
-            } else {
-                erroCnpj.innerHTML = '' 
-                validoDois = true 
-            }
+      for (let index = 0; index < numrCnpj.length; index++) {
+        var falta = 14 - numrCnpj.length;
+
+        if (falta > 0) {
+          erroCnpj.innerHTML = `Faltam ${falta} número(s) para completar o CNPJ`;
+        } else {
+          erroCnpj.innerHTML = "";
+          validoDois = true;
         }
-            
-        
+      }
     }
 
-function cadastrar() {
+    function selecionarFilial() {
 
-    var nmEmpresa = nomeEmpresa.value;
-    var nmFantasia = nomeFantasia.value;
-    var numrCnpj = cnpj.value;
+    }
 
-    validoUm = nmEmpresa.length > 0;
-    validoTres = nmFantasia.length > 0;
 
-    if (!validoUm || !validoDois || !validoTres) {
+    function cadastrar() {
+      var nmEmpresa = nomeEmpresa.value;
+      var nmFantasia = nomeFantasia.value;
+      var numrCnpj = cnpj.value;
+
+      validoUm = nmEmpresa.length > 0;
+      validoTres = nmFantasia.length > 0;
+
+      if (!validoUm || !validoDois || !validoTres) {
         alert("Preencha todos os campos corretamente.");
         return;
-    }
+      }
 
-    fetch("/empresas/cadastrar", {
+      fetch("/empresas/cadastrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            nomeEmpresa: nmEmpresa,
-            nomeFantasia: nmFantasia,
-            cnpj: numrCnpj
-        })
-    })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
+          nomeEmpresa: nmEmpresa,
+          nomeFantasia: nmFantasia,
+          cnpj: numrCnpj
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            res.json().then((data) => {
+            if (data.insertId > 0) {
+            
+                sessionStorage.ID_EMPRESA = data.insertId;
+                
+                fetch(`/empresas/cadastrarFilial/${data.insertId}`, {
+                    method: "POST"
+                    
+                }).then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    } else {
+                        throw "Erro ao cadastrar filial.";
+                    }
+                });
+                pop1.style.display = "flex";
+                up1.style.display = "flex";
+                
+                setTimeout(() => {
+                    fechar();
+                    window.location.href = "cadastro-usuario.html";
+                }, 5000);
+            }else {
+                throw "Erro ao cadastrar Filial";
+            }
+            });
+          } else {
             throw "Erro ao cadastrar empresa.";
-        }
-    })
-    .then(data => {
-        sessionStorage.ID_EMPRESA = data.insertId;
+          }
+        })
+        .catch((err) => {
+          console.error("Erro:", err);
+        });
 
-        pop1.style.display = 'flex';
-        up1.style.display = 'flex';
+    }
 
-        setTimeout(() => {
-            fechar();
-            window.location.href = "cadastro-usuario.html";
-        }, 2000);
-    })
-    .catch(err => {
-        console.error("Erro:", err);
-    });
-}
+    function fechar() {
+      pop1.style.display = "none";
+      up1.style.display = "none";
+    }
 
-function fechar() {
-    pop1.style.display = "none";
-    up1.style.display = "none";
-}
+    function logar() {
+      window.location.href = "./login.html";
+    }
 
-function logar() {
-    window.location.href = "./login.html";
-}
-
-function irParaCadastroUsuario() {
-    window.location.href = "./cadastro-usuario.html";
-}
-
-
-</script>
+    function irParaCadastroUsuario() {
+      window.location.href = "./cadastro-usuario.html";
+    }
+  </script>
 </html>
