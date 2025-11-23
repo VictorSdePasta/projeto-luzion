@@ -16,7 +16,25 @@ function cadastrar(nome, email, senha, telefone, fkFilial) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO Funcionario (nome, email, senha, telefone, nivelPermissao, fkFilial) VALUES ('${nome}', '${email}', '${senha}', '${telefone}', 1, '${fkFilial}');
+    INSERT INTO Funcionario (nome, email, senha, telefone, nivelPermissao, fkFilial) VALUES ('${nome}', '${email}', '${senha}', '${telefone}', 1, '${fkFilial}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function consultar(idUsuario, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idUsuario, senha)
+    var instrucaoSql = `
+        SELECT idFuncionario, nome, email, senha, telefone, nivelPermissao, fkFilial as empresaId FROM Funcionario WHERE idFuncionario = '${idUsuario}' AND senha = '${senha}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function alterar(idUsuario, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idUsuario, senha);
+    var instrucaoSql = `
+        UPDATE Funcionario SET senha = '${senha}' WHERE idFuncionario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -24,5 +42,7 @@ function cadastrar(nome, email, senha, telefone, fkFilial) {
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    consultar,
+    alterar
 };

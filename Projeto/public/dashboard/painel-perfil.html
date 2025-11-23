@@ -90,8 +90,8 @@
   </div>
 </footer>
 <script>
-  sessionStorage.EMAIL_USUARIO = json.email;
-  sessionStorage.NOME_USUARIO = json.nome;
+  sessionStorage.ID_USUARIO = 1;
+  var idFuncionarioVar = sessionStorage.ID_USUARIO;
   function validar() {
     let msg = '';
     if (senhaAtual.value == '') {
@@ -108,36 +108,36 @@
       pop2.style.display = 'flex';
       up2.style.display = 'flex';
     } else {
-      alterar();
+      consultar();
     }
   }
   function consultar() {
     var senhaVar = senhaAtual.value;
+    console.log("FORM LOGIN: ", idFuncionarioVar);
+    console.log("FORM SENHA: ", senhaVar);
     fetch("/usuarios/consultar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        idFuncionarioServer: idFuncionarioVar,
         senhaServer: senhaVar
-
       })
     }).then(function (resposta) {
       console.log("ESTOU NO THEN DO entrar()!")
-
+      console.log(resposta.ok + ' Resposta')
       if (resposta.ok) {
         console.log(resposta);
         alterar();
       } else {
-
+        if (resposta.status == 403) {
+          alert('Senha incorreta')
+        }
+        
         console.log("Houve um erro ao tentar realizar o login!");
-
-        resposta.text().then(texto => {
-          console.error(texto);
-          finalizarAguardar(texto);
-        });
       }
-
+      
     }).catch(function (erro) {
       console.log(erro);
     })
@@ -146,9 +146,8 @@
   }
   function alterar() {
     var novaSenhaVar = novaSenha.value;
-    var emailVar = sessionStorage.EMAIL_USUARIO = json.email;
     fetch("/usuarios/alterar", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -164,9 +163,9 @@
           cardErro.style.display = "block";
 
           mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            "Senha alterada com sucesso!";
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          throw "Houve um erro ao tentar realizar a alteração de senha!";
         }
       })
       .catch(function (resposta) {
