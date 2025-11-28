@@ -660,7 +660,7 @@ SELECT
             WHEN ROUND((((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 /  ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM))), 0) < 20 THEN 'CRÍTICO'
             WHEN ROUND((((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 /  ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM))), 0) BETWEEN 20 AND 40 THEN 'ATENÇÃO'
             ELSE 'IDEAL'
-      END AS status_dispesadores
+      END AS status_dispensadores
 FROM Dispenser d
 JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
 JOIN Banheiro b ON d.fkBanheiro = b.idBanheiro
@@ -669,4 +669,27 @@ WHERE r.dtRegistro = (SELECT MAX(dtRegistro) FROM Registro WHERE fkDispenser = d
 ORDER BY b.setor, b.titulo, d.identificacao;
 
 SELECT * FROM vw_dash_dispensadores;
+
+CREATE VIEW vw_situacao_banheiros AS
+SELECT 
+    b.idBanheiro,
+    b.titulo as banheiro,
+    b.setor,
+    COUNT(d.idDispenser) as total_dispensers,
+    SUM(CASE WHEN disp.status_dispensadores = 'CRÍTICO' THEN 1 ELSE 0 END) as criticos,
+    SUM(CASE WHEN disp.status_dispensadores = 'ATENÇÃO' THEN 1 ELSE 0 END) as atencao,
+    SUM(CASE WHEN disp.status_dispensadores = 'IDEAL' THEN 1 ELSE 0 END) as ideais,
+    CASE 
+        WHEN SUM(CASE WHEN disp.status_dispensadores = 'CRÍTICO' THEN 1 ELSE 0 END) > 0 THEN 'CRÍTICO'
+        WHEN SUM(CASE WHEN disp.status_dispensadores = 'ATENÇÃO' THEN 1 ELSE 0 END) > 0 THEN 'ATENÇÃO'
+        ELSE 'IDEAL'
+    END as status_banheiro
+FROM Banheiro b
+JOIN Dispenser d ON b.idBanheiro = d.fkBanheiro
+JOIN vw_dash_dispensadores disp ON d.idDispenser = disp.idDispenser
+GROUP BY b.idBanheiro, b.titulo, b.setor
+ORDER BY criticos DESC, atencao DESC;
+
+SELECT * FROM vw_situacao_banheiros;
+
 
