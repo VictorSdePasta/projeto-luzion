@@ -90,9 +90,9 @@ create table PapelHigienico (
 );
 
 insert into PapelHigienico (modelo, diametroExternoMM, diametroInternoMM, larguraMM) values
-('Comum',10,4,10),
-('Jumbo',10,4,10),
-('Folha Dupla',12,5,10);
+('Comum', 135, 40, 100),
+('Jumbo', 200, 60, 110),
+('Folha Dupla', 110, 40, 100);
 
 create table Banheiro (
   idBanheiro int primary key auto_increment,
@@ -537,18 +537,18 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 (8, '2025-09-20 16:00:00', 62),
 (8, '2025-09-20 20:00:00', 62),
 (8, '2025-09-21 08:00:00', 62),
-(8, '2025-09-20 08:00:00', 63),
-(8, '2025-09-20 12:00:00', 63),
-(8, '2025-09-20 16:00:00', 63),
-(8, '2025-09-20 20:00:00', 63),
-(8, '2025-09-21 08:00:00', 63),
-(8, '2025-09-20 08:00:00', 64),
-(8, '2025-09-20 12:00:00', 64),
+(96, '2025-09-20 08:00:00', 63),
+(90, '2025-09-20 12:00:00', 63),
+(72, '2025-09-20 16:00:00', 63),
+(74, '2025-09-20 20:00:00', 63),
+(190, '2025-09-21 08:00:00', 63),
+(110, '2025-09-20 08:00:00', 64),
+(97, '2025-09-20 12:00:00', 64),
 (8, '2025-09-20 16:00:00', 64),
 (8, '2025-09-20 20:00:00', 64),
 (8, '2025-09-21 08:00:00', 64),
 (8, '2025-09-20 08:00:00', 65),
-(8, '2025-09-20 12:00:00', 65),
+(110, '2025-09-20 12:00:00', 65),
 (8, '2025-09-20 16:00:00', 65),
 (8, '2025-09-20 20:00:00', 65),
 (8, '2025-09-21 08:00:00', 65),
@@ -571,7 +571,7 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 (8, '2025-09-20 12:00:00', 69),
 (8, '2025-09-20 16:00:00', 69),
 (8, '2025-09-20 20:00:00', 69),
-(8, '2025-09-21 08:00:00', 69),
+(99, '2025-09-21 08:00:00', 69),
 (8, '2025-09-20 08:00:00', 70),
 (8, '2025-09-20 12:00:00', 70),
 (8, '2025-09-20 16:00:00', 70),
@@ -600,13 +600,13 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 (8, '2025-09-20 08:00:00', 75),
 (8, '2025-09-20 12:00:00', 75),
 (8, '2025-09-20 16:00:00', 75),
-(8, '2025-09-20 20:00:00', 75),
-(8, '2025-09-21 08:00:00', 75),
-(8, '2025-09-20 08:00:00', 76),
-(8, '2025-09-20 12:00:00', 76),
-(8, '2025-09-20 16:00:00', 76),
-(8, '2025-09-20 20:00:00', 76),
-(8, '2025-09-21 08:00:00', 76);
+(73, '2025-09-20 20:00:00', 75),
+(80, '2025-09-21 08:00:00', 75),
+(40, '2025-09-20 08:00:00', 76),
+(54, '2025-09-20 12:00:00', 76),
+(23, '2025-09-20 16:00:00', 76),
+(42, '2025-09-20 20:00:00', 76),
+(75, '2025-09-21 08:00:00', 76);
 
 select e.nomeFantasia as Empresa,
   c.nomeFantasia as 'Empresa Cliente',
@@ -637,3 +637,36 @@ from Registro
     join Filial on fkfilial = idFilial
     join Empresa on fkEmpresa = idEmpresa
   where Empresa.nomeFantasia = 'Facilitariamos TUDO';
+
+
+CREATE VIEW vw_dash_dispensadores AS
+SELECT  
+      d.idDispenser,
+      d.identificacao as dispenser,
+      b.idBanheiro,
+      b.titulo as banheiro,
+      b.setor,
+      r.valor as distancia_sensor_mm,
+      ph.diametroExternoMM,
+      ph.diametroInternoMM,
+      CASE  
+            WHEN r.valor <= ph.diametroInternoMM THEN 100
+            WHEN r.valor >= ph.diametroExternoMM THEN 0
+            WHEN ((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 / ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM)) > 100 THEN 100
+            ELSE ROUND((((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 /  ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM))), 0)
+      END as nivel_percentual,
+      CASE  
+            WHEN r.valor >= ph.diametroExternoMM THEN 'CRÍTICO'
+            WHEN ROUND((((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 /  ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM))), 0) < 20 THEN 'CRÍTICO'
+            WHEN ROUND((((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 /  ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM))), 0) BETWEEN 20 AND 40 THEN 'ATENÇÃO'
+            ELSE 'IDEAL'
+      END AS status_dispesadores
+FROM Dispenser d
+JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
+JOIN Banheiro b ON d.fkBanheiro = b.idBanheiro
+JOIN Registro r ON d.idDispenser = r.fkDispenser
+WHERE r.dtRegistro = (SELECT MAX(dtRegistro) FROM Registro WHERE fkDispenser = d.idDispenser)
+ORDER BY b.setor, b.titulo, d.identificacao;
+
+SELECT * FROM vw_dash_dispensadores;
+
