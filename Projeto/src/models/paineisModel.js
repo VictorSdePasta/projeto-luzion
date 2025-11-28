@@ -11,6 +11,14 @@ function buscarFuncionarios(idFilial) {
   return database.executar(instrucaoSql)
 }
 
+function listarEmpresas(idEmpresa){
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", idEmpresa)
+
+     let instrucaoSql = `select IFNULL(e.nomeFantasia, e.razaoSocial) AS Empresa, f.titulo AS Filial FROM Empresa AS e JOIN Filial AS f ON e.fkCliente = f.idFilial ORDER BY Empresa WHERE = ${idEmpresa} ; `
+
+     return database.executar(instrucaoSql)
+}
 module.exports = {
-  buscarFuncionarios
+  buscarFuncionarios,
+  listarEmpresas
 }

@@ -73,6 +73,9 @@ create table Funcionario (
   constraint fkFuncionarioFilial foreign key (fkFilial) references Filial(idFilial)
 );
 
+
+
+
 insert into Funcionario (nome,email,senha,telefone,nivelPermissao,fkFilial) values
 ('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1,1),
 ('Daner Quispe','daner.qu@facilitando.com','danerqu123','11020202000',2,1),

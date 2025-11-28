@@ -6,11 +6,11 @@ function fechar() {
   fundoFilial.style.display = 'none';
 }
 
-const idFilial = 1
+const idEmpresa = 1
 const idUsuario = sessionStorage.ID_USUARIO
 const nivelPerm = sessionStorage.NIVEL_PERMISSAO
 
-fetch(`/paineis/buscarFuncionarios/${idUsuario}`).then(function (resposta) {
+fetch(`/paineis/listarEmpresas/${idEmpresa}`).then(function (resposta) {
   if (resposta.ok) {
     if (resposta.status == 204) {
       throw "nenhum funcionario encontrado"
@@ -27,20 +27,20 @@ fetch(`/paineis/buscarFuncionarios/${idUsuario}`).then(function (resposta) {
           msg +=
             `<div class="corpoTabela">
               <div class="linhaImpar">
-                <p class="colunasNome">${dados.email}</p>
-                <p>${dados.permissao}</p>
+                <p class="colunasNome">${dados.Empresa}</p>
+                <p>${dados.Filial}</p>
                 <div class="icones">
-                  <img src="../Assets/editar.png" alt="Editar" onclick="editarFuncionario(${dados.idUsuario})">
-                  <img src="../Assets/lixeira.svg" alt="Excluir" onclick="excluirFuncionario(${dados.idUsuario})">
+                  <img src="../Assets/editar.png" alt="Editar" onclick="editarFilial(${dados.idFilial})">
+                  <img src="../Assets/lixeira.svg" alt="Excluir" onclick="excluirFilial(${dados.idUsuario})">
                 </div>
               </div>`
         } else {
           msg +=
             `<div class="linhaPar">
-              <p class="colunasNome">${dados.email}</p>
-              <p>${dados.permissao}</p>
+              <p class="colunasNome">${dados.Empresa}</p>
+              <p>${dados.Filial}</p>
               <div class="icones">
-                <img src="../Assets/editar.png" alt="Editar" onclick="editarFuncionario(${dados.idUsuario})">
+                <img src="../Assets/editar.png" alt="Editar" onclick="editarUsuario(${dados.idUsuario})">
                 <img src="../Assets/lixeira.svg" alt="Excluir" onclick="excluirFuncionario(${dados.idUsuario})">
               </div>
             </div>`
@@ -49,11 +49,11 @@ fetch(`/paineis/buscarFuncionarios/${idUsuario}`).then(function (resposta) {
       }
 
       tabela.innerHTML +=
-        `<div class="linhaPar final">
-          <p class="colunasNome">${resposta[resposta.length - 1].email}</p>
+        `<div class="linhaPar linhaFinal">
+          <p>${resposta[resposta.length - 1].email}</p>
           <p>${resposta[resposta.length - 1].permissao}</p>
           <div class="icones">
-            <img src="../Assets/editar.png" alt="Editar" onclick="editarFuncionario(${resposta[resposta.length - 1].idUsuario})">
+            <img src="../Assets/editar.png" alt="Editar" onclick="editarUsuario(${resposta[resposta.length - 1].idUsuario})">
             <img src="../Assets/lixeira.svg" alt="Excluir" onclick="excluirFuncionario(${resposta[resposta.length - 1].idUsuario})">
           </div>
         </div>
