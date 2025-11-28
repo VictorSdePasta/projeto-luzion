@@ -168,7 +168,7 @@
       var confirmacaoSenha = ipt_confirmacaoSenha.value;
       var telefone = ipt_telefone.value;
 
-      if (!fkEmpresa) {
+      if (!fkFilial) {
         alert(
           "Empresa não encontrada. Cadastre a empresa antes de cadastrar o usuário."
         );
@@ -238,7 +238,7 @@
             email: email,
             telefone: telefone,
             senha: senha,
-            fkEmpresa: fkEmpresa
+            fkFilial: fkFilial
           }),
         })
           .then((res) => res.json())

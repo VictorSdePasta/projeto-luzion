@@ -114,22 +114,59 @@
                 erroEmail.innerHTML = ''
                 erroSenha.innerHTML = ''
             } else {
-                if (login == 'contato@luzion.com' && senha == 'Senha123') {
-                    window.location.href = './dash-tempo-real.html';
-                    tentativas = 3
-                } else {
-                    tentativas -= 1
-                    pop1.style.display = 'flex';
-                    up1.style.display = 'flex';
-                    msgPop.innerHTML = `Login inválido <br> Você tem ${tentativas} tentativa(s) restantes`
-                    erroEmail.innerHTML = '*Email ou senha inválido*'
-                    erroSenha.innerHTML = '*Email ou senha inválido*'
-                } if (tentativas == 0) {
-                    pop2.style.display = 'flex'
-                    up2.style.display = 'flex'
-                    erroEmail.innerHTML = ''
-                    erroSenha.innerHTML = ''
-                }
+                    
+                fetch("/usuarios/autenticar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        login: login,
+                        senha: senha
+                    })
+                     }).then(function (resposta) {
+                        console.log("ESTOU NO THEN DO entrar()!")
+
+                        if (resposta.ok) {
+                            console.log(resposta);
+                            tentativas = 3
+
+                            resposta.json().then(json => {
+                                console.log(json);
+                                console.log(JSON.stringify(json));
+                                sessionStorage.EMAIL_USUARIO = json.email;
+                                sessionStorage.NOME_USUARIO = json.nome;
+                                sessionStorage.ID_USUARIO = json.idFuncionario;
+                                //sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                                setTimeout(function () {
+                                    window.location.href = './dash-tempo-real.html';
+                                }, 1000); // apenas para exibir o loading
+                            });
+                        } else {
+                            console.log("Houve um erro ao tentar realizar o login!");
+
+                            tentativas -= 1
+                            pop1.style.display = 'flex';
+                            up1.style.display = 'flex';
+                            msgPop.innerHTML = `Login inválido <br> Você tem ${tentativas} tentativa(s) restantes`
+                            erroEmail.innerHTML = '*Email ou senha inválido*'
+                            erroSenha.innerHTML = '*Email ou senha inválido*'
+
+                            // resposta.text().then(texto => {
+                            //     console.error(texto);
+                            //     finalizarAguardar(texto);
+                            // });
+                        }
+                            }).catch(function (erro) {
+                                console.log(erro);
+                            })
+                            return false;
+
+                        if (tentativas == 0) {
+                            pop2.style.display = 'flex'
+                            up2.style.display = 'flex'
+                            erroEmail.innerHTML = ''
+                            erroSenha.innerHTML = ''
+                        }
             }
         }
     }
