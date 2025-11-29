@@ -641,58 +641,69 @@ from Registro
     join Empresa on fkEmpresa = idEmpresa
   where Empresa.nomeFantasia = 'Facilitariamos TUDO';
 
-
 CREATE VIEW vw_dash_dispensadores AS
-SELECT  
-      d.idDispenser,
-      d.identificacao as dispenser,
-      b.idBanheiro,
-      b.titulo as banheiro,
-      b.setor,
-      r.valor as distancia_sensor_mm,
-      ph.diametroExternoMM,
-      ph.diametroInternoMM,
-      CASE  
-            WHEN r.valor <= ph.diametroInternoMM THEN 100
-            WHEN r.valor >= ph.diametroExternoMM THEN 0
-            WHEN ((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 / ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM)) > 100 THEN 100
-            ELSE ROUND((((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 /  ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM))), 0)
-      END as nivel_percentual,
-      CASE  
-            WHEN r.valor >= ph.diametroExternoMM THEN 'CRÍTICO'
-            WHEN ROUND((((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 /  ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM))), 0) < 20 THEN 'CRÍTICO'
-            WHEN ROUND((((ph.diametroExternoMM * ph.diametroExternoMM) - (r.valor * r.valor)) * 100.0 /  ((ph.diametroExternoMM * ph.diametroExternoMM) - (ph.diametroInternoMM * ph.diametroInternoMM))), 0) BETWEEN 20 AND 40 THEN 'ATENÇÃO'
-            ELSE 'IDEAL'
-      END AS status_dispensadores
+SELECT 
+    d.idDispenser,
+    d.identificacao as dispenser,
+    b.idBanheiro,
+    b.titulo as banheiro,
+    b.setor,
+    b.fkFilial,
+    f.titulo as filial,
+    emp.nomeFantasia as empresa,
+    ph.idPapelHigienico,
+    ph.modelo as modelo_papel,
+    ph.diametroExternoMM,
+    ph.diametroInternoMM,
+    ph.larguraMM,
+    r.valor as distancia_sensor_mm,
+    r.dtRegistro as ultima_medicao,
+    r.idRegistro
 FROM Dispenser d
-JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
 JOIN Banheiro b ON d.fkBanheiro = b.idBanheiro
+JOIN Filial f ON b.fkFilial = f.idFilial
+JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
+JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
 JOIN Registro r ON d.idDispenser = r.fkDispenser
 WHERE r.dtRegistro = (SELECT MAX(dtRegistro) FROM Registro WHERE fkDispenser = d.idDispenser)
 ORDER BY b.setor, b.titulo, d.identificacao;
 
 SELECT * FROM vw_dash_dispensadores;
 
-CREATE VIEW vw_situacao_banheiros AS
+
+CREATE VIEW vw_dash_banheiros AS
 SELECT 
     b.idBanheiro,
     b.titulo as banheiro,
     b.setor,
-    COUNT(d.idDispenser) as total_dispensers,
-    SUM(CASE WHEN disp.status_dispensadores = 'CRÍTICO' THEN 1 ELSE 0 END) as criticos,
-    SUM(CASE WHEN disp.status_dispensadores = 'ATENÇÃO' THEN 1 ELSE 0 END) as atencao,
-    SUM(CASE WHEN disp.status_dispensadores = 'IDEAL' THEN 1 ELSE 0 END) as ideais,
-    CASE 
-        WHEN SUM(CASE WHEN disp.status_dispensadores = 'CRÍTICO' THEN 1 ELSE 0 END) > 0 THEN 'CRÍTICO'
-        WHEN SUM(CASE WHEN disp.status_dispensadores = 'ATENÇÃO' THEN 1 ELSE 0 END) > 0 THEN 'ATENÇÃO'
-        ELSE 'IDEAL'
-    END as status_banheiro
+    b.fkFilial,
+    f.titulo as filial,
+    emp.nomeFantasia as empresa,
+    COUNT(d.idDispenser) as qtd_dispensers
 FROM Banheiro b
+JOIN Filial f ON b.fkFilial = f.idFilial
+JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
 JOIN Dispenser d ON b.idBanheiro = d.fkBanheiro
-JOIN vw_dash_dispensadores disp ON d.idDispenser = disp.idDispenser
-GROUP BY b.idBanheiro, b.titulo, b.setor
-ORDER BY criticos DESC, atencao DESC;
+GROUP BY b.idBanheiro, b.titulo, b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
+ORDER BY b.setor, b.titulo;
 
-SELECT * FROM vw_situacao_banheiros;
+SELECT * FROM vw_dash_banheiros;
+
+CREATE VIEW vw_dash_setores AS
+SELECT 
+    b.setor,
+    b.fkFilial,
+    f.titulo as filial,
+    emp.nomeFantasia as empresa,
+    COUNT(DISTINCT b.idBanheiro) as total_banheiros,
+    COUNT(DISTINCT d.idDispenser) as total_dispensers
+FROM Banheiro b
+JOIN Filial f ON b.fkFilial = f.idFilial
+JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
+JOIN Dispenser d ON b.idBanheiro = d.fkBanheiro
+GROUP BY b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
+ORDER BY b.setor;
+
+SELECT * FROM vw_dash_setores;
 
 
