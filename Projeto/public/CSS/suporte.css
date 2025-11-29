@@ -2,12 +2,13 @@ html {
     width: 100%;
     height: 100%;
 }
+
 body {
     background-color: #5A4168;
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;    
+    height: 100%;
 }
 
 
@@ -20,29 +21,32 @@ body {
 }
 
 .corpo {
-    display: flex; 
+    display: flex;
     margin: 0;
     flex-direction: row;
     width: 100%;
     height: 100%;
 }
-.menuLateral { 
+
+.menuLateral {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
     justify-content: space-between;
     align-items: center;
     background-color: #715E7D;
-    width: 35%;
+    width: 20%;
     height: 100%;
-    
-    
+
+
 }
+
 .menuLateral h1 {
     color: #FFFF;
     font-size: 35px;
 
 }
+
 .buttonSuporte {
     display: flex;
     color: white;
@@ -72,8 +76,9 @@ body {
     font-weight: 400;
     background-color: #311C3D;
     letter-spacing: 5px;
-    opacity: 85%;    
+    opacity: 85%;
 }
+
 .botoes {
     display: flex;
     justify-content: space;
@@ -84,6 +89,7 @@ body {
     height: 100%;
     gap: 50%;
 }
+
 /* .buttonBob {
     display: flex;
     width: 5%;
@@ -99,25 +105,74 @@ body {
 
 .chat {
     display: flex;
-    width: 100%;
-    align-self: flex-end;
+    width: 95%;
+    align-self: center;
+    justify-self: flex-end;
     flex-direction: row;
-    margin: 1%;
     border-radius: 15px;
-    background-color:#CC9CE7;
+    background-color: #CC9CE7;
     opacity: 50%;
 }
-.chat img{
-    width: 8%;
-    height: 5%;
-     opacity: 100%;
-}
-.inputChat {
- display: flex;
- width: 70%;
- border-radius: 15px;
- padding: 1% 10%;
- background-color:#CC9CE7;
- border: none;
 
+.chat img {
+    width: 100%;
+    height: 100%;
+}
+
+.inputChat {
+    display: flex;
+    width: 85%;
+    border-radius: 15px;
+    padding: 1% 3%;
+    background-color: #CC9CE7;
+    border: none;
+    font-size: 40px;
+}
+
+.chat button {
+    width: 8%;
+    height: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.registro {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mensagens {
+    height: 90%;
+    width: 95%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.msgPergunta {
+    max-width: 60%;
+    background-color: #311C3D;
+    color: white;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-radius: 15px;
+    padding: 1%;
+    align-self: flex-end;
+    font-size: 20px;
+}
+
+.msgResposta {
+    max-width: 60%;
+    background-color: #CC9CE7;
+    color: #311C3D;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-radius: 15px;
+    padding: 1%;
+    align-self: flex-start;
+    font-size: 20px;
 }
