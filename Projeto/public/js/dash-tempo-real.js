@@ -1,10 +1,35 @@
-fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' }).then(function (resposta) {
-  let topo = document.getElementById('divTopo');
-  let setores = []
-  let banheirosSetor = []
-  let dados = []
+let idFilial = 1
 
-  let conteudoTopo = `
+fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' }).then(function (resposta) {
+  if (resposta.ok) {
+    resposta.json().then(function (resposta) {
+      console.log("Dados recebidos: ", resposta)
+      {
+        banheiro = "1",
+          diametroExternoMM = 200,
+          diametroInternoMM = 60,
+          dispenser = "Cabine 1",
+          distancia_sensor_mm = 190,
+          fkFilial = 1,
+          idBanheiro = 20,
+          idDispenser = 63,
+          nivel_percentual = "11",
+          setor = "Andar 1",
+          status_dispensadores = "CRÍTICO"
+      }
+
+      let topo = document.getElementById('divTopo');
+
+      let setores = []
+      let banheirosSetor = []
+      let dados = []
+
+      for (let i = 0; i < resposta.length; i++) {
+        if (!setores.includes(resposta[i].setor)) { setores.push(resposta[i].setor) }
+        if (!banheirosSetor.includes(resposta[i].banheiro)) { banheirosSetor.push(resposta[i].banheiro) }
+      }
+
+      let conteudoTopo = `
   <div id="divConjunto" class="conjunto detalhado">
     <div class="colunaEsq">
       <div class="kpi">
@@ -16,41 +41,41 @@ fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' }).then(function (resp
       <div class="kpiBottom">
         <div class="listaPrioridade">`
 
-  for (let i = 1; i < setores.length - 1; i++) {
-    if (i == 1) {
-      conteudoTopo += `
+      for (let i = 1; i < setores.length - 1; i++) {
+        if (i == 1) {
+          conteudoTopo += `
       <div class="identificacaoLista">
         Banheiro <div class="divisao"></div> Situação
       </div>
       `
-    }
+        }
 
-    if (i % 2 == 0) {
-      conteudoTopo += `
+        if (i % 2 == 0) {
+          conteudoTopo += `
       <div class="linha par">
         <div class="coluna">
-          ${banheirosSetor[0][i]}
+          ${banheirosSetor[i]}
         </div>
         <div class="coluna">
           <div class="situacao critico"></div>
         </div>
       </div>
       `
-    } else {
-      conteudoTopo += `
+        } else {
+          conteudoTopo += `
       <div class="linha">
         <div class="coluna">
-          ${banheirosSetor[0][i]}
+          ${banheirosSetor[i]}
         </div>
         <div class="coluna">
           <div class="situacao critico"></div>
         </div>
       </div>
       `
-    }
-  }
+        }
+      }
 
-  conteudoTopo += `
+      conteudoTopo += `
   </div>
       </div>
       <div class="legenda">
@@ -88,113 +113,114 @@ fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' }).then(function (resp
   </div>
   `
 
-  topo.innerHTML = conteudoTopo
+      topo.innerHTML = conteudoTopo
 
-  // Configuração do gráfico do topo (geral)
-  // Configuração dos limites
-  const setorCrit = {
-    type: 'line',
-    yMin: 25,
-    yMax: 25,
-    borderColor: 'red',
-    borderWidth: 2,
-    borderDash: [6, 6]
-  }
-
-  const setorAten = {
-    type: 'line',
-    yMin: 75,
-    yMax: 75,
-    borderColor: 'yellow',
-    borderWidth: 2,
-    borderDash: [6, 6]
-  }
-
-  const ctxSetores = document.getElementById('graficoSetores');
-
-  // Configuração dos gráficos individuais
-  new Chart(ctxSetores, {
-    data: {
-      labels: setores,
-      datasets: [{
-        type: 'bar',
-        label: '',
-        data: [23, 89, 57, 65, 97, 40],
-        backgroundColor: 'rgba(127, 92, 146, 100)'
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        },
-        annotation: {
-          annotations: {
-            setorCrit,
-            setorAten
-          }
-        }
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          ticks: {
-            color: '#5A4168',
-            font: {
-              size: 18,
-              weight: 'bold'
-            }
-          },
-          title: {
-            display: true,
-            text: 'Setores',
-            color: '#5A4168',
-            font: {
-              size: 18,
-              weight: 'bold'
-            }
-          }
-        },
-        y: {
-          max: 100,
-          ticks: {
-            color: '#5A4168',
-            font: {
-              size: 18,
-              weight: 'bold'
-            }
-          },
-          title: {
-            display: true,
-            text: 'Índice de Abastecimento(%)',
-            color: '#5A4168',
-            font: {
-              size: 18,
-              weight: 'bold'
-            }
-          },
-          beginAtZero: true
-        }
+      // Configuração do gráfico do topo (geral)
+      // Configuração dos limites
+      const setorCrit = {
+        type: 'line',
+        yMin: 25,
+        yMax: 25,
+        borderColor: 'red',
+        borderWidth: 2,
+        borderDash: [6, 6]
       }
-    }
-  });
 
-  let contador = 1
-  let campoSetores = document.getElementById("divSetores")
+      const setorAten = {
+        type: 'line',
+        yMin: 75,
+        yMax: 75,
+        borderColor: 'yellow',
+        borderWidth: 2,
+        borderDash: [6, 6]
+      }
 
-  for (let i = 0; i < setores.length; i++) {
-    conteudoPagina +=
-      `
+      const ctxSetores = document.getElementById('graficoSetores');
+
+      // Configuração dos gráficos individuais
+      new Chart(ctxSetores, {
+        data: {
+          labels: setores,
+          datasets: [{
+            type: 'bar',
+            label: '',
+            data: [23, 89, 57, 65, 97, 40],
+            backgroundColor: 'rgba(127, 92, 146, 100)'
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+            annotation: {
+              annotations: {
+                setorCrit,
+                setorAten
+              }
+            }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              ticks: {
+                color: '#5A4168',
+                font: {
+                  size: 18,
+                  weight: 'bold'
+                }
+              },
+              title: {
+                display: true,
+                text: 'Setores',
+                color: '#5A4168',
+                font: {
+                  size: 18,
+                  weight: 'bold'
+                }
+              }
+            },
+            y: {
+              max: 100,
+              ticks: {
+                color: '#5A4168',
+                font: {
+                  size: 18,
+                  weight: 'bold'
+                }
+              },
+              title: {
+                display: true,
+                text: 'Índice de Abastecimento(%)',
+                color: '#5A4168',
+                font: {
+                  size: 18,
+                  weight: 'bold'
+                }
+              },
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      let contador = 1
+      let campoSetores = document.getElementById("divSetores")
+      let conteudoPagina = ``
+
+      for (let i = 0; i < setores.length; i++) {
+        conteudoPagina +=
+          `
     <div class="divisaSetor">
       <div class="linhaDivisa"></div>
       <h1>${setores[i]}</h1>
     </div>
     `
 
-    for (let j = 1; j < banheirosSetor[i].length; j++) {
-      if (j == 1) {
-        conteudoPagina += `
+        for (let j = 1; j < banheirosSetor[i].length; j++) {
+          if (j == 1) {
+            conteudoPagina += `
       <div id="divConjunto${contador}" class="conjunto detalhado">
           <div class="colunaEsq">
             <div class="kpi">
@@ -209,10 +235,10 @@ fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' }).then(function (resp
                 <h4>Crítico</h4>
                 <h4>Dispensadores em estado:</h4>
                 <h4>
-                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i][0]}`}">${qtdCritico}</div>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}">${qtdCritico}</div>
                 </h4>
                 <h4>
-                  <div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i][0]}`}">${qtdAtencao}</div>
+                  <div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}">${qtdAtencao}</div>
                 </h4>
               </div>
             </div>
@@ -241,15 +267,15 @@ fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' }).then(function (resp
             </div>
 
             <div class="campoGrafico">
-              <canvas id="grafico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i][0]}`}"></canvas>
+              <canvas id="grafico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></canvas>
             </div>
 
             <div class="botaoExpandir"><div id="divBotaoExpandir${contador}" class="conteudoBotao" onclick="abrir(${contador})"><h4>Ocultar</h4></div> </div>
           </div>
         </div>
       `
-      } else {
-        conteudoPagina += `
+          } else {
+            conteudoPagina += `
       <div id="divConjunto${contador}" class="conjunto">
           <div class="colunaEsq">
             <div class="kpi">
@@ -264,10 +290,10 @@ fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' }).then(function (resp
                 <h4>Atenção</h4>
                 <h4>Dispensadores em estado:</h4>
                 <h4>
-                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i][0]}`}">${qtdCritico}</div>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}">${qtdCritico}</div>
                 </h4>
                 <h4>
-                  <div class="situacao"></div> Atenção: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i][0]}`}">${qtdAtencao}</div>
+                  <div class="situacao"></div> Atenção: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}">${qtdAtencao}</div>
                 </h4>
               </div>
             </div>
@@ -295,119 +321,121 @@ fetch(`/medidas/ultimas/${idFilial}`, { cache: 'no-store' }).then(function (resp
                 </h3>
               </div>
             </div>
-            <div class="campoGrafico"> <canvas id="grafico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i][0]}`}"></canvas> </div>
+            <div class="campoGrafico"> <canvas id="grafico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></canvas> </div>
             <div class="botaoExpandir"><div id="divBotaoExpandir${contador}" class="conteudoBotao" onclick="abrir(${contador})"><h4>Mais Detalhes</h4></div> </div>
           </div>
         </div>
       `
-      }
-      contador++
-    }
-  }
-
-  campoSetores.innerHTML = conteudoPagina
-
-  const dispenserCrit = {
-    type: 'line',
-    yMin: 15,
-    yMax: 15,
-    borderColor: 'red',
-    borderWidth: 2,
-    borderDash: [6, 6]
-  }
-
-  const dispenserAten = {
-    type: 'line',
-    yMin: 40,
-    yMax: 40,
-    borderColor: 'yellow',
-    borderWidth: 2,
-    borderDash: [6, 6]
-  }
-
-  for (let i = 0; i < setores.length; i++) {
-    const setor = setores[i];
-    const banheiros = banheirosSetor[i];
-    const dadosSetor = dados[i];
-
-    for (let j = 1; j < banheiros.length; j++) {
-      const nomeBanheiro = banheiros[j];
-      const dadosBanheiro = dadosSetor[j - 1];
-
-      let cabines = [];
-      for (let k = 0; k < dadosBanheiro.length; k++) {
-        cabines.push(`Cabine ${k + 1}`);
-      }
-
-      const ctxBanheiro = document.getElementById(`grafico${nomeBanheiro.replaceAll(' ', '')}${banheiros[0]}`);
-
-      new Chart(ctxBanheiro, {
-        data: {
-          labels: cabines,
-          datasets: [{
-            type: 'bar',
-            label: `${setor} - ${nomeBanheiro}`,
-            data: dadosBanheiro,
-            backgroundColor: 'rgba(127, 92, 146, 1)'
-          }]
-        },
-        options: {
-          plugins: {
-            legend: {
-              display: false
-            },
-            annotation: {
-              annotations: {
-                dispenserCrit,
-                dispenserAten
-              }
-            }
-          },
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              ticks: {
-                color: '#5A4168',
-                font: {
-                  size: 18,
-                  weight: 'bold'
-                }
-              },
-              title: {
-                display: true,
-                text: 'Dispensadores',
-                color: '#5A4168',
-                font: {
-                  size: 18,
-                  weight: 'bold'
-                }
-              }
-            },
-            y: {
-              max: 100,
-              ticks: {
-                color: '#5A4168',
-                font: {
-                  size: 18,
-                  weight: 'bold'
-                }
-              },
-              title: {
-                display: true,
-                text: 'Nível de Abastecimento(%)',
-                color: '#5A4168',
-                font: {
-                  size: 18,
-                  weight: 'bold'
-                }
-              },
-              beginAtZero: true
-            }
           }
+          contador++
         }
-      });
-    }
+      }
+
+      campoSetores.innerHTML = conteudoPagina
+
+      const dispenserCrit = {
+        type: 'line',
+        yMin: 15,
+        yMax: 15,
+        borderColor: 'red',
+        borderWidth: 2,
+        borderDash: [6, 6]
+      }
+
+      const dispenserAten = {
+        type: 'line',
+        yMin: 40,
+        yMax: 40,
+        borderColor: 'yellow',
+        borderWidth: 2,
+        borderDash: [6, 6]
+      }
+
+      for (let i = 0; i < setores.length; i++) {
+        const setor = setores[i];
+        const banheiros = banheirosSetor[i];
+        const dadosSetor = dados[i];
+
+        for (let j = 1; j < banheiros.length; j++) {
+          const nomeBanheiro = banheiros[j];
+          const dadosBanheiro = dadosSetor[j - 1];
+
+          let cabines = [];
+          for (let k = 0; k < dadosBanheiro.length; k++) {
+            cabines.push(`Cabine ${k + 1}`);
+          }
+
+          const ctxBanheiro = document.getElementById(`grafico${nomeBanheiro.replaceAll(' ', '')}${banheiros}`);
+
+          new Chart(ctxBanheiro, {
+            data: {
+              labels: cabines,
+              datasets: [{
+                type: 'bar',
+                label: `${setor} - ${nomeBanheiro}`,
+                data: dadosBanheiro,
+                backgroundColor: 'rgba(127, 92, 146, 1)'
+              }]
+            },
+            options: {
+              plugins: {
+                legend: {
+                  display: false
+                },
+                annotation: {
+                  annotations: {
+                    dispenserCrit,
+                    dispenserAten
+                  }
+                }
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  ticks: {
+                    color: '#5A4168',
+                    font: {
+                      size: 18,
+                      weight: 'bold'
+                    }
+                  },
+                  title: {
+                    display: true,
+                    text: 'Dispensadores',
+                    color: '#5A4168',
+                    font: {
+                      size: 18,
+                      weight: 'bold'
+                    }
+                  }
+                },
+                y: {
+                  max: 100,
+                  ticks: {
+                    color: '#5A4168',
+                    font: {
+                      size: 18,
+                      weight: 'bold'
+                    }
+                  },
+                  title: {
+                    display: true,
+                    text: 'Nível de Abastecimento(%)',
+                    color: '#5A4168',
+                    font: {
+                      size: 18,
+                      weight: 'bold'
+                    }
+                  },
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        }
+      }
+    })
   }
 })
 
