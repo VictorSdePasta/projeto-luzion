@@ -6,65 +6,61 @@ let setores = []
 let banheirosSetor = []
 let dados = []
 
-{
-  empresa
-  :
-  "Facilitariamos TUDO"
-  filial
-  :
-  "Sede Facilitariamos TUDO"
-  fkFilial
-  :
-  1
-  setor
-  :
-  "Andar 1"
-  total_banheiros
-  :
-  1
-  total_dispensers
-  :
-  2
-}
-
 window.onload = buscarDados(idFilial)
 
 async function buscarDados(idFilial) {
-  await fetch(`/medidas/setores/${idFilial}`, { cache: 'no-store' }).then(function (resposta) {
-    if (resposta.ok) {
-      resposta.json().then(function (resposta) {
-        console.log("Dados recebidos: ", resposta)
+  let resposta = await fetch(`/medidas/setores/${idFilial}`, { cache: 'no-store' })
+  if (!resposta.ok) { return }
+  resposta = await resposta.json()
 
-        document.getElementById('divEmpresa').innerHTML = resposta[0].empresa
+  document.getElementById('divEmpresa').innerHTML = resposta[0].empresa
 
-        for (let i = 0; i < resposta.length; i++) {
-          if (!setores.includes(resposta[i].setor)) { setores.push(resposta[i].setor) }
-        }
-      })
-
-      console.log(setores, "setores")
-    }
-  })
-  console.log(setores, " setores a")
-  console.log(setores.length, " setores length")
+  for (let i = 0; i < resposta.length; i++) {
+    if (!setores.includes(resposta[i].setor)) { setores.push(resposta[i].setor) }
+  }
 
   for (let i = 0; i < setores.length; i++) {
     let banheiroSetor = []
+    let dadoBanheiroSetor = []
     let setor = setores[i]
-    console.log("setor da vez: ", setor)
 
-    await fetch(`/medidas/banheiroSetor/${idFilial}/${setor}`, { cache: 'no-store' }).then(function (resposta) {
-      if (resposta.ok) {
-        resposta.json().then(function (resposta) {
-          console.log("Dados depois do setor: ", resposta)
-          for (let j = 0; j < resposta.length; j++) {
-            banheiroSetor.push(resposta[j].banheiro)
-          }
+    console.log(setor)
+
+    let resposta = await fetch(`/medidas/banheiroSetor/${idFilial}/${setor}`, { cache: 'no-store' })
+    if (!resposta.ok) { return }
+    resposta = await resposta.json()
+    for (let j = 0; j < resposta.length; j++) {
+      console.log(setor)
+      let banheiro = resposta[j].banheiro
+      console.log(banheiro)
+      let dadoBanheiro = []
+      banheiroSetor.push(banheiro)
+
+      let response = await fetch(`/medidas/dadosBanheiro/${idFilial}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          setorServer: setor,
+          banheiroServer: banheiro
         })
+      })
+      response = await response.json()
+      for (let k = 0; k < response.length; k++) {
+        let resp = response[k]
+        let valor = resp.distancia_sensor_mm
+        let maxValor = (resp.diametroExternoMM - resp.diametroInternoMM) / 2
+        let porc = (maxValor - valor) / maxValor
 
-        banheirosSetor.push(banheiroSetor)
+        dadoBanheiro.push(porc)
       }
-    })
+
+      dadoBanheiroSetor.push(dadoBanheiro)
+    }
+
+    dados.push(dadoBanheiroSetor)
+    banheirosSetor.push(banheiroSetor)
   }
 
   preencherPagina()

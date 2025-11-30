@@ -67,7 +67,24 @@ function buscarBanheirosSetor(req, res) {
     console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
+}
 
+function buscarDadosBanheiro(req, res) {
+  var idFilial = req.params.idFilial
+  var setor = req.body.setorServer
+  var banheiro = req.body.banheiroServer
+
+  medidaModel.buscarDadosBanheiro(idFilial, setor, banheiro).then(function (resultado) {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send("Nenhum resultado encontrado!")
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
 }
 
 function buscarMedidasEmTempoReal(req, res) {
@@ -93,5 +110,6 @@ module.exports = {
   buscarSetores,
   buscarBanheiros,
   buscarBanheirosSetor,
-  buscarMedidasEmTempoReal
+  buscarMedidasEmTempoReal,
+  buscarDadosBanheiro
 }

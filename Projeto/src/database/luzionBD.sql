@@ -669,6 +669,7 @@ WHERE r.dtRegistro = (SELECT MAX(dtRegistro) FROM Registro WHERE fkDispenser = d
 ORDER BY b.setor, b.titulo, d.identificacao;
 
 SELECT * FROM vw_dash_dispensadores;
+SELECT * FROM vw_dash_dispensadores WHERE fkFilial = 1 AND setor = 'Andar 1' AND banheiro = '1';
 
 
 CREATE VIEW vw_dash_banheiros AS
@@ -705,7 +706,3 @@ GROUP BY b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
 ORDER BY b.setor;
 
 SELECT * FROM vw_dash_setores;
-
-SELECT * FROM vw_dash_banheiros WHERE fkFilial = 1;
-SELECT banheiro, setor FROM vw_dash_banheiros WHERE fkFilial = 1;
-SELECT * FROM vw_dash_banheiros WHERE fkFilial = 1 AND setor = 'Terreo';

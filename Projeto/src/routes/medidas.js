@@ -19,6 +19,10 @@ router.get("/banheiroSetor/:idFilial/:setor", function (req, res) {
     medidaController.buscarBanheirosSetor(req, res);
 });
 
+router.post("/dadosBanheiro/:idFilial", function (req, res) {
+    medidaController.buscarDadosBanheiro(req, res);
+});
+
 router.get("/tempo-real/:idFilial", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
