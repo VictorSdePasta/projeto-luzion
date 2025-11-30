@@ -4,7 +4,11 @@ let topo = document.getElementById('divTopo');
 
 let setores = []
 let banheirosSetor = []
+let cabines = [];
 let dados = []
+
+// setor[]>banheiro[]
+// [ [], [], [] ]
 
 window.onload = buscarDados(idFilial)
 
@@ -22,18 +26,17 @@ async function buscarDados(idFilial) {
   for (let i = 0; i < setores.length; i++) {
     let banheiroSetor = []
     let dadoBanheiroSetor = []
+    let cabineBanheiroSetor = []
     let setor = setores[i]
-
-    console.log(setor)
 
     let resposta = await fetch(`/medidas/banheiroSetor/${idFilial}/${setor}`, { cache: 'no-store' })
     if (!resposta.ok) { return }
     resposta = await resposta.json()
     for (let j = 0; j < resposta.length; j++) {
-      console.log(setor)
       let banheiro = resposta[j].banheiro
-      console.log(banheiro)
       let dadoBanheiro = []
+      let cabineBanheiro = []
+
       banheiroSetor.push(banheiro)
 
       let response = await fetch(`/medidas/dadosBanheiro/${idFilial}`, {
@@ -51,14 +54,17 @@ async function buscarDados(idFilial) {
         let resp = response[k]
         let valor = resp.distancia_sensor_mm
         let maxValor = (resp.diametroExternoMM - resp.diametroInternoMM) / 2
-        let porc = (maxValor - valor) / maxValor
+        let porc = (maxValor - valor) / maxValor * 100
 
-        dadoBanheiro.push(porc)
+        cabineBanheiro.push(resp.dispenser)
+        dadoBanheiro.push(Math.floor(porc))
       }
 
+      cabineBanheiroSetor.push(cabineBanheiro)
       dadoBanheiroSetor.push(dadoBanheiro)
     }
 
+    cabines.push(cabineBanheiroSetor)
     dados.push(dadoBanheiroSetor)
     banheirosSetor.push(banheiroSetor)
   }
@@ -80,8 +86,8 @@ function preencherPagina() {
       <div class="kpiBottom">
         <div class="listaPrioridade">`
 
-  for (let i = 1; i < setores.length - 1; i++) {
-    if (i == 1) {
+  for (let i = 0; i < setores.length - 1; i++) {
+    if (i == 0) {
       conteudoTopo += `
       <div class="identificacaoLista">
         Banheiro <div class="divisao"></div> Situação
@@ -257,8 +263,8 @@ function preencherPagina() {
     </div>
     `
 
-    for (let j = 1; j < banheirosSetor[i].length; j++) {
-      if (j == 1) {
+    for (let j = 0; j < banheirosSetor[i].length; j++) {
+      if (j == 0) {
         conteudoPagina += `
       <div id="divConjunto${contador}" class="conjunto detalhado">
           <div class="colunaEsq">
@@ -274,10 +280,10 @@ function preencherPagina() {
                 <h4>Crítico</h4>
                 <h4>Dispensadores em estado:</h4>
                 <h4>
-                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}">${qtdCritico}</div>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></div>
                 </h4>
                 <h4>
-                  <div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}">${qtdAtencao}</div>
+                  <div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></div>
                 </h4>
               </div>
             </div>
@@ -329,10 +335,10 @@ function preencherPagina() {
                 <h4>Atenção</h4>
                 <h4>Dispensadores em estado:</h4>
                 <h4>
-                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}">${qtdCritico}</div>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></div>
                 </h4>
                 <h4>
-                  <div class="situacao"></div> Atenção: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}">${qtdAtencao}</div>
+                  <div class="situacao"></div> Atenção: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></div>
                 </h4>
               </div>
             </div>
@@ -394,15 +400,12 @@ function preencherPagina() {
     const setor = setores[i];
     const banheiros = banheirosSetor[i];
     const dadosSetor = dados[i];
+    const cabineAtual = cabines[i]
 
-    for (let j = 1; j < banheiros.length; j++) {
+    for (let j = 0; j < banheiros.length; j++) {
       const nomeBanheiro = banheiros[j];
-      const dadosBanheiro = dadosSetor[j - 1];
-
-      let cabines = [];
-      for (let k = 0; k < dadosBanheiro.length; k++) {
-        cabines.push(`Cabine ${k + 1}`);
-      }
+      const dadosBanheiro = dadosSetor[j];
+      const cabines = cabineAtual[j]
 
       const ctxBanheiro = document.getElementById(`grafico${nomeBanheiro.replaceAll(' ', '')}${banheiros}`);
 
@@ -474,24 +477,24 @@ function preencherPagina() {
       });
     }
   }
+}
 
-  let descricaoIdeal = `<h3>Situação do banheiro: <div class="situacao ideal"></div></h3>`
-  let descricaoAtencao = `<h3>Situação do banheiro: <div class="situacao"></div></h3>`
-  let descricaoCritico = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`
+let descricaoIdeal = `<h3>Situação do banheiro: <div class="situacao ideal"></div></h3>`
+let descricaoAtencao = `<h3>Situação do banheiro: <div class="situacao"></div></h3>`
+let descricaoCritico = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`
 
-  function abrir(idConjunto) {
-    let conjunto = document.getElementById(`divConjunto${idConjunto}`)
-    let descricao = document.getElementById(`divDescricaoKpi${idConjunto}`)
-    let botao = document.getElementById(`divBotaoExpandir${idConjunto}`)
+function abrir(idConjunto) {
+  let conjunto = document.getElementById(`divConjunto${idConjunto}`)
+  let descricao = document.getElementById(`divDescricaoKpi${idConjunto}`)
+  let botao = document.getElementById(`divBotaoExpandir${idConjunto}`)
 
-    if (!conjunto.classList.contains("detalhado")) {
-      botao.innerHTML = `Ocultar`
-      descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
-      conjunto.classList.add("detalhado");
-    } else {
-      botao.innerHTML = `Mais Detalhes`
-      descricao.innerHTML = descricaoCritico
-      conjunto.classList.remove("detalhado");
-    }
+  if (!conjunto.classList.contains("detalhado")) {
+    botao.innerHTML = `Ocultar`
+    descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+    conjunto.classList.add("detalhado");
+  } else {
+    botao.innerHTML = `Mais Detalhes`
+    descricao.innerHTML = descricaoCritico
+    conjunto.classList.remove("detalhado");
   }
 }
