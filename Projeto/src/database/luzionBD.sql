@@ -706,4 +706,6 @@ ORDER BY b.setor;
 
 SELECT * FROM vw_dash_setores;
 
-
+SELECT * FROM vw_dash_banheiros WHERE fkFilial = 1;
+SELECT banheiro, setor FROM vw_dash_banheiros WHERE fkFilial = 1;
+SELECT * FROM vw_dash_banheiros WHERE fkFilial = 1 AND setor = 'Terreo';
