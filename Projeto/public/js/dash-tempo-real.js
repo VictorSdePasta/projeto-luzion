@@ -1,79 +1,101 @@
-let idFilial = 1
+let idFilial = 1;
 // let idFilial = sessionStorage.ID_FILIAL
-let topo = document.getElementById('divTopo');
+let topo = document.getElementById("divTopo");
 
-let setores = []
-let banheirosSetor = []
+let setores = [];
+let banheirosSetor = [];
 let cabines = [];
-let dados = []
+let dados = [];
 
 // setor[]>banheiro[]
 // [ [], [], [] ]
 
-window.onload = buscarDados(idFilial)
+window.onload = buscarDados(idFilial);
 
 async function buscarDados(idFilial) {
-  let resposta = await fetch(`/medidas/setores/${idFilial}`, { cache: 'no-store' })
-  if (!resposta.ok) { return }
-  resposta = await resposta.json()
+  let resposta = await fetch(`/medidas/setores/${idFilial}`, {
+    cache: "no-store",
+  });
+  if (!resposta.ok) {
+    return;
+  }
+  resposta = await resposta.json();
 
-  document.getElementById('divEmpresa').innerHTML = resposta[0].empresa
+  document.getElementById("divEmpresa").innerHTML = resposta[0].empresa;
 
   for (let i = 0; i < resposta.length; i++) {
-    if (!setores.includes(resposta[i].setor)) { setores.push(resposta[i].setor) }
+    if (!setores.includes(resposta[i].setor)) {
+      setores.push(resposta[i].setor);
+    }
   }
 
   for (let i = 0; i < setores.length; i++) {
-    let banheiroSetor = []
-    let dadoBanheiroSetor = []
-    let cabineBanheiroSetor = []
-    let setor = setores[i]
+    let banheiroSetor = [];
+    let dadoBanheiroSetor = [];
+    let cabineBanheiroSetor = [];
+    let setor = setores[i];
 
-    let resposta = await fetch(`/medidas/banheiroSetor/${idFilial}/${setor}`, { cache: 'no-store' })
-    if (!resposta.ok) { return }
-    resposta = await resposta.json()
+    let resposta = await fetch(`/medidas/banheiroSetor/${idFilial}/${setor}`, {
+      cache: "no-store",
+    });
+    if (!resposta.ok) {
+      return;
+    }
+    resposta = await resposta.json();
     for (let j = 0; j < resposta.length; j++) {
-      let banheiro = resposta[j].banheiro
-      let dadoBanheiro = []
-      let cabineBanheiro = []
+      let banheiro = resposta[j].banheiro;
+      let dadoBanheiro = [];
+      let cabineBanheiro = [];
 
-      banheiroSetor.push(banheiro)
+      banheiroSetor.push(banheiro);
 
       let response = await fetch(`/medidas/dadosBanheiro/${idFilial}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           setorServer: setor,
-          banheiroServer: banheiro
-        })
-      })
-      response = await response.json()
+          banheiroServer: banheiro,
+        }),
+      });
+      response = await response.json();
       for (let k = 0; k < response.length; k++) {
-        let resp = response[k]
-        let valor = resp.distancia_sensor_mm
-        let maxValor = (resp.diametroExternoMM - resp.diametroInternoMM) / 2
-        let porc = (maxValor - valor) / maxValor * 100
+        const resposta = response[k];
+        const valor = resposta.distancia_sensor_mm;
+        const maxValor = (resposta.diametroExternoMM - resposta.diametroInternoMM) / 2;
 
-        cabineBanheiro.push(resp.dispenser)
-        dadoBanheiro.push(Math.floor(porc))
+        let porc = ((maxValor - valor) / maxValor) * 100;
+        porc = Math.floor(porc);
+
+        let estado = "ideal";
+
+        if (porc <= 20) {
+          estado = "critico";
+        } else if (porc <= 40) {
+          estado = "atencao";
+        }
+
+        cabineBanheiro.push(resposta.dispenser);
+
+        dadoBanheiro.push({
+          porcentagem: porc,
+          estado: estado,
+        });
       }
-
-      cabineBanheiroSetor.push(cabineBanheiro)
-      dadoBanheiroSetor.push(dadoBanheiro)
+      cabineBanheiroSetor.push(cabineBanheiro);
+      dadoBanheiroSetor.push(dadoBanheiro);
     }
 
-    cabines.push(cabineBanheiroSetor)
-    dados.push(dadoBanheiroSetor)
-    banheirosSetor.push(banheiroSetor)
+    cabines.push(cabineBanheiroSetor);
+    dados.push(dadoBanheiroSetor);
+    banheirosSetor.push(banheiroSetor);
   }
 
-  preencherPagina()
+  preencherPagina();
 }
 
 function preencherPagina() {
-
   let conteudoTopo = `
   <div id="divConjunto" class="conjunto detalhado">
     <div class="colunaEsq">
@@ -84,7 +106,7 @@ function preencherPagina() {
         </div>
       </div>
       <div class="kpiBottom">
-        <div class="listaPrioridade">`
+        <div class="listaPrioridade">`;
 
   for (let i = 0; i < setores.length - 1; i++) {
     if (i == 0) {
@@ -92,7 +114,7 @@ function preencherPagina() {
       <div class="identificacaoLista">
         Banheiro <div class="divisao"></div> Situação
       </div>
-      `
+      `;
     }
 
     if (i % 2 == 0) {
@@ -105,7 +127,7 @@ function preencherPagina() {
           <div class="situacao critico"></div>
         </div>
       </div>
-      `
+      `;
     } else {
       conteudoTopo += `
       <div class="linha">
@@ -116,7 +138,7 @@ function preencherPagina() {
           <div class="situacao critico"></div>
         </div>
       </div>
-      `
+      `;
     }
   }
 
@@ -156,112 +178,113 @@ function preencherPagina() {
       <h4>O índice mostra a situação geral dos banheiros de cada setor, levando em conta o estado dos dispensadores. Quanto mais dispensadores estiverem em atenção ou crítico, maior será a urgência de reposição naquele setor.</h4>
     </div>
   </div>
-  `
+  `;
 
-  topo.innerHTML = conteudoTopo
+  topo.innerHTML = conteudoTopo;
 
   // Configuração do gráfico do topo (geral)
   // Configuração dos limites
   const setorCrit = {
-    type: 'line',
+    type: "line",
     yMin: 25,
     yMax: 25,
-    borderColor: 'red',
+    borderColor: "red",
     borderWidth: 2,
-    borderDash: [6, 6]
-  }
+    borderDash: [6, 6],
+  };
 
   const setorAten = {
-    type: 'line',
+    type: "line",
     yMin: 75,
     yMax: 75,
-    borderColor: 'yellow',
+    borderColor: "yellow",
     borderWidth: 2,
-    borderDash: [6, 6]
-  }
+    borderDash: [6, 6],
+  };
 
-  const ctxSetores = document.getElementById('graficoSetores');
+  const ctxSetores = document.getElementById("graficoSetores");
 
   // Configuração dos gráficos individuais
   new Chart(ctxSetores, {
     data: {
       labels: setores,
-      datasets: [{
-        type: 'bar',
-        label: '',
-        data: [23, 89, 57, 65, 97, 40],
-        backgroundColor: 'rgba(127, 92, 146, 100)'
-      }]
+      datasets: [
+        {
+          type: "bar",
+          label: "",
+          data: [23, 89, 57, 65, 97, 40],
+          backgroundColor: "rgba(127, 92, 146, 100)",
+        },
+      ],
     },
     options: {
       plugins: {
         legend: {
-          display: false
+          display: false,
         },
         annotation: {
           annotations: {
             setorCrit,
-            setorAten
-          }
-        }
+            setorAten,
+          },
+        },
       },
       responsive: true,
       maintainAspectRatio: false,
       scales: {
         x: {
           ticks: {
-            color: '#5A4168',
+            color: "#5A4168",
             font: {
               size: 18,
-              weight: 'bold'
-            }
+              weight: "bold",
+            },
           },
           title: {
             display: true,
-            text: 'Setores',
-            color: '#5A4168',
+            text: "Setores",
+            color: "#5A4168",
             font: {
               size: 18,
-              weight: 'bold'
-            }
-          }
+              weight: "bold",
+            },
+          },
         },
         y: {
           max: 100,
           ticks: {
-            color: '#5A4168',
+            color: "#5A4168",
             font: {
               size: 18,
-              weight: 'bold'
-            }
+              weight: "bold",
+            },
           },
           title: {
             display: true,
-            text: 'Índice de Abastecimento(%)',
-            color: '#5A4168',
+            text: "Índice de Abastecimento(%)",
+            color: "#5A4168",
             font: {
               size: 18,
-              weight: 'bold'
-            }
+              weight: "bold",
+            },
           },
-          beginAtZero: true
-        }
-      }
-    }
+          beginAtZero: true,
+        },
+      },
+    },
   });
 
-  let contador = 1
-  let campoSetores = document.getElementById("divSetores")
-  let conteudoPagina = ``
+  let contador = 1;
+  let campoSetores = document.getElementById("divSetores");
+  let conteudoPagina = ``;
 
   for (let i = 0; i < setores.length; i++) {
-    conteudoPagina +=
-      `
+    conteudoPagina += `
     <div class="divisaSetor">
       <div class="linhaDivisa"></div>
       <h1>${setores[i]}</h1>
     </div>
-    `
+    `;
 
     for (let j = 0; j < banheirosSetor[i].length; j++) {
       if (j == 0) {
@@ -280,10 +303,16 @@ function preencherPagina() {
                 <h4>Crítico</h4>
                 <h4>Dispensadores em estado:</h4>
                 <h4>
-                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></div>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${
+                    banheirosSetor[i][j].replaceAll(" ", "") +
+                    `${banheirosSetor[i]}`
+                  }"></div>
                 </h4>
                 <h4>
-                  <div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></div>
+                  <div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${
+                    banheirosSetor[i][j].replaceAll(" ", "") +
+                    `${banheirosSetor[i]}`
+                  }"></div>
                 </h4>
               </div>
             </div>
@@ -312,13 +341,16 @@ function preencherPagina() {
             </div>
 
             <div class="campoGrafico">
-              <canvas id="grafico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></canvas>
+              <canvas id="grafico${
+                banheirosSetor[i][j].replaceAll(" ", "") +
+                `${banheirosSetor[i]}`
+              }"></canvas>
             </div>
 
             <div class="botaoExpandir"><div id="divBotaoExpandir${contador}" class="conteudoBotao" onclick="abrir(${contador})"><h4>Ocultar</h4></div> </div>
           </div>
         </div>
-      `
+      `;
       } else {
         conteudoPagina += `
       <div id="divConjunto${contador}" class="conjunto">
@@ -335,10 +367,16 @@ function preencherPagina() {
                 <h4>Atenção</h4>
                 <h4>Dispensadores em estado:</h4>
                 <h4>
-                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></div>
+                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${
+                    banheirosSetor[i][j].replaceAll(" ", "") +
+                    `${banheirosSetor[i]}`
+                  }"></div>
                 </h4>
                 <h4>
-                  <div class="situacao"></div> Atenção: <div id="divDispensadoresCritico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></div>
+                  <div class="situacao"></div> Atenção: <div id="divDispensadoresCritico${
+                    banheirosSetor[i][j].replaceAll(" ", "") +
+                    `${banheirosSetor[i]}`
+                  }"></div>
                 </h4>
               </div>
             </div>
@@ -366,135 +404,141 @@ function preencherPagina() {
                 </h3>
               </div>
             </div>
-            <div class="campoGrafico"> <canvas id="grafico${banheirosSetor[i][j].replaceAll(' ', '') + `${banheirosSetor[i]}`}"></canvas> </div>
+            <div class="campoGrafico"> <canvas id="grafico${
+              banheirosSetor[i][j].replaceAll(" ", "") + `${banheirosSetor[i]}`
+            }"></canvas> </div>
             <div class="botaoExpandir"><div id="divBotaoExpandir${contador}" class="conteudoBotao" onclick="abrir(${contador})"><h4>Mais Detalhes</h4></div> </div>
           </div>
         </div>
-      `
+      `;
       }
-      contador++
+      contador++;
     }
   }
 
-  campoSetores.innerHTML = conteudoPagina
+  campoSetores.innerHTML = conteudoPagina;
 
   const dispenserCrit = {
-    type: 'line',
+    type: "line",
     yMin: 15,
     yMax: 15,
-    borderColor: 'red',
+    borderColor: "red",
     borderWidth: 2,
-    borderDash: [6, 6]
-  }
+    borderDash: [6, 6],
+  };
 
   const dispenserAten = {
-    type: 'line',
+    type: "line",
     yMin: 40,
     yMax: 40,
-    borderColor: 'yellow',
+    borderColor: "yellow",
     borderWidth: 2,
-    borderDash: [6, 6]
-  }
+    borderDash: [6, 6],
+  };
 
   for (let i = 0; i < setores.length; i++) {
     const setor = setores[i];
     const banheiros = banheirosSetor[i];
     const dadosSetor = dados[i];
-    const cabineAtual = cabines[i]
+    const cabineAtual = cabines[i];
 
     for (let j = 0; j < banheiros.length; j++) {
       const nomeBanheiro = banheiros[j];
       const dadosBanheiro = dadosSetor[j];
-      const cabines = cabineAtual[j]
+      const cabines = cabineAtual[j];
 
-      const ctxBanheiro = document.getElementById(`grafico${nomeBanheiro.replaceAll(' ', '')}${banheiros}`);
+      const ctxBanheiro = document.getElementById(
+        `grafico${nomeBanheiro.replaceAll(" ", "")}${banheiros}`
+      );
 
       new Chart(ctxBanheiro, {
         data: {
           labels: cabines,
-          datasets: [{
-            type: 'bar',
-            label: `${setor} - ${nomeBanheiro}`,
-            data: dadosBanheiro,
-            backgroundColor: 'rgba(127, 92, 146, 1)'
-          }]
+          datasets: [
+            {
+              type: "bar",
+              label: `${setor} - ${nomeBanheiro}`,
+              data: dadosBanheiro,
+              backgroundColor: "rgba(127, 92, 146, 1)",
+            },
+          ],
         },
         options: {
           plugins: {
             legend: {
-              display: false
+              display: false,
             },
             annotation: {
               annotations: {
                 dispenserCrit,
-                dispenserAten
-              }
-            }
+                dispenserAten,
+              },
+            },
           },
           responsive: true,
           maintainAspectRatio: false,
           scales: {
             x: {
               ticks: {
-                color: '#5A4168',
+                color: "#5A4168",
                 font: {
                   size: 18,
-                  weight: 'bold'
-                }
+                  weight: "bold",
+                },
               },
               title: {
                 display: true,
-                text: 'Dispensadores',
-                color: '#5A4168',
+                text: "Dispensadores",
+                color: "#5A4168",
                 font: {
                   size: 18,
-                  weight: 'bold'
-                }
-              }
+                  weight: "bold",
+                },
+              },
             },
             y: {
               max: 100,
               ticks: {
-                color: '#5A4168',
+                color: "#5A4168",
                 font: {
                   size: 18,
-                  weight: 'bold'
-                }
+                  weight: "bold",
+                },
               },
               title: {
                 display: true,
-                text: 'Nível de Abastecimento(%)',
-                color: '#5A4168',
+                text: "Nível de Abastecimento(%)",
+                color: "#5A4168",
                 font: {
                   size: 18,
-                  weight: 'bold'
-                }
+                  weight: "bold",
+                },
               },
-              beginAtZero: true
-            }
-          }
-        }
+              beginAtZero: true,
+            },
+          },
+        },
       });
     }
   }
 }
 
-let descricaoIdeal = `<h3>Situação do banheiro: <div class="situacao ideal"></div></h3>`
-let descricaoAtencao = `<h3>Situação do banheiro: <div class="situacao"></div></h3>`
-let descricaoCritico = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`
+let descricaoIdeal = `<h3>Situação do banheiro: <div class="situacao ideal"></div></h3>`;
+let descricaoAtencao = `<h3>Situação do banheiro: <div class="situacao"></div></h3>`;
+let descricaoCritico = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`;
 
 function abrir(idConjunto) {
-  let conjunto = document.getElementById(`divConjunto${idConjunto}`)
-  let descricao = document.getElementById(`divDescricaoKpi${idConjunto}`)
-  let botao = document.getElementById(`divBotaoExpandir${idConjunto}`)
+  let conjunto = document.getElementById(`divConjunto${idConjunto}`);
+  let descricao = document.getElementById(`divDescricaoKpi${idConjunto}`);
+  let botao = document.getElementById(`divBotaoExpandir${idConjunto}`);
 
   if (!conjunto.classList.contains("detalhado")) {
-    botao.innerHTML = `Ocultar`
-    descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`
+    botao.innerHTML = `Ocultar`;
+    descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`;
     conjunto.classList.add("detalhado");
   } else {
-    botao.innerHTML = `Mais Detalhes`
-    descricao.innerHTML = descricaoCritico
+    botao.innerHTML = `Mais Detalhes`;
+    descricao.innerHTML = descricaoCritico;
     conjunto.classList.remove("detalhado");
   }
 }
