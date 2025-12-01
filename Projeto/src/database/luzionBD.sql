@@ -641,36 +641,6 @@ from Registro
     join Empresa on fkEmpresa = idEmpresa
   where Empresa.nomeFantasia = 'Facilitariamos TUDO';
 
-CREATE VIEW vw_dash_dispensadores AS
-SELECT 
-    d.idDispenser,
-    d.identificacao as dispenser,
-    b.idBanheiro,
-    b.titulo as banheiro,
-    b.setor,
-    b.fkFilial,
-    f.titulo as filial,
-    emp.nomeFantasia as empresa,
-    ph.idPapelHigienico,
-    ph.modelo as modelo_papel,
-    ph.diametroExternoMM,
-    ph.diametroInternoMM,
-    ph.larguraMM,
-    r.valor as distancia_sensor_mm,
-    r.dtRegistro as ultima_medicao,
-    r.idRegistro
-FROM Dispenser d
-JOIN Banheiro b ON d.fkBanheiro = b.idBanheiro
-JOIN Filial f ON b.fkFilial = f.idFilial
-JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
-JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
-JOIN Registro r ON d.idDispenser = r.fkDispenser
-WHERE r.dtRegistro = (SELECT MAX(dtRegistro) FROM Registro WHERE fkDispenser = d.idDispenser)
-ORDER BY b.setor, b.titulo, d.identificacao;
-
-SELECT * FROM vw_dash_dispensadores;
-SELECT * FROM vw_dash_dispensadores WHERE fkFilial = 1 AND setor = 'Andar 1' AND banheiro = '1';
-
 
 CREATE VIEW vw_dash_banheiros AS
 SELECT 
@@ -706,3 +676,43 @@ GROUP BY b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
 ORDER BY b.setor;
 
 SELECT * FROM vw_dash_setores;
+
+CREATE VIEW vw_dash_dispensadores AS
+SELECT 
+    d.idDispenser,
+    d.identificacao AS dispenser,
+    b.idBanheiro,
+    b.titulo AS banheiro,
+    b.setor AS setor,
+    b.fkFilial,
+    f.titulo AS filial,
+    emp.nomeFantasia AS empresa,
+    r.valor AS distancia_sensor_mm,
+    r.dtRegistro AS ultima_medicao,
+    r.idRegistro,
+    CASE
+        WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 < 0 THEN 0
+        ELSE (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100
+    END AS porcentagem_uso,
+    CASE WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 < 0 THEN 'ideal'
+        WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 <= 20 THEN 'critico'
+        WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 <= 40 THEN 'atencao'
+        ELSE 'ideal'
+    END AS estado
+FROM Dispenser d
+JOIN Banheiro b ON d.fkBanheiro = b.idBanheiro
+JOIN Filial f ON b.fkFilial = f.idFilial
+JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
+JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
+JOIN Registro r ON d.idDispenser = r.fkDispenser
+WHERE r.dtRegistro = (
+    SELECT MAX(dtRegistro) 
+    FROM Registro 
+    WHERE fkDispenser = d.idDispenser
+)
+ORDER BY setor, 
+    banheiro, 
+	  fkFilial,
+    porcentagem_uso ASC;
+
+SELECT * FROM vw_dash_dispensadores;
