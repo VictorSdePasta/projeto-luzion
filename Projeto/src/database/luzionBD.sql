@@ -712,7 +712,77 @@ WHERE r.dtRegistro = (
 )
 ORDER BY setor, 
     banheiro, 
-	  fkFilial,
+	fkFilial,
     porcentagem_uso ASC;
 
 SELECT * FROM vw_dash_dispensadores;
+
+CREATE VIEW vw_dash_banheiros_estados AS
+SELECT
+    b.idBanheiro,
+    b.titulo AS banheiro,
+    b.setor,
+    b.fkFilial,
+    f.titulo AS filial,
+    emp.nomeFantasia AS empresa,
+    COUNT(vd.idDispenser) AS total_dispensadores,
+    SUM(CASE WHEN vd.estado = 'critico' THEN 1 ELSE 0 END) AS dispensadorCritico,
+    SUM(CASE WHEN vd.estado = 'atencao' THEN 1 ELSE 0 END) AS dispensadorAtencao,
+    SUM(CASE WHEN vd.estado = 'ideal' THEN 1 ELSE 0 END) AS dispensadorOk,
+    ((SUM(CASE WHEN vd.estado = 'ideal' THEN 3 ELSE 0 END) +
+         SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END) +
+         SUM(CASE WHEN vd.estado = 'critico' THEN 1 ELSE 0 END)) / (COUNT(vd.idDispenser) * 3) * 100
+    ) AS situacao_banheiro,
+    CASE
+        WHEN (
+            (SUM(CASE WHEN vd.estado = 'ideal' THEN 3 ELSE 0 END) +
+             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END) +
+             SUM(CASE WHEN vd.estado = 'critico' THEN 1 ELSE 0 END)) / (COUNT(vd.idDispenser) * 3) * 100) >= 75 THEN 'ideal'
+        WHEN (
+            (SUM(CASE WHEN vd.estado = 'ideal' THEN 3 ELSE 0 END) +
+             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END) +
+             SUM(CASE WHEN vd.estado = 'critico' THEN 1 ELSE 0 END)) / (COUNT(vd.idDispenser) * 3) * 100) BETWEEN 26 AND 74 THEN 'atencao'
+        ELSE 'critico'
+    END AS classificacao_banheiro
+FROM Banheiro b
+JOIN Filial f ON b.fkFilial = f.idFilial
+JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
+JOIN vw_dash_dispensadores vd ON vd.idBanheiro = b.idBanheiro
+
+GROUP BY b.idBanheiro, b.titulo, b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
+ORDER BY situacao_banheiro ASC;
+
+
+
+CREATE VIEW vw_dash_setores_estados AS
+SELECT
+    b.setor,
+    b.fkFilial,
+    f.titulo AS filial,
+    emp.nomeFantasia AS empresa,
+    COUNT(DISTINCT b.idBanheiro) AS total_banheiros,
+    SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END) AS banheiroCritico,
+    SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 1 ELSE 0 END) AS banheiroAtencao,
+    SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 1 ELSE 0 END) AS banheiroOk,
+    ((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
+	SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
+	SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 3) * 100) AS situacao_setor,
+    CASE
+        WHEN ((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
+             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
+             SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 3) * 100) >= 75 THEN 'ideal'
+        WHEN (
+            (SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
+             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
+             SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 3) * 100) BETWEEN 26 AND 74 THEN 'atencao'
+        ELSE 'critico'
+    END AS classificacao_setor
+FROM Banheiro b
+JOIN Filial f ON b.fkFilial = f.idFilial
+JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
+JOIN vw_dash_banheiros_estados vb ON vb.idBanheiro = b.idBanheiro
+GROUP BY b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
+ORDER BY situacao_setor ASC;
+
+
+
