@@ -56,8 +56,8 @@ async function buscarDados(idFilial) {
         },
         body: JSON.stringify({
           setorServer: setor,
-          banheiroServer: banheiro,
-        }),
+          banheiroServer: banheiro
+        })
       });
       response = await response.json();
       for (let k = 0; k < response.length; k++) {
@@ -78,10 +78,7 @@ async function buscarDados(idFilial) {
 
         cabineBanheiro.push(resposta.dispenser);
 
-        dadoBanheiro.push({
-          porcentagem: porc,
-          estado: estado,
-        });
+        dadoBanheiro.push(porc);
       }
       cabineBanheiroSetor.push(cabineBanheiro);
       dadoBanheiroSetor.push(dadoBanheiro);
@@ -95,450 +92,214 @@ async function buscarDados(idFilial) {
   preencherPagina();
 }
 
-function preencherPagina() {
-  let conteudoTopo = `
-  <div id="divConjunto" class="conjunto detalhado">
-    <div class="colunaEsq">
-      <div class="kpi">
-        <h4>Setor em estado<br>de urgência</h4>
-        <div id="divEstoqueJumbo">
-          <h2>${setores[0]}</h2>
-        </div>
-      </div>
-      <div class="kpiBottom">
-        <div class="listaPrioridade">`;
+function gerarLegendaCores() {
+  return `
+    <div class="legenda">
+      <h4>As cores representam as situações dos banheiros:<br>
+        <span><div class="situacao critico"></div> Vermelho - Estado crítico</span>
+        <span><div class="situacao"></div> Amarelo - Estado de atenção</span>
+        <span><div class="situacao ideal"></div> Verde - Estado ideal</span>
+      </h4>
+    </div>`;
+}
 
-  for (let i = 0; i < setores.length - 1; i++) {
-    if (i == 0) {
-      conteudoTopo += `
-      <div class="identificacaoLista">
-        Banheiro <div class="divisao"></div> Situação
-      </div>
-      `;
-    }
+function gerarLinhaLista(nome, numero) {
+  return `
+    <div class="linha ${numero % 2 == 1 ? '' : 'par'}">
+      <div class="coluna">${nome}</div>
+      <div class="coluna"><div class="situacao critico"></div></div>
+    </div>`;
+}
 
-    if (i % 2 == 0) {
-      conteudoTopo += `
-      <div class="linha par">
-        <div class="coluna">
-          ${banheirosSetor[i]}
-        </div>
-        <div class="coluna">
-          <div class="situacao critico"></div>
-        </div>
-      </div>
-      `;
-    } else {
-      conteudoTopo += `
-      <div class="linha">
-        <div class="coluna">
-          ${banheirosSetor[i]}
-        </div>
-        <div class="coluna">
-          <div class="situacao critico"></div>
-        </div>
-      </div>
-      `;
-    }
-  }
-
-  conteudoTopo += `
-  </div>
-      </div>
-      <div class="legenda">
-        <h4>As cores representam as situações dos banheiros:<br>
-          <span>
-            <div class="situacao critico"></div>
-            Vermelho - Estado crítico
-          </span>
-          <span>
-            <div class="situacao"></div>
-            Amarelo - Estado de atenção
-          </span>
-          <span>
-            <div class="situacao ideal"></div>
-            Verde - Estado ideal
-          </span>
-        </h4>
-      </div>
-    </div>
-    <div class="colunaDir">
-      <div class="header">
-        <div id="divDescricaoKpi" class="descricaoKpi">
-          Tempo em estado crítico
-          <h2>1h 37min</h2>
-        </div>
-        <h1 class="titulo">Nível de abastecimento dos setores</h1>
-      </div>
-      <div class="grafico">
-        <div class="campoGrafico">
-          <canvas id="graficoSetores"></canvas>
-        </div>
-      </div>
-      <h4>O índice mostra a situação geral dos banheiros de cada setor, levando em conta o estado dos dispensadores. Quanto mais dispensadores estiverem em atenção ou crítico, maior será a urgência de reposição naquele setor.</h4>
-    </div>
-  </div>
-  `;
-
-  topo.innerHTML = conteudoTopo;
-
-  // Configuração do gráfico do topo (geral)
-  // Configuração dos limites
-  const setorCrit = {
-    type: "line",
-    yMin: 25,
-    yMax: 25,
-    borderColor: "red",
-    borderWidth: 2,
-    borderDash: [6, 6],
-  };
-
-  const setorAten = {
-    type: "line",
-    yMin: 75,
-    yMax: 75,
-    borderColor: "yellow",
-    borderWidth: 2,
-    borderDash: [6, 6],
-  };
-
-  const ctxSetores = document.getElementById("graficoSetores");
-
-  // Configuração dos gráficos individuais
-  new Chart(ctxSetores, {
+function criarGraficoBase(ctx, labels, data, anotacoes) {
+  new Chart(ctx, {
     data: {
-      labels: setores,
+      labels,
       datasets: [
         {
           type: "bar",
-          label: "",
-          data: [23, 89, 57, 65, 97, 40],
-          backgroundColor: "rgba(127, 92, 146, 100)",
+          data,
+          backgroundColor: "rgba(127, 92, 146, 1)",
         },
       ],
     },
     options: {
       plugins: {
-        legend: {
-          display: false,
-        },
-        annotation: {
-          annotations: {
-            setorCrit,
-            setorAten,
-          },
-        },
+        legend: { display: false },
+        annotation: { annotations: anotacoes },
       },
       responsive: true,
       maintainAspectRatio: false,
       scales: {
         x: {
-          ticks: {
-            color: "#5A4168",
-            font: {
-              size: 18,
-              weight: "bold",
-            },
-          },
+          ticks: { color: "#5A4168", font: { size: 18, weight: "bold" } },
           title: {
             display: true,
-            text: "Setores",
+            text: "Dispensadores",
             color: "#5A4168",
-            font: {
-              size: 18,
-              weight: "bold",
-            },
+            font: { size: 18, weight: "bold" },
           },
         },
         y: {
           max: 100,
-          ticks: {
-            color: "#5A4168",
-            font: {
-              size: 18,
-              weight: "bold",
-            },
-          },
+          beginAtZero: true,
+          ticks: { color: "#5A4168", font: { size: 18, weight: "bold" } },
           title: {
             display: true,
-            text: "Índice de Abastecimento(%)",
+            text: "Nível de Abastecimento(%)",
             color: "#5A4168",
-            font: {
-              size: 18,
-              weight: "bold",
-            },
+            font: { size: 18, weight: "bold" },
           },
-          beginAtZero: true,
         },
       },
     },
   });
+}
 
-  let contador = 1;
-  let campoSetores = document.getElementById("divSetores");
-  let conteudoPagina = ``;
+function gerarCardBanheiro(setor, banheiro, idConjunto, primeiro) {
+  const id = `${banheiro.replaceAll(" ", "")}_${setor.replaceAll(" ", "")}`;
+
+  return `
+    <div id="divConjunto${idConjunto}" class="conjunto ${primeiro ? "detalhado" : ""}">
+      <div class="colunaEsq">
+        <div class="kpi">
+          <h2>Banheiro</h2>
+          <div id="divEstoqueJumbo"><h1>${banheiro}</h1></div>
+        </div>
+
+        <div class="kpiBottom">
+          <div class="legendaSituacao">
+            <h4>Situação do Banheiro</h4>
+            <h4>${primeiro ? "Crítico" : "Atenção"}</h4>
+            <h4>Dispensadores em estado:</h4>
+            <h4><div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${id}"></div></h4>
+            <h4><div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${id}"></div></h4>
+          </div>
+        </div>
+
+        ${gerarLegendaCores()}
+      </div>
+
+      <div class="colunaDir">
+        <div class="header">
+          <div id="divDescricaoKpi${idConjunto}" class="descricaoKpi">
+            ${primeiro ? "<h2>Nível de abastecimento dos dispensadores</h2>" : "<h3>Situação do banheiro: <div class='situacao critico'></div></h3>"}
+          </div>
+        </div>
+
+        <div class="campoGrafico"><canvas id="grafico${id}"></canvas></div>
+
+        <div class="botaoExpandir">
+          <div id="divBotaoExpandir${idConjunto}" class="conteudoBotao" onclick="abrir(${idConjunto})">
+            <h4>${primeiro ? "Ocultar" : "Mais Detalhes"}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function preencherPagina() {
+  let topoHTML = `
+    <div id="divConjunto" class="conjunto detalhado">
+      <div class="colunaEsq">
+        <div class="kpi">
+          <h4>Setor em estado<br>de urgência</h4>
+          <div id="divEstoqueJumbo"><h2>${setores[0]}</h2></div>
+        </div>
+
+        <div class="kpiBottom">
+          <div class="listaPrioridade">
+            <div class="identificacaoLista">
+              Banheiro <div class="divisao"></div> Situação
+            </div>
+            ${(() => {
+      let html = "";
+      for (let i = 0; i < banheirosSetor[0].length; i++) {
+        html += gerarLinhaLista(banheirosSetor[0][i], i);
+      }
+      return html;
+    })()}
+          </div>
+        </div>
+
+        ${gerarLegendaCores()}
+      </div>
+
+      <div class="colunaDir">
+        <div class="header">
+          <div class="descricaoKpi">Tempo em estado crítico<h2>1h 37min</h2></div>
+          <h1 class="titulo">Nível de abastecimento dos setores</h1>
+        </div>
+
+        <div class="grafico">
+          <div class="campoGrafico"><canvas id="graficoSetores"></canvas></div>
+        </div>
+
+        <h4>O índice mostra a situação geral...</h4>
+      </div>
+    </div>`;
+
+  topo.innerHTML = topoHTML;
+
+  // gráfico do topo
+  criarGraficoBase(
+    document.getElementById("graficoSetores"),
+    setores,
+    [23, 89, 57, 65, 97, 40],
+    {
+      crit: { type: "line", yMin: 25, yMax: 25, borderColor: "red", borderDash: [6, 6] },
+      aten: { type: "line", yMin: 75, yMax: 75, borderColor: "yellow", borderDash: [6, 6] }
+    }
+  );
+
+  // setor + banheiros
+  let pagina = "";
+  let id = 1;
 
   for (let i = 0; i < setores.length; i++) {
-    conteudoPagina += `
-    <div class="divisaSetor">
-      <div class="linhaDivisa"></div>
-      <h1>${setores[i]}</h1>
-    </div>
-    `;
+    pagina += `<div class="divisaSetor"><div class="linhaDivisa"></div><h1>${setores[i]}</h1></div>`;
 
     for (let j = 0; j < banheirosSetor[i].length; j++) {
-      if (j == 0) {
-        conteudoPagina += `
-      <div id="divConjunto${contador}" class="conjunto detalhado">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h2>Banheiro</h2>
-              <div id="divEstoqueJumbo">
-                <h1>${banheirosSetor[i][j]}</h1>
-              </div>
-            </div>
-            <div class="kpiBottom">
-              <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Crítico</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>
-                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${
-                    banheirosSetor[i][j].replaceAll(" ", "") +
-                    `${banheirosSetor[i]}`
-                  }"></div>
-                </h4>
-                <h4>
-                  <div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${
-                    banheirosSetor[i][j].replaceAll(" ", "") +
-                    `${banheirosSetor[i]}`
-                  }"></div>
-                </h4>
-              </div>
-            </div>
-            <div class="legenda">
-              <h4>As cores representam as situações dos banheiros:<br>
-                <span>
-                  <div class="situacao critico"></div>
-                  Vermelho - Estado crítico
-                </span>
-                <span>
-                  <div class="situacao"></div>
-                  Amarelo - Estado de atenção
-                </span>
-                <span>
-                  <div class="situacao ideal"></div>
-                  Verde - Estado ideal
-                </span>
-              </h4>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div id="divDescricaoKpi${contador}" class="descricaoKpi">
-                <h2>Nível de abastecimento dos dispensadores</h2>
-              </div>
-            </div>
-
-            <div class="campoGrafico">
-              <canvas id="grafico${
-                banheirosSetor[i][j].replaceAll(" ", "") +
-                `${banheirosSetor[i]}`
-              }"></canvas>
-            </div>
-
-            <div class="botaoExpandir"><div id="divBotaoExpandir${contador}" class="conteudoBotao" onclick="abrir(${contador})"><h4>Ocultar</h4></div> </div>
-          </div>
-        </div>
-      `;
-      } else {
-        conteudoPagina += `
-      <div id="divConjunto${contador}" class="conjunto">
-          <div class="colunaEsq">
-            <div class="kpi">
-              <h2>Banheiro</h2>
-              <div id="divEstoqueJumbo">
-                <h1>${banheirosSetor[i][j]}</h1>
-              </div>
-            </div>
-            <div class="kpiBottom">
-              <div class="legendaSituacao">
-                <h4>Situação do Banheiro</h4>
-                <h4>Atenção</h4>
-                <h4>Dispensadores em estado:</h4>
-                <h4>
-                  <div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${
-                    banheirosSetor[i][j].replaceAll(" ", "") +
-                    `${banheirosSetor[i]}`
-                  }"></div>
-                </h4>
-                <h4>
-                  <div class="situacao"></div> Atenção: <div id="divDispensadoresCritico${
-                    banheirosSetor[i][j].replaceAll(" ", "") +
-                    `${banheirosSetor[i]}`
-                  }"></div>
-                </h4>
-              </div>
-            </div>
-            <div class="legenda">
-              <h4>As cores representam as situações dos banheiros:<br>
-                <span>
-                  <div class="situacao critico"></div>
-                  Vermelho - Estado crítico
-                </span>
-                <span>
-                  <div class="situacao"></div>
-                  Amarelo - Estado de atenção
-                </span>
-                <span>
-                  <div class="situacao ideal"></div>
-                  Verde - Estado ideal
-                </span>
-              </h4>
-            </div>
-          </div>
-          <div class="colunaDir">
-            <div class="header">
-              <div id="divDescricaoKpi${contador}" class="descricaoKpi">
-                <h3>Situação do banheiro: <div class="situacao critico"></div>
-                </h3>
-              </div>
-            </div>
-            <div class="campoGrafico"> <canvas id="grafico${
-              banheirosSetor[i][j].replaceAll(" ", "") + `${banheirosSetor[i]}`
-            }"></canvas> </div>
-            <div class="botaoExpandir"><div id="divBotaoExpandir${contador}" class="conteudoBotao" onclick="abrir(${contador})"><h4>Mais Detalhes</h4></div> </div>
-          </div>
-        </div>
-      `;
-      }
-      contador++;
+      pagina += gerarCardBanheiro(setores[i], banheirosSetor[i][j], id, j === 0);
+      id++;
     }
   }
 
-  campoSetores.innerHTML = conteudoPagina;
+  document.getElementById("divSetores").innerHTML = pagina;
 
-  const dispenserCrit = {
-    type: "line",
-    yMin: 15,
-    yMax: 15,
-    borderColor: "red",
-    borderWidth: 2,
-    borderDash: [6, 6],
-  };
-
-  const dispenserAten = {
-    type: "line",
-    yMin: 40,
-    yMax: 40,
-    borderColor: "yellow",
-    borderWidth: 2,
-    borderDash: [6, 6],
-  };
-
+  // gráficos individuais
   for (let i = 0; i < setores.length; i++) {
-    const setor = setores[i];
-    const banheiros = banheirosSetor[i];
-    const dadosSetor = dados[i];
-    const cabineAtual = cabines[i];
+    for (let j = 0; j < banheirosSetor[i].length; j++) {
+      const idGraf = `${banheirosSetor[i][j].replaceAll(" ", "")}_${setores[i].replaceAll(" ", "")}`;
 
-    for (let j = 0; j < banheiros.length; j++) {
-      const nomeBanheiro = banheiros[j];
-      const dadosBanheiro = dadosSetor[j];
-      const cabines = cabineAtual[j];
-
-      const ctxBanheiro = document.getElementById(
-        `grafico${nomeBanheiro.replaceAll(" ", "")}${banheiros}`
+      criarGraficoBase(
+        document.getElementById(`grafico${idGraf}`),
+        cabines[i][j],
+        dados[i][j],
+        {
+          crit: { type: "line", yMin: 15, yMax: 15, borderColor: "red", borderDash: [6, 6] },
+          aten: { type: "line", yMin: 40, yMax: 40, borderColor: "yellow", borderDash: [6, 6] }
+        }
       );
-
-      new Chart(ctxBanheiro, {
-        data: {
-          labels: cabines,
-          datasets: [
-            {
-              type: "bar",
-              label: `${setor} - ${nomeBanheiro}`,
-              data: dadosBanheiro,
-              backgroundColor: "rgba(127, 92, 146, 1)",
-            },
-          ],
-        },
-        options: {
-          plugins: {
-            legend: {
-              display: false,
-            },
-            annotation: {
-              annotations: {
-                dispenserCrit,
-                dispenserAten,
-              },
-            },
-          },
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              ticks: {
-                color: "#5A4168",
-                font: {
-                  size: 18,
-                  weight: "bold",
-                },
-              },
-              title: {
-                display: true,
-                text: "Dispensadores",
-                color: "#5A4168",
-                font: {
-                  size: 18,
-                  weight: "bold",
-                },
-              },
-            },
-            y: {
-              max: 100,
-              ticks: {
-                color: "#5A4168",
-                font: {
-                  size: 18,
-                  weight: "bold",
-                },
-              },
-              title: {
-                display: true,
-                text: "Nível de Abastecimento(%)",
-                color: "#5A4168",
-                font: {
-                  size: 18,
-                  weight: "bold",
-                },
-              },
-              beginAtZero: true,
-            },
-          },
-        },
-      });
     }
   }
 }
 
-let descricaoIdeal = `<h3>Situação do banheiro: <div class="situacao ideal"></div></h3>`;
-let descricaoAtencao = `<h3>Situação do banheiro: <div class="situacao"></div></h3>`;
-let descricaoCritico = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`;
-
 function abrir(idConjunto) {
-  let conjunto = document.getElementById(`divConjunto${idConjunto}`);
-  let descricao = document.getElementById(`divDescricaoKpi${idConjunto}`);
-  let botao = document.getElementById(`divBotaoExpandir${idConjunto}`);
+  const div = document.getElementById(`divConjunto${idConjunto}`);
+  const desc = document.getElementById(`divDescricaoKpi${idConjunto}`);
+  const btn = document.getElementById(`divBotaoExpandir${idConjunto}`);
 
-  if (!conjunto.classList.contains("detalhado")) {
-    botao.innerHTML = `Ocultar`;
-    descricao.innerHTML = `<h2>Nível de abastecimento dos dispensadores</h2>`;
-    conjunto.classList.add("detalhado");
+  const aberto = div.classList.contains("detalhado");
+
+  if (aberto) {
+    btn.innerHTML = "<h4>Mais Detalhes</h4>";
+    desc.innerHTML = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`;
+    div.classList.remove("detalhado");
   } else {
-    botao.innerHTML = `Mais Detalhes`;
-    descricao.innerHTML = descricaoCritico;
-    conjunto.classList.remove("detalhado");
+    btn.innerHTML = "<h4>Ocultar</h4>";
+    desc.innerHTML = "<h2>Nível de abastecimento dos dispensadores</h2>";
+    div.classList.add("detalhado");
   }
 }
