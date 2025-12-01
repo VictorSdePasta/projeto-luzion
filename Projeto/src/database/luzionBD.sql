@@ -690,11 +690,13 @@ SELECT
     r.valor AS distancia_sensor_mm,
     r.dtRegistro AS ultima_medicao,
     r.idRegistro,
+    t.tempo_atencao,
+    t.tempo_critico,
     CASE
         WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 < 0 THEN 0
         ELSE (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100
     END AS porcentagem_uso,
-    CASE WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 < 0 THEN 'ideal'
+    CASE 
         WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 <= 20 THEN 'critico'
         WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 <= 40 THEN 'atencao'
         ELSE 'ideal'
@@ -705,6 +707,47 @@ JOIN Filial f ON b.fkFilial = f.idFilial
 JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
 JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
 JOIN Registro r ON d.idDispenser = r.fkDispenser
+LEFT JOIN (
+    SELECT
+        r.fkDispenser,
+        SEC_TO_TIME (
+            SUM(
+                CASE 
+                    WHEN (
+                        (((ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) 
+                          / ((ph.diametroExternoMM - ph.diametroInternoMM)/2)) * 100
+                    ) BETWEEN 21 AND 40
+                    THEN TIMESTAMPDIFF(SECOND, r.dtRegistro, r2.dtRegistro)
+                    ELSE 0
+                END
+            ) 
+        ) AS tempo_atencao,
+        SEC_TO_TIME (
+            SUM(
+                CASE 
+                    WHEN (
+                        (((ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) 
+                          / ((ph.diametroExternoMM - ph.diametroInternoMM)/2)) * 100
+                    ) <= 20
+                    THEN TIMESTAMPDIFF(SECOND, r.dtRegistro, r2.dtRegistro)
+                    ELSE 0
+                END
+            ) 
+        ) AS tempo_critico
+
+    FROM Registro r
+    JOIN Registro r2
+        ON r2.fkDispenser = r.fkDispenser
+       AND r2.dtRegistro = (
+            SELECT MIN(r3.dtRegistro)
+            FROM Registro r3
+            WHERE r3.fkDispenser = r.fkDispenser
+              AND r3.dtRegistro > r.dtRegistro
+        )  
+    JOIN Dispenser d2 ON d2.idDispenser = r.fkDispenser
+    JOIN PapelHigienico ph ON ph.idPapelHigienico = d2.fkPapelHigienico
+    GROUP BY r.fkDispenser
+) AS t ON t.fkDispenser = d.idDispenser
 WHERE r.dtRegistro = (
     SELECT MAX(dtRegistro) 
     FROM Registro 
@@ -752,7 +795,7 @@ JOIN vw_dash_dispensadores vd ON vd.idBanheiro = b.idBanheiro
 GROUP BY b.idBanheiro, b.titulo, b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
 ORDER BY situacao_banheiro ASC;
 
-
+select * from vw_dash_banheiros_estados;
 
 CREATE VIEW vw_dash_setores_estados AS
 SELECT
@@ -784,5 +827,19 @@ JOIN vw_dash_banheiros_estados vb ON vb.idBanheiro = b.idBanheiro
 GROUP BY b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
 ORDER BY situacao_setor ASC;
 
+select * from vw_dash_setores_estados;
 
-
+SELECT
+    r.fkDispenser,
+    SUM(CASE WHEN r.valor < 40 AND r.valor > 20 THEN TIMESTAMPDIFF(SECOND, r.dtRegistro, r2.dtRegistro) ELSE 0 END) AS tempo_atencao,
+    SUM(CASE WHEN r.valor <= 20 THEN TIMESTAMPDIFF(SECOND, r.dtRegistro, r2.dtRegistro) ELSE 0 END) AS tempo_critico
+FROM Registro r
+JOIN Registro r2
+    ON r2.fkDispenser = r.fkDispenser
+   AND r2.dtRegistro = (
+        SELECT MIN(r3.dtRegistro)
+        FROM Registro r3
+        WHERE r3.fkDispenser = r.fkDispenser
+          AND r3.dtRegistro > r.dtRegistro
+    )
+GROUP BY r.fkDispenser;
