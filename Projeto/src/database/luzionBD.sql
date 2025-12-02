@@ -690,11 +690,9 @@ SELECT
     r.valor AS distancia_sensor_mm,
     r.dtRegistro AS ultima_medicao,
     r.idRegistro,
-    t.tempo_atencao,
-    t.tempo_critico,
     CASE
         WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 < 0 THEN 0
-        ELSE (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100
+        ELSE ROUND((( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100)
     END AS porcentagem_uso,
     CASE 
         WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 <= 20 THEN 'critico'
@@ -707,47 +705,6 @@ JOIN Filial f ON b.fkFilial = f.idFilial
 JOIN Empresa emp ON f.fkEmpresa = emp.idEmpresa
 JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
 JOIN Registro r ON d.idDispenser = r.fkDispenser
-LEFT JOIN (
-    SELECT
-        r.fkDispenser,
-        SEC_TO_TIME (
-            SUM(
-                CASE 
-                    WHEN (
-                        (((ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) 
-                          / ((ph.diametroExternoMM - ph.diametroInternoMM)/2)) * 100
-                    ) BETWEEN 21 AND 40
-                    THEN TIMESTAMPDIFF(SECOND, r.dtRegistro, r2.dtRegistro)
-                    ELSE 0
-                END
-            ) 
-        ) AS tempo_atencao,
-        SEC_TO_TIME (
-            SUM(
-                CASE 
-                    WHEN (
-                        (((ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) 
-                          / ((ph.diametroExternoMM - ph.diametroInternoMM)/2)) * 100
-                    ) <= 20
-                    THEN TIMESTAMPDIFF(SECOND, r.dtRegistro, r2.dtRegistro)
-                    ELSE 0
-                END
-            ) 
-        ) AS tempo_critico
-
-    FROM Registro r
-    JOIN Registro r2
-        ON r2.fkDispenser = r.fkDispenser
-       AND r2.dtRegistro = (
-            SELECT MIN(r3.dtRegistro)
-            FROM Registro r3
-            WHERE r3.fkDispenser = r.fkDispenser
-              AND r3.dtRegistro > r.dtRegistro
-        )  
-    JOIN Dispenser d2 ON d2.idDispenser = r.fkDispenser
-    JOIN PapelHigienico ph ON ph.idPapelHigienico = d2.fkPapelHigienico
-    GROUP BY r.fkDispenser
-) AS t ON t.fkDispenser = d.idDispenser
 WHERE r.dtRegistro = (
     SELECT MAX(dtRegistro) 
     FROM Registro 
@@ -807,9 +764,9 @@ SELECT
     SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END) AS banheiroCritico,
     SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 1 ELSE 0 END) AS banheiroAtencao,
     SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 1 ELSE 0 END) AS banheiroOk,
-    ((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
-	SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
-	SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 3) * 100) AS situacao_setor,
+    ROUND((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
+	      SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
+	      SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 3) * 100) AS situacao_setor,
     CASE
         WHEN ((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
              SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
@@ -829,17 +786,11 @@ ORDER BY situacao_setor ASC;
 
 select * from vw_dash_setores_estados;
 
-SELECT
-    r.fkDispenser,
-    SUM(CASE WHEN r.valor < 40 AND r.valor > 20 THEN TIMESTAMPDIFF(SECOND, r.dtRegistro, r2.dtRegistro) ELSE 0 END) AS tempo_atencao,
-    SUM(CASE WHEN r.valor <= 20 THEN TIMESTAMPDIFF(SECOND, r.dtRegistro, r2.dtRegistro) ELSE 0 END) AS tempo_critico
-FROM Registro r
-JOIN Registro r2
-    ON r2.fkDispenser = r.fkDispenser
-   AND r2.dtRegistro = (
-        SELECT MIN(r3.dtRegistro)
-        FROM Registro r3
-        WHERE r3.fkDispenser = r.fkDispenser
-          AND r3.dtRegistro > r.dtRegistro
-    )
-GROUP BY r.fkDispenser;
+SELECT 
+        r.dtRegistro,
+        r.valor,
+        d.idDispenser
+    FROM Registro r
+    JOIN Dispenser d 
+    ON r.fkDispenser = d.idDispenser
+    WHERE d.idDispenser = 1;

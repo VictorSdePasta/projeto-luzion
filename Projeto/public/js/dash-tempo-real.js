@@ -6,9 +6,34 @@ let setores = [];
 let banheirosSetor = [];
 let cabines = [];
 let dados = [];
+let situacoesSetor = [];
+let classificacoesSetor = [];
+let situacoesBanheiros = [];
+let qtdBanheirosAtencao = [];
+let qtdBanheirosCrit = [];
+let tempo = '0 dias 0 horas 00 minutos'
 
-// setor[]>banheiro[]
-// [ [], [], [] ]
+/*
+for (let i = 0; i < dispenser.length; i++) {
+  let dtIdentificada = registros[0].dtRegistro
+  let encontrou = false
+
+  for (let j = 0; j < registros.length; j++) {
+    if (registros[j].valor < 20 && !encontrou) {
+      dtIdentificada = registros[j].dtRegistro
+      encontrou = true
+    } else if (registros[j].valor <= 40 && !encontrou) {
+      dtIdentificada = registros[j].dtRegistro
+      encontrou = true
+    }
+
+    if (registros[j].valor > 40) {
+      dtIdentificada = registros[j].dtRegistro
+      encontrou = false
+    }
+  }
+}
+*/
 
 window.onload = buscarDados(idFilial);
 
@@ -24,9 +49,9 @@ async function buscarDados(idFilial) {
   document.getElementById("divEmpresa").innerHTML = resposta[0].empresa;
 
   for (let i = 0; i < resposta.length; i++) {
-    if (!setores.includes(resposta[i].setor)) {
-      setores.push(resposta[i].setor);
-    }
+    setores.push(resposta[i].setor);
+    situacoesSetor.push(resposta[i].situacao_setor)
+    classificacoesSetor.push(resposta[i].classificacao_setor)
   }
 
   for (let i = 0; i < setores.length; i++) {
@@ -34,6 +59,9 @@ async function buscarDados(idFilial) {
     let dadoBanheiroSetor = [];
     let cabineBanheiroSetor = [];
     let setor = setores[i];
+    let situacoesBanheiroSetor = [];
+    let qtdAtencao = []
+    let qtdCrit = []
 
     let resposta = await fetch(`/medidas/banheiroSetor/${idFilial}/${setor}`, {
       cache: "no-store",
@@ -44,9 +72,13 @@ async function buscarDados(idFilial) {
     resposta = await resposta.json();
     for (let j = 0; j < resposta.length; j++) {
       let banheiro = resposta[j].banheiro;
+      let situacao = resposta[j].classificacao_banheiro
+      let atencao = resposta[j].dispensadorAtencao
+      let crit = resposta[j].dispensadorCritico
       let dadoBanheiro = [];
       let cabineBanheiro = [];
 
+      situacoesBanheiroSetor.push(situacao)
       banheiroSetor.push(banheiro);
 
       let response = await fetch(`/medidas/dadosBanheiro/${idFilial}`, {
@@ -62,31 +94,48 @@ async function buscarDados(idFilial) {
       response = await response.json();
       for (let k = 0; k < response.length; k++) {
         const resposta = response[k];
-        const valor = resposta.distancia_sensor_mm;
-        const maxValor = (resposta.diametroExternoMM - resposta.diametroInternoMM) / 2;
+        const valor = Number(resposta.porcentagem_uso);
+        const ultimaData = resposta.ultima_medicao
+        const idDispenser = resposta.idDispenser
 
-        let porc = ((maxValor - valor) / maxValor) * 100;
-        porc = Math.floor(porc);
+        let resp = await fetch(`/medidas/tempoDeEstado/${idDispenser}`)
+        resp = await resp.json()
 
-        let estado = "ideal";
+        let dtIdentificada = resp[0].dtRegistro
+        let encontrou = false
 
-        if (porc <= 20) {
-          estado = "critico";
-        } else if (porc <= 40) {
-          estado = "atencao";
+        for (let j = 0; j < resp.length; j++) {
+          if (resp[j].valor < 20 && !encontrou) {
+            dtIdentificada = resp[j].dtRegistro
+            encontrou = true
+          } else if (resp[j].valor <= 40 && !encontrou) {
+            dtIdentificada = resp[j].dtRegistro
+            encontrou = true
+          }
+
+          if (resp[j].valor > 40) {
+            dtIdentificada = resp[j].dtRegistro
+            encontrou = false
+          }
         }
 
+        tempo = `${ultimaData} ${dtIdentificada}`
         cabineBanheiro.push(resposta.dispenser);
-
-        dadoBanheiro.push(porc);
+        dadoBanheiro.push(valor);
       }
+
+      qtdAtencao.push(atencao)
+      qtdCrit.push(crit)
       cabineBanheiroSetor.push(cabineBanheiro);
       dadoBanheiroSetor.push(dadoBanheiro);
     }
 
+    qtdBanheirosAtencao.push(qtdAtencao)
+    qtdBanheirosCrit.push(qtdCrit)
     cabines.push(cabineBanheiroSetor);
     dados.push(dadoBanheiroSetor);
     banheirosSetor.push(banheiroSetor);
+    situacoesBanheiros.push(situacoesBanheiroSetor)
   }
 
   preencherPagina();
@@ -103,11 +152,11 @@ function gerarLegendaCores() {
     </div>`;
 }
 
-function gerarLinhaLista(nome, numero) {
+function gerarLinhaLista(nome, i) {
   return `
-    <div class="linha ${numero % 2 == 1 ? '' : 'par'}">
+    <div class="linha ${i % 2 == 1 ? '' : 'par'}">
       <div class="coluna">${nome}</div>
-      <div class="coluna"><div class="situacao critico"></div></div>
+      <div class="coluna"><div class="situacao ${situacoesBanheiros[0][i]}"></div></div>
     </div>`;
 }
 
@@ -156,7 +205,7 @@ function criarGraficoBase(ctx, labels, data, anotacoes) {
   });
 }
 
-function gerarCardBanheiro(setor, banheiro, idConjunto, primeiro) {
+function gerarCardBanheiro(setor, banheiro, idConjunto, primeiro, situacao, qtdAt, qtdCrit) {
   const id = `${banheiro.replaceAll(" ", "")}_${setor.replaceAll(" ", "")}`;
 
   return `
@@ -170,10 +219,10 @@ function gerarCardBanheiro(setor, banheiro, idConjunto, primeiro) {
         <div class="kpiBottom">
           <div class="legendaSituacao">
             <h4>Situação do Banheiro</h4>
-            <h4>${primeiro ? "Crítico" : "Atenção"}</h4>
+            <h4>${situacao == 'atencao' ? 'Atenção' : situacao == 'ideal' ? 'Ideal' : 'Crítico'}</h4>
             <h4>Dispensadores em estado:</h4>
-            <h4><div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${id}"></div></h4>
-            <h4><div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${id}"></div></h4>
+            <h4><div class="situacao critico"></div> Crítico: <div id="divDispensadoresCritico${id}">${qtdCrit}</div></h4>
+            <h4><div class="situacao"></div> Atenção: <div id="divDispensadoresAtencao${id}"></div>${qtdAt}</h4>
           </div>
         </div>
 
@@ -183,14 +232,14 @@ function gerarCardBanheiro(setor, banheiro, idConjunto, primeiro) {
       <div class="colunaDir">
         <div class="header">
           <div id="divDescricaoKpi${idConjunto}" class="descricaoKpi">
-            ${primeiro ? "<h2>Nível de abastecimento dos dispensadores</h2>" : "<h3>Situação do banheiro: <div class='situacao critico'></div></h3>"}
+            ${primeiro ? "<h2>Nível de abastecimento dos dispensadores</h2>" : `<h3>Situação do banheiro: <div class='situacao ${situacao}'></div></h3>`}
           </div>
         </div>
 
         <div class="campoGrafico"><canvas id="grafico${id}"></canvas></div>
 
         <div class="botaoExpandir">
-          <div id="divBotaoExpandir${idConjunto}" class="conteudoBotao" onclick="abrir(${idConjunto})">
+          <div id="divBotaoExpandir${idConjunto}" class="conteudoBotao" onclick="abrir(${idConjunto}, '${situacao}')">
             <h4>${primeiro ? "Ocultar" : "Mais Detalhes"}</h4>
           </div>
         </div>
@@ -204,7 +253,7 @@ function preencherPagina() {
     <div id="divConjunto" class="conjunto detalhado">
       <div class="colunaEsq">
         <div class="kpi">
-          <h4>Setor em estado<br>de urgência</h4>
+          <h4>Setor em maior<br>estado de urgência</h4>
           <div id="divEstoqueJumbo"><h2>${setores[0]}</h2></div>
         </div>
 
@@ -228,15 +277,13 @@ function preencherPagina() {
 
       <div class="colunaDir">
         <div class="header">
-          <div class="descricaoKpi">Tempo em estado crítico<h2>1h 37min</h2></div>
+          <div class="descricaoKpi">Tempo em estado ${classificacoesSetor[0] == 'atencao' ? 'de Atenção' : 'Crítico'}<h2>1h 37min</h2></div>
           <h1 class="titulo">Nível de abastecimento dos setores</h1>
         </div>
 
         <div class="grafico">
           <div class="campoGrafico"><canvas id="graficoSetores"></canvas></div>
         </div>
-
-        <h4>O índice mostra a situação geral...</h4>
       </div>
     </div>`;
 
@@ -246,7 +293,7 @@ function preencherPagina() {
   criarGraficoBase(
     document.getElementById("graficoSetores"),
     setores,
-    [23, 89, 57, 65, 97, 40],
+    situacoesSetor,
     {
       crit: { type: "line", yMin: 25, yMax: 25, borderColor: "red", borderDash: [6, 6] },
       aten: { type: "line", yMin: 75, yMax: 75, borderColor: "yellow", borderDash: [6, 6] }
@@ -261,7 +308,7 @@ function preencherPagina() {
     pagina += `<div class="divisaSetor"><div class="linhaDivisa"></div><h1>${setores[i]}</h1></div>`;
 
     for (let j = 0; j < banheirosSetor[i].length; j++) {
-      pagina += gerarCardBanheiro(setores[i], banheirosSetor[i][j], id, j === 0);
+      pagina += gerarCardBanheiro(setores[i], banheirosSetor[i][j], id, j === 0, situacoesBanheiros[i][j], qtdBanheirosAtencao[i][j], qtdBanheirosCrit[i][j]);
       id++;
     }
   }
@@ -286,7 +333,7 @@ function preencherPagina() {
   }
 }
 
-function abrir(idConjunto) {
+function abrir(idConjunto, situacao) {
   const div = document.getElementById(`divConjunto${idConjunto}`);
   const desc = document.getElementById(`divDescricaoKpi${idConjunto}`);
   const btn = document.getElementById(`divBotaoExpandir${idConjunto}`);
@@ -295,7 +342,7 @@ function abrir(idConjunto) {
 
   if (aberto) {
     btn.innerHTML = "<h4>Mais Detalhes</h4>";
-    desc.innerHTML = `<h3>Situação do banheiro: <div class="situacao critico"></div></h3>`;
+    desc.innerHTML = `<h3>Situação do banheiro: <div class="situacao ${situacao}"></div></h3>`;
     div.classList.remove("detalhado");
   } else {
     btn.innerHTML = "<h4>Ocultar</h4>";

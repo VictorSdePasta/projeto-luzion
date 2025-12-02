@@ -3,16 +3,8 @@ var router = express.Router();
 
 var medidaController = require("../controllers/medidaController");
 
-router.get("/ultimas/:idFilial", function (req, res) {
-    medidaController.buscarUltimasMedidas(req, res);
-});
-
 router.get("/setores/:idFilial", function (req, res) {
     medidaController.buscarSetores(req, res);
-});
-
-router.get("/banheiros/:idFilial", function (req, res) {
-    medidaController.buscarBanheiros(req, res);
 });
 
 router.get("/banheiroSetor/:idFilial/:setor", function (req, res) {
@@ -23,8 +15,8 @@ router.post("/dadosBanheiro/:idFilial", function (req, res) {
     medidaController.buscarDadosBanheiro(req, res);
 });
 
-router.get("/tempo-real/:idFilial", function (req, res) {
-    medidaController.buscarMedidasEmTempoReal(req, res);
-})
+router.get("/tempoDeEstado/:idDispenser", function (req, res) {
+    medidaController.tempoDeEstado(req, res);
+});
 
 module.exports = router;
