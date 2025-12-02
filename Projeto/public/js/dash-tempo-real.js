@@ -1,5 +1,5 @@
-// let idFilial = sessionStorage.ID_FILIAL
-let idFilial = 1
+let idFilial = sessionStorage.ID_FILIAL
+// let idFilial = 1
 let topo = document.getElementById("divTopo");
 
 let setores = [];
