@@ -24,12 +24,15 @@ function buscarDadosBanheiro(idFilial, setor, banheiro) {
 function tempoDeEstado(idDispenser) {
   var instrucaoSql = `
     SELECT 
-        r.dtRegistro,
-        r.valor,
+        r.dtRegistro tempo,
+        CASE
+            WHEN (( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100 < 0 THEN 0
+            ELSE ROUND((( (ph.diametroExternoMM - ph.diametroInternoMM)/2 - r.valor) / ((ph.diametroExternoMM - ph.diametroInternoMM)/2) ) * 100)
+        END AS valor,
         d.idDispenser
     FROM Registro r
-    JOIN Dispenser d 
-    ON r.fkDispenser = d.idDispenser
+    JOIN Dispenser d ON r.fkDispenser = d.idDispenser
+    JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
     WHERE d.idDispenser = ${idDispenser};
   `
 
