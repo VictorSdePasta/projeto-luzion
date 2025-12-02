@@ -729,19 +729,16 @@ SELECT
     SUM(CASE WHEN vd.estado = 'critico' THEN 1 ELSE 0 END) AS dispensadorCritico,
     SUM(CASE WHEN vd.estado = 'atencao' THEN 1 ELSE 0 END) AS dispensadorAtencao,
     SUM(CASE WHEN vd.estado = 'ideal' THEN 1 ELSE 0 END) AS dispensadorOk,
-    ((SUM(CASE WHEN vd.estado = 'ideal' THEN 3 ELSE 0 END) +
-         SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END) +
-         SUM(CASE WHEN vd.estado = 'critico' THEN 1 ELSE 0 END)) / (COUNT(vd.idDispenser) * 3) * 100
+    ((SUM(CASE WHEN vd.estado = 'ideal' THEN 4 ELSE 0 END) +
+         SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100
     ) AS situacao_banheiro,
     CASE
         WHEN (
             (SUM(CASE WHEN vd.estado = 'ideal' THEN 3 ELSE 0 END) +
-             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END) +
-             SUM(CASE WHEN vd.estado = 'critico' THEN 1 ELSE 0 END)) / (COUNT(vd.idDispenser) * 3) * 100) >= 75 THEN 'ideal'
+             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 85 THEN 'ideal'
         WHEN (
-            (SUM(CASE WHEN vd.estado = 'ideal' THEN 3 ELSE 0 END) +
-             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END) +
-             SUM(CASE WHEN vd.estado = 'critico' THEN 1 ELSE 0 END)) / (COUNT(vd.idDispenser) * 3) * 100) BETWEEN 26 AND 74 THEN 'atencao'
+            (SUM(CASE WHEN vd.estado = 'ideal' THEN 4 ELSE 0 END) +
+             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 40 THEN 'atencao'
         ELSE 'critico'
     END AS classificacao_banheiro
 FROM Banheiro b
@@ -764,17 +761,14 @@ SELECT
     SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END) AS banheiroCritico,
     SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 1 ELSE 0 END) AS banheiroAtencao,
     SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 1 ELSE 0 END) AS banheiroOk,
-    ROUND((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
-	      SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
-	      SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 3) * 100) AS situacao_setor,
+    ROUND((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 4 ELSE 0 END) +
+	      SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) AS situacao_setor,
     CASE
-        WHEN ((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
-             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
-             SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 3) * 100) >= 75 THEN 'ideal'
+        WHEN ((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 4 ELSE 0 END) +
+             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 85 THEN 'ideal'
         WHEN (
-            (SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 3 ELSE 0 END) +
-             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END) +
-             SUM(CASE WHEN vb.classificacao_banheiro = 'critico' THEN 1 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 3) * 100) BETWEEN 26 AND 74 THEN 'atencao'
+            (SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 4 ELSE 0 END) +
+             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 40 THEN 'atencao'
         ELSE 'critico'
     END AS classificacao_setor
 FROM Banheiro b
@@ -785,12 +779,3 @@ GROUP BY b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
 ORDER BY situacao_setor ASC;
 
 select * from vw_dash_setores_estados;
-
-SELECT 
-        r.dtRegistro,
-        r.valor,
-        d.idDispenser
-    FROM Registro r
-    JOIN Dispenser d 
-    ON r.fkDispenser = d.idDispenser
-    WHERE d.idDispenser = 1;

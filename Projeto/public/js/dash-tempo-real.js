@@ -74,27 +74,26 @@ async function buscarDados(idFilial) {
         const resposta = response[k];
         const valor = Number(resposta.porcentagem_uso);
         const ultimaData = resposta.ultima_medicao
-        console.log(ultimaData, 'ultima')
         const idDispenser = resposta.idDispenser
 
-        if (k == 0) {
+        if (k == 0 && j == 0 && i == 0) {
           let resp = await fetch(`/medidas/tempoDeEstado/${idDispenser}`)
           resp = await resp.json()
 
           let dtIdentificada = null;
-          console.log(dtIdentificada, 'identificado')
 
           for (let j = 0; j < resp.length; j++) {
-            const v = resp[j].valor;
             const t = resp[j].tempo;
+            const v = resp[j].valor;
 
-            console.log(dtIdentificada)
-            if (v < 20) {
-              dtIdentificada = t;
-            } else if (v < 40) {
-              if (dtIdentificada === null) dtIdentificada = t;
-            } else {
-              dtIdentificada = null;
+            if (dtIdentificada == null) {
+              if (v < 20) {
+                dtIdentificada = t;
+              } else if (v < 40) {
+                dtIdentificada = t;
+              }
+            } else if (v >= 40) {
+              dtIdentificada = null
             }
           }
 
@@ -103,10 +102,8 @@ async function buscarDados(idFilial) {
           } else {
             let dtInicial = new Date(ultimaData).getTime()
             let dtFinal = new Date(dtIdentificada).getTime()
-            console.log(dtIdentificada, 'identificado')
 
             let seg = Math.floor(Math.abs(dtFinal - dtInicial) / 1000)
-            console.log(seg)
             let dias = Math.floor(seg / 86400)
             seg %= 86400
             let horas = Math.floor(seg / 3600)
