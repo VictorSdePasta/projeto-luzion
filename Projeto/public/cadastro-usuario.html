@@ -56,6 +56,7 @@
                 <input
                   type="number"
                   id="ipt_telefone"
+                  maxlength="11"
                   placeholder="(99)99999-9999"
                 />
               </div>
@@ -167,8 +168,9 @@
       var senha = ipt_senha.value;
       var confirmacaoSenha = ipt_confirmacaoSenha.value;
       var telefone = ipt_telefone.value;
+      var idFilial = sessionStorage.ID_FILIAL;
 
-      if (!fkFilial) {
+      if (!idFilial) {
         alert(
           "Empresa não encontrada. Cadastre a empresa antes de cadastrar o usuário."
         );
@@ -234,11 +236,11 @@
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            nome: nome,
-            email: email,
-            telefone: telefone,
-            senha: senha,
-            fkFilial: fkFilial
+            nomeServer: nome,
+            emailServer: email,
+            senhaServer: senha,
+            telefoneServer: telefone,
+            fkFilialServer: idFilial
           }),
         })
           .then((res) => res.json())

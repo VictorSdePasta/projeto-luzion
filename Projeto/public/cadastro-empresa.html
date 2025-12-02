@@ -115,8 +115,26 @@
       }
     }
 
-    function selecionarFilial() {
-
+    function buscarPorFk() {
+      let id = sessionStorage.ID_EMPRESA;
+      console.log(id + ' Id empresa')
+      fetch(`/empresas/buscar/${id}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (lista) {
+            console.log(`Dados recebidos: ${JSON.stringify(lista)}`);
+            for (let i = 0; i < lista.length; i++) {
+              let fkEmpresa = lista[i];
+              sessionStorage.ID_FILIAL = fkEmpresa.idFilial;
+              console.log(sessionStorage.ID_FILIAL + ' Id filial')
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
     }
 
 
@@ -159,12 +177,12 @@
                         throw "Erro ao cadastrar filial.";
                     }
                 });
+                buscarPorFk()
                 pop1.style.display = "flex";
                 up1.style.display = "flex";
-                
                 setTimeout(() => {
-                    fechar();
-                    window.location.href = "cadastro-usuario.html";
+                  fechar();
+                  window.location.href = "cadastro-usuario.html";
                 }, 5000);
             }else {
                 throw "Erro ao cadastrar Filial";
@@ -179,6 +197,8 @@
         });
 
     }
+
+
 
     function fechar() {
       pop1.style.display = "none";

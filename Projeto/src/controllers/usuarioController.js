@@ -1,9 +1,9 @@
 var usuarioModel = require("../models/usuarioModel");
-//var aquarioModel = require("../models/aquarioModel");
+var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
-    var email = req.body.login;
-    var senha = req.body.senha;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -20,20 +20,20 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        // aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                        //     .then((resultadoAquarios) => {
-                                //if (resultadoAquarios.length > 0) {
+                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
+                            .then((resultadoAquarios) => {
+                                if (resultadoAquarios.length > 0) {
                                     res.json({
-                                        id: resultadoAutenticar[0].idFuncionario,
+                                        id: resultadoAutenticar[0].id,
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
-                                        //aquarios: resultadoAquarios
+                                        aquarios: resultadoAquarios
                                     });
-                                /*} else {
+                                } else {
                                     res.status(204).json({ aquarios: [] });
-                                }*/
-                            //})
+                                }
+                            })
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -53,11 +53,11 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nome;
-    var email = req.body.email;
-    var senha = req.body.senha;
-    var telefone = req.body.telefone;
-    var fkFilial = req.body.fkFilial;
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var telefone = req.body.telefoneServer;
+    var fkFilial = req.body.fkFilialServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -65,8 +65,6 @@ function cadastrar(req, res) {
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if (telefone == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else if (fkFilial == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");

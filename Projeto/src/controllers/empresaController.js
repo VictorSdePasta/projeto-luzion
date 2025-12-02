@@ -22,6 +22,14 @@ function buscarPorId(req, res) {
   });
 }
 
+function buscarPorFk(req, res) {
+  var fk = req.params.id;
+  console.log(fk + 'id empresa')
+  empresaModel.buscarPorId(fk).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
 function cadastrar(req, res) {
   var cnpj = req.body.cnpj;
   var razaoSocial = req.body.nomeEmpresa;
@@ -49,12 +57,11 @@ function cadastrarFilial(req, res) {
     res.status(200).json(resultado);
   });
 }
-function selecionarFilial() {
 
-}
 module.exports = {
   buscarPorCnpj,
   buscarPorId,
   cadastrar,
-  cadastrarFilial
+  cadastrarFilial,
+  buscarPorFk
 };

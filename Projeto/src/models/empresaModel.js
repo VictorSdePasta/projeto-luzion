@@ -7,6 +7,12 @@ function buscarPorId(id) {
   return database.executar(instrucaoSql);
 }
 
+function buscarPorId(fk) {
+  var instrucaoSql = `SELECT * FROM Filial WHERE fkEmpresa = '${fk}'`;
+
+  return database.executar(instrucaoSql);
+}
+
 // function listar() {
 //   var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
 
