@@ -17,8 +17,9 @@
     <div class="menuLateral">
       <h1>Suporte Luzion</h1>
       <div class="botoes">
-        <div class="buttonSuporte" onclick="suporte()">SUPORTE</div>
-        <div class="buttonLogout" onclick="deslogar()">SAIR</div>
+
+        <button class="buttonSuporte" onclick="suporte()">SUPORTE</button>
+        <button class="buttonLogout" onclick="deslogar()">SAIR</button>
       </div>
     </div>
 
@@ -64,12 +65,20 @@
   }
   function suporte() {
 
+    window.location.href ='https://sptech-team-nnmaboxn.atlassian.net/jira/servicedesk/projects/SUP/queues/custom/1';
+
   }
   function bobIa() {
 
   }
   function deslogar() {
 
+     sessionStorage.EMAIL_USUARIO = '';
+     sessionStorage.NOME_USUARIO = '';
+     sessionStorage.ID_USUARIO = '';    
 
+     setTimeout(() => {
+      window.location = 'login.html'
+     }, 500);
   }
 </script>
