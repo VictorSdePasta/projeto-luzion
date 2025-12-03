@@ -1,5 +1,5 @@
-let idFilial = 1;
-// let idFilial = sessionStorage.ID_FILIAL
+let idFilial = sessionStorage.ID_FILIAL
+// let idFilial = 1
 let topo = document.getElementById("divTopo");
 
 let setores = [];
@@ -12,28 +12,6 @@ let situacoesBanheiros = [];
 let qtdBanheirosAtencao = [];
 let qtdBanheirosCrit = [];
 let tempo = '0 dias 0 horas 00 minutos'
-
-/*
-for (let i = 0; i < dispenser.length; i++) {
-  let dtIdentificada = registros[0].dtRegistro
-  let encontrou = false
-
-  for (let j = 0; j < registros.length; j++) {
-    if (registros[j].valor < 20 && !encontrou) {
-      dtIdentificada = registros[j].dtRegistro
-      encontrou = true
-    } else if (registros[j].valor <= 40 && !encontrou) {
-      dtIdentificada = registros[j].dtRegistro
-      encontrou = true
-    }
-
-    if (registros[j].valor > 40) {
-      dtIdentificada = registros[j].dtRegistro
-      encontrou = false
-    }
-  }
-}
-*/
 
 window.onload = buscarDados(idFilial);
 
@@ -98,28 +76,45 @@ async function buscarDados(idFilial) {
         const ultimaData = resposta.ultima_medicao
         const idDispenser = resposta.idDispenser
 
-        let resp = await fetch(`/medidas/tempoDeEstado/${idDispenser}`)
-        resp = await resp.json()
+        if (k == 0 && j == 0 && i == 0) {
+          let resp = await fetch(`/medidas/tempoDeEstado/${idDispenser}`)
+          resp = await resp.json()
 
-        let dtIdentificada = resp[0].dtRegistro
-        let encontrou = false
+          let dtIdentificada = null;
 
-        for (let j = 0; j < resp.length; j++) {
-          if (resp[j].valor < 20 && !encontrou) {
-            dtIdentificada = resp[j].dtRegistro
-            encontrou = true
-          } else if (resp[j].valor <= 40 && !encontrou) {
-            dtIdentificada = resp[j].dtRegistro
-            encontrou = true
+          for (let j = 0; j < resp.length; j++) {
+            const t = resp[j].tempo;
+            const v = resp[j].valor;
+
+            if (dtIdentificada == null) {
+              if (v < 20) {
+                dtIdentificada = t;
+              } else if (v < 40) {
+                dtIdentificada = t;
+              }
+            } else if (v >= 40) {
+              dtIdentificada = null
+            }
           }
 
-          if (resp[j].valor > 40) {
-            dtIdentificada = resp[j].dtRegistro
-            encontrou = false
+          if (!dtIdentificada) {
+            tempo = "";
+          } else {
+            let dtInicial = new Date(ultimaData).getTime()
+            let dtFinal = new Date(dtIdentificada).getTime()
+
+            let seg = Math.floor(Math.abs(dtFinal - dtInicial) / 1000)
+            let dias = Math.floor(seg / 86400)
+            seg %= 86400
+            let horas = Math.floor(seg / 3600)
+            seg %= 3600
+            let minutos = Math.floor(seg / 60)
+            seg %= 60
+
+            tempo = `${dias > 0 ? `${dias} dias ` : ``}${horas > 0 ? `${horas} horas` : ``}${minutos > 0 ? `${minutos} minutos` : ``}`
           }
         }
 
-        tempo = `${ultimaData} ${dtIdentificada}`
         cabineBanheiro.push(resposta.dispenser);
         dadoBanheiro.push(valor);
       }
@@ -277,7 +272,7 @@ function preencherPagina() {
 
       <div class="colunaDir">
         <div class="header">
-          <div class="descricaoKpi">Tempo em estado ${classificacoesSetor[0] == 'atencao' ? 'de Atenção' : 'Crítico'}<h2>1h 37min</h2></div>
+          <div class="descricaoKpi">Tempo em estado ${classificacoesSetor[0] == 'atencao' ? 'de Atenção' : 'Crítico'}<h2>${tempo}</h2></div>
           <h1 class="titulo">Nível de abastecimento dos setores</h1>
         </div>
 
