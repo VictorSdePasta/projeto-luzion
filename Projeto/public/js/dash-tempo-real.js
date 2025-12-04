@@ -16,6 +16,7 @@ let tempo = '0 dias 0 horas 00 minutos'
 window.onload = buscarDados(idFilial);
 
 async function buscarDados(idFilial) {
+  console.log()
   let resposta = await fetch(`/medidas/setores/${idFilial}`, {
     cache: "no-store",
   });
@@ -390,4 +391,8 @@ function abrir(idConjunto, situacao) {
     desc.innerHTML = "<h2>Nível de abastecimento dos dispensadores</h2>";
     div.classList.add("detalhado");
   }
+}
+
+function atualizarGrafico(idFilial, ) {
+  
 }

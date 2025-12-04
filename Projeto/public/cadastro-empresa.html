@@ -177,16 +177,17 @@
                         throw "Erro ao cadastrar filial.";
                     }
                 });
-                buscarPorFk()
                 pop1.style.display = "flex";
                 up1.style.display = "flex";
+                console.log('ESTOU AQUI')
+                buscarPorFk()
                 setTimeout(() => {
                   fechar();
                   window.location.href = "cadastro-usuario.html";
                 }, 5000);
-            }else {
+              }else {
                 throw "Erro ao cadastrar Filial";
-            }
+              }
             });
           } else {
             throw "Erro ao cadastrar empresa.";

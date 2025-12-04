@@ -119,8 +119,8 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        login: login,
-                        senha: senha
+                        emailServer: login,
+                        senhaServer: senha
                     })
                      }).then(function (resposta) {
                         console.log("ESTOU NO THEN DO entrar()!")
@@ -138,7 +138,7 @@
                                 //sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                                 setTimeout(function () {
-                                    window.location.href = './dash-tempo-real.html';
+                                    window.location.href = './dashboard/dash-tempo-real.html';
                                 }, 1000); // apenas para exibir o loading
                             });
                         } else {
