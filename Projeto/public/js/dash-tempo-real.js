@@ -1,5 +1,5 @@
-let idFilial = sessionStorage.ID_FILIAL
-// let idFilial = 1
+// let idFilial = sessionStorage.ID_FILIAL
+let idFilial = 1
 let topo = document.getElementById("divTopo");
 
 let setores = [];
@@ -140,9 +140,9 @@ function gerarLegendaCores() {
   return `
     <div class="legenda">
       <h4>As cores representam as situações dos banheiros:<br>
-        <span><div class="situacao critico"></div> Vermelho - Estado crítico</span>
-        <span><div class="situacao"></div> Amarelo - Estado de atenção</span>
-        <span><div class="situacao ideal"></div> Verde - Estado ideal</span>
+        <span><div class="situacao critico"></div> - Estado crítico</span>
+        <span><div class="situacao"></div> - Estado de atenção</span>
+        <span><div class="situacao ideal"></div> - Estado ideal</span>
       </h4>
     </div>`;
 }
@@ -182,7 +182,7 @@ function criarGraficoBase(ctx, labels, data, anotacoes) {
             text: "Dispensadores",
             color: "#5A4168",
             font: { size: 18, weight: "bold" },
-          },
+          }
         },
         y: {
           max: 100,
@@ -193,10 +193,55 @@ function criarGraficoBase(ctx, labels, data, anotacoes) {
             text: "Nível de Abastecimento(%)",
             color: "#5A4168",
             font: { size: 18, weight: "bold" },
+          }
+        }
+      }
+    }
+  });
+}
+
+function criarGraficoTopo(ctx, labels, data, anotacoes) {
+  new Chart(ctx, {
+    data: {
+      labels,
+      datasets: [
+        {
+          type: "bar",
+          data,
+          backgroundColor: "rgba(127, 92, 146, 1)",
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        legend: { display: false },
+        annotation: { annotations: anotacoes },
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          ticks: { color: "#5A4168", font: { size: 18, weight: "bold" } },
+          title: {
+            display: true,
+            text: "Setores",
+            color: "#5A4168",
+            font: { size: 18, weight: "bold" }
           },
         },
-      },
-    },
+        y: {
+          max: 100,
+          beginAtZero: true,
+          ticks: { color: "#5A4168", font: { size: 18, weight: "bold" } },
+          title: {
+            display: true,
+            text: "Índice de Abastecimento(%)",
+            color: "#5A4168",
+            font: { size: 18, weight: "bold" }
+          }
+        }
+      }
+    }
   });
 }
 
@@ -208,7 +253,7 @@ function gerarCardBanheiro(setor, banheiro, idConjunto, primeiro, situacao, qtdA
       <div class="colunaEsq">
         <div class="kpi">
           <h2>Banheiro</h2>
-          <div id="divEstoqueJumbo"><h1>${banheiro}</h1></div>
+          <div id="divEstoque"><h1>${banheiro}</h1></div>
         </div>
 
         <div class="kpiBottom">
@@ -249,7 +294,7 @@ function preencherPagina() {
       <div class="colunaEsq">
         <div class="kpi">
           <h4>Setor em maior<br>estado de urgência</h4>
-          <div id="divEstoqueJumbo"><h2>${setores[0]}</h2></div>
+          <div id="divEstoque"><h2>${setores[0]}</h2></div>
         </div>
 
         <div class="kpiBottom">
@@ -279,13 +324,14 @@ function preencherPagina() {
         <div class="grafico">
           <div class="campoGrafico"><canvas id="graficoSetores"></canvas></div>
         </div>
+        <h4>O índice mostra a situação geral dos banheiros de cada setor, levando em conta o estado dos dispensadores. Quanto mais dispensadores estiverem em atenção ou crítico, maior será a urgência de reposição naquele setor.</h4>
       </div>
     </div>`;
 
   topo.innerHTML = topoHTML;
 
   // gráfico do topo
-  criarGraficoBase(
+  criarGraficoTopo(
     document.getElementById("graficoSetores"),
     setores,
     situacoesSetor,
