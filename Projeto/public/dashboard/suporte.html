@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luzion - Suporte</title>
-  <link rel="stylesheet" href=" CSS/header.css">
-  <link rel="stylesheet" href="CSS/suporte.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/suporte.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
       <h1>Suporte Luzion</h1>
       <div class="botoes">
 
-        <button class="buttonSuporte" onclick="suporte()">SUPORTE</button>
+        <button class="buttonSuporte" onclick="suporte()" id="botao">SUPORTE</button>
         <button class="buttonLogout" onclick="deslogar()">SAIR</button>
       </div>
     </div>
@@ -29,7 +29,7 @@
       </div>
       <div class="chat">
         <input class="inputChat" type="text" id="iptPergunta">
-        <button onclick="gerarResposta()"><img src="Assets/enviar.png"></button>
+        <button onclick="gerarResposta()"><img src="../Assets/enviar.png"></button>
       </div>
     </div>
   </div>
@@ -38,7 +38,6 @@
 
 </html>
 <script>
-  
   let input = document.getElementById("iptPergunta");
   input.addEventListener("keydown", function(event){
     if (event.key === "Enter") {
@@ -65,10 +64,7 @@
   }
   function suporte() {
 
-    window.location.href ='https://sptech-team-nnmaboxn.atlassian.net/jira/servicedesk/projects/SUP/queues/custom/1';
-
-  }
-  function bobIa() {
+    window.open('https://sptech-team-nnmaboxn.atlassian.net/jira/servicedesk/projects/SUP/queues/custom/1', '_blank');
 
   }
   function deslogar() {
