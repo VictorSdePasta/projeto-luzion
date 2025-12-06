@@ -68,7 +68,6 @@ create table Funcionario (
   email varchar(100) not null unique,
   senha varchar(255) not null,
   telefone varchar(11),
-  nivelPermissao tinyint,
   fkFilial int not null,
   constraint fkFuncionarioFilial foreign key (fkFilial) references Filial(idFilial)
 );
@@ -76,13 +75,13 @@ create table Funcionario (
 
 
 
-insert into Funcionario (nome,email,senha,telefone,nivelPermissao,fkFilial) values
-('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1,1),
-('Daner Quispe','daner.qu@facilitando.com','danerqu123','11020202000',2,1),
+insert into Funcionario (nome,email,senha,telefone,fkFilial) values
+('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1),
+('Daner Quispe','daner.qu@facilitando.com','danerqu123','11020202000',1),
 ('Igor Dias','igor.di@facilitando.com','igordi123','11030303000',3,1),
-('Reginaldo De Souza','reginaldo.so@felicity.com','reginaldoso123','11040404000',1,2),
-('Victor David','victor.da@felicity.com','victorda123','11050505000',2,2),
-('Victor Silva','victor.si@felicity.com','victorsi123','11060606000',3,2);
+('Reginaldo De Souza','reginaldo.so@felicity.com','reginaldoso123','11040404000',2),
+('Victor David','victor.da@felicity.com','victorda123','11050505000',2),
+('Victor Silva','victor.si@felicity.com','victorsi123','11060606000',2);
 
 create table PapelHigienico (
   idPapelHigienico int primary key auto_increment,
