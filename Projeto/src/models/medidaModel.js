@@ -1,21 +1,21 @@
 var database = require("../database/config");
 
 function buscarSetores(idFilial) {
-  var instrucaoSql = `SELECT * FROM vw_dash_setores_estados WHERE fkFilial = ${idFilial};`;
+  var instrucaoSql = `SELECT * FROM vw_dash_setores_estados WHERE fkFilial = ${idFilial} ORDER BY situacao_setor ASC;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
 function buscarBanheirosSetor(idFilial, setor) {
-  var instrucaoSql = `SELECT * FROM vw_dash_banheiros_estados WHERE fkFilial = ${idFilial} AND setor = '${setor}';`;
+  var instrucaoSql = `SELECT * FROM vw_dash_banheiros_estados WHERE fkFilial = ${idFilial} AND setor = '${setor}' ORDER BY situacao_banheiro ASC;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
 function buscarDadosBanheiro(idFilial, setor, banheiro) {
-  var instrucaoSql = `SELECT * FROM vw_dash_dispensadores WHERE fkFilial = ${idFilial} AND setor = '${setor}' AND banheiro = '${banheiro}';`
+  var instrucaoSql = `SELECT * FROM vw_dash_dispensadores WHERE fkFilial = ${idFilial} AND setor = '${setor}' AND banheiro = '${banheiro}' ORDER BY porcentagem_uso ASC;`
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

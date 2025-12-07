@@ -12,7 +12,7 @@ create table Empresa (
 );
 
 insert into Empresa (razaoSocial,nomeFantasia,cnpj,contrato, fkCliente) values
-('facilitariamos a sua vida LTDA','Facilitariamos TUDO','00300300300',2, null),
+('facilitariamos a sua vida LTDA','Facilitariamos TUDO','00300300300',1, null),
 ('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',0, null),
 ('servicos felicity LTDA','Felicity em te ajudar','00200200200',1,null),
 ('SenGases LTDA','SenGas','00900900900',3,1),
@@ -71,9 +71,6 @@ create table Funcionario (
   fkFilial int not null,
   constraint fkFuncionarioFilial foreign key (fkFilial) references Filial(idFilial)
 );
-
-
-
 
 insert into Funcionario (nome,email,senha,telefone,fkFilial) values
 ('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1),
@@ -736,11 +733,11 @@ SELECT
     ) AS situacao_banheiro,
     CASE
         WHEN (
-            (SUM(CASE WHEN vd.estado = 'ideal' THEN 3 ELSE 0 END) +
-             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 85 THEN 'ideal'
+            (SUM(CASE WHEN vd.estado = 'ideal' THEN 4 ELSE 0 END) +
+             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 75 THEN 'ideal'
         WHEN (
             (SUM(CASE WHEN vd.estado = 'ideal' THEN 4 ELSE 0 END) +
-             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 40 THEN 'atencao'
+             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 20 THEN 'atencao'
         ELSE 'critico'
     END AS classificacao_banheiro
 FROM Banheiro b
@@ -767,10 +764,10 @@ SELECT
 	      SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) AS situacao_setor,
     CASE
         WHEN ((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 4 ELSE 0 END) +
-             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 85 THEN 'ideal'
+             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 75 THEN 'ideal'
         WHEN (
             (SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 4 ELSE 0 END) +
-             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 40 THEN 'atencao'
+             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 20 THEN 'atencao'
         ELSE 'critico'
     END AS classificacao_setor
 FROM Banheiro b

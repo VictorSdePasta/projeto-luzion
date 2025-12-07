@@ -510,4 +510,9 @@ async function atualizarGrafico(idFilial) {
 
   console.log("Gráficos atualizados!");
 }
+
+function limparSessao() {
+    sessionStorage.clear();
+    window.location = "../login.html";
+}
   setInterval(() => atualizarGrafico(idFilial), 5000);
