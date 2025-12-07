@@ -13,7 +13,7 @@ create table Empresa (
 
 insert into Empresa (razaoSocial,nomeFantasia,cnpj,contrato, fkCliente) values
 ('facilitariamos a sua vida LTDA','Facilitariamos TUDO','00300300300',2, null),
-('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',0, null),
+('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',1, null),
 ('servicos felicity LTDA','Felicity em te ajudar','00200200200',1,null),
 ('SenGases LTDA','SenGas','00900900900',3,1),
 ('SmartsBeefs LTDA','SmartBeef','00400400400',3,1),
@@ -79,7 +79,7 @@ insert into Funcionario (nome,email,senha,telefone,fkFilial) values
 ('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1),
 ('Daner Quispe','daner.qu@facilitando.com','danerqu123','11020202000',1),
 ('Igor Dias','igor.di@facilitando.com','igordi123','11030303000',1),
-('Reginaldo De Souza','reginaldo.so@felicity.com','reginaldoso123','11040404000',2),
+('Reginaldo De Souza','reginaldo.so@facilitadores.com','reginaldoso123','11040404000',2),
 ('Victor David','victor.da@felicity.com','victorda123','11050505000',2),
 ('Victor Silva','victor.si@felicity.com','victorsi123','11060606000',2);
 

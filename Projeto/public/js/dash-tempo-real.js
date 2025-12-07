@@ -1,4 +1,6 @@
 let idFilial = sessionStorage.FKFILIAL;
+let contrato = sessionStorage.CONTRATO;
+let empresa = sessionStorage.NOME_EMPRESA;
 
 let topo = document.getElementById("divTopo");
 
@@ -17,8 +19,14 @@ let tempo = '0 dias 0 horas 00 minutos'
 let graficoSetores = null;            
 let graficosBanheiros = [];  
 
-window.onload = buscarDados(idFilial);
-
+window.onload = autenticar();
+function autenticar() {
+  if (contrato == 2) {
+    document.getElementById("divEmpresa").innerHTML = `Olá ${empresa}! Obrigado por escolher a Luzion, em breve entraremos em contato para ativar seu contrato.`;
+  } else {
+    buscarDados(idFilial)
+  }
+}
 async function buscarDados(idFilial) {
   console.log()
   let resposta = await fetch(`/medidas/setores/${idFilial}`, {
