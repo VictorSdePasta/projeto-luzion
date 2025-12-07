@@ -815,3 +815,7 @@ insert into Registro (valor,dtRegistro,fkDispenser) values
 
 
 
+insert into Funcionario (nome,email,senha,telefone,fkFilial) values
+('Reginaldo De Souza','reginaldo.so@facilitadores.com','reginaldoso123','11040404000',2);
+
+
