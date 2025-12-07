@@ -13,6 +13,7 @@ let qtdBanheirosAtencao = [];
 let qtdBanheirosCrit = [];
 let tempo = '0 dias 0 horas 00 minutos'
 
+
 let graficoSetores = null;            
 let graficosBanheiros = [];  
 
