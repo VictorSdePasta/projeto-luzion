@@ -13,7 +13,7 @@ create table Empresa (
 
 insert into Empresa (razaoSocial,nomeFantasia,cnpj,contrato, fkCliente) values
 ('facilitariamos a sua vida LTDA','Facilitariamos TUDO','00300300300',2, null),
-('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',1, null),
+('facilitando serviços LTDA','Facilitadores Impecaveis','00100100100',0, null),
 ('servicos felicity LTDA','Felicity em te ajudar','00200200200',1,null),
 ('SenGases LTDA','SenGas','00900900900',3,1),
 ('SmartsBeefs LTDA','SmartBeef','00400400400',3,1),
@@ -79,7 +79,7 @@ insert into Funcionario (nome,email,senha,telefone,fkFilial) values
 ('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1),
 ('Daner Quispe','daner.qu@facilitando.com','danerqu123','11020202000',1),
 ('Igor Dias','igor.di@facilitando.com','igordi123','11030303000',1),
-('Reginaldo De Souza','reginaldo.so@facilitadores.com','reginaldoso123','11040404000',2),
+('Reginaldo De Souza','reginaldo.so@felicity.com','reginaldoso123','11040404000',2),
 ('Victor David','victor.da@felicity.com','victorda123','11050505000',2),
 ('Victor Silva','victor.si@felicity.com','victorsi123','11060606000',2);
 
@@ -132,6 +132,9 @@ insert into Banheiro (titulo, setor, fkFilial) values
 ('1','Andar 2 - Funcionarios',6),
 ('2','Andar 2 - Publico',6),
 ('1','Andar 3',6);
+
+
+
 
 create table Dispenser (
   idDispenser int primary key auto_increment,
@@ -733,11 +736,11 @@ SELECT
     ) AS situacao_banheiro,
     CASE
         WHEN (
-            (SUM(CASE WHEN vd.estado = 'ideal' THEN 4 ELSE 0 END) +
-             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 75 THEN 'ideal'
+            (SUM(CASE WHEN vd.estado = 'ideal' THEN 3 ELSE 0 END) +
+             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 85 THEN 'ideal'
         WHEN (
             (SUM(CASE WHEN vd.estado = 'ideal' THEN 4 ELSE 0 END) +
-             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 20 THEN 'atencao'
+             SUM(CASE WHEN vd.estado = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(vd.idDispenser) * 4) * 100) >= 40 THEN 'atencao'
         ELSE 'critico'
     END AS classificacao_banheiro
 FROM Banheiro b
@@ -764,10 +767,10 @@ SELECT
 	      SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) AS situacao_setor,
     CASE
         WHEN ((SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 4 ELSE 0 END) +
-             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 75 THEN 'ideal'
+             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 85 THEN 'ideal'
         WHEN (
             (SUM(CASE WHEN vb.classificacao_banheiro = 'ideal' THEN 4 ELSE 0 END) +
-             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 20 THEN 'atencao'
+             SUM(CASE WHEN vb.classificacao_banheiro = 'atencao' THEN 2 ELSE 0 END)) / (COUNT(DISTINCT b.idBanheiro) * 4) * 100) >= 40 THEN 'atencao'
         ELSE 'critico'
     END AS classificacao_setor
 FROM Banheiro b
@@ -778,3 +781,37 @@ GROUP BY b.setor, b.fkFilial, f.titulo, emp.nomeFantasia
 ORDER BY situacao_setor ASC;
 
 select * from vw_dash_setores_estados;
+
+insert into Banheiro (titulo, setor, fkFilial) values
+('Ala Norte','Terreo',2),
+('Ala Oeste','Terreo',2),
+('1','Andar 3',2);
+
+insert into Dispenser (identificacao,fkBanheiro,fkPapelHigienico) values
+('Cabine 1',28,1),
+('Cabine 2',28,1),
+('Cabine 3',28,1),
+('Cabine 3',29,1),
+('Cabine 1',29,1),
+('Cabine 2',29,1),
+('Cabine 1',30,1),
+('Cabine 2',30,1),
+('Cabine 3',30,1),
+('Cabine 4',30,1);
+
+
+insert into Registro (valor,dtRegistro,fkDispenser) values
+(34, '2025-09-20 08:00:00', 28),
+(28, '2025-09-20 12:00:00', 28),
+(21, '2025-09-20 16:00:00', 28),
+(70, '2025-09-21 08:00:00', 29),
+(65, '2025-09-21 09:00:00', 29),
+(20, '2025-09-21 12:00:00', 29),
+(16, '2025-09-21 16:00:00', 29),
+(20, '2025-09-22 08:00:00', 30),
+(15, '2025-09-22 12:00:00', 30),
+(11, '2025-09-22 16:00:00', 30),
+(8, '2025-09-22 20:00:00', 30);
+
+
+
