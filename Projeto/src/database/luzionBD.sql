@@ -78,7 +78,7 @@ create table Funcionario (
 insert into Funcionario (nome,email,senha,telefone,fkFilial) values
 ('Ana Luiza','ana.lu@facilitando.com','analu123','11010101000',1),
 ('Daner Quispe','daner.qu@facilitando.com','danerqu123','11020202000',1),
-('Igor Dias','igor.di@facilitando.com','igordi123','11030303000',3,1),
+('Igor Dias','igor.di@facilitando.com','igordi123','11030303000',1),
 ('Reginaldo De Souza','reginaldo.so@felicity.com','reginaldoso123','11040404000',2),
 ('Victor David','victor.da@felicity.com','victorda123','11050505000',2),
 ('Victor Silva','victor.si@felicity.com','victorsi123','11060606000',2);

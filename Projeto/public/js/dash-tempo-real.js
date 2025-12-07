@@ -13,6 +13,9 @@ let qtdBanheirosAtencao = [];
 let qtdBanheirosCrit = [];
 let tempo = '0 dias 0 horas 00 minutos'
 
+let graficoSetores = null;            
+let graficosBanheiros = [];  
+
 window.onload = buscarDados(idFilial);
 
 async function buscarDados(idFilial) {
@@ -135,6 +138,9 @@ async function buscarDados(idFilial) {
   }
 
   preencherPagina();
+
+  setInterval(() => atualizarGrafico(idFilial), 5000);
+
 }
 
 function gerarLegendaCores() {
@@ -157,7 +163,7 @@ function gerarLinhaLista(nome, i) {
 }
 
 function criarGraficoBase(ctx, labels, data, anotacoes) {
-  new Chart(ctx, {
+  return new Chart(ctx, {
     data: {
       labels,
       datasets: [
@@ -202,7 +208,7 @@ function criarGraficoBase(ctx, labels, data, anotacoes) {
 }
 
 function criarGraficoTopo(ctx, labels, data, anotacoes) {
-  new Chart(ctx, {
+  return new Chart(ctx, {
     data: {
       labels,
       datasets: [
@@ -332,7 +338,7 @@ function preencherPagina() {
   topo.innerHTML = topoHTML;
 
   // gráfico do topo
-  criarGraficoTopo(
+  graficoSetores = criarGraficoTopo(
     document.getElementById("graficoSetores"),
     setores,
     situacoesSetor,
@@ -360,9 +366,13 @@ function preencherPagina() {
   // gráficos individuais
   for (let i = 0; i < setores.length; i++) {
     for (let j = 0; j < banheirosSetor[i].length; j++) {
+
       const idGraf = `${banheirosSetor[i][j].replaceAll(" ", "")}_${setores[i].replaceAll(" ", "")}`;
 
-      criarGraficoBase(
+      if (!graficosBanheiros[i]) graficosBanheiros[i] = [];
+
+
+      graficosBanheiros[i][j] = criarGraficoBase(
         document.getElementById(`grafico${idGraf}`),
         cabines[i][j],
         dados[i][j],
@@ -373,6 +383,7 @@ function preencherPagina() {
       );
     }
   }
+
 }
 
 function abrir(idConjunto, situacao) {
@@ -393,6 +404,100 @@ function abrir(idConjunto, situacao) {
   }
 }
 
-function atualizarGrafico(idFilial, ) {
-  
+async function atualizarGrafico(idFilial) {
+
+  // limpa as arrays 
+  setores = [];
+  banheirosSetor = [];
+  cabines = [];
+  dados = [];
+  situacoesSetor = [];
+  classificacoesSetor = [];
+  situacoesBanheiros = [];
+  qtdBanheirosAtencao = [];
+  qtdBanheirosCrit = [];
+
+  // busca os setores atualizadds 
+  let resposta = await fetch(`/medidas/setores/${idFilial}`, { cache: "no-store" });
+  resposta = await resposta.json();
+
+  for (let i = 0; i < resposta.length; i++) {
+    setores.push(resposta[i].setor);
+    situacoesSetor.push(resposta[i].situacao_setor);
+    classificacoesSetor.push(resposta[i].classificacao_setor);
+  }
+
+  // busca os dispensers e os banheiros dos setores 
+  for (let i = 0; i < setores.length; i++) {
+    let setor = setores[i];
+
+    let respostaBan = await fetch(`/medidas/banheiroSetor/${idFilial}/${setor}`, {
+      cache: "no-store"
+    });
+    respostaBan = await respostaBan.json();
+
+    let banheiroSetor = [];
+    let situacoesBanheiroSetor = [];
+    let cabinesSetor = [];
+    let dadosSetor = [];
+    let qtdAt = [];
+    let qtdCr = [];
+
+    for (let j = 0; j < respostaBan.length; j++) {
+      let banheiro = respostaBan[j].banheiro;
+      let situacao = respostaBan[j].classificacao_banheiro;
+      let atencao = respostaBan[j].dispensadorAtencao;
+      let crit = respostaBan[j].dispensadorCritico;
+
+      banheiroSetor.push(banheiro);
+      situacoesBanheiroSetor.push(situacao);
+      qtdAt.push(atencao);
+      qtdCr.push(crit);
+
+      // dispensers e os valores
+      let reqDisp = await fetch(`/medidas/dadosBanheiro/${idFilial}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ setorServer: setor, banheiroServer: banheiro })
+      });
+
+      reqDisp = await reqDisp.json();
+
+      let cab = [];
+      let dat = [];
+
+      for (let k = 0; k < reqDisp.length; k++) {
+        cab.push(reqDisp[k].dispenser);
+        dat.push(Number(reqDisp[k].porcentagem_uso));
+      }
+
+      cabinesSetor.push(cab);
+      dadosSetor.push(dat);
+    }
+
+    cabines.push(cabinesSetor);
+    dados.push(dadosSetor);
+    banheirosSetor.push(banheiroSetor);
+    situacoesBanheiros.push(situacoesBanheiroSetor);
+    qtdBanheirosAtencao.push(qtdAt);
+    qtdBanheirosCrit.push(qtdCr);
+  }
+
+  //atualiza grafico topo 
+  graficoSetores.data.labels = setores;
+  graficoSetores.data.datasets[0].data = situacoesSetor;
+  graficoSetores.update();
+
+  // atualiza os grafico individuais
+  for (let i = 0; i < setores.length; i++) {
+    for (let j = 0; j < banheirosSetor[i].length; j++) {
+      let graf = graficosBanheiros[i][j];
+
+      graf.data.labels = cabines[i][j];
+      graf.data.datasets[0].data = dados[i][j];
+      graf.update();
+    }
+  }
+
+  console.log("Gráficos atualizados!");
 }
