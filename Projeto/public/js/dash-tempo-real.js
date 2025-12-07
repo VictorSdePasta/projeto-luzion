@@ -1,5 +1,5 @@
-// let idFilial = sessionStorage.ID_FILIAL
-let idFilial = 1
+let idFilial = sessionStorage.FKFILIAL;
+
 let topo = document.getElementById("divTopo");
 
 let setores = [];
@@ -139,7 +139,7 @@ async function buscarDados(idFilial) {
 
   preencherPagina();
 
-  setInterval(() => atualizarGrafico(idFilial), 5000);
+
 
 }
 
@@ -501,3 +501,4 @@ async function atualizarGrafico(idFilial) {
 
   console.log("Gráficos atualizados!");
 }
+  setInterval(() => atualizarGrafico(idFilial), 5000);
