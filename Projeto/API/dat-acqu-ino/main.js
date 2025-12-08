@@ -55,7 +55,7 @@ const serial = async (
         const valores = data.split(':');
         const valorDistancia = parseFloat(valores[1]);
 
-        let stData = new Date().toLocaleString('pt-BR', { hour12: false }).replace(',', '');
+        let stData = new Date();
 
         dtRegistros.push(stData);
 
