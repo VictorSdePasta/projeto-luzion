@@ -33,7 +33,7 @@ function tempoDeEstado(idDispenser) {
     FROM Registro r
     JOIN Dispenser d ON r.fkDispenser = d.idDispenser
     JOIN PapelHigienico ph ON d.fkPapelHigienico = ph.idPapelHigienico
-    WHERE d.idDispenser = ${idDispenser};
+    WHERE d.idDispenser = ${idDispenser} ORDER BY r.dtRegistro ASC;
   `
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
