@@ -55,10 +55,7 @@ const serial = async (
         const valores = data.split(':');
         const valorDistancia = parseFloat(valores[1]);
 
-        //Registra a data e hora de processamento dos dados
-        const dtAtual = new Date(Date.now())
-
-        let stData = `${dtAtual.getFullYear()}-${dtAtual.getMonth()}-${dtAtual.getDay()} ${dtAtual.getHours()}:${dtAtual.getMinutes()}:${dtAtual.getSeconds()}` // YYYY-MM-DD HH:MM:SS
+        let stData = new Date().toLocaleString('pt-BR', { hour12: false }).replace(',', '');
 
         dtRegistros.push(stData);
 
