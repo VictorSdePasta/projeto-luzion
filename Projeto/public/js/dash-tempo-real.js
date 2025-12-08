@@ -469,17 +469,18 @@ async function atualizarGrafico() {
 
       reqDisp = await reqDisp.json();
 
-      const idDispenser = reqDisp[0].idDispenser
       let cab = [];
       let dat = [];
 
       for (let k = 0; k < reqDisp.length; k++) {
+        const idDispenser = reqDisp[k].idDispenser
+        
         if (k == 0 && j == 0 && i == 0) {
           let resp = await fetch(`/medidas/tempoDeEstado/${idDispenser}`)
           resp = await resp.json()
-
+          
           let dtIdentificada = null;
-
+          
           for (let j = 0; j < resp.length; j++) {
             const t = resp[j].tempo;
             const v = resp[j].valor;
@@ -498,7 +499,7 @@ async function atualizarGrafico() {
           if (!dtIdentificada) {
             tempo = "";
           } else {
-            let dtInicial = new Date(ultimaData).getTime()
+            let dtInicial = new Date(reqDisp[k].ultima_medicao).getTime()
             let dtFinal = new Date(dtIdentificada).getTime()
 
             let seg = Math.floor(Math.abs(dtFinal - dtInicial) / 1000)
