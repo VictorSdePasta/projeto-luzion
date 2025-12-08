@@ -139,10 +139,15 @@
                                 sessionStorage.FKFILIAL = json.fkFilial;
                                 sessionStorage.NOME_EMPRESA = json.nomeEmpresa,
                                 sessionStorage.CONTRATO = json.contrato
-
+                                if (login.includes('@suporteluzion.com')) {
+                                setTimeout(function () {
+                                    window.location.href = './dashboard/suporte.html';
+                                }, 1000); // apenas para exibir o loading
+                                } else {
                                 setTimeout(function () {
                                     window.location.href = './dashboard/dash-tempo-real.html';
                                 }, 1000); // apenas para exibir o loading
+                                }
                             });
                         } else {
                             console.log("Houve um erro ao tentar realizar o login!");
