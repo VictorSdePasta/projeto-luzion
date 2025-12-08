@@ -16,8 +16,8 @@ let qtdBanheirosCrit = [];
 let tempo = '0 dias 0 horas 00 minutos'
 
 
-let graficoSetores = null;            
-let graficosBanheiros = [];  
+let graficoSetores = null;
+let graficosBanheiros = [];
 
 window.onload = autenticar();
 function autenticar() {
@@ -147,9 +147,6 @@ async function buscarDados(idFilial) {
   }
 
   preencherPagina();
-
-
-
 }
 
 function gerarLegendaCores() {
@@ -472,10 +469,50 @@ async function atualizarGrafico(idFilial) {
 
       reqDisp = await reqDisp.json();
 
+      const idDispenser = reqDisp.idDispenser
       let cab = [];
       let dat = [];
 
       for (let k = 0; k < reqDisp.length; k++) {
+        if (k == 0 && j == 0 && i == 0) {
+          let resp = await fetch(`/medidas/tempoDeEstado/${idDispenser}`)
+          resp = await resp.json()
+
+          let dtIdentificada = null;
+
+          for (let j = 0; j < resp.length; j++) {
+            const t = resp[j].tempo;
+            const v = resp[j].valor;
+
+            if (dtIdentificada == null) {
+              if (v < 20) {
+                dtIdentificada = t;
+              } else if (v < 40) {
+                dtIdentificada = t;
+              }
+            } else if (v >= 40) {
+              dtIdentificada = null
+            }
+          }
+
+          if (!dtIdentificada) {
+            tempo = "";
+          } else {
+            let dtInicial = new Date(ultimaData).getTime()
+            let dtFinal = new Date(dtIdentificada).getTime()
+
+            let seg = Math.floor(Math.abs(dtFinal - dtInicial) / 1000)
+            let dias = Math.floor(seg / 86400)
+            seg %= 86400
+            let horas = Math.floor(seg / 3600)
+            seg %= 3600
+            let minutos = Math.floor(seg / 60)
+            seg %= 60
+
+            tempo = `${dias > 0 ? `${dias} dias ` : ``}${horas > 0 ? `${horas} horas` : ``}${minutos > 0 ? `${minutos} minutos` : ``}`
+          }
+        }
+
         cab.push(reqDisp[k].dispenser);
         dat.push(Number(reqDisp[k].porcentagem_uso));
       }
@@ -513,7 +550,7 @@ async function atualizarGrafico(idFilial) {
 }
 
 function limparSessao() {
-    sessionStorage.clear();
-    window.location = "../login.html";
+  sessionStorage.clear();
+  window.location = "../login.html";
 }
-  setInterval(() => atualizarGrafico(idFilial), 5000);
+setInterval(() => atualizarGrafico(idFilial), 5000);
