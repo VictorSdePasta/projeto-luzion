@@ -22,10 +22,10 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'nesh',
-            password: 'dontbelong',
+            user: 'aluno',
+            password: 'Sptech#2024',
             database: 'luzion',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
@@ -56,7 +56,7 @@ const serial = async (
         const valorDistancia = parseFloat(valores[1]);
 
         //Registra a data e hora de processamento dos dados
-        const dtAtual = new Date()
+        const dtAtual = new Date(Date.now())
 
         let stData = `${dtAtual.getFullYear()}-${dtAtual.getMonth()}-${dtAtual.getDay()} ${dtAtual.getHours()}:${dtAtual.getMinutes()}:${dtAtual.getSeconds()}` // YYYY-MM-DD HH:MM:SS
 
@@ -64,8 +64,8 @@ const serial = async (
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresDispenser1.push(valorDistancia);
-        valoresDispenser2.push(valorDistancia+20);
-        valoresDispenser3.push(valorDistancia+15);
+        valoresDispenser2.push(valorDistancia+5);
+        valoresDispenser3.push(valorDistancia+7);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
@@ -82,12 +82,12 @@ const serial = async (
 
             await poolBancoDados.execute(
               `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 43);`,
-              [valorDistancia+7, stData]
+              [valorDistancia, stData]
             );
             
             await poolBancoDados.execute(
               `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 42);`,
-              [valorDistancia+7, stData]
+              [valorDistancia, stData]
             );
 
         }
