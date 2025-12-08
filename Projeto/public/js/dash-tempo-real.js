@@ -24,10 +24,10 @@ function autenticar() {
   if (contrato == 2) {
     document.getElementById("divEmpresa").innerHTML = `Olá ${empresa}! Obrigado por escolher a Luzion, em breve entraremos em contato para ativar seu contrato.`;
   } else {
-    buscarDados(idFilial)
+    buscarDados()
   }
 }
-async function buscarDados(idFilial) {
+async function buscarDados() {
   console.log()
   let resposta = await fetch(`/medidas/setores/${idFilial}`, {
     cache: "no-store",
@@ -410,7 +410,7 @@ function abrir(idConjunto, situacao) {
   }
 }
 
-async function atualizarGrafico(idFilial) {
+async function atualizarGrafico() {
 
   // limpa as arrays 
   setores = [];
@@ -469,7 +469,7 @@ async function atualizarGrafico(idFilial) {
 
       reqDisp = await reqDisp.json();
 
-      const idDispenser = reqDisp.idDispenser
+      const idDispenser = respostaBan.idDispenser
       let cab = [];
       let dat = [];
 
@@ -553,4 +553,4 @@ function limparSessao() {
   sessionStorage.clear();
   window.location = "../login.html";
 }
-setInterval(() => atualizarGrafico(idFilial), 5000);
+setInterval(() => atualizarGrafico(), 5000);
