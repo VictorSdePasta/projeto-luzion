@@ -262,7 +262,7 @@ function gerarCardBanheiro(setor, banheiro, idConjunto, primeiro, situacao, qtdA
   const id = `${banheiro.replaceAll(" ", "")}_${setor.replaceAll(" ", "")}`;
 
   return `
-    <div id="divConjunto${idConjunto}" class="conjunto ${primeiro ? "detalhado" : ""}">
+    <div id="divConjunto${idConjunto}" class="conjunto detalhado">
       <div class="colunaEsq">
         <div class="kpi">
           <h2>Banheiro</h2>
