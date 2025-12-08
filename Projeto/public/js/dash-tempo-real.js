@@ -469,7 +469,7 @@ async function atualizarGrafico() {
 
       reqDisp = await reqDisp.json();
 
-      const idDispenser = respostaBan[j].idDispenser
+      const idDispenser = reqDisp[0].idDispenser
       let cab = [];
       let dat = [];
 
