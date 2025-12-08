@@ -386,7 +386,7 @@ function preencherPagina() {
         cabines[i][j],
         dados[i][j],
         {
-          crit: { type: "line", yMin: 15, yMax: 15, borderColor: "red", borderDash: [6, 6] },
+          crit: { type: "line", yMin: 20, yMax: 20, borderColor: "red", borderDash: [6, 6] },
           aten: { type: "line", yMin: 40, yMax: 40, borderColor: "yellow", borderDash: [6, 6] }
         }
       );
@@ -508,6 +508,7 @@ async function atualizarGrafico(idFilial) {
     }
   }
 
+  preencherPagina()
   console.log("Gráficos atualizados!");
 }
 

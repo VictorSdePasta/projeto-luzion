@@ -21,11 +21,11 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '127.0.0.1',
-            user: 'datacquino',
-            password: 'Senha123456789!',
+            host: 'localhost',
+            user: 'nesh',
+            password: 'dontbelong',
             database: 'luzion',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
@@ -71,23 +71,23 @@ const serial = async (
         if (HABILITAR_OPERACAO_INSERIR) {
           
             console.log("valores inseridos no banco Dispenser 1: ", valorDistancia, "Data atual ", stData);
-            console.log("valores inseridos no banco Dispenser 2: ", valorDistancia+20, "Data atual ", stData);
-            console.log("valores inseridos no banco Dispenser 3: ", valorDistancia+15, "Data atual ", stData);
+            console.log("valores inseridos no banco Dispenser 2: ", valorDistancia+5, "Data atual ", stData);
+            console.log("valores inseridos no banco Dispenser 3: ", valorDistancia+7, "Data atual ", stData);
             
             // este insert irá inserir os dados na tabela "Registro"
             await poolBancoDados.execute(
-              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 1);`,
+              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 41);`,
               [valorDistancia, stData]
             );
 
             await poolBancoDados.execute(
-              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 2);`,
-              [valorDistancia+20, stData]
+              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 43);`,
+              [valorDistancia+7, stData]
             );
             
             await poolBancoDados.execute(
-              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 3);`,
-              [valorDistancia+15, stData]
+              `INSERT INTO Registro (valor, dtRegistro, fkDispenser) VALUES (?, ?, 42);`,
+              [valorDistancia+7, stData]
             );
 
         }
